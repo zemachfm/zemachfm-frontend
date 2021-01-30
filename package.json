@@ -38,7 +38,7 @@
   },
   "husky": {
     "hooks": {
-      "commit-msg": "echo $HUSKY_GIT_PARAMS",
+      "commit-msg": "echo Checking your code ...",
       "pre-commit": "npm run prettierFormat && npm run lint"
     }
   }
