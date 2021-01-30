@@ -38,7 +38,7 @@
   },
   "husky": {
     "hooks": {
-      "commit-msg": "echo Done your code 🟩 ☑️ Nice Job 👏 ",
+      "commit-msg": "echo Done checking your code ✔️ Nice Job 👏 ",
       "pre-commit": "npm run prettierFormat && npm run lint"
     }
   }
