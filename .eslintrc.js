@@ -30,43 +30,43 @@ module.exports = {
   ],
   plugins: ['prettier', 'react-hooks', 'react', 'import'],
   rules: {
-    'prettier/prettier': ['error', prettierOptions],
+    'prettier/prettier': [2, prettierOptions],
     'arrow-body-style': [2, 'as-needed'],
     'class-methods-use-this': 0,
     /**
      * react
      */
-    'react/jsx-uses-react': 'error',
-    'react/jsx-uses-vars': 'error',
-    'react/jsx-uses-react': 'error',
-    'react/jsx-pascal-cas': 'error',
-    'react/react-in-jsx-scope': 'error',
-    'react/jsx-no-undef': 'error',
-    'react/jsx-sort-props': 'error',
-    'react/jsx-wrap-multilines': 'error',
-    'react/jsx-equals-spacing': 'error',
-    'react/jsx-boolean-value': 'error',
+    'react/jsx-uses-react': 2,
+    'react/jsx-uses-vars': 2,
+    'react/jsx-uses-react': 2,
+    'react/jsx-pascal-cas': 2,
+    'react/react-in-jsx-scope': 2,
+    'react/jsx-no-undef': 2,
+    'react/jsx-sort-props': 2,
+    'react/jsx-wrap-multilines': 2,
+    'react/jsx-equals-spacing': 2,
+    'react/jsx-boolean-value': 2,
     /**
      * hooks
      */
-    'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn',
+    'react-hooks/rules-of-hooks': 2,
+    'react-hooks/exhaustive-deps': 1,
     /**
      * import
      */
-    'import/no-unresolved': 'error',
-    'import/named': 'error',
-    'import/export': 'error',
-    'import/no-unused-modules': 'error',
-    'import/exports-last': 'error',
-    'import/newline-after-import': 'error',
-    'import/no-default-export': 'error',
-    'import/group-exports': 'error',
+    'import/no-unresolved': 2,
+    'import/named': 2,
+    'import/export': 2,
+    'import/no-unused-modules': 2,
+    'import/exports-last': 2,
+    'import/newline-after-import': 2,
+    'import/no-default-export': 2,
+    'import/group-exports': 2,
   },
   overrides: [
     {
       files: ['**/*.ts?(x)'],
-      rules: { 'prettier/prettier': ['warn', prettierOptions] },
+      rules: { 'prettier/prettier': [1, prettierOptions] },
     },
   ],
   settings: {
