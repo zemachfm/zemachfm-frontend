@@ -27,6 +27,14 @@ module.exports = {
     'prettier/prettier': [2, prettierOptions],
     'arrow-body-style': [2, 'as-needed'],
     'class-methods-use-this': 0,
+    'no-console': 2,
+    'prefer-const': 2,
+    'no-unreachable': 2,
+    'vars-on-top': 1,
+    'no-undef': 2,
+    'no-underscore-dangle': 2,
+    'no-continue': 2,
+
     /**
      * react
      */
