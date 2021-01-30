@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-unused-modules
 const fs = require('fs');
 const path = require('path');
 
@@ -20,14 +21,7 @@ module.exports = {
       jsx: true,
     },
   },
-  extends: [
-    'eslint:recommended',
-    'airbnb-base',
-    'react-app',
-    'prettier',
-    'prettier/react',
-    'prettier/@typescript-eslint',
-  ],
+  extends: ['eslint:recommended', 'airbnb-base'],
   plugins: ['prettier', 'react-hooks', 'react', 'import'],
   rules: {
     'prettier/prettier': [2, prettierOptions],
@@ -38,9 +32,8 @@ module.exports = {
      */
     'react/jsx-uses-react': 2,
     'react/jsx-uses-vars': 2,
-    'react/jsx-uses-react': 2,
-    'react/jsx-pascal-cas': 2,
-    'react/react-in-jsx-scope': 2,
+    'react/jsx-pascal-case': 2,
+    'react/react-in-jsx-scope': 0,
     'react/jsx-no-undef': 2,
     'react/jsx-sort-props': 2,
     'react/jsx-wrap-multilines': 2,
@@ -60,7 +53,7 @@ module.exports = {
     'import/no-unused-modules': 2,
     'import/exports-last': 2,
     'import/newline-after-import': 2,
-    'import/no-default-export': 2,
+    'import/no-default-export': 0,
     'import/group-exports': 2,
   },
   overrides: [
@@ -69,9 +62,4 @@ module.exports = {
       rules: { 'prettier/prettier': [1, prettierOptions] },
     },
   ],
-  settings: {
-    'import/resolver': {
-      '@typescript-eslint/parser': ['.ts', '.tsx']
-    },
-  },
 };
