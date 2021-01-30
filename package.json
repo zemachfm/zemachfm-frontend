@@ -6,8 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "prettierFormat": "prettier --config .prettierrc 'pages/**/*.tsx' --write",
-    "lint": "eslint . --ext .ts"
+    "prettierFormat": "prettier --config .prettierrc 'pages/**/*.tsx' --write --loglevel error",
+    "lint": "eslint --color . --ext .ts"
   },
   "dependencies": {
     "autoprefixer": "^10.2.3",
