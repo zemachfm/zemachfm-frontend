@@ -1,12 +1,12 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 
-export default function Home() {
+function Home() {
   return (
     <div>
       <Head>
         <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link href="/favicon.ico" rel="icon" />
       </Head>
       <div className="bg-gray-50 dark:bg-black h-100 flex flex-col absolute h-full w-full ">
         <main className={styles.main}>
@@ -28,3 +28,4 @@ export default function Home() {
     </div>
   );
 }
+export default Home;

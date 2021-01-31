@@ -1,2 +1,2 @@
-/// <reference types="next" />
-/// <reference types="next/types/global" />
+// eslint-disable-next-line import/prefer-default-export
+export const name = null;
