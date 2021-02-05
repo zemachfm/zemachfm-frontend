@@ -14,10 +14,12 @@
     "flag": "^4.4.0",
     "husky": "^4.3.8",
     "next": "10.0.5",
+    "next-redux-wrapper": "^6.0.2",
     "node-sass": "^5.0.0",
     "postcss": "^8.2.4",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-redux": "^7.2.2",
     "tailwindcss": "^2.0.2"
   },
   "devDependencies": {
@@ -25,6 +27,8 @@
     "@types/react": "^17.0.0",
     "@typescript-eslint/eslint-plugin": "^4.14.1",
     "@typescript-eslint/parser": "^4.14.1",
+    "@types/react-dom": "16.9.8",
+    "@types/react-redux": "7.1.9",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.18.0",
     "eslint-config-airbnb-base": "^14.2.1",
