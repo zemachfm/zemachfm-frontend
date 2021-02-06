@@ -55,7 +55,7 @@ module.exports = {
     /**
      * import
      */
-    'import/no-unresolved': 2,
+    'import/no-unresolved': 1,
     'import/named': 2,
     'import/export': 2,
     'import/no-unused-modules': 2,
@@ -63,6 +63,7 @@ module.exports = {
     'import/newline-after-import': 2,
     'import/no-default-export': 0,
     'import/group-exports': 2,
+    'import/extensions':1,
   },
   overrides: [
     {
