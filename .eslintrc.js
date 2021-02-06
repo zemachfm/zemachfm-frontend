@@ -55,7 +55,7 @@ module.exports = {
     /**
      * import
      */
-    'import/no-unresolved': 1,
+    'import/no-unresolved': 2,
     'import/named': 2,
     'import/export': 2,
     'import/no-unused-modules': 2,
