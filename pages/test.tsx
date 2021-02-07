@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { wrapper } from '../store/store';
-import { fetchEpisodes } from './home/actions';
+import { fetchEpisodes } from '../store/home/actions';
 
 const Other = () => {
   const dispatch = useDispatch();
