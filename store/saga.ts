@@ -1,4 +1,4 @@
-import homeSaga from '../pages/home/saga';
+import homeSaga from './home/saga';
 
 function* rootSaga() {
   yield [homeSaga];

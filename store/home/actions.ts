@@ -1,4 +1,5 @@
 import { makeAction } from '../../lib/store/makeActions';
+
 const actionTypes = {
   FETCH_EPISODES: 'FETCH_EPISODES',
   FETCH_EPISODES_FAILED: 'FETCH_EPISODES_FAILED',
