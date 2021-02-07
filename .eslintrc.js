@@ -63,6 +63,16 @@ module.exports = {
     'import/newline-after-import': 2,
     'import/no-default-export': 0,
     'import/group-exports': 2,
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
   },
   overrides: [
     {
@@ -70,4 +80,11 @@ module.exports = {
       rules: { 'prettier/prettier': [1, prettierOptions] },
     },
   ],
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
+  },
 };
