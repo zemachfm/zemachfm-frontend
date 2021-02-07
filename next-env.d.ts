@@ -1,2 +1,3 @@
 // eslint-disable-next-line import/prefer-default-export
-export const name = null;
+declare module '*.css';
+declare module '*.scss';
