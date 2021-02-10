@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 // eslint-disable-next-line import/no-unused-modules
 const fs = require('fs');
 const path = require('path');
@@ -21,7 +22,13 @@ module.exports = {
       jsx: true,
     },
   },
-  extends: ['eslint:recommended', 'airbnb-base'],
+  extends: [
+    'eslint:recommended',
+    'airbnb-base',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended',
+    'prettier',
+  ],
   plugins: ['prettier', 'react-hooks', 'react', 'import'],
   rules: {
     'prettier/prettier': [2, prettierOptions],
