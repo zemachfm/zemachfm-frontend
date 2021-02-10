@@ -1,5 +1,5 @@
-import Moon from '../../sprites/moon.svg';
-import Sun from '../../sprites/sun.svg';
+import Moon from '../../icons/moon.svg';
+import Sun from '../../icons/sun.svg';
 import { INavBarProps } from './types';
 
 const NavBar = (props: INavBarProps) => (
