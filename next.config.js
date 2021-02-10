@@ -1,5 +1,5 @@
-/* eslint-disable import/no-unused-modules */
-module.exports = {
+/* eslint-disable */
+const webpacked = {
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
@@ -9,3 +9,7 @@ module.exports = {
     return config;
   },
 };
+
+webpacked.target = 'serverless';
+
+module.exports = webpacked;
