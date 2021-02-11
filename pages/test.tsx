@@ -15,6 +15,8 @@ const Other = () => {
 
 export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
   store.dispatch(fetchEpisodes(false));
+  const state = store.getState();
+  return { props: state };
 });
 
 export default Other;
