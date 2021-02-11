@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import Head from 'next/head';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from '../styles/index.module.css';
 import EpisodeCard from '../components/episodeCard';
 import { wrapper } from '../store/store';
@@ -8,7 +8,7 @@ import { fetchEpisodes } from '../store/home/actions';
 
 function Home() {
   const dispatch = useDispatch();
-
+  const episodes = useSelector(state => state.home.episodes);
   useEffect(() => {
     dispatch(fetchEpisodes('payload'));
   }, [dispatch]);
@@ -26,10 +26,15 @@ function Home() {
               Under Construction
             </h1>
             <div className="grid grid-cols-4 gap-4">
-              <EpisodeCard />
-              <EpisodeCard />
-              <EpisodeCard />
-              <EpisodeCard />
+              {episodes
+                ? episodes.map(item => (
+                    <EpisodeCard
+                      subtitle={item.excerpt.rendered}
+                      image={item.episode_featured_image}
+                      title={item.title.rendered}
+                    />
+                  ))
+                : null}
             </div>
             <button className="font-bold bg-gradient-to-r from-yellow-500 to-red-400 py-3 px-6 rounded shadow-sm text-white mt-5 ">
               Learn More

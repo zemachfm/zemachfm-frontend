@@ -13,6 +13,7 @@ function* fetchEpisodesGenerator({ payload }: { payload: object }) {
     const { data: fetchedEpisodesData } = fetchedEpisodes;
     yield put(fetchEpisodesSucceeded(fetchedEpisodesData));
   } catch (err) {
+    console.log('errr...', err);
     yield put(fetchEpisodesFailed(err));
   }
 }
