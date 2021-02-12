@@ -1,19 +1,18 @@
+/* eslint-disable no-param-reassign */
 import { produce } from 'immer';
 import { HYDRATE } from 'next-redux-wrapper';
 import { actionTypes } from './actions';
+import { IHomeReducer } from './types';
 
-const initialState = {
+const initialState: IHomeReducer = {
   loading: true,
   episodes: [],
+  theme: 'light',
 };
 
-interface initial {
-  loading: boolean;
-  episodes: object;
-}
-
-const homeReducer = produce((draft: initial, action) => {
+const homeReducer = produce((draft: IHomeReducer, action) => {
   const { payload } = action;
+
   switch (action.type) {
     case HYDRATE:
       break;
@@ -23,6 +22,9 @@ const homeReducer = produce((draft: initial, action) => {
       break;
     case actionTypes.FETCH_EPISODES_FAILED:
       draft.loading = false;
+      break;
+    case actionTypes.CHANGE_THEME:
+      draft.theme = action.payload;
       break;
     default:
       break;

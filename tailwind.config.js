@@ -1,23 +1,8 @@
-
-
+/* eslint-disable import/no-unused-modules */
 module.exports = {
-  theme:{
-    colors:{ 
-      'th-primary': '#FFDE59',
-      green: '#28A745',
-    },
-
-    screens: {
-      sm: '480px',
-      md: '768px',
-      lg: '976px',
-      xl: '1440px',
-    },
-  },
-
   // Removes unused css in production
   purge: ['./pages/**/*.tsx', './components/**/*.tsx'],
-  darkMode: 'media', // or 'media' or 'class'
+  darkMode: 'class', // or 'media' or 'class'
   theme: {
     extend: {},
   },
@@ -25,4 +10,4 @@ module.exports = {
     extend: {},
   },
   plugins: [],
-}
+};
