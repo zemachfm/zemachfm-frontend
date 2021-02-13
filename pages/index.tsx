@@ -1,6 +1,9 @@
 import { useEffect, ReactElement } from 'react';
 import Head from 'next/head';
 import { useDispatch, useSelector } from 'react-redux';
+import { GetStaticPropsContext } from 'next';
+import { AnyAction, Store } from 'redux';
+
 import path from 'path';
 import fs from 'fs';
 import styles from '../styles/index.module.css';
@@ -90,7 +93,12 @@ function Home({ content, locale }): ReactElement {
 }
 
 export const getStaticProps = wrapper.getStaticProps(
-  async ({ store, locale }) => {
+  async ({
+    store,
+    locale,
+  }: GetStaticPropsContext & {
+    store: Store<any, AnyAction>;
+  }) => {
     store.dispatch(fetchEpisodes(null));
 
     const dir = path.join(process.cwd(), 'public', 'static');
