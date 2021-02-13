@@ -113,4 +113,5 @@ export const getStaticProps = wrapper.getStaticProps(
     };
   },
 );
+
 export default Home;
