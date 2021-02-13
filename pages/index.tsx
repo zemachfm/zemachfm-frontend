@@ -1,6 +1,8 @@
 import { useEffect, ReactElement } from 'react';
 import Head from 'next/head';
 import { useDispatch, useSelector } from 'react-redux';
+import path from 'path';
+import fs from 'fs';
 import styles from '../styles/index.module.css';
 import EpisodeCard from '../components/episodeCard';
 import { wrapper } from '../store/store';
@@ -10,7 +12,7 @@ import { TRootReducer } from '../store/reducer';
 import { fetchEpisodes, changeThemeAction } from '../store/home/actions';
 import localStorageKeys from '../lib/constants/localStorageKeys';
 
-function Home(): ReactElement {
+function Home({ content, locale }): ReactElement {
   const state: IHomeReducer = useSelector((root: TRootReducer) => root.home);
   const dispatch = useDispatch();
   const { episodes } = state;
@@ -50,7 +52,12 @@ function Home(): ReactElement {
         <link href="/favicon.ico" rel="icon" />
       </Head>
       <div className="bg-gray-100 dark:bg-black h-100 flex flex-col absolute h-full w-full ">
-        <NavBar onChangeTheme={onThemeChange} theme={state.theme} />
+        <NavBar
+          appName={content.appName}
+          locale={locale}
+          onChangeTheme={onThemeChange}
+          theme={state.theme}
+        />
 
         <main className={styles.main}>
           <div className="container flex flex-col">
@@ -82,7 +89,20 @@ function Home(): ReactElement {
   );
 }
 
-export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
-  store.dispatch(fetchEpisodes(null));
-});
+export const getStaticProps = wrapper.getStaticProps(
+  async ({ store, locale }) => {
+    store.dispatch(fetchEpisodes(null));
+
+    const dir = path.join(process.cwd(), 'public', 'static');
+    const filePath = `${dir}/${locale}.json`;
+    const buffer = fs.readFileSync(filePath);
+    const content = JSON.parse(buffer.toString());
+    return {
+      props: {
+        content,
+        locale,
+      },
+    };
+  },
+);
 export default Home;

@@ -12,4 +12,8 @@ const webpacked = {
 
 webpacked.target = 'serverless';
 
-module.exports = webpacked;
+(webpacked['i18n'] = {
+  locales: ['en', 'am'],
+  defaultLocale: 'en',
+}),
+  (module.exports = webpacked);
