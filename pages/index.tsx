@@ -5,7 +5,7 @@ import styles from '../styles/index.module.css';
 import EpisodeCard from '../components/episodeCard';
 import { wrapper } from '../store/store';
 import NavBar from '../components/Navbar';
-import { IHomeReducer, ThemeTypes } from '../store/home/types';
+import { IHomeReducer, ThemeTypes } from '../store/home/types.d';
 import { TRootReducer } from '../store/reducer';
 import { fetchEpisodes, changeThemeAction } from '../store/home/actions';
 import localStorageKeys from '../lib/constants/localStorageKeys';

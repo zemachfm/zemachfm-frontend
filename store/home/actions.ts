@@ -1,5 +1,5 @@
 import { makeAction } from '../../lib/store/makeActions';
-import { ThemeTypes } from './types';
+import { ThemeTypes } from './types.d';
 
 const actionTypes = {
   FETCH_EPISODES: 'FETCH_EPISODES',
