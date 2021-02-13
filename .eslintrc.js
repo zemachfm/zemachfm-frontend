@@ -41,7 +41,7 @@ module.exports = {
     'no-undef': 2,
     'no-underscore-dangle': 2,
     'no-continue': 2,
-
+    camelcase: 1,
     /**
      * react
      */

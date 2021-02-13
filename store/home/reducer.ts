@@ -6,13 +6,22 @@ import { IHomeReducer } from './types';
 
 const initialState: IHomeReducer = {
   loading: true,
+  episodes: [],
   theme: 'light',
 };
+
 const homeReducer = produce((draft: IHomeReducer, action) => {
+  const { payload } = action;
+
   switch (action.type) {
     case HYDRATE:
       break;
     case actionTypes.FETCH_EPISODES_SUCCEDDED:
+      draft.loading = false;
+      draft.episodes = payload;
+      break;
+    case actionTypes.FETCH_EPISODES_FAILED:
+      draft.loading = false;
       break;
     case actionTypes.CHANGE_THEME:
       draft.theme = action.payload;
