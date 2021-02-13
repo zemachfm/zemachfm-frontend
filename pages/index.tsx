@@ -1,4 +1,4 @@
-import { useEffect, FunctionComponent } from 'react';
+import { useEffect, ReactElement } from 'react';
 import Head from 'next/head';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from '../styles/index.module.css';
@@ -10,7 +10,7 @@ import { TRootReducer } from '../store/reducer';
 import { fetchEpisodes, changeThemeAction } from '../store/home/actions';
 import localStorageKeys from '../lib/constants/localStorageKeys';
 
-function Home(): FunctionComponent {
+function Home(): ReactElement {
   const state: IHomeReducer = useSelector((root: TRootReducer) => root.home);
   const dispatch = useDispatch();
   const { episodes } = state;
@@ -59,7 +59,6 @@ function Home(): FunctionComponent {
                 ? episodes.map(item => (
                     <EpisodeCard
                       image={item.episode_featured_image}
-                      subtitle={item.excerpt.rendered}
                       title={item.title.rendered}
                     />
                   ))

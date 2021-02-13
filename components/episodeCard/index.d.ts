@@ -1,6 +1,5 @@
 interface episodeCardInterface {
   title: string;
-  subtitle: string;
   image: string;
 }
 
