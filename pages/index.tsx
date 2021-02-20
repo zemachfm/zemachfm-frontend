@@ -53,7 +53,7 @@ function Home(): ReactElement {
       <div className="bg-gray-100 dark:bg-black h-100 flex flex-col absolute h-full w-full ">
         <NavBar onChangeTheme={onThemeChange} theme={state.theme} />
 
-        <div className="mx-5">
+        <div className="mx-5 mt-5">
           <main className=" grid grid-cols-10 ">
             <div className="h-full w-full flex flex-col justify-center">
               <ul className="list-none">
@@ -63,11 +63,14 @@ function Home(): ReactElement {
                 <li className="text-2xl my-3">another ther</li>
               </ul>
             </div>
-            <div className=" mx-4 flex flex-col col-span-7">
-              <h1 className=" text-6xl my-10 font-bold dark:text-gray-200 ">
+            <div className=" mx-4 flex flex-col col-span-7 px-2">
+              <h1 className=" text-6xl mt-0 mb-5 font-bold text-green-500 dark:text-gray-200 ">
                 {' '}
                 Episodes{' '}
               </h1>
+              <p className="mb-12 text-2xl capitalize text-gray-500 " >
+                latest episodes we have
+              </p>
               <div className="grid grid-cols lg:grid-cols-3 gap-4">
                 {episodes
                   ? episodes.map(item => (

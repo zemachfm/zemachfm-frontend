@@ -5,7 +5,7 @@ import BackwardIcon from '../../icons/arrow-ios-back-outline.svg';
 
 function AudioPlayer(): ReactElement {
   return (
-    <div className="bg-white rounded-xl dark:bg-gray-900 h-full w-12/12 px-4 rounded-xl">
+    <div className="bg-white rounded-xl dark:bg-gray-900 h-full w-12/12 px-4 rounded-xl ">
       <div className="flex flex-col justify-between h-3/4 w-full align-middle">
         <div className="grid col-2 w-full">
           <h3 className="text-2xl text-center my-10"> the title playing</h3>
