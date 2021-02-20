@@ -68,7 +68,7 @@ function Home(): ReactElement {
                 {' '}
                 Episodes{' '}
               </h1>
-              <p className="mb-12 text-2xl capitalize text-gray-500 " >
+              <p className="mb-12 text-2xl capitalize text-gray-500 ">
                 latest episodes we have
               </p>
               <div className="grid grid-cols lg:grid-cols-3 gap-4">
