@@ -10,6 +10,7 @@ import { TRootReducer } from '../store/reducer';
 import { fetchEpisodes, changeThemeAction } from '../store/home/actions';
 import localStorageKeys from '../lib/constants/localStorageKeys';
 import AudioPlayer from '../components/audioPlayer';
+import SideBar from '../components/Sidebar';
 
 function Home(): ReactElement {
   const state: IHomeReducer = useSelector((root: TRootReducer) => root.home);
@@ -56,12 +57,7 @@ function Home(): ReactElement {
         <div className="mx-5">
           <main className=" grid grid-cols-10 ">
             <div className="h-full w-full flex flex-col justify-center">
-              <ul className="list-none">
-                <li className="text-2xl my-3 text-indigo-500 underline">
-                  hi there
-                </li>
-                <li className="text-2xl my-3">another ther</li>
-              </ul>
+              <SideBar />
             </div>
             <div className=" mx-4 flex flex-col col-span-7">
               <h1 className=" text-6xl my-10 font-bold dark:text-gray-200 ">

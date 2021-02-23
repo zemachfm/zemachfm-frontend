@@ -9,10 +9,10 @@ const NavBar = (props: INavBarProps) => (
         <div className="flex items-center">
           <img
             alt="zemach-logo"
-            className="p-0 h-12 w-auto  border-green-400 border-2 rounded-full"
+            className="p-0 h-12 w-auto  border-yellow-300 border-2 rounded-full"
             src="/assets/zemach-small.png"
           />
-          <h1 className="text-2xl ml-3 font-bold text-green-500">Zemach</h1>
+          <h1 className="text-2xl ml-3 font-bold text-yellow-300">Zemach</h1>
         </div>
         <button
           onClick={() =>
