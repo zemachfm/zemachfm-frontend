@@ -59,12 +59,19 @@ function Home(): ReactElement {
             <div className="h-full w-full flex flex-col justify-center">
               <SideBar />
             </div>
-            <div className=" mx-4 flex flex-col col-span-7">
-              <h1 className=" text-6xl my-10 font-bold dark:text-gray-200 ">
-                {' '}
-                Episodes{' '}
-              </h1>
-              <div className="grid grid-cols lg:grid-cols-3 gap-4">
+            <div className=" mx-4 flex flex-col col-span-7 px-5">
+              <div className="flex flex-row justify-between">
+                <div className="flex flex-col">
+                  <h1 className=" text-6xl my-10 font-bold dark:text-gray-200 mb-2 ">
+                    Episodes
+                  </h1>
+                  <p className="text-gray-400 text-lg mb-7">
+                    Latest episodes from Zemach Podcasts are here{' '}
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols lg:grid-cols-3 gap-4 ">
                 {episodes
                   ? episodes.map(item => (
                       <EpisodeCard
@@ -74,16 +81,11 @@ function Home(): ReactElement {
                     ))
                   : null}
               </div>
-
-              <a
-                className="font-bold bg-gradient-to-r w-2/12 text-center from-yellow-500 to-red-400 py-3 px-6 rounded shadow-sm text-white mt-5 "
-                href="https://zemachfm.com"
-              >
-                Learn More
-              </a>
             </div>
             <div className="col-span-2">
-              <AudioPlayer />
+              <div className="h-full w-full flex flex-col justify-center">
+                <AudioPlayer />
+              </div>
             </div>
           </main>
         </div>
