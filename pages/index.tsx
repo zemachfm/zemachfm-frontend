@@ -1,4 +1,4 @@
-import { useEffect, ReactElement } from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from '../styles/index.module.css';
@@ -12,7 +12,7 @@ import localStorageKeys from '../lib/constants/localStorageKeys';
 import AudioPlayer from '../components/audioPlayer';
 import SideBar from '../components/Sidebar';
 
-function Home(): ReactElement {
+function Home(): React.ReactChild {
   const state: IHomeReducer = useSelector((root: TRootReducer) => root.home);
   const dispatch = useDispatch();
   const { episodes } = state;
