@@ -4,21 +4,24 @@ import ForwardIcon from '../../icons/arrow-ios-forward-outline.svg';
 import BackwardIcon from '../../icons/arrow-ios-back-outline.svg';
 
 const AudioPlayer: React.FC<null> = () => (
-  <div className="bg-gray-50 fixed dark:bg-gray-900 shadow-sm h-full w-12/12 px-4 mx-4 rounded-xl">
-    <div className="flex flex-col justify-between h-3/4 w-full align-middle">
+  <div className=" fixed dark:bg-gray-900 shadow-sm h-full w-12/12 px-4 mx-4 rounded-xl">
+    <div className="flex flex-col justify-between h-auto relative w-full align-middle">
       <div className="grid col-2 w-full">
-        <h3 className="text-2xl text-center my-10 dark:text-gray-200 ">
-          the title playing
+        <h3 className="text-3xl text-left my-1 mx-1 dark:text-gray-200 ">
+          advertisment or st
         </h3>
         <img
           className="rounded-xl"
           src="https://zemachfm.com/wp-content/uploads/2021/02/wechat-tiktok-.png"
         />
-        <p className="text-center mt-5 dark:text-gray-200 ">
-          the title playing
+        <p className="text-left mt-5 dark:text-gray-200 ">
+          we want to move the player down there, so we are not missing anyting
+          </p>
+        <p className="text-left mt-5 dark:text-gray-200 ">
+          what do you think ?
           </p>
       </div>
-
+      {/* 
       <div>
         <div className="px-6">
           <div className="border-gray-100  border-t-2 border-solid" />
@@ -36,7 +39,7 @@ const AudioPlayer: React.FC<null> = () => (
             <ForwardIcon className="h-10 w-10 fill-current text-gray-400 dark:text-gray-600 " />
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   </div>
 );
