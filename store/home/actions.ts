@@ -18,16 +18,22 @@ const actionTypes = {
   PLAY_CERTAIN_AUDIO: 'PLAY_CERTAIN_AUDIO',
 };
 
-const fetchEpisodes = payload =>
-  makeAction(payload, actionTypes.FETCH_EPISODES);
+const fetchEpisodes = (): { type: string; payload: null } =>
+  makeAction({}, actionTypes.FETCH_EPISODES);
 
-const fetchEpisodesFailed = payload =>
+const fetchEpisodesFailed = (
+  payload: Error,
+): { type: string; payload: Error } =>
   makeAction(payload, actionTypes.FETCH_EPISODES_FAILED);
 
-const fetchEpisodesSucceeded = payload =>
+const fetchEpisodesSucceeded = (
+  payload: actionsTypes.EpisodesReturnType,
+): { type: string; payload: actionsTypes.EpisodesReturnType } =>
   makeAction(payload, actionTypes.FETCH_EPISODES_SUCCEDDED);
 
-const changeThemeAction = (payload: ThemeTypes) =>
+const changeThemeAction = (
+  payload: ThemeTypes,
+): { type: string; payload: ThemeTypes } =>
   makeAction(payload, actionTypes.CHANGE_THEME);
 
 /**
@@ -49,7 +55,9 @@ const palyNextSong = function makeActionNextSong(
   };
 };
 
-const playCertainAudio = function makeActionPlayCertainAudio(payload) {
+const playCertainAudio = function makeActionPlayCertainAudio(
+  payload: actionsTypes.audioId,
+): actionsTypes.palyCertainAudioType {
   return {
     payload,
     type: actionTypes.PLAY_CERTAIN_AUDIO,
