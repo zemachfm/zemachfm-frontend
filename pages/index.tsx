@@ -83,7 +83,7 @@ function Home(): React.ReactChild {
               </div>
             </div>
             <div className="col-span-2">
-              <div className="h-full w-full flex flex-col justify-center">
+              <div className="h-full w-full flex relative flex-col justify-center">
                 <AudioPlayer />
               </div>
             </div>
