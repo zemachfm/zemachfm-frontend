@@ -35,11 +35,9 @@ interface playerStatusActionReturn {
 }
 
 interface palyCertainAudioType {
-  type: string,
-  payload: audioId,
+  type: string;
+  payload: audioId;
 }
-
-
 
 export {
   /**

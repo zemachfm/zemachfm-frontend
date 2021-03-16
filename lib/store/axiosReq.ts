@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-function get(url: string, param: object) {
+function get(url: string, param: any): any {
   return axios
     .get(url, {
       params: param,
