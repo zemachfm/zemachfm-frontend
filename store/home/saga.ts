@@ -7,13 +7,18 @@ import {
   actionTypes,
 } from './actions';
 
-function* fetchEpisodesGenerator({ payload }: { payload: object }) {
+function* fetchEpisodesGenerator({
+  type,
+  payload,
+}: {
+  type: typeof actionTypes.FETCH_EPISODES;
+  payload: object;
+}) {
   try {
     const fetchedEpisodes = yield call(axiosGet, PODCASTS_URL, payload);
     const { data: fetchedEpisodesData } = fetchedEpisodes;
     yield put(fetchEpisodesSucceeded(fetchedEpisodesData));
   } catch (err) {
-    console.log('errr...', err);
     yield put(fetchEpisodesFailed(err));
   }
 }

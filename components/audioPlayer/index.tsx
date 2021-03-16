@@ -3,7 +3,7 @@ import PauseIcon from '../../icons/pause-circle-outline.svg';
 import ForwardIcon from '../../icons/arrow-ios-forward-outline.svg';
 import BackwardIcon from '../../icons/arrow-ios-back-outline.svg';
 
-const AudioPlayer: React.FC<null> = () => (
+const AudioPlayer: React.FC = () => (
   <div className=" fixed dark:bg-gray-900 shadow-sm h-full w-12/12 px-4 mx-4 rounded-xl">
     <div className="flex flex-col justify-between h-auto relative w-full align-middle">
       <div className="grid col-2 w-full">
@@ -16,12 +16,11 @@ const AudioPlayer: React.FC<null> = () => (
         </h3>
         <p className="text-left mt-5 dark:text-gray-200 ">
           we want to move the player down there, so we are not missing anyting
-          </p>
+        </p>
         <p className="text-left mt-5 dark:text-gray-200 ">
           what do you think ?
-          </p>
+        </p>
         <div className="flex flex-row">
-
           <button className="px-4 rounded mt-4  py-2 bg-gray-200">
             Go there
           </button>
