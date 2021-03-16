@@ -52,7 +52,6 @@ function Home(): React.ReactChild {
         <link href="/favicon.ico" rel="icon" />
       </Head>
       <div className="bg-gray-100 dark:bg-black h-100 flex flex-col relative h-full w-full ">
-
         <NavBar onChangeTheme={onThemeChange} theme={state.theme} />
 
         <div className="mx-5">
@@ -75,15 +74,18 @@ function Home(): React.ReactChild {
               <div className="grid grid-cols lg:grid-cols-3 gap-4 ">
                 {episodes
                   ? episodes.map(item => (
-                    <EpisodeCard
-                      image={item.episode_featured_image}
-                      title={item.title.rendered}
-                    />
-                  ))
+                      <EpisodeCard
+                        image={item.episode_featured_image}
+                        title={item.title.rendered}
+                      />
+                    ))
                   : null}
               </div>
-              <footer className="py-5 my-5 margin-auto" >
-                <h1 className="dark:text-white text-2xl  text-center"> Make it happen, zemach </h1>
+              <footer className="py-5 my-5 margin-auto">
+                <h1 className="dark:text-white text-2xl  text-center">
+                  {' '}
+                  Make it happen, zemach{' '}
+                </h1>
               </footer>
             </div>
             <div className="col-span-2">
@@ -93,7 +95,6 @@ function Home(): React.ReactChild {
             </div>
           </main>
         </div>
-
       </div>
     </div>
   );
