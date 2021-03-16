@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { usePopper } from 'react-popper';
 import Moon from '../../icons/moon.svg';
 import Sun from '../../icons/sun.svg';
+import MenuIcon from '../../icons/menu.svg';
 import { INavBarProps } from './index.d';
 import LanguageIcon from '../../icons/globe.svg';
 
@@ -17,20 +18,28 @@ const NavBar = (props: INavBarProps) => {
 
   return (
     <nav className="">
-      <div className="max-w-8xl mx-auto px-2 sm:px-6 lg:px-8">
+      <div className="max-w-8xl mx-auto px-2 sm:px-6 lg:px-8 dark:text-white">
         <div className="relative flex justify-between items-center h-16">
           <div className="flex items-center">
+            <button
+              className="block lg:hidden"
+              onClick={props.toogleMobileMenu}
+            >
+              <MenuIcon />
+            </button>
             <img
               alt="zemach-logo"
-              className="p-0 h-12 w-auto  border-yellow-300 border-2 rounded-full"
+              className="p-0 h-12 w-auto  border-yellow-400 border-2 rounded-full lg:block hidden"
               src="/assets/zemach-small.png"
             />
-            <h1 className="text-2xl ml-3 font-bold text-yellow-300">
+            <h1 className="text-2xl ml-3 font-bold text-yellow-400 lg:block hidden">
               {props.appName}
             </h1>
           </div>
-
-          <div className="flex items-center w-1/12 justify-between">
+          <h1 className="text-2xl ml-3 font-bold text-yellow-400 lg:hidden block">
+            {props.appName}
+          </h1>
+          <div className="flex items-center justify-between">
             <button onClick={toogleLangPopOver} ref={setReferenceElement}>
               <LanguageIcon className="dark:text-white" />
             </button>
@@ -76,6 +85,7 @@ const NavBar = (props: INavBarProps) => {
             ) : null}
 
             <button
+              className="ml-5"
               onClick={() =>
                 props.onChangeTheme(props.theme === 'dark' ? 'light' : 'dark')
               }

@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import Head from 'next/head';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetStaticPropsContext } from 'next';
@@ -16,11 +16,17 @@ import { fetchEpisodes, changeThemeAction } from '../store/home/actions';
 import localStorageKeys from '../lib/constants/localStorageKeys';
 import AudioPlayer from '../components/audioPlayer';
 import SideBar from '../components/Sidebar';
+import SmallDeviceSideBar from '../components/Sidebar/smallDevice.sidebar';
 
 function Home({ content, locale }): ReactElement {
   const state: IHomeReducer = useSelector((root: TRootReducer) => root.home);
   const dispatch = useDispatch();
   const { episodes } = state;
+  const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
+
+  const toogleMobileMenu = () => {
+    setMobileMenuVisible(!mobileMenuVisible);
+  };
 
   const onThemeChange = (theme: ThemeTypes) => {
     localStorage.setItem(localStorageKeys.theme, theme);
@@ -56,12 +62,16 @@ function Home({ content, locale }): ReactElement {
         <title>Create Next App</title>
         <link href="/favicon.ico" rel="icon" />
       </Head>
-      <div className="bg-gray-100 dark:bg-black h-100 flex flex-col absolute h-full w-full ">
+      <div className="bg-gray-100 dark:bg-black flex flex-col absolute h-full w-full ">
+        {mobileMenuVisible && (
+          <SmallDeviceSideBar toogleMenu={toogleMobileMenu} />
+        )}
         <NavBar
           appName={content.appName}
           locale={locale}
           onChangeTheme={onThemeChange}
           theme={state.theme}
+          toogleMobileMenu={toogleMobileMenu}
         />
 
         <div className="mx-5">
