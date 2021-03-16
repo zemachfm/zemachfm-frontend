@@ -6,7 +6,7 @@ import MessageIcon from '../../icons/message-circle.svg';
 import BookIcon from '../../icons/book.svg';
 
 const SideBar: React.FC<null> = () => (
-  <div className="flex py-5 flex-col w-32 h-3/4 items-center fixed bg-transparent dark:bg-black rounded-xl">
+  <div className="lg:flex py-5 flex-col w-32 items-center fixed bg-transparent dark:bg-black rounded-xl hidden">
     <ul>
       <li className="mt-5 flex flex-col items-center py-5 w-24  bg-gray-200 dark:bg-gray-900 rounded-xl dark:text-white text-black">
         <GridIcon />
