@@ -8,6 +8,8 @@ const initialState: IHomeReducer = {
   loading: true,
   episodes: [],
   theme: 'light',
+  playlist: [],
+  currentPlay: null,
 };
 
 const homeReducer = produce((draft: IHomeReducer, action) => {
