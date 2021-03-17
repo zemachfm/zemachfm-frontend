@@ -62,6 +62,7 @@ module.exports = {
     /**
      * import
      */
+    'no-use-before-define': 0,
     'import/no-unresolved': 2,
     'import/named': 2,
     'import/export': 2,

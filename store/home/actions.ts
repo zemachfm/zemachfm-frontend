@@ -1,5 +1,5 @@
 import { makeAction } from '../../lib/store/makeActions';
-import { ThemeTypes } from './types';
+import { ThemeTypes } from './types.d';
 import * as actionsTypes from './index.d';
 
 const actionTypes = {

@@ -10,6 +10,11 @@ const webpacked = {
   },
 };
 
+webpacked['i18n'] = {
+  locales: ['en', 'am'],
+  defaultLocale: 'en',
+};
+
 webpacked.target = 'serverless';
 
 module.exports = webpacked;

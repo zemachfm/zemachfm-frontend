@@ -1,4 +1,5 @@
 /* eslint-disable import/no-unused-modules */
+
 module.exports = {
   // Removes unused css in production
   purge: ['./pages/**/*.tsx', './components/**/*.tsx'],
