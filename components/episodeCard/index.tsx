@@ -6,7 +6,12 @@ import Spotify from '../../icons/spotify.svg';
 import GooglePodcast from '../../icons/google-podcasts.svg';
 import DownloadOutline from '../../icons/cloud-download-outline.svg';
 
-const EpisodeCard: React.FC<episodeCardInterface> = ({ title, image }) => (
+const EpisodeCard: React.FC<episodeCardInterface> = ({
+  title,
+  image,
+  onPlay,
+  item,
+}) => (
   <div className="border-solid bg-white to-white border-2 border-gray-100 dark:border-gray-900 dark:bg-gray-900 text-gray-800 rounded-xl overflow-hidden flex flex-col justify-between">
     <div className=" flex flex-row justify-between p-5">
       <img className=" rounded-full h-20 w-20" src={image} />
@@ -17,7 +22,10 @@ const EpisodeCard: React.FC<episodeCardInterface> = ({ title, image }) => (
     </div>
 
     <div className="grid grid-cols-6 gap-3 p-5 pb-3 pt-0 items-center w-full border-solid border-t-2 dark:border-gray-800 border-gray-50 pt-4 ">
-      <PlayIcon className="mt-0 h-6 w-6 fill-current dark:text-gray-300 text-gray-500 " />
+      <PlayIcon
+        className="mt-0 h-6 w-6 fill-current dark:text-gray-300 text-gray-500 "
+        onClick={() =>onPlay(item)}
+      />
       <DownloadOutline className="h-5 w-5 fill-current dark:text-gray-300 text-gray-500" />
       <span />
       <div className=" col-span-3 ">

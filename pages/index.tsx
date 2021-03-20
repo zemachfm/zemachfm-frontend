@@ -6,15 +6,19 @@ import { AnyAction, Store } from 'redux';
 
 import path from 'path';
 import fs from 'fs';
-import styles from '../styles/index.module.css';
 import EpisodeCard from '../components/episodeCard';
 import { wrapper } from '../store/store';
 import NavBar from '../components/Navbar';
-import { IHomeReducer, ThemeTypes } from '../store/home/types.d';
+import { IHomeReducer, ThemeTypes, episode } from '../store/home/types.d';
 import { TRootReducer } from '../store/reducer';
-import { fetchEpisodes, changeThemeAction } from '../store/home/actions';
+import {
+  fetchEpisodes,
+  changeThemeAction,
+  playCertainAudio,
+} from '../store/home/actions';
 import localStorageKeys from '../lib/constants/localStorageKeys';
 import AudioPlayer from '../components/audioPlayer';
+import AudioPlayers from '../components/audioPlayer/player';
 import SideBar from '../components/Sidebar';
 import SmallDeviceSideBar from '../components/Sidebar/smallDevice.sidebar';
 
@@ -26,6 +30,10 @@ function Home({ content, locale }): ReactElement {
 
   const toogleMobileMenu = () => {
     setMobileMenuVisible(!mobileMenuVisible);
+  };
+
+  const onEpisodeCardPlay = (item: episode) => {
+    dispatch(playCertainAudio(item.meta.audio_file));
   };
 
   const onThemeChange = (theme: ThemeTypes) => {
@@ -45,7 +53,7 @@ function Home({ content, locale }): ReactElement {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(fetchEpisodes('payload'));
+    dispatch(fetchEpisodes());
   }, [dispatch]);
 
   useEffect(() => {
@@ -97,6 +105,8 @@ function Home({ content, locale }): ReactElement {
                   ? episodes.map(item => (
                       <EpisodeCard
                         image={item.episode_featured_image}
+                        item={item}
+                        onPlay={onEpisodeCardPlay}
                         title={item.title.rendered}
                       />
                     ))
@@ -104,7 +114,6 @@ function Home({ content, locale }): ReactElement {
               </div>
               <footer className="py-5 my-5 margin-auto">
                 <h1 className="dark:text-white text-2xl  text-center">
-                  {' '}
                   Make it happen, zemach{' '}
                 </h1>
               </footer>
@@ -115,6 +124,13 @@ function Home({ content, locale }): ReactElement {
               </div>
             </div>
           </main>
+        </div>
+        <div className="col-span-24">
+          <div className=" fixed bottom-0 z-100 w-full ">
+            <div className="relative bg-white dark:bg-gray-800 bg-opacity-90 px-8 shadow-2xl border-t-2 dark:border-gray-900 border-gray-100 z-100">
+              <AudioPlayers />
+            </div>
+          </div>
         </div>
       </div>
     </div>

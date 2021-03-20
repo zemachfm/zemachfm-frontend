@@ -10,6 +10,7 @@
     "lint": "eslint . --ext .tsx --color -f table"
   },
   "dependencies": {
+    "@bit/mui-org.material-ui.slider": "^4.9.10",
     "@popperjs/core": "^2.6.0",
     "@svgr/webpack": "^5.5.0",
     "autoprefixer": "^10.2.3",

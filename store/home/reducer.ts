@@ -2,7 +2,7 @@
 import { produce } from 'immer';
 import { HYDRATE } from 'next-redux-wrapper';
 import { actionTypes } from './actions';
-import { IHomeReducer } from './types';
+import { IHomeReducer } from './types.d';
 
 const initialState: IHomeReducer = {
   loading: true,
@@ -10,6 +10,7 @@ const initialState: IHomeReducer = {
   theme: 'light',
   playlist: [],
   currentPlay: null,
+  player: null,
 };
 
 const homeReducer = produce((draft: IHomeReducer, action) => {
@@ -26,7 +27,11 @@ const homeReducer = produce((draft: IHomeReducer, action) => {
       draft.loading = false;
       break;
     case actionTypes.CHANGE_THEME:
-      draft.theme = action.payload;
+      draft.theme = payload;
+      break;
+    case actionTypes.SET_PLAYER:
+      console.log('set play >> ', payload);
+      draft.player = payload;
       break;
     default:
       break;

@@ -2,6 +2,7 @@ import React from 'react';
 import PauseIcon from '../../icons/pause-circle-outline.svg';
 import ForwardIcon from '../../icons/arrow-ios-forward-outline.svg';
 import BackwardIcon from '../../icons/arrow-ios-back-outline.svg';
+import VolumeIcon from '../../icons/volume-up-outline.svg';
 
 const AudioPlayer: React.FC = () => (
   <div className=" fixed dark:bg-gray-900 shadow-sm h-full w-12/12 px-4 mx-4 rounded-xl">

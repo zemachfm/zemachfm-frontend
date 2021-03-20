@@ -1,3 +1,4 @@
+import { Howl } from 'howler';
 import { makeAction } from '../../lib/store/makeActions';
 import { ThemeTypes } from './types.d';
 import * as actionsTypes from './index.d';
@@ -14,6 +15,12 @@ const actionTypes = {
    *
    */
   CHANGE_PLAYER_STATUS: 'CHANGE_PLAYER_STATUS',
+  CHANGE_PLAYER_STATUS_FAILED: 'CHANGE_PLAYER_STATUS_FAILED',
+  CHANGE_PLAYER_STATUS_SUCCEEDED: 'CHANGE_PLAYER_STATUS_SUCCEEDED',
+
+  SET_PLAYER: 'SET_PLAYER',
+  REMOVE_PLAYER: 'REMOVE_PLAYER',
+
   PLAY_NEXT_SONG: 'PLAY_NEXT_SONG',
   PLAY_CERTAIN_AUDIO: 'PLAY_CERTAIN_AUDIO',
 };
@@ -46,6 +53,18 @@ const changePlayerStatus = function makeActionPlayerStatus(
   return { payload, type: actionTypes.CHANGE_PLAYER_STATUS };
 };
 
+const changePlayerStatusSucceeded = function changePlayerStatusSucceded(
+  payload: Howl,
+): {
+  type: string;
+  payload: Howl;
+} {
+  return {
+    type: actionTypes.CHANGE_PLAYER_STATUS_SUCCEEDED,
+    payload,
+  };
+};
+
 const palyNextSong = function makeActionNextSong(
   payload: actionsTypes.playerStatus,
 ): actionsTypes.playerStatusActionReturn {
@@ -64,6 +83,21 @@ const playCertainAudio = function makeActionPlayCertainAudio(
   };
 };
 
+const setPlayer = function setPlayer(
+  payload: Howl,
+): { type: string; payload: Howl } {
+  return {
+    payload,
+    type: actionTypes.SET_PLAYER,
+  };
+};
+
+const removePlayer = function removePLayer(): { type: string } {
+  return {
+    type: actionTypes.SET_PLAYER,
+  };
+};
+
 export {
   actionTypes,
   /**
@@ -76,7 +110,10 @@ export {
   /**
    * player actions
    */
+  setPlayer,
+  removePlayer,
   changePlayerStatus,
+  changePlayerStatusSucceeded,
   palyNextSong,
   playCertainAudio,
 };

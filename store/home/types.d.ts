@@ -1,3 +1,6 @@
+/* eslint-disable camelcase */
+import { Howl } from 'howler';
+
 type ThemeTypes = 'light' | 'dark';
 
 interface episode {
@@ -25,6 +28,7 @@ interface IHomeReducer {
   episodes: episode[];
   playlist: singlePlay[];
   currentPlay: singlePlay;
+  player: Howl;
 }
 
-export type { ThemeTypes, IHomeReducer };
+export type { episode, ThemeTypes, IHomeReducer };
