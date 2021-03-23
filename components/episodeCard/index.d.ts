@@ -1,6 +1,6 @@
-interface episodeCardInterface {
+type Props = {
   title: string;
-  image: string;
-}
+  image?: string;
+};
 
-export default episodeCardInterface;
+export default Props;

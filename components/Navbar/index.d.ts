@@ -5,4 +5,5 @@ export interface INavBarProps {
   appName?: string;
   locale?: 'am' | 'en';
   onChangeTheme: (theme: ThemeTypes) => void;
+  toogleMobileMenu: () => void;
 }
