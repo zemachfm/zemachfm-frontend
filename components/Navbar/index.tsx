@@ -17,7 +17,7 @@ const NavBar = (props: INavBarProps) => {
   const toogleLangPopOver = () => setLangPopoverDisplay(!langPopoverDisplay);
 
   return (
-    <nav className="">
+    <nav>
       <div className="max-w-8xl mx-auto px-2 sm:px-6 lg:px-8 dark:text-white">
         <div className="relative flex justify-between items-center h-16">
           <div className="flex items-center">
@@ -46,7 +46,7 @@ const NavBar = (props: INavBarProps) => {
 
             {langPopoverDisplay ? (
               <div
-                className="p-5  border-solid bg-white shadow-md border-gray-100 dark:bg-gray-800 text-gray-800 rounded-xl dark:text-white"
+                className="p-5  border-solid bg-white shadow-md border-gray-100 dark:bg-gray-800 text-gray-800 rounded-xl dark:text-white z-10"
                 ref={setPopperElement}
                 style={styles.popper}
                 {...attributes.popper}
@@ -57,7 +57,7 @@ const NavBar = (props: INavBarProps) => {
                       <a
                         className={` ${
                           props.locale === 'am'
-                            ? 'bg-yellow-100 dark:text-black'
+                            ? 'border-yellow-400 border-2 text-yellow-400'
                             : ''
                         } px-10 py-2 min-w-full`}
                         type="button"
@@ -71,7 +71,7 @@ const NavBar = (props: INavBarProps) => {
                       <a
                         className={` ${
                           props.locale === 'en'
-                            ? 'bg-yellow-100 dark:text-black'
+                            ? 'border-yellow-400 border-2 text-yellow-400'
                             : ''
                         } px-10 py-2`}
                         type="button"

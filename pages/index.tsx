@@ -57,15 +57,15 @@ function Home({ content, locale }): ReactElement {
   }, [state.theme]);
 
   return (
-    <div>
+    <div className="bg-gray-100 dark:bg-black">
       <Head>
         <title>Create Next App</title>
         <link href="/favicon.ico" rel="icon" />
       </Head>
-      <div className="bg-gray-100 dark:bg-black flex flex-col absolute h-full w-full ">
-        {mobileMenuVisible && (
-          <SmallDeviceSideBar toogleMenu={toogleMobileMenu} />
-        )}
+      {mobileMenuVisible && (
+        <SmallDeviceSideBar toogleMenu={toogleMobileMenu} />
+      )}
+      <main className="mx-5">
         <NavBar
           appName={content.appName}
           locale={locale}
@@ -73,49 +73,46 @@ function Home({ content, locale }): ReactElement {
           theme={state.theme}
           toogleMobileMenu={toogleMobileMenu}
         />
-
-        <div className="mx-5">
-          <main className=" grid grid-cols-10 ">
-            <div className="h-full w-full flex flex-col justify-center">
-              <SideBar />
-            </div>
-            <div className=" mx-4 flex flex-col col-span-7 px-5">
-              <div className="flex flex-row justify-between">
-                <div className="flex flex-col">
-                  <h1 className=" text-6xl my-10 font-bold dark:text-gray-200 mb-2 ">
-                    Episodes
-                  </h1>
-                  <p className="text-gray-400 text-lg mb-7">
-                    Latest episodes from Zemach Podcasts are here{' '}
-                  </p>
-                </div>
-              </div>
-
-              <div className="grid grid-cols lg:grid-cols-3 gap-4 ">
-                {episodes
-                  ? episodes.map(item => (
-                      <EpisodeCard
-                        image={item.episode_featured_image}
-                        title={item.title.rendered}
-                      />
-                    ))
-                  : null}
-              </div>
-              <footer className="py-5 my-5 margin-auto">
-                <h1 className="dark:text-white text-2xl  text-center">
-                  {' '}
-                  Make it happen, zemach{' '}
+        <div className=" grid grid-cols-10 ">
+          <div className="h-full w-full flex flex-col justify-center">
+            <SideBar />
+          </div>
+          <div className=" mx-4 flex flex-col col-span-7 px-5">
+            <div className="flex flex-row justify-between">
+              <div className="flex flex-col">
+                <h1 className=" text-6xl my-10 font-bold dark:text-gray-200 mb-2 ">
+                  Episodes
                 </h1>
-              </footer>
-            </div>
-            <div className="col-span-2">
-              <div className="h-full w-full flex relative flex-col justify-center">
-                <AudioPlayer />
+                <p className="text-gray-400 text-lg mb-7">
+                  Latest episodes from Zemach Podcasts are here{' '}
+                </p>
               </div>
             </div>
-          </main>
+
+            <div className="grid grid-cols lg:grid-cols-3 gap-4 ">
+              {episodes
+                ? episodes.map(item => (
+                    <EpisodeCard
+                      image={item.episode_featured_image}
+                      title={item.title.rendered}
+                    />
+                  ))
+                : null}
+            </div>
+            <footer className="py-5 my-5 margin-auto">
+              <h1 className="dark:text-white text-2xl  text-center">
+                {' '}
+                Make it happen, zemach{' '}
+              </h1>
+            </footer>
+          </div>
+          <div className="col-span-2">
+            <div className="h-full w-full flex relative flex-col justify-center">
+              <AudioPlayer />
+            </div>
+          </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 }
