@@ -1,51 +1,104 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 import Slider from '@bit/mui-org.material-ui.slider';
-import ForwardIcon from '../../icons/arrow-ios-forward-outline.svg';
-import BackwardIcon from '../../icons/arrow-ios-back-outline.svg';
+import Ripples from 'react-ripples';
+import * as Props from './index.d';
+import ForwardIcon from '../../icons/skip-forward-outline.svg';
+import BackwardIcon from '../../icons/skip-back-outline.svg';
 import VolumeIcon from '../../icons/volume-up-outline.svg';
 import ShuffleIcon from '../../icons/shuffle-outline.svg';
-import PlayIcon from '../../icons/play_arrow-black-48dp.svg';
+import PlayIcon2 from '../../icons/play.svg';
+import Pause from '../../icons/pause.svg';
 
-function PlayerComponent(): ReactElement {
+const PlayerComponent: React.FC<Props.audioPlayerComponent> = ({
+  isPlaying,
+  duration,
+  onPlayerChange,
+  currentPlay,
+  playerSettings,
+}) => {
+  const [sliderValue, setSliderValue] = React.useState<number>(duration);
+
+  const onSlide = (e, value: number) => {
+    setSliderValue(value);
+  };
   return (
     <div className="grid grid-cols-9 justify-around gap-4 ">
       <div></div>
       <div className="flex  flex-row items-end row w-full py-2 px-4">
-        <img
-          className="rounded w-14"
-          src="https://zemachfm.com/wp-content/uploads/2021/02/wechat-tiktok-.png"
-        />
+        <img className="rounded w-16" src={currentPlay.episode_player_image} />
         <div className="ml-2 flex flex-col justify-between h-100">
-          <h3 className=" text-left mt-3 mx-1 text-gray-600 dark:text-gray-200 text-xl">
-            advertisment
-          </h3>
-          <p className="text-xs text-gray-400">the subtitel </p>
+          <h3
+            className=" text-left mt-3 mx-1 text-gray-600 dark:text-gray-200"
+            dangerouslySetInnerHTML={{ __html: currentPlay.title.rendered }}
+          ></h3>
         </div>
       </div>
       <div className="flex flex-row justify-between items-center px-4 ">
-        <BackwardIcon
-          className="w-8 h-8 p-1 rounded-full bg-gray-50"
-          style={{ fill: '#8a8686' }}
-        />
-        <PlayIcon className=" p-0 rounded-full " style={{ fill: '#8a8686' }} />
-        <ForwardIcon
-          className="w-8 h-8 p-1 rounded-full bg-gray-50"
-          style={{ fill: '#8a8686' }}
-        />
+        <Ripples
+          className="rounded-full border  hover:bg-gray-300  border-gray-300 dark:border-gray-900"
+          onClick={() => onPlayerChange('BACKWARD')}
+        >
+          <BackwardIcon
+            className="w-8 h-8 p-1 rounded-full "
+            style={{ fill: '#8a8686' }}
+          />
+        </Ripples>
+
+        {isPlaying ? (
+          <Ripples
+            className="rounded-full hover:bg-gray-300 border border-gray-300 dark:border-gray-900 shadow "
+            onClick={() => onPlayerChange('PAUSE')}
+          >
+            <Pause
+              className=" p-0 rounded-full w-12 h-12 p-2 "
+              style={{ fill: '#8a8686' }}
+            />
+          </Ripples>
+        ) : (
+          <Ripples
+            className="rounded-full border hover:bg-gray-300  border-gray-300 dark:border-gray-900 shadow "
+            onClick={() => onPlayerChange('PLAY')}
+          >
+            <PlayIcon2
+              className=" rounded-full w-12 h-12 p-2 "
+              style={{ fill: '#8a8686' }}
+            />
+          </Ripples>
+        )}
+
+        <Ripples className="rounded-full border hover:bg-gray-300  border-gray-300 dark:border-gray-900 ">
+          <ForwardIcon
+            className="w-8 h-8 p-1 rounded-full "
+            style={{ fill: '#8a8686' }}
+          />
+        </Ripples>
       </div>
       <div className="flex row justify-between col-span-5 items-center ">
         <div className="flex flex-row w-full items-center">
-          <span className="text-sm text-gray-400 mr-2 ">2:23</span>
-          <Slider value={44} />
+          <span className="text-sm text-gray-400 mr-2 "> {duration} </span>
+          <Slider
+            getAriaValueText={() => `${duration} value`}
+            id="player"
+            max={3000}
+            onChange={onSlide}
+            value={sliderValue}
+            valueLabelDisplay="auto"
+          />
           <span className="text-sm text-gray-400 ml-2 ">24:23</span>{' '}
         </div>
-        <div className="w-28 ml-4 flex felx-row justify-around">
-          <ShuffleIcon className="w-6 mr-2" style={{ fill: '#8a8686' }} />
+        <div className="w-28 ml-4 flex felx-row justify-around items-center ">
+          <ShuffleIcon
+            className="w-6 mr-2"
+            style={{ fill: playerSettings.shuffle ? '#68f721' : '#8a8686' }}
+          />
+          <span className="text-xs text-gray-500 mr-2 align-baseline">
+            {`${playerSettings.volume * 100}% `}
+          </span>
           <VolumeIcon className="w-6 mr-2" style={{ fill: '#8a8686' }} />
         </div>
       </div>
       <div> </div>
     </div>
   );
-}
+};
 export default PlayerComponent;

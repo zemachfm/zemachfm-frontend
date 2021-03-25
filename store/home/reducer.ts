@@ -10,7 +10,17 @@ const initialState: IHomeReducer = {
   theme: 'light',
   playlist: [],
   currentPlay: null,
-  player: null,
+  player: {
+    audioPlayer: null,
+    currentPlayID: null,
+  },
+  currentSettings: {
+    volume: 1,
+    autoPlay: false,
+    loop: false,
+    shuffle: true,
+    rate: 1,
+  },
 };
 
 const homeReducer = produce((draft: IHomeReducer, action) => {
@@ -30,8 +40,11 @@ const homeReducer = produce((draft: IHomeReducer, action) => {
       draft.theme = payload;
       break;
     case actionTypes.SET_PLAYER:
-      console.log('set play >> ', payload);
-      draft.player = payload;
+      draft.player.audioPlayer = payload.player;
+      draft.currentPlay = payload.item;
+      break;
+    case actionTypes.SET_CURRENT_PLAYER_ID:
+      draft.player.currentPlayID = payload;
       break;
     default:
       break;

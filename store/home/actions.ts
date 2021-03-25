@@ -20,6 +20,7 @@ const actionTypes = {
 
   SET_PLAYER: 'SET_PLAYER',
   REMOVE_PLAYER: 'REMOVE_PLAYER',
+  SET_CURRENT_PLAYER_ID: 'SET_CURRENT_PLAYER_ID',
 
   PLAY_NEXT_SONG: 'PLAY_NEXT_SONG',
   PLAY_CERTAIN_AUDIO: 'PLAY_CERTAIN_AUDIO',
@@ -97,6 +98,12 @@ const removePlayer = function removePLayer(): { type: string } {
     type: actionTypes.SET_PLAYER,
   };
 };
+const setCurrentPlayerID = (
+  payload: string,
+): { type: string; payload: string } => ({
+  payload,
+  type: actionTypes.SET_CURRENT_PLAYER_ID,
+});
 
 export {
   actionTypes,
@@ -116,4 +123,5 @@ export {
   changePlayerStatusSucceeded,
   palyNextSong,
   playCertainAudio,
+  setCurrentPlayerID,
 };

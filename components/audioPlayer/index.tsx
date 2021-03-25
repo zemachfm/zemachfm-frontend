@@ -5,7 +5,7 @@ import BackwardIcon from '../../icons/arrow-ios-back-outline.svg';
 import VolumeIcon from '../../icons/volume-up-outline.svg';
 
 const AudioPlayer: React.FC = () => (
-  <div className=" fixed dark:bg-gray-900 shadow-sm h-full w-12/12 px-4 mx-4 rounded-xl">
+  <div className=" fixed shadow-sm h-full w-12/12 px-4 mx-4 rounded-xl">
     <div className="flex flex-col justify-between h-auto relative w-full align-middle">
       <div className="grid col-2 w-full">
         <img

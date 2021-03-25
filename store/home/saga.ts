@@ -9,13 +9,20 @@ import {
   actionTypes,
   changePlayerStatus,
   setPlayer,
+  setCurrentPlayerID,
 } from './actions';
 import { EpisodesReturnType } from './index.d';
+import { episode } from './types.d';
+
 const getPlayer = state => state.home.player;
+const getPlayerSettings = state => state.home.currentSettings;
 
 function playerListen(player: Howl) {
   return eventChannel(emitter => {
     player.once('load', () => {
+      console.log(
+        'loading >>>>>>>>>>>>>...L..0..A..D..I..N..G....<<<<<<<<<<<<',
+      );
       emitter('LOAD');
     });
     player.onplayerror = () => {
@@ -23,12 +30,6 @@ function playerListen(player: Howl) {
     };
     player.once('end', () => {
       emitter('END');
-    });
-    player.on('play', () => {
-      emitter('PLAY');
-    });
-    player.on('pause', () => {
-      emitter('PAUSE');
     });
     player.onunlock = () => {
       emitter('UNLOCK');
@@ -60,17 +61,20 @@ function* playCertainAudioGenerator({
   payload,
 }: {
   type: string;
-  payload: string;
+  payload: episode;
 }) {
   const player = yield select(getPlayer);
-  if (player) {
-    player.unload();
+  const playerSettings = yield select(getPlayerSettings);
+  if (player.audioPlayer) {
+    player.audioPlayer.unload();
+    yield put(setPlayer({ player: null, item: null }));
   }
   const sound = new Howl({
-    src: [payload],
+    src: [payload.meta.audio_file],
     html5: true,
+    ...playerSettings,
   });
-  yield put(setPlayer(sound));
+  yield put(setPlayer({ player: sound, item: payload }));
   const channel = yield call(playerListen, sound);
   try {
     while (true) {
@@ -87,13 +91,18 @@ function* changePLayerStatusGenerator({ type, payload }) {
   const player = yield select(getPlayer);
   switch (payload.type) {
     case 'LOAD':
-      player.play();
+      // eslint-disable-next-line no-case-declarations
+      const playerID = player.audioPlayer.play();
+      setCurrentPlayerID(playerID);
       break;
-    case 'PLAY':
-      player.paly();
+    case 'ON_PLAY':
+      player.audioPlayer.play();
       break;
     case 'PAUSE':
-      player.pause();
+      player.audioPlayer.pause();
+      break;
+    case 'PLAY':
+      player.audioPlayer.play();
       break;
     case 'STOP':
       player.stop();

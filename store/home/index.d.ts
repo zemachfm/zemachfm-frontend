@@ -1,10 +1,16 @@
 /**
  * fetch episodes payload types
  */
-
+interface renderedType {
+  rendered: string;
+}
 interface singleEpisodeType {
-  title: string;
-  description: string;
+  id: number;
+  title: renderedType;
+  description: renderedType;
+  content: renderedType;
+  data: string;
+
 }
 
 interface paginationType {

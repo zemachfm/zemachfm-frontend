@@ -18,7 +18,7 @@ import {
 } from '../store/home/actions';
 import localStorageKeys from '../lib/constants/localStorageKeys';
 import AudioPlayer from '../components/audioPlayer';
-import AudioPlayers from '../components/audioPlayer/player';
+import AudioPlayers from '../components/audioPlayer/audioPlayer';
 import SideBar from '../components/Sidebar';
 import SmallDeviceSideBar from '../components/Sidebar/smallDevice.sidebar';
 
@@ -33,7 +33,7 @@ function Home({ content, locale }): ReactElement {
   };
 
   const onEpisodeCardPlay = (item: episode) => {
-    dispatch(playCertainAudio(item.meta.audio_file));
+    dispatch(playCertainAudio(item));
   };
 
   const onThemeChange = (theme: ThemeTypes) => {
@@ -128,7 +128,13 @@ function Home({ content, locale }): ReactElement {
         <div className="col-span-24">
           <div className=" fixed bottom-0 z-100 w-full ">
             <div className="relative bg-white dark:bg-gray-800 bg-opacity-90 px-8 shadow-2xl border-t-2 dark:border-gray-900 border-gray-100 z-100">
-              <AudioPlayers />
+              {state.player.audioPlayer ? (
+                <AudioPlayers
+                  currentPlay={state.currentPlay}
+                  player={state.player}
+                  playerSettings={state.currentSettings}
+                />
+              ) : null}
             </div>
           </div>
         </div>
@@ -144,7 +150,7 @@ export const getStaticProps = wrapper.getStaticProps(
   }: GetStaticPropsContext & {
     store: Store<any, AnyAction>;
   }) => {
-    store.dispatch(fetchEpisodes(null));
+    store.dispatch(fetchEpisodes());
 
     const dir = path.join(process.cwd(), 'public', 'static');
     const filePath = `${dir}/${locale}.json`;
