@@ -1,5 +1,7 @@
 import React from 'react';
 import Slider from '@bit/mui-org.material-ui.slider';
+import { withStyles } from '@bit/mui-org.material-ui.styles';
+
 import Ripples from 'react-ripples';
 import * as Props from './index.d';
 import ForwardIcon from '../../icons/skip-forward-outline.svg';
@@ -8,6 +10,19 @@ import VolumeIcon from '../../icons/volume-up-outline.svg';
 import ShuffleIcon from '../../icons/shuffle-outline.svg';
 import PlayIcon2 from '../../icons/play.svg';
 import Pause from '../../icons/pause.svg';
+
+const BufferedSlider = withStyles({
+	thumb: {
+		padding: 0,
+		height: 0,
+		width: 0
+	},
+	heading: {
+		fontSize: 3
+	},
+	
+})(Slider);
+
 
 const PlayerComponent: React.FC<Props.audioPlayerComponent> = ({
   isPlaying,
@@ -92,7 +107,7 @@ const PlayerComponent: React.FC<Props.audioPlayerComponent> = ({
               value={sliderValue}
               valueLabelDisplay="auto"
             />
-            <Slider
+            <BufferedSlider
               styles={{ thumb: { padding: 0, margin: 0, width: 0 } }}
               className="absolute left-0 text-yellow-400"
               style={{ position: 'absolute', color: '#acf9b1' }}

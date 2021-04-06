@@ -88,7 +88,6 @@ const AudioPlayerContainer: React.FC<props.audioPlayerProps> = ({
 
   return (
     <div>
-      {playerState}
       <AudioPlayerComponent
         currentPlay={currentPlay}
         duration={duration.toFixed(1)}

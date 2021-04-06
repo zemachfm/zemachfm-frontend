@@ -10,6 +10,7 @@
     "lint": "eslint . --ext .tsx --color -f table"
   },
   "dependencies": {
+    "@babel/runtime": "^7.13.10",
     "@bit/mui-org.material-ui.slider": "^4.9.10",
     "@bit/mui-org.material-ui.styles": "^4.9.10",
     "@popperjs/core": "^2.6.0",
