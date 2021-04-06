@@ -1,6 +1,13 @@
 import { Howl } from 'howler';
 import { eventChannel } from 'redux-saga';
-import { takeLatest, put, call, take, select } from 'redux-saga/effects';
+import {
+  takeLatest,
+  put,
+  call,
+  take,
+  select,
+  takeEvery,
+} from 'redux-saga/effects';
 import { PODCASTS_URL } from '../../lib/store/url';
 import { axiosGet } from '../../lib/store/axiosReq';
 import {
@@ -10,6 +17,7 @@ import {
   changePlayerStatus,
   setPlayer,
   setCurrentPlayerID,
+  removePlayer,
 } from './actions';
 import { EpisodesReturnType } from './index.d';
 import { episode } from './types.d';
@@ -25,6 +33,13 @@ function playerListen(player: Howl) {
       );
       emitter('LOAD');
     });
+    player.on('play', () => {
+      console.log('on play >><<><><><><>');
+    });
+    player.on('pause', () => {
+      console.log('on pause >><<><><><><>');
+    });
+
     player.onplayerror = () => {
       emitter('ERROR');
     };
@@ -66,8 +81,12 @@ function* playCertainAudioGenerator({
   const player = yield select(getPlayer);
   const playerSettings = yield select(getPlayerSettings);
   if (player.audioPlayer) {
+    /**
+     * do the actual remvoal
+     */
+    yield put(removePlayer());
+    player.audioPlayer.off('play', null, player.currentPlayID);
     player.audioPlayer.unload();
-    yield put(setPlayer({ player: null, item: null }));
   }
   const sound = new Howl({
     src: [payload.meta.audio_file],
@@ -93,19 +112,22 @@ function* changePLayerStatusGenerator({ type, payload }) {
     case 'LOAD':
       // eslint-disable-next-line no-case-declarations
       const playerID = player.audioPlayer.play();
-      setCurrentPlayerID(playerID);
+      yield put(setCurrentPlayerID(playerID));
       break;
     case 'ON_PLAY':
-      player.audioPlayer.play();
+      console.log('on >> on_play', payload);
+
+      //player.audioPlayer.play(player.currentPlayID);
       break;
     case 'PAUSE':
-      player.audioPlayer.pause();
+      player.audioPlayer.pause(player.currentPlayID);
       break;
     case 'PLAY':
-      player.audioPlayer.play();
+      console.log('on >> play', payload);
+      // player.audioPlayer.play(player.currentPlayID);
       break;
     case 'STOP':
-      player.stop();
+      player.stop(player.currentPlayID);
       break;
     default:
   }
@@ -113,8 +135,8 @@ function* changePLayerStatusGenerator({ type, payload }) {
 
 function* homeSaga() {
   yield takeLatest(actionTypes.FETCH_EPISODES, fetchEpisodesGenerator);
-  yield takeLatest(actionTypes.PLAY_CERTAIN_AUDIO, playCertainAudioGenerator);
-  yield takeLatest(
+  yield takeEvery(actionTypes.PLAY_CERTAIN_AUDIO, playCertainAudioGenerator);
+  yield takeEvery(
     actionTypes.CHANGE_PLAYER_STATUS,
     changePLayerStatusGenerator,
   );

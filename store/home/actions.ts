@@ -95,7 +95,7 @@ const setPlayer = function setPlayer(
 
 const removePlayer = function removePLayer(): { type: string } {
   return {
-    type: actionTypes.SET_PLAYER,
+    type: actionTypes.REMOVE_PLAYER,
   };
 };
 const setCurrentPlayerID = (

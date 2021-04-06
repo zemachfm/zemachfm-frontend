@@ -14,7 +14,9 @@ const PlayerComponent: React.FC<Props.audioPlayerComponent> = ({
   duration,
   onPlayerChange,
   currentPlay,
+  progressing,
   playerSettings,
+  bufferedSize,
 }) => {
   const [sliderValue, setSliderValue] = React.useState<number>(duration);
 
@@ -25,7 +27,7 @@ const PlayerComponent: React.FC<Props.audioPlayerComponent> = ({
     <div className="grid grid-cols-9 justify-around gap-4 ">
       <div></div>
       <div className="flex  flex-row items-end row w-full py-2 px-4">
-        <img className="rounded w-16" src={currentPlay.episode_player_image} />
+        <img className="rounded w-16" src={currentPlay.small_player} />
         <div className="ml-2 flex flex-col justify-between h-100">
           <h3
             className=" text-left mt-3 mx-1 text-gray-600 dark:text-gray-200"
@@ -43,7 +45,7 @@ const PlayerComponent: React.FC<Props.audioPlayerComponent> = ({
             style={{ fill: '#8a8686' }}
           />
         </Ripples>
-
+        {progressing ? 'progressing' : ''}
         {isPlaying ? (
           <Ripples
             className="rounded-full hover:bg-gray-300 border border-gray-300 dark:border-gray-900 shadow "
@@ -75,15 +77,32 @@ const PlayerComponent: React.FC<Props.audioPlayerComponent> = ({
       </div>
       <div className="flex row justify-between col-span-5 items-center ">
         <div className="flex flex-row w-full items-center">
-          <span className="text-sm text-gray-400 mr-2 "> {duration} </span>
-          <Slider
-            getAriaValueText={() => `${duration} value`}
-            id="player"
-            max={3000}
-            onChange={onSlide}
-            value={sliderValue}
-            valueLabelDisplay="auto"
-          />
+          <span className="text-sm text-gray-400 mr-2 ">
+            {' '}
+            {duration} {bufferedSize}{' '}
+          </span>
+          <div className="w-full relative">
+            <Slider
+              className="relative z-10"
+              style={{ color: '#44b54c' }}
+              getAriaValueText={() => `${duration} value`}
+              id="player"
+              max={3000}
+              onChange={onSlide}
+              value={sliderValue}
+              valueLabelDisplay="auto"
+            />
+            <Slider
+              styles={{ thumb: { padding: 0, margin: 0, width: 0 } }}
+              className="absolute left-0 text-yellow-400"
+              style={{ position: 'absolute', color: '#acf9b1' }}
+              id="player"
+              max={3000}
+              onChange={onSlide}
+              value={bufferedSize}
+              valueLabelDisplay={false}
+            />
+          </div>
           <span className="text-sm text-gray-400 ml-2 ">24:23</span>{' '}
         </div>
         <div className="w-28 ml-4 flex felx-row justify-around items-center ">

@@ -33,6 +33,7 @@ interface episode {
   meta: audioMeta;
   episode_featured_image: string;
   episode_player_image: string;
+  small_player: string;
   download_link: string;
 }
 

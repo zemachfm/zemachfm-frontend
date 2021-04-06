@@ -25,7 +25,7 @@ import SmallDeviceSideBar from '../components/Sidebar/smallDevice.sidebar';
 function Home({ content, locale }): ReactElement {
   const state: IHomeReducer = useSelector((root: TRootReducer) => root.home);
   const dispatch = useDispatch();
-  const { episodes } = state;
+  const { episodes, player, currentPlay, currentSettings } = state;
   const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
 
   const toogleMobileMenu = () => {
@@ -104,7 +104,7 @@ function Home({ content, locale }): ReactElement {
                 {episodes
                   ? episodes.map(item => (
                       <EpisodeCard
-                        image={item.episode_featured_image}
+                        image={item.small_player}
                         item={item}
                         onPlay={onEpisodeCardPlay}
                         title={item.title.rendered}
@@ -130,9 +130,9 @@ function Home({ content, locale }): ReactElement {
             <div className="relative bg-white dark:bg-gray-800 bg-opacity-90 px-8 shadow-2xl border-t-2 dark:border-gray-900 border-gray-100 z-100">
               {state.player.audioPlayer ? (
                 <AudioPlayers
-                  currentPlay={state.currentPlay}
-                  player={state.player}
-                  playerSettings={state.currentSettings}
+                  currentPlay={currentPlay}
+                  player={player}
+                  playerSettings={currentSettings}
                 />
               ) : null}
             </div>

@@ -3,7 +3,10 @@ import { playerStatusActionReturn } from '../../store/home';
 import { episode, soundSettings } from '../../store/home/types.d';
 
 type audioPlayerProps = {
-  player: Howl;
+  player: {
+    audioPlayer: Howl;
+    currentPlayID: any;
+  };
   currentPlay: episode;
   playerSettings: soundSettings;
 };
@@ -14,6 +17,8 @@ type audioPlayerComponent = {
   onPlayerChange: (val: string) => playerStatusActionReturn;
   currentPlay: episode;
   playerSettings: soundSettings;
+  progressing: boolean;
+  bufferedSize: number;
 };
 
 export { audioPlayerProps, audioPlayerComponent };

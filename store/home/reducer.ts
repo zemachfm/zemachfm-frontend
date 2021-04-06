@@ -40,8 +40,14 @@ const homeReducer = produce((draft: IHomeReducer, action) => {
       draft.theme = payload;
       break;
     case actionTypes.SET_PLAYER:
+      console.log('set player', payload);
       draft.player.audioPlayer = payload.player;
       draft.currentPlay = payload.item;
+      break;
+    case actionTypes.REMOVE_PLAYER:
+      draft.player.audioPlayer = null;
+      draft.player.currentPlayID = null;
+      draft.currentPlay = null;
       break;
     case actionTypes.SET_CURRENT_PLAYER_ID:
       draft.player.currentPlayID = payload;
