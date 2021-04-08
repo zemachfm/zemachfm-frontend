@@ -95,16 +95,20 @@ const AudioPlayerContainer: React.FC<props.audioPlayerProps> = ({
   };
 
   return (
-    <div>
-      <AudioPlayerComponent
-        currentPlay={currentPlay}
-        duration={duration.toFixed(1)}
-        isPlaying={getPlayerStatus(playerStatus)}
-        onPlayerChange={onPlayerStateChange}
-        playerSettings={playerSettings}
-        progressing={progressing}
-        bufferedSize={plyaerBufferedSize}
-      />
+    <div className="col-span-24">
+      <div className=" fixed bottom-0 z-100 w-full ">
+        <div className="relative bg-white dark:bg-gray-800 bg-opacity-90 px-8 shadow-2xl border-t-1 dark:border-gray-900 border-gray-200 z-100">
+          <AudioPlayerComponent
+            currentPlay={currentPlay}
+            duration={duration.toFixed(1)}
+            isPlaying={getPlayerStatus(playerStatus)}
+            onPlayerChange={onPlayerStateChange}
+            playerSettings={playerSettings}
+            progressing={progressing}
+            bufferedSize={plyaerBufferedSize}
+          />
+        </div>
+      </div>
     </div>
   );
 };

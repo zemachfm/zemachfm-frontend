@@ -11,6 +11,7 @@ const EpisodeCard: React.FC<episodeCardInterface> = ({
   image,
   onPlay,
   item,
+  playing,
 }) => (
   <div className="border-solid bg-white to-white border-2 border-gray-100 dark:border-gray-900 dark:bg-gray-900 text-gray-800 rounded-xl overflow-hidden flex flex-col justify-between">
     <div className=" flex flex-row justify-between p-5">
@@ -23,8 +24,10 @@ const EpisodeCard: React.FC<episodeCardInterface> = ({
 
     <div className="grid grid-cols-6 gap-3 p-5 pb-3 pt-0 items-center w-full border-solid border-t-2 dark:border-gray-800 border-gray-50 pt-4 ">
       <PlayIcon
-        className="mt-0 h-6 w-6 fill-current dark:text-gray-300 text-gray-500 "
-        onClick={() =>onPlay(item)}
+        className={`mt-0 h-6 w-6 fill-current dark:text-gray-300 text-gray-500 ${
+          playing ? 'text-green-500' : ''
+        } `}
+        onClick={() => onPlay(item)}
       />
       <DownloadOutline className="h-5 w-5 fill-current dark:text-gray-300 text-gray-500" />
       <span />

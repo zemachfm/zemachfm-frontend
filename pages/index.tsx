@@ -107,6 +107,7 @@ function Home({ content, locale }): ReactElement {
                         image={item.small_player}
                         item={item}
                         onPlay={onEpisodeCardPlay}
+                        playing={item.id === state.currentPlay.id}
                         title={item.title.rendered}
                       />
                     ))
@@ -125,19 +126,14 @@ function Home({ content, locale }): ReactElement {
             </div>
           </main>
         </div>
-        <div className="col-span-24">
-          <div className=" fixed bottom-0 z-100 w-full ">
-            <div className="relative bg-white dark:bg-gray-800 bg-opacity-90 px-8 shadow-2xl border-t-2 dark:border-gray-900 border-gray-100 z-100">
-              {state.player.audioPlayer ? (
-                <AudioPlayers
-                  currentPlay={currentPlay}
-                  player={player}
-                  playerSettings={currentSettings}
-                />
-              ) : null}
-            </div>
-          </div>
-        </div>
+
+        {state.player.audioPlayer ? (
+          <AudioPlayers
+            currentPlay={currentPlay}
+            player={player}
+            playerSettings={currentSettings}
+          />
+        ) : null}
       </div>
     </div>
   );

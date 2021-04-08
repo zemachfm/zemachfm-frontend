@@ -6,6 +6,7 @@ type Props = {
   image?: string;
   onPlay: (item: episode) => void;
   item: episode;
+  playing: true;
 };
 
 export default Props;
