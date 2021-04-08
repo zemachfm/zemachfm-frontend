@@ -1,12 +1,9 @@
 import { Howl } from 'howler';
 import { playerStatusActionReturn } from '../../store/home';
-import { episode, soundSettings } from '../../store/home/types.d';
+import { episode, soundSettings, playerStore } from '../../store/home/types.d';
 
 type audioPlayerProps = {
-  player: {
-    audioPlayer: Howl;
-    currentPlayID: any;
-  };
+  player: playerStore;
   currentPlay: episode;
   playerSettings: soundSettings;
 };

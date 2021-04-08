@@ -12,17 +12,22 @@ import PlayIcon2 from '../../icons/play.svg';
 import Pause from '../../icons/pause.svg';
 
 const BufferedSlider = withStyles({
-	thumb: {
-		padding: 0,
-		height: 0,
-		width: 0
-	},
-	heading: {
-		fontSize: 3
-	},
-	
+  thumb: {
+    padding: 0,
+    height: 0,
+    width: 0,
+  },
+  heading: {
+    fontSize: 3,
+  },
 })(Slider);
 
+const MainSlider = withStyles({
+  rail: {
+    opacity: 0.1,
+    backgroundColor: '#ddd',
+  },
+})(Slider);
 
 const PlayerComponent: React.FC<Props.audioPlayerComponent> = ({
   isPlaying,
@@ -45,14 +50,14 @@ const PlayerComponent: React.FC<Props.audioPlayerComponent> = ({
         <img className="rounded w-16" src={currentPlay.small_player} />
         <div className="ml-2 flex flex-col justify-between h-100">
           <h3
-            className=" text-left mt-3 mx-1 text-gray-600 dark:text-gray-200"
+            className="text-sm text-left block line-clamp-3 mt-3 mx-1 -marquee text-gray-600 dark:text-gray-200"
             dangerouslySetInnerHTML={{ __html: currentPlay.title.rendered }}
           ></h3>
         </div>
       </div>
       <div className="flex flex-row justify-between items-center px-4 ">
         <Ripples
-          className="rounded-full border  hover:bg-gray-300  border-gray-300 dark:border-gray-900"
+          className="rounded-full border  hover:bg-gray-300 dark:hover:bg-gray-900 border-gray-300 dark:border-gray-900"
           onClick={() => onPlayerChange('BACKWARD')}
         >
           <BackwardIcon
@@ -60,20 +65,21 @@ const PlayerComponent: React.FC<Props.audioPlayerComponent> = ({
             style={{ fill: '#8a8686' }}
           />
         </Ripples>
-        {progressing ? 'progressing' : ''}
         {isPlaying ? (
           <Ripples
-            className="rounded-full hover:bg-gray-300 border border-gray-300 dark:border-gray-900 shadow "
+            className={`rounded-full  hover:bg-gray-300 dark:hover:bg-gray-900 border border-gray-300 dark:border-gray-900 shadow ${
+              progressing ? 'animate-pulse' : ''
+            } `}
             onClick={() => onPlayerChange('PAUSE')}
           >
             <Pause
-              className=" p-0 rounded-full w-12 h-12 p-2 "
+              className=" rounded-full w-12 h-12 p-2 "
               style={{ fill: '#8a8686' }}
             />
           </Ripples>
         ) : (
           <Ripples
-            className="rounded-full border hover:bg-gray-300  border-gray-300 dark:border-gray-900 shadow "
+            className="rounded-full border hover:bg-gray-300 dark:hover:bg-gray-900 border-gray-300 dark:border-gray-900 shadow "
             onClick={() => onPlayerChange('PLAY')}
           >
             <PlayIcon2
@@ -83,7 +89,7 @@ const PlayerComponent: React.FC<Props.audioPlayerComponent> = ({
           </Ripples>
         )}
 
-        <Ripples className="rounded-full border hover:bg-gray-300  border-gray-300 dark:border-gray-900 ">
+        <Ripples className="rounded-full border hover:bg-gray-300 dark:hover:bg-gray-900 border-gray-300 dark:border-gray-900 ">
           <ForwardIcon
             className="w-8 h-8 p-1 rounded-full "
             style={{ fill: '#8a8686' }}
@@ -97,7 +103,7 @@ const PlayerComponent: React.FC<Props.audioPlayerComponent> = ({
             {duration} {bufferedSize}{' '}
           </span>
           <div className="w-full relative">
-            <Slider
+            <MainSlider
               className="relative z-10"
               style={{ color: '#44b54c' }}
               getAriaValueText={() => `${duration} value`}
@@ -121,14 +127,15 @@ const PlayerComponent: React.FC<Props.audioPlayerComponent> = ({
           <span className="text-sm text-gray-400 ml-2 ">24:23</span>{' '}
         </div>
         <div className="w-28 ml-4 flex felx-row justify-around items-center ">
-          <ShuffleIcon
-            className="w-6 mr-2"
-            style={{ fill: playerSettings.shuffle ? '#68f721' : '#8a8686' }}
-          />
-          <span className="text-xs text-gray-500 mr-2 align-baseline">
-            {`${playerSettings.volume * 100}% `}
-          </span>
-          <VolumeIcon className="w-6 mr-2" style={{ fill: '#8a8686' }} />
+          <Ripples className="rounded-full hover:bg-gray-300  dark:border-gray-900 ">
+            <ShuffleIcon
+              className="w-6 m-2"
+              style={{ fill: playerSettings.shuffle ? '#1f2937' : '#97989a' }}
+            />
+          </Ripples>
+          <Ripples className="rounded-full hover:bg-gray-300  dark:border-gray-900 ">
+            <VolumeIcon className="w-6 m-2" style={{ fill: '#8a8686' }} />
+          </Ripples>
         </div>
       </div>
       <div> </div>

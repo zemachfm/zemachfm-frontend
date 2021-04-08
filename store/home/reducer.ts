@@ -13,6 +13,7 @@ const initialState: IHomeReducer = {
   player: {
     audioPlayer: null,
     currentPlayID: null,
+    playerStatus: 0,
   },
   currentSettings: {
     volume: 1,
@@ -40,7 +41,6 @@ const homeReducer = produce((draft: IHomeReducer, action) => {
       draft.theme = payload;
       break;
     case actionTypes.SET_PLAYER:
-      console.log('set player', payload);
       draft.player.audioPlayer = payload.player;
       draft.currentPlay = payload.item;
       break;
@@ -51,6 +51,9 @@ const homeReducer = produce((draft: IHomeReducer, action) => {
       break;
     case actionTypes.SET_CURRENT_PLAYER_ID:
       draft.player.currentPlayID = payload;
+      break;
+    case actionTypes.STORE_PLAYER_STATUS:
+      draft.player.playerStatus = payload;
       break;
     default:
       break;

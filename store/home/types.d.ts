@@ -6,6 +6,12 @@ type ThemeTypes = 'light' | 'dark';
 interface renderedType {
   rendered: string;
 }
+enum currentPlayerStatus {
+  PROGRESS,
+  PLAYING,
+  PAUSED,
+  ERROR,
+}
 
 interface audioMeta {
   episode_type: string;
@@ -37,17 +43,20 @@ interface episode {
   download_link: string;
 }
 
+interface playerStore {
+  currentPlayID: number;
+  audioPlayer: Howl;
+  playerStatus: currentPlayerStatus;
+}
+
 interface IHomeReducer {
   loading: boolean;
   theme: ThemeTypes;
   episodes: episode[];
   playlist: episode[];
   currentPlay: episode;
-  player: {
-    currentPlayID: number;
-    audioPlayer: Howl;
-  };
+  player: playerStore;
   currentSettings: soundSettings;
 }
 
-export type { episode, ThemeTypes, IHomeReducer, soundSettings };
+export type { episode, ThemeTypes, IHomeReducer, soundSettings, playerStore };

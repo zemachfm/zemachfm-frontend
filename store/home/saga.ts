@@ -18,6 +18,7 @@ import {
   setPlayer,
   setCurrentPlayerID,
   removePlayer,
+  storePlayerStatus,
 } from './actions';
 import { EpisodesReturnType } from './index.d';
 import { episode } from './types.d';
@@ -33,11 +34,11 @@ function playerListen(player: Howl) {
       );
       emitter('LOAD');
     });
-    player.on('play', () => {
-      console.log('on play >><<><><><><>');
+    player.once('play', () => {
+      emitter('ON_PLAY');
     });
-    player.on('pause', () => {
-      console.log('on pause >><<><><><><>');
+    player.once('pause', () => {
+      emitter('ON_PAUSE');
     });
 
     player.onplayerror = () => {
@@ -107,6 +108,7 @@ function* playCertainAudioGenerator({
 }
 
 function* changePLayerStatusGenerator({ type, payload }) {
+  console.log('on change >>>', payload.type);
   const player = yield select(getPlayer);
   switch (payload.type) {
     case 'LOAD':
@@ -115,16 +117,19 @@ function* changePLayerStatusGenerator({ type, payload }) {
       yield put(setCurrentPlayerID(playerID));
       break;
     case 'ON_PLAY':
-      console.log('on >> on_play', payload);
-
-      //player.audioPlayer.play(player.currentPlayID);
+      yield put(storePlayerStatus(1));
       break;
     case 'PAUSE':
       player.audioPlayer.pause(player.currentPlayID);
+      yield put(storePlayerStatus(2));
+
+      break;
+    case 'ON_PAUSE':
+      yield put(storePlayerStatus(2));
       break;
     case 'PLAY':
-      console.log('on >> play', payload);
-      // player.audioPlayer.play(player.currentPlayID);
+      player.audioPlayer.play(player.currentPlayID);
+      yield put(storePlayerStatus(1));
       break;
     case 'STOP':
       player.stop(player.currentPlayID);

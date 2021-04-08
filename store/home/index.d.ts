@@ -10,7 +10,6 @@ interface singleEpisodeType {
   description: renderedType;
   content: renderedType;
   data: string;
-
 }
 
 interface paginationType {
@@ -28,9 +27,8 @@ interface EpisodesReturnType {
  * audio player payload type annotations
  */
 interface playerStatus {
-  type: string;
+  type: number;
 }
-
 
 interface playerStatusActionReturn {
   type: string;

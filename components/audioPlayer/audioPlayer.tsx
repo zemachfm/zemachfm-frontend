@@ -9,14 +9,14 @@ const AudioPlayerContainer: React.FC<props.audioPlayerProps> = ({
   currentPlay,
   playerSettings,
 }) => {
-  const { audioPlayer, currentPlayID } = player;
+  const { audioPlayer, currentPlayID, playerStatus } = player;
   console.log('player is ', player);
   const dispatch = useDispatch();
   const [playID, setPlayID] = React.useState<number | null>(0);
   const [duration, setDuration] = React.useState<number>(0);
   const [isPlaying, setIsPlaying] = React.useState(false);
   const [progressing, setProgressing] = React.useState(false);
-  const [playerState, setPlayerState] = React.useState<string>('LOADING');
+  const [playerState, setPlayerState] = React.useState<number>(playerStatus);
   const [plyaerBufferedSize, setPlayerBufferedSize] = React.useState<number>(0);
   // const animate = time => {
   //   if (currentPlayID) {
@@ -63,6 +63,7 @@ const AudioPlayerContainer: React.FC<props.audioPlayerProps> = ({
         setProgressing(false);
       });
       audio.addEventListener('waiting', function () {
+        console.log('waiting for more load');
         setProgressing(true);
       });
       audio.addEventListener('seeked', function () {
@@ -86,12 +87,19 @@ const AudioPlayerContainer: React.FC<props.audioPlayerProps> = ({
     dispatch(changePlayerStatus({ type }));
   };
 
+  const getPlayerStatus = item => {
+    if (item === 2) {
+      return false;
+    }
+    return true;
+  };
+
   return (
     <div>
       <AudioPlayerComponent
         currentPlay={currentPlay}
         duration={duration.toFixed(1)}
-        isPlaying={isPlaying}
+        isPlaying={getPlayerStatus(playerStatus)}
         onPlayerChange={onPlayerStateChange}
         playerSettings={playerSettings}
         progressing={progressing}

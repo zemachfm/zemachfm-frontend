@@ -15,6 +15,7 @@
     "@bit/mui-org.material-ui.styles": "^4.9.10",
     "@popperjs/core": "^2.6.0",
     "@svgr/webpack": "^5.5.0",
+    "@tailwindcss/line-clamp": "^0.2.0",
     "autoprefixer": "^10.2.3",
     "axios": "^0.21.1",
     "flag": "^4.4.0",

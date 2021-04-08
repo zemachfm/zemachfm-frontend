@@ -15,8 +15,8 @@ const actionTypes = {
    *
    */
   CHANGE_PLAYER_STATUS: 'CHANGE_PLAYER_STATUS',
-  CHANGE_PLAYER_STATUS_FAILED: 'CHANGE_PLAYER_STATUS_FAILED',
-  CHANGE_PLAYER_STATUS_SUCCEEDED: 'CHANGE_PLAYER_STATUS_SUCCEEDED',
+  STORE_PLAYER_STATUS: 'STORE_PLAYER_STATUS',
+  CHANGE_PALYER_SETTINGS: 'CHANGE_PALYER_SETTINGS',
 
   SET_PLAYER: 'SET_PLAYER',
   REMOVE_PLAYER: 'REMOVE_PLAYER',
@@ -54,14 +54,14 @@ const changePlayerStatus = function makeActionPlayerStatus(
   return { payload, type: actionTypes.CHANGE_PLAYER_STATUS };
 };
 
-const changePlayerStatusSucceeded = function changePlayerStatusSucceded(
+const storePlayerStatus = function storeStatus(
   payload: Howl,
 ): {
   type: string;
-  payload: Howl;
+  payload: number;
 } {
   return {
-    type: actionTypes.CHANGE_PLAYER_STATUS_SUCCEEDED,
+    type: actionTypes.STORE_PLAYER_STATUS,
     payload,
   };
 };
@@ -105,6 +105,11 @@ const setCurrentPlayerID = (
   type: actionTypes.SET_CURRENT_PLAYER_ID,
 });
 
+const changePlayerSetting = (payload: { name: string; value: string }) => ({
+  type: actionTypes.CHANGE_PALYER_SETTINGS,
+  payload,
+});
+
 export {
   actionTypes,
   /**
@@ -118,9 +123,10 @@ export {
    * player actions
    */
   setPlayer,
+  changePlayerSetting,
   removePlayer,
   changePlayerStatus,
-  changePlayerStatusSucceeded,
+  storePlayerStatus,
   palyNextSong,
   playCertainAudio,
   setCurrentPlayerID,

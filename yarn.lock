@@ -940,7 +940,7 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.3.1", "@babel/runtime@^7.4.4", "@babel/runtime@^7.8.3":
+"@babel/runtime@^7.13.10", "@babel/runtime@^7.3.1", "@babel/runtime@^7.4.4", "@babel/runtime@^7.8.3":
   version "7.13.10"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.13.10.tgz#47d42a57b6095f4468da440388fdbad8bebf0d7d"
   integrity sha512-4QPkjJq6Ns3V/RgpEahRk+AGfL0eO6RHHtTWoNNr5mO49G6B5+X6d6THgWEAvTrznU5xYpbAlVKRYcsCgh/Akw==
@@ -1097,7 +1097,7 @@
     clsx "^1.0.4"
     prop-types "^15.7.2"
 
-"@bit/mui-org.material-ui.styles@4.9.10":
+"@bit/mui-org.material-ui.styles@4.9.10", "@bit/mui-org.material-ui.styles@^4.9.10":
   version "4.9.10"
   resolved "https://node.bit.dev/mui-org.material-ui.styles/-/mui-org.material-ui.styles-4.9.10.tgz#6e837b31bd0c00bf7f00b428b0e572201160872c"
   integrity sha1-boN7Mb0MAL9/ALQosOVyIBFghyw=
@@ -1419,6 +1419,11 @@
     "@svgr/plugin-jsx" "^5.5.0"
     "@svgr/plugin-svgo" "^5.5.0"
     loader-utils "^2.0.0"
+
+"@tailwindcss/line-clamp@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@tailwindcss/line-clamp/-/line-clamp-0.2.0.tgz#7f30f26ed3835d64d1eb5a9b0d60cf5291dd2a3b"
+  integrity sha512-+jXSdRK3/9V/BCPCr+iNpMMhxWMMv62vn/AS2b3/ClmueGuhCijW3bUwO1IiHnE7uCaF74Sli8jUCv9djwvpLg==
 
 "@types/hoist-non-react-statics@^3.3.0":
   version "3.3.1"
