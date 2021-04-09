@@ -19,11 +19,14 @@ import {
   setCurrentPlayerID,
   removePlayer,
   storePlayerStatus,
+  playCertainAudio,
+  updatedPlaylist,
 } from './actions';
 import { EpisodesReturnType } from './index.d';
 import { episode } from './types.d';
 
 const getPlayer = state => state.home.player;
+const getPlaylist = state => state.home.playlist;
 const getPlayerSettings = state => state.home.currentSettings;
 
 function playerListen(player: Howl) {
@@ -138,12 +141,37 @@ function* changePLayerStatusGenerator({ type, payload }) {
   }
 }
 
+function* preeceedWithPlaylistGenerator(type: string, payload: string) {
+  const playlist = yield select(getPlaylist);
+  let plays = [...playlist];
+  console.log('playlist ', playlist);
+  if (playlist.length === 0) {
+
+    //reset the player
+  }
+  if (!payload) {
+    let playerNow = plays.shift();
+    console.log('on paly ',playerNow);
+    yield put(playCertainAudio(playerNow));
+    yield put(updatedPlaylist(plays));
+
+  } else {
+    let playerNow = playlist.unshift();
+    yield put(playCertainAudio(playerNow));
+    yield put(updatedPlaylist(plays));
+  }
+}
+
 function* homeSaga() {
   yield takeLatest(actionTypes.FETCH_EPISODES, fetchEpisodesGenerator);
   yield takeEvery(actionTypes.PLAY_CERTAIN_AUDIO, playCertainAudioGenerator);
   yield takeEvery(
     actionTypes.CHANGE_PLAYER_STATUS,
     changePLayerStatusGenerator,
+  );
+  yield takeEvery(
+    actionTypes.PROCEED_WITH_PLAYING,
+    preeceedWithPlaylistGenerator,
   );
 }
 export default homeSaga;

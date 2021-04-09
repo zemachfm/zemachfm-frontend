@@ -30,6 +30,12 @@ interface playerStatus {
   type: number;
 }
 
+// eslint-disable-next-line no-shadow
+enum preecedTypes {
+  NEXT,
+  PREVIOUS,
+}
+
 interface playerStatusActionReturn {
   type: string;
   payload: playerStatus;
@@ -46,11 +52,11 @@ export {
    */
   singleEpisodeType,
   EpisodesReturnType,
+  preecedTypes,
   /**
    * audio player paylod type annotations
    */
   playerStatus,
   playerStatusActionReturn,
   palyCertainAudioType,
-  audioId,
 };

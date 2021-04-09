@@ -107,7 +107,11 @@ function Home({ content, locale }): ReactElement {
                         image={item.small_player}
                         item={item}
                         onPlay={onEpisodeCardPlay}
-                        playing={item.id === state.currentPlay.id}
+                        playing={
+                          state.currentPlay
+                            ? item.id === state.currentPlay.id
+                            : false
+                        }
                         title={item.title.rendered}
                       />
                     ))

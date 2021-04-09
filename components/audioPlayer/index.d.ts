@@ -16,6 +16,7 @@ type audioPlayerComponent = {
   playerSettings: soundSettings;
   progressing: boolean;
   bufferedSize: number;
+  proceedWithPlayer: (type: number) => void;
 };
 
 export { audioPlayerProps, audioPlayerComponent };

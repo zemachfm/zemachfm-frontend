@@ -2,7 +2,10 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import * as props from './index.d';
 import AudioPlayerComponent from './player';
-import { changePlayerStatus } from '../../store/home/actions';
+import {
+  changePlayerStatus,
+  proceedWithPlaying,
+} from '../../store/home/actions';
 
 const AudioPlayerContainer: React.FC<props.audioPlayerProps> = ({
   player,
@@ -18,28 +21,12 @@ const AudioPlayerContainer: React.FC<props.audioPlayerProps> = ({
   const [progressing, setProgressing] = React.useState(false);
   const [playerState, setPlayerState] = React.useState<number>(playerStatus);
   const [plyaerBufferedSize, setPlayerBufferedSize] = React.useState<number>(0);
-  // const animate = time => {
-  //   if (currentPlayID) {
-  //     setIsPlaying(audioPlayer.playing(currentPlayID));
-  //     if (typeof audioPlayer.seek(currentPlayID) === 'number') {
-  //       setDuration(audioPlayer.seek(currentPlayID));
-  //     }
 
-  //     const node = audioPlayer._sounds[0]._node;
-
-  //   } else {
-  //     setIsPlaying(false);
-  //   }
-  //   setPlayerState(audioPlayer.state());
-  //   // Change the state according to the animation
-  //   reequestRef.current = requestAnimationFrame(animate);
-  // };
   React.useEffect(() => {
     setPlayID(currentPlayID);
   }, [currentPlayID]);
 
   React.useEffect(() => {
-    //requestAnimationFrame(animate);
     if (currentPlayID) {
       let audio = audioPlayer._sounds[0]._node;
       var seekableEnd = audio.seekable.end(audio.seekable.length - 1);
@@ -66,17 +53,6 @@ const AudioPlayerContainer: React.FC<props.audioPlayerProps> = ({
         console.log('waiting for more load');
         setProgressing(true);
       });
-      audio.addEventListener('seeked', function () {
-        console.log('firing at seeked');
-        let inc = 1;
-        for (let i = 0; i < audio.buffered.length; i++) {
-          let startX = audio.buffered.start(i) * inc;
-          let endX = audio.buffered.end(i) * inc;
-          let width = endX - startX;
-
-          setPlayerBufferedSize(width);
-        }
-      });
     }
 
     //  return () => cancelAnimationFrame(reequestRef.current);
@@ -94,6 +70,10 @@ const AudioPlayerContainer: React.FC<props.audioPlayerProps> = ({
     return true;
   };
 
+  const proceedWithPlayer = (type: number): void => {
+    dispatch(proceedWithPlaying({ type }));
+  };
+
   return (
     <div className="col-span-24">
       <div className=" fixed bottom-0 z-100 w-full ">
@@ -106,6 +86,7 @@ const AudioPlayerContainer: React.FC<props.audioPlayerProps> = ({
             playerSettings={playerSettings}
             progressing={progressing}
             bufferedSize={plyaerBufferedSize}
+            proceedWithPlayer={proceedWithPlayer}
           />
         </div>
       </div>

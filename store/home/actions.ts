@@ -1,6 +1,6 @@
 import { Howl } from 'howler';
 import { makeAction } from '../../lib/store/makeActions';
-import { ThemeTypes } from './types.d';
+import { episode, ThemeTypes } from './types.d';
 import * as actionsTypes from './index.d';
 
 const actionTypes = {
@@ -22,7 +22,9 @@ const actionTypes = {
   REMOVE_PLAYER: 'REMOVE_PLAYER',
   SET_CURRENT_PLAYER_ID: 'SET_CURRENT_PLAYER_ID',
 
-  PLAY_NEXT_SONG: 'PLAY_NEXT_SONG',
+  PROCEED_WITH_PLAYING: 'PROCEED_WITH_PLAYING',
+  PLAYLIST_UPDATE: 'PLAYLIST_UPDATE',
+  RESET_PLAYLIST: 'RESET_PLAYLIST',
   PLAY_CERTAIN_AUDIO: 'PLAY_CERTAIN_AUDIO',
 };
 
@@ -66,12 +68,12 @@ const storePlayerStatus = function storeStatus(
   };
 };
 
-const palyNextSong = function makeActionNextSong(
+const proceedWithPlaying = function makeActionNextSong(
   payload: actionsTypes.playerStatus,
 ): actionsTypes.playerStatusActionReturn {
   return {
     payload,
-    type: actionTypes.PLAY_NEXT_SONG,
+    type: actionTypes.PROCEED_WITH_PLAYING,
   };
 };
 
@@ -105,6 +107,20 @@ const setCurrentPlayerID = (
   type: actionTypes.SET_CURRENT_PLAYER_ID,
 });
 
+const updatedPlaylist = (
+  payload: episode[],
+): { type: string; payload: episode[] } => ({
+  type: actionTypes.PLAYLIST_UPDATE,
+  payload,
+});
+
+const deletePlaylist = (
+  payload: episode[],
+): { type: string; payload: episode[] } => ({
+  type: actionTypes.PLAYLIST_UPDATE,
+  payload,
+});
+
 const changePlayerSetting = (payload: { name: string; value: string }) => ({
   type: actionTypes.CHANGE_PALYER_SETTINGS,
   payload,
@@ -127,7 +143,9 @@ export {
   removePlayer,
   changePlayerStatus,
   storePlayerStatus,
-  palyNextSong,
+  proceedWithPlaying,
   playCertainAudio,
   setCurrentPlayerID,
+  updatedPlaylist,
+  deletePlaylist,
 };

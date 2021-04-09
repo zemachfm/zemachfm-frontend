@@ -8,7 +8,7 @@ import ForwardIcon from '../../icons/skip-forward-outline.svg';
 import BackwardIcon from '../../icons/skip-back-outline.svg';
 import VolumeIcon from '../../icons/volume-up-outline.svg';
 import ShuffleIcon from '../../icons/shuffle-outline.svg';
-import PlayIcon2 from '../../icons/play.svg';
+import PlayIcon from '../../icons/play.svg';
 import Pause from '../../icons/pause.svg';
 
 const BufferedSlider = withStyles({
@@ -37,6 +37,7 @@ const PlayerComponent: React.FC<Props.audioPlayerComponent> = ({
   progressing,
   playerSettings,
   bufferedSize,
+  proceedWithPlayer,
 }) => {
   const [sliderValue, setSliderValue] = React.useState<number>(duration);
 
@@ -58,7 +59,7 @@ const PlayerComponent: React.FC<Props.audioPlayerComponent> = ({
       <div className="flex flex-row justify-between items-center px-4 ">
         <Ripples
           className="rounded-full border  hover:bg-gray-300 dark:hover:bg-gray-900 border-gray-300 dark:border-gray-900"
-          onClick={() => onPlayerChange('BACKWARD')}
+          onClick={() => proceedWithPlayer(1)}
         >
           <BackwardIcon
             className="w-8 h-8 p-1 rounded-full "
@@ -82,14 +83,17 @@ const PlayerComponent: React.FC<Props.audioPlayerComponent> = ({
             className="rounded-full border hover:bg-gray-300 dark:hover:bg-gray-900 border-gray-300 dark:border-gray-900 shadow "
             onClick={() => onPlayerChange('PLAY')}
           >
-            <PlayIcon2
+            <PlayIcon
               className=" rounded-full w-12 h-12 p-2 "
               style={{ fill: '#8a8686' }}
             />
           </Ripples>
         )}
 
-        <Ripples className="rounded-full border hover:bg-gray-300 dark:hover:bg-gray-900 border-gray-300 dark:border-gray-900 ">
+        <Ripples
+          className="rounded-full border hover:bg-gray-300 dark:hover:bg-gray-900 border-gray-300 dark:border-gray-900 "
+          onClick={() => proceedWithPlayer(0)}
+        >
           <ForwardIcon
             className="w-8 h-8 p-1 rounded-full "
             style={{ fill: '#8a8686' }}

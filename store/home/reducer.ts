@@ -33,6 +33,7 @@ const homeReducer = produce((draft: IHomeReducer, action) => {
     case actionTypes.FETCH_EPISODES_SUCCEDDED:
       draft.loading = false;
       draft.episodes = payload;
+      draft.playlist = payload;
       break;
     case actionTypes.FETCH_EPISODES_FAILED:
       draft.loading = false;
@@ -43,6 +44,12 @@ const homeReducer = produce((draft: IHomeReducer, action) => {
     case actionTypes.SET_PLAYER:
       draft.player.audioPlayer = payload.player;
       draft.currentPlay = payload.item;
+      break;
+    case actionTypes.PLAYLIST_UPDATE:
+      draft.playlist = payload;
+      break;
+    case actionTypes.RESET_PLAYLIST:
+      draft.playlist = payload;
       break;
     case actionTypes.REMOVE_PLAYER:
       draft.player.audioPlayer = null;
