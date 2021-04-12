@@ -19,4 +19,5 @@ type audioPlayerComponent = {
   proceedWithPlayer: (type: number) => void;
 };
 
+
 export { audioPlayerProps, audioPlayerComponent };
