@@ -9,7 +9,10 @@ const initialState: IHomeReducer = {
   episodes: [],
   theme: 'light',
   playlist: [],
-  currentPlay: null,
+  currentPlay: {
+    item: null,
+    playlistIndex: 0,
+  },
   player: {
     audioPlayer: null,
     currentPlayID: null,
@@ -44,7 +47,8 @@ const homeReducer = produce((draft: IHomeReducer, action) => {
       break;
     case actionTypes.SET_PLAYER:
       draft.player.audioPlayer = payload.player;
-      draft.currentPlay = payload.item;
+      draft.currentPlay.item = payload.item;
+      draft.currentPlay.playlistIndex = payload.index;
       break;
     case actionTypes.PLAYLIST_UPDATE:
       draft.playlist = payload;

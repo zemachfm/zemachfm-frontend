@@ -146,7 +146,7 @@ function* preeceedWithPlaylistGenerator(type: string, payload: string) {
   let plays = [...playlist];
   console.log('playlist ', playlist);
   if (playlist.length === 0) {
-
+    
     //reset the player
   }
   if (!payload) {

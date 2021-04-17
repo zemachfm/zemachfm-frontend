@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import Head from 'next/head';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetStaticPropsContext } from 'next';
@@ -10,20 +10,17 @@ import fs from 'fs';
 import EpisodeCardsContainer from '../components/episodeCard';
 import { wrapper } from '../store/store';
 import NavBar from '../components/Navbar';
-import { IHomeReducer, ThemeTypes, episode } from '../store/home/types.d';
+import { IHomeReducer, ThemeTypes } from '../store/home/types.d';
 import { TRootReducer } from '../store/reducer';
-import {
-  fetchEpisodes,
-  changeThemeAction,
-  playCertainAudio,
-} from '../store/home/actions';
+import { fetchEpisodes, changeThemeAction } from '../store/home/actions';
 import localStorageKeys from '../lib/constants/localStorageKeys';
 import AudioPlayer from '../components/audioPlayer';
 import AudioPlayers from '../components/audioPlayer/audioPlayer';
 import SideBar from '../components/Sidebar';
 import SmallDeviceSideBar from '../components/Sidebar/smallDevice.sidebar';
+import prop from '../types/index.d';
 
-function Home({ content, locale }): ReactElement {
+const Home: FC<prop> = ({ content, locale }) => {
   const state: IHomeReducer = useSelector((root: TRootReducer) => root.home);
   const dispatch = useDispatch();
   const { episodes, player, currentPlay, currentSettings } = state;
@@ -31,10 +28,6 @@ function Home({ content, locale }): ReactElement {
 
   const toogleMobileMenu = () => {
     setMobileMenuVisible(!mobileMenuVisible);
-  };
-
-  const onEpisodeCardPlay = (item: episode) => {
-    dispatch(playCertainAudio(item));
   };
 
   const onThemeChange = (theme: ThemeTypes) => {
@@ -90,7 +83,7 @@ function Home({ content, locale }): ReactElement {
             </div>
             <div className="col-span-7 px-5">
               <EpisodeCardsContainer
-                currentPlay={currentPlay}
+                currentPlay={currentPlay.item}
                 starterEpisodes={episodes}
                 subTitle={content.episodesDescription}
                 title={content.episodes}
@@ -113,7 +106,7 @@ function Home({ content, locale }): ReactElement {
 
         {state.player.audioPlayer ? (
           <AudioPlayers
-            currentPlay={currentPlay}
+            currentPlay={currentPlay.item}
             player={player}
             playerSettings={currentSettings}
           />
@@ -121,7 +114,7 @@ function Home({ content, locale }): ReactElement {
       </div>
     </div>
   );
-}
+};
 
 export const getStaticProps = wrapper.getStaticProps(
   async ({
@@ -130,9 +123,7 @@ export const getStaticProps = wrapper.getStaticProps(
   }: GetStaticPropsContext & {
     store: Store<IHomeReducer, AnyAction>;
   }) => {
-    console.log('on get state');
     store.dispatch(fetchEpisodes());
-    console.log('after get state on fetched episodes');
     store.dispatch(END);
     await store.sagaTask.toPromise();
     const dir = path.join(process.cwd(), 'public', 'static');

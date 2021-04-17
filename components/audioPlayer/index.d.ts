@@ -10,6 +10,8 @@ type audioPlayerProps = {
 
 type audioPlayerComponent = {
   duration: string;
+  currentTime: string;
+  percentagePlayed: string;
   isPlaying: boolean;
   onPlayerChange: (val: string) => playerStatusActionReturn;
   currentPlay: episode;

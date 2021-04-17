@@ -20,6 +20,9 @@ const episodeCardsContainer: FC<episodeCardsContainerType> = ({
     Dispatch(changePlayerStatus({ type }));
   };
 
+  const onDownload = item => {
+    
+  };
   return (
     <>
       <div className="flex flex-row justify-between">
@@ -33,12 +36,14 @@ const episodeCardsContainer: FC<episodeCardsContainerType> = ({
 
       <div className="grid grid-cols lg:grid-cols-3 gap-4 ">
         {starterEpisodes
-          ? starterEpisodes.map(item => (
+          ? starterEpisodes.map((item, index) => (
               <EpisodeCard
                 image={item.small_player}
                 item={item}
-                onPlay={onEpisodeCardPlay}
+                index={index}
+                onDownload={onDownload}
                 onPause={onPause}
+                onPlay={onEpisodeCardPlay}
                 playing={currentPlay ? item.id === currentPlay.id : false}
                 title={item.title.rendered}
               />

@@ -23,7 +23,9 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      backgroundOpacity: ['active', 'dark', 'hover', 'focus', 'responsive'],
+    },
   },
   plugins: [require('@tailwindcss/line-clamp')],
 };

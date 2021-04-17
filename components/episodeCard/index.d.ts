@@ -5,8 +5,10 @@ type episodeCard = {
   image?: string;
   onPlay: (item: episode) => void;
   onPause: (type: string) => void;
+  onDownload: (item: episode) => void;
   item: episode;
   playing: true;
+  index: number;
 };
 
 type episodeCardsContainerType = {

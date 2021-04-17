@@ -16,7 +16,9 @@ const AudioPlayerContainer: React.FC<props.audioPlayerProps> = ({
   console.log('player is ', player);
   const dispatch = useDispatch();
   const [playID, setPlayID] = React.useState<number | null>(0);
-  const [duration, setDuration] = React.useState<number>(0);
+  const [duration, setDuration] = React.useState<string>('');
+  const [currentTime, setCurrentTime] = React.useState<number>(0);
+  const [percentagePlayed, setPercentagePlayed] = React.useState<number>(0);
   const [isPlaying, setIsPlaying] = React.useState(false);
   const [progressing, setProgressing] = React.useState(false);
   const [playerState, setPlayerState] = React.useState<number>(playerStatus);
@@ -33,10 +35,19 @@ const AudioPlayerContainer: React.FC<props.audioPlayerProps> = ({
 
       setIsPlaying(!audio.paused);
       console.log('its true', audioPlayer._sounds, seekableEnd);
+      audio.addEventListener('seeked', function (event) {
+        var s = parseInt(audio.duration % 60);
+        var m = parseInt((audio.duration / 60) % 60);
+        setDuration(`${m}:${s}`);
+      });
       audio.addEventListener('timeupdate', function (event) {
         if (player.currentPlayID) {
           console.log('play id', player);
-          setDuration(audio.currentTime);
+          var s = parseInt(audio.currentTime % 60);
+          var m = parseInt((audio.currentTime / 60) % 60);
+          setCurrentTime(m + ':' + s);
+          setPercentagePlayed((audio.currentTime / audio.duration).toFixed(2));
+
           try {
             var seekableEnd = audio.seekable.end(audio.seekable.length - 1);
             setPlayerBufferedSize(seekableEnd);
@@ -77,10 +88,12 @@ const AudioPlayerContainer: React.FC<props.audioPlayerProps> = ({
   return (
     <div className="col-span-24">
       <div className=" fixed bottom-0 z-100 w-full ">
-        <div className="relative bg-white dark:bg-gray-800 bg-opacity-90 px-8 shadow-2xl border-t-1 dark:border-gray-900 border-gray-200 z-100">
+        <div className="relative py-2 bg-white dark:bg-gray-800 bg-opacity-90 dark:bg-opacity-90 px-8 shadow-2xl border-t-1 dark:border-gray-900 border-gray-200 z-100">
           <AudioPlayerComponent
             currentPlay={currentPlay}
-            duration={duration.toFixed(1)}
+            duration={duration}
+            currentTime={currentTime}
+            percentagePlayed={percentagePlayed}
             isPlaying={getPlayerStatus(playerStatus)}
             onPlayerChange={onPlayerStateChange}
             playerSettings={playerSettings}

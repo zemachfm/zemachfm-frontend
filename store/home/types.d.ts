@@ -54,7 +54,10 @@ interface IHomeReducer {
   theme: ThemeTypes;
   episodes: episode[];
   playlist: episode[];
-  currentPlay: episode;
+  currentPlay: {
+    item: episode;
+    playlistIndex: number;
+  };
   player: playerStore;
   currentSettings: soundSettings;
 }

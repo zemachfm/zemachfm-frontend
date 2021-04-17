@@ -32,6 +32,8 @@ const MainSlider = withStyles({
 const PlayerComponent: React.FC<Props.audioPlayerComponent> = ({
   isPlaying,
   duration,
+  currentTime,
+  percentagePlayed,
   onPlayerChange,
   currentPlay,
   progressing,
@@ -44,105 +46,115 @@ const PlayerComponent: React.FC<Props.audioPlayerComponent> = ({
   const onSlide = (e, value: number) => {
     setSliderValue(value);
   };
-  return (
-    <div className="grid grid-cols-9 justify-around gap-4 ">
-      <div></div>
-      <div className="flex  flex-row items-end row w-full py-2 px-4">
-        <img className="rounded w-16" src={currentPlay.small_player} />
-        <div className="ml-2 flex flex-col justify-between h-100">
-          <h3
-            className="text-sm text-left block line-clamp-3 mt-3 mx-1 -marquee text-gray-600 dark:text-gray-200"
-            dangerouslySetInnerHTML={{ __html: currentPlay.title.rendered }}
-          ></h3>
-        </div>
-      </div>
-      <div className="flex flex-row justify-between items-center px-4 ">
-        <Ripples
-          className="rounded-full border  hover:bg-gray-300 dark:hover:bg-gray-900 border-gray-300 dark:border-gray-900"
-          onClick={() => proceedWithPlayer(1)}
-        >
-          <BackwardIcon
-            className="w-8 h-8 p-1 rounded-full "
-            style={{ fill: '#8a8686' }}
-          />
-        </Ripples>
-        {isPlaying ? (
-          <Ripples
-            className={`rounded-full  hover:bg-gray-300 dark:hover:bg-gray-900 border border-gray-300 dark:border-gray-900 shadow ${
-              progressing ? 'animate-pulse' : ''
-            } `}
-            onClick={() => onPlayerChange('PAUSE')}
-          >
-            <Pause
-              className=" rounded-full w-12 h-12 p-2 "
-              style={{ fill: '#8a8686' }}
-            />
-          </Ripples>
-        ) : (
-          <Ripples
-            className="rounded-full border hover:bg-gray-300 dark:hover:bg-gray-900 border-gray-300 dark:border-gray-900 shadow "
-            onClick={() => onPlayerChange('PLAY')}
-          >
-            <PlayIcon
-              className=" rounded-full w-12 h-12 p-2 "
-              style={{ fill: '#8a8686' }}
-            />
-          </Ripples>
-        )}
+  
+  const onChangeCommited = e => {
+    console.log('on change commited');
+  }
 
-        <Ripples
-          className="rounded-full border hover:bg-gray-300 dark:hover:bg-gray-900 border-gray-300 dark:border-gray-900 "
-          onClick={() => proceedWithPlayer(0)}
-        >
-          <ForwardIcon
-            className="w-8 h-8 p-1 rounded-full "
-            style={{ fill: '#8a8686' }}
-          />
-        </Ripples>
-      </div>
-      <div className="flex row justify-between col-span-5 items-center ">
-        <div className="flex flex-row w-full items-center">
-          <span className="text-sm text-gray-400 mr-2 ">
-            {' '}
-            {duration} {bufferedSize}{' '}
-          </span>
-          <div className="w-full relative">
-            <MainSlider
-              className="relative z-10"
-              style={{ color: '#44b54c' }}
-              getAriaValueText={() => `${duration} value`}
-              id="player"
-              max={3000}
-              onChange={onSlide}
-              value={sliderValue}
-              valueLabelDisplay="auto"
-            />
-            <BufferedSlider
-              styles={{ thumb: { padding: 0, margin: 0, width: 0 } }}
-              className="absolute left-0 text-yellow-400"
-              style={{ position: 'absolute', color: '#acf9b1' }}
-              id="player"
-              max={3000}
-              onChange={onSlide}
-              value={bufferedSize}
-              valueLabelDisplay={false}
-            />
+  return (
+    <div className="grid lg:grid-cols-12 md:grid-cols-4 sm:grid-cols-4 justify-center align-middle gap-4 ">
+      <div className="col-span-4 grid grid-cols-3">
+        <div className="flex flex-row items-end row w-full py-2 lg:col-start-2 md:col-start-1 px-4">
+          <img className="rounded w-16" src={currentPlay.small_player} />
+          <div className="ml-2 flex flex-col justify-between h-100">
+            <h3
+              className="text-sm text-left block line-clamp-3 mt-3 mx-1 -marquee text-gray-600 dark:text-gray-200"
+              dangerouslySetInnerHTML={{ __html: currentPlay.title.rendered }}
+            ></h3>
           </div>
-          <span className="text-sm text-gray-400 ml-2 ">24:23</span>{' '}
         </div>
-        <div className="w-28 ml-4 flex felx-row justify-around items-center ">
-          <Ripples className="rounded-full hover:bg-gray-300  dark:border-gray-900 ">
-            <ShuffleIcon
-              className="w-6 m-2"
-              style={{ fill: playerSettings.shuffle ? '#1f2937' : '#97989a' }}
+        <div className="flex flex-row justify-between items-center px-4 ">
+          <Ripples
+            className="rounded-full border  hover:bg-gray-300 dark:hover:bg-gray-900 border-gray-300 dark:border-gray-900"
+            onClick={() => proceedWithPlayer(1)}
+          >
+            <BackwardIcon
+              className="w-8 h-8 p-1 rounded-full "
+              style={{ fill: '#8a8686' }}
             />
           </Ripples>
-          <Ripples className="rounded-full hover:bg-gray-300  dark:border-gray-900 ">
-            <VolumeIcon className="w-6 m-2" style={{ fill: '#8a8686' }} />
+          {isPlaying ? (
+            <Ripples
+              className={`rounded-full hover:bg-gray-300 dark:hover:bg-gray-900 border border-gray-300 dark:border-gray-900 shadow ${
+                progressing ? 'animate-pulse' : ''
+              } `}
+              onClick={() => onPlayerChange('PAUSE')}
+            >
+              <Pause
+                className=" rounded-full w-12 h-12 p-2 "
+                style={{ fill: '#8a8686' }}
+              />
+            </Ripples>
+          ) : (
+            <Ripples
+              className="rounded-full border hover:bg-gray-300 dark:hover:bg-gray-900 border-gray-300 dark:border-gray-900 shadow "
+              onClick={() => onPlayerChange('PLAY')}
+            >
+              <PlayIcon
+                className=" rounded-full w-12 h-12 p-2 "
+                style={{ fill: '#8a8686' }}
+              />
+            </Ripples>
+          )}
+
+          <Ripples
+            className="rounded-full border hover:bg-gray-300 dark:hover:bg-gray-900 border-gray-300 dark:border-gray-900 "
+            onClick={() => proceedWithPlayer(0)}
+          >
+            <ForwardIcon
+              className="w-8 h-8 p-1 rounded-full "
+              style={{ fill: '#8a8686' }}
+            />
           </Ripples>
         </div>
       </div>
-      <div> </div>
+      <div className="lg:col-span-8 md:col-span-8 grid grid-cols-7">
+
+        <div className="flex row justify-between col-span-5 md:col-span-6 items-center ">
+          <div className="flex flex-row w-full items-center">
+            <span className="text-sm text-gray-400 mr-2 ">
+              {' '}
+              {currentTime} {bufferedSize}{' '}
+            </span>
+            <div className="w-full relative">
+              <MainSlider
+                className="relative z-10"
+                style={{ color: '#44b54c' }}
+                getAriaValueText={() => `${duration} value`}
+                getAriaValueText={() => `${duration} value`}
+                id="player"
+                max={3000}
+                onChangeCommitted={onChangeCommited}
+                onChange={onSlide}
+                value={percentagePlayed}
+                valueLabelDisplay="auto"
+              />
+              <BufferedSlider
+                styles={{ thumb: { padding: 0, margin: 0, width: 0 } }}
+                className="absolute left-0 text-yellow-400"
+                style={{ position: 'absolute', color: '#acf9b1' }}
+                id="player"
+                max={3000}
+                onChange={onSlide}
+                value={bufferedSize}
+                valueLabelDisplay={false}
+              />
+            </div>
+            <span className="text-sm text-gray-400 ml-2 "> {duration} </span>{' '}
+          </div>
+          <div className="w-28 ml-4 flex felx-row justify-around items-center ">
+            <Ripples className="rounded-full hover:bg-gray-300  dark:border-gray-900 ">
+              <ShuffleIcon
+                className="w-6 m-2"
+                style={{ fill: playerSettings.shuffle ? '#1f2937' : '#97989a' }}
+              />
+            </Ripples>
+            <Ripples className="rounded-full hover:bg-gray-300  dark:border-gray-900 ">
+              <VolumeIcon className="w-6 m-2" style={{ fill: '#8a8686' }} />
+            </Ripples>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

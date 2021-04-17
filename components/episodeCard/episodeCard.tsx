@@ -12,6 +12,8 @@ const EpisodeCard: React.FC<episodeCard> = ({
   title,
   image,
   onPlay,
+  onPause,
+  onDownload,
   item,
   playing,
 }) => (
@@ -39,14 +41,14 @@ const EpisodeCard: React.FC<episodeCard> = ({
       ) : (
         <Ripples
           className="rounded-full mx-auto  dark:hover:bg-gray-900 dark:border-gray-900"
-          onClick={() => onPlay(item)}
+          onClick={() => onPause('PAUSE')}
         >
           <PauseIcon className="mt-0 h-6 w-6 fill-current dark:text-gray-300 text-green-500 " />
         </Ripples>
       )}
       <Ripples
         className="rounded-full mx-auto  dark:hover:bg-gray-900 dark:border-gray-900"
-        onClick={() => onPlay(item)}
+        onClick={() => onDownload(item)}
       >
         <DownloadOutline className="h-5 w-5 fill-current dark:text-gray-300 text-gray-500" />
       </Ripples>
