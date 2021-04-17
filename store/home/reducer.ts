@@ -9,6 +9,11 @@ const initialState: IHomeReducer = {
   episodes: [],
   theme: 'light',
   playlist: [],
+  paginaton: {
+    per_page: 10,
+    page: 1,
+    total: null,
+  },
   currentPlay: {
     item: null,
     playlistIndex: 0,
@@ -36,8 +41,9 @@ const homeReducer = produce((draft: IHomeReducer, action) => {
       break;
     case actionTypes.FETCH_EPISODES_SUCCEDDED:
       draft.loading = false;
-      draft.episodes = payload;
-      draft.playlist = payload;
+      draft.episodes = payload.data;
+      draft.playlist = payload.data;
+      draft.paginaton.total = payload.pagination;
       break;
     case actionTypes.FETCH_EPISODES_FAILED:
       draft.loading = false;
@@ -48,19 +54,16 @@ const homeReducer = produce((draft: IHomeReducer, action) => {
     case actionTypes.SET_PLAYER:
       draft.player.audioPlayer = payload.player;
       draft.currentPlay.item = payload.item;
-      draft.currentPlay.playlistIndex = payload.index;
+      draft.player.currentPlayID = payload.index;
       break;
     case actionTypes.PLAYLIST_UPDATE:
-      draft.playlist = payload;
-      break;
-    case actionTypes.RESET_PLAYLIST:
-      draft.playlist = payload;
+      draft.currentPlay.playlistIndex = payload;
       break;
     case actionTypes.REMOVE_PLAYER:
       draft.player.audioPlayer = null;
       draft.player.currentPlayID = null;
       draft.currentPlay.item = null;
-      draft.currentPlay.playlistIndex = 0;
+      draft.player.currentPlayID = null;
       break;
     case actionTypes.SET_CURRENT_PLAYER_ID:
       draft.player.currentPlayID = payload;

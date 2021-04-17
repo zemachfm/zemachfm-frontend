@@ -7,7 +7,7 @@ type episodeCard = {
   onPause: (type: string) => void;
   onDownload: (item: episode) => void;
   item: episode;
-  playing: true;
+  playing: boolean;
   index: number;
 };
 

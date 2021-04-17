@@ -15,6 +15,7 @@ const actionTypes = {
    *
    */
   CHANGE_PLAYER_STATUS: 'CHANGE_PLAYER_STATUS',
+  SEEK_PLAYER: 'SEEK_PLAYER',
   STORE_PLAYER_STATUS: 'STORE_PLAYER_STATUS',
   CHANGE_PALYER_SETTINGS: 'CHANGE_PALYER_SETTINGS',
 
@@ -68,9 +69,9 @@ const storePlayerStatus = function storeStatus(
   };
 };
 
-const proceedWithPlaying = function makeActionNextSong(
-  payload: actionsTypes.playerStatus,
-): actionsTypes.playerStatusActionReturn {
+const proceedWithPlaying = function makeActionNextSong(payload: {
+  type: number;
+}): { type: string; payload: { type: number } } {
   return {
     payload,
     type: actionTypes.PROCEED_WITH_PLAYING,
@@ -108,8 +109,8 @@ const setCurrentPlayerID = (
 });
 
 const updatedPlaylist = (
-  payload: episode[],
-): { type: string; payload: episode[] } => ({
+  payload: number,
+): { type: string; payload: number } => ({
   type: actionTypes.PLAYLIST_UPDATE,
   payload,
 });
@@ -123,6 +124,11 @@ const deletePlaylist = (
 
 const changePlayerSetting = (payload: { name: string; value: string }) => ({
   type: actionTypes.CHANGE_PALYER_SETTINGS,
+  payload,
+});
+
+const seekPlayer = (payload: number): { type: string; payload: number } => ({
+  type: actionTypes.SEEK_PLAYER,
   payload,
 });
 
@@ -148,4 +154,5 @@ export {
   setCurrentPlayerID,
   updatedPlaylist,
   deletePlaylist,
+  seekPlayer,
 };

@@ -6,6 +6,7 @@ type ThemeTypes = 'light' | 'dark';
 interface renderedType {
   rendered: string;
 }
+// eslint-disable-next-line no-shadow
 enum currentPlayerStatus {
   PROGRESS,
   PLAYING,
@@ -49,6 +50,12 @@ interface playerStore {
   playerStatus: currentPlayerStatus;
 }
 
+interface pagination {
+  page: number;
+  per_page: number;
+  total: number;
+}
+
 interface IHomeReducer {
   loading: boolean;
   theme: ThemeTypes;
@@ -60,6 +67,7 @@ interface IHomeReducer {
   };
   player: playerStore;
   currentSettings: soundSettings;
+  paginaton: pagination;
 }
 
 export type { episode, ThemeTypes, IHomeReducer, soundSettings, playerStore };

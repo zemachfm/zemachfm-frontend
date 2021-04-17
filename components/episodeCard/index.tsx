@@ -4,13 +4,14 @@ import { episodeCardsContainerType } from './index.d';
 import EpisodeCard from './episodeCard';
 import { playCertainAudio, changePlayerStatus } from '../../store/home/actions';
 
-const episodeCardsContainer: FC<episodeCardsContainerType> = ({
+const EpisodeCardsContainer: FC<episodeCardsContainerType> = ({
   title,
   subTitle,
   starterEpisodes,
   currentPlay,
 }) => {
-  const Dispatch = useDispatch();
+  // needs fix
+  const Dispatch = useDispatch<any>();
 
   const onEpisodeCardPlay = item => {
     Dispatch(playCertainAudio(item));
@@ -20,8 +21,8 @@ const episodeCardsContainer: FC<episodeCardsContainerType> = ({
     Dispatch(changePlayerStatus({ type }));
   };
 
-  const onDownload = item => {
-    
+  const onDownload = () => {
+    // on download
   };
   return (
     <>
@@ -39,8 +40,9 @@ const episodeCardsContainer: FC<episodeCardsContainerType> = ({
           ? starterEpisodes.map((item, index) => (
               <EpisodeCard
                 image={item.small_player}
-                item={item}
                 index={index}
+                item={item}
+                key={item.id}
                 onDownload={onDownload}
                 onPause={onPause}
                 onPlay={onEpisodeCardPlay}
@@ -53,4 +55,4 @@ const episodeCardsContainer: FC<episodeCardsContainerType> = ({
     </>
   );
 };
-export default episodeCardsContainer;
+export default EpisodeCardsContainer;

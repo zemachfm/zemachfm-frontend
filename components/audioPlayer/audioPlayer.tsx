@@ -4,6 +4,8 @@ import * as props from './index.d';
 import AudioPlayerComponent from './player';
 import {
   changePlayerStatus,
+  seekPlayer,
+  changePlayerSetting,
   proceedWithPlaying,
 } from '../../store/home/actions';
 
@@ -13,64 +15,64 @@ const AudioPlayerContainer: React.FC<props.audioPlayerProps> = ({
   playerSettings,
 }) => {
   const { audioPlayer, currentPlayID, playerStatus } = player;
-  console.log('player is ', player);
   const dispatch = useDispatch();
-  const [playID, setPlayID] = React.useState<number | null>(0);
+  const [durationNumber, setDurationNumber] = React.useState<number>(0);
   const [duration, setDuration] = React.useState<string>('');
-  const [currentTime, setCurrentTime] = React.useState<number>(0);
+  const [currentTime, setCurrentTime] = React.useState<string>('');
   const [percentagePlayed, setPercentagePlayed] = React.useState<number>(0);
-  const [isPlaying, setIsPlaying] = React.useState(false);
-  const [progressing, setProgressing] = React.useState(false);
-  const [playerState, setPlayerState] = React.useState<number>(playerStatus);
+  const [progressing, setProgressing] = React.useState(true);
   const [plyaerBufferedSize, setPlayerBufferedSize] = React.useState<number>(0);
 
   React.useEffect(() => {
-    setPlayID(currentPlayID);
-  }, [currentPlayID]);
-
-  React.useEffect(() => {
     if (currentPlayID) {
-      let audio = audioPlayer._sounds[0]._node;
-      var seekableEnd = audio.seekable.end(audio.seekable.length - 1);
+      // eslint-disable-next-line no-underscore-dangle
+      const audio = audioPlayer._sounds[0]._node;
 
-      setIsPlaying(!audio.paused);
-      console.log('its true', audioPlayer._sounds, seekableEnd);
-      audio.addEventListener('seeked', function (event) {
-        var s = parseInt(audio.duration % 60);
-        var m = parseInt((audio.duration / 60) % 60);
-        setDuration(`${m}:${s}`);
+      audio.addEventListener('seeked', () => {
+        setDurationNumber(audio.duration);
+        const s = audio.duration % 60;
+        const m = (audio.duration / 60) % 60;
+        setDuration(`${m.toFixed(0)}:${s.toFixed(0)}`);
       });
-      audio.addEventListener('timeupdate', function (event) {
-        if (player.currentPlayID) {
-          console.log('play id', player);
-          var s = parseInt(audio.currentTime % 60);
-          var m = parseInt((audio.currentTime / 60) % 60);
-          setCurrentTime(m + ':' + s);
-          setPercentagePlayed((audio.currentTime / audio.duration).toFixed(2));
 
-          try {
-            var seekableEnd = audio.seekable.end(audio.seekable.length - 1);
-            setPlayerBufferedSize(seekableEnd);
-            console.log('seekable', seekableEnd);
-          } catch (err) {
-            console.log('prob');
+      audio.addEventListener('timeupdate', () => {
+        if (player.currentPlayID) {
+          if (!audio) {
+            return;
           }
+          const s = audio.currentTime % 60;
+          const m = (audio.currentTime / 60) % 60;
+          setCurrentTime(`${m.toFixed(0)}:${s.toFixed(0)}`);
+          const percentPlayed = (
+            (audio.currentTime / audio.duration) *
+            100
+          ).toFixed(2);
+          setPercentagePlayed(parseInt(percentPlayed, 10));
+          try {
+            const endSeekable: number = audio.seekable.end(
+              audio.seekable.length - 1,
+            );
+            const percentDuration: number =
+              parseInt((endSeekable / audio.duration).toFixed(2), 10) * 100;
+            setPlayerBufferedSize(percentDuration);
+          } catch (err) {
+            // eslint-disable-next-line no-console
+            console.log('ops, prob');
+          }
+        } else {
+          setProgressing(true);
         }
       });
-      audio.addEventListener('canplay', function () {
+      audio.addEventListener('canplay', () => {
         setProgressing(false);
       });
-      audio.addEventListener('waiting', function () {
-        console.log('waiting for more load');
+      audio.addEventListener('waiting', () => {
         setProgressing(true);
       });
     }
-
-    //  return () => cancelAnimationFrame(reequestRef.current);
   }, [currentPlayID]);
 
   const onPlayerStateChange = (type: string) => {
-    console.log('the type', type);
     dispatch(changePlayerStatus({ type }));
   };
 
@@ -81,6 +83,11 @@ const AudioPlayerContainer: React.FC<props.audioPlayerProps> = ({
     return true;
   };
 
+  const onSeek = (seeked: number) => {
+    dispatch(seekPlayer(seeked));
+    setProgressing(true);
+  };
+
   const proceedWithPlayer = (type: number): void => {
     dispatch(proceedWithPlaying({ type }));
   };
@@ -89,20 +96,22 @@ const AudioPlayerContainer: React.FC<props.audioPlayerProps> = ({
     <div className="col-span-24">
       <div className=" fixed bottom-0 z-100 w-full ">
         <div
-          className="relative py-2 bg-white dark:bg-gray-800 bg-opacity-40 bg-clip-padding dark:bg-opacity-60 px-8 shadow-2xl border-t-1 dark:border-gray-900 border-gray-200 z-100"
+          className="relative py-2 bg-white dark:bg-gray-800 bg-opacity-50 bg-clip-padding dark:bg-opacity-60 px-8 shadow-2xl border-t-1 dark:border-gray-900 border-gray-200 z-100"
           style={{ backdropFilter: 'blur(20px)' }}
         >
           <AudioPlayerComponent
+            bufferedSize={plyaerBufferedSize}
             currentPlay={currentPlay}
-            duration={duration}
             currentTime={currentTime}
-            percentagePlayed={percentagePlayed}
+            duration={durationNumber}
+            durationCalcuated={duration}
             isPlaying={getPlayerStatus(playerStatus)}
             onPlayerChange={onPlayerStateChange}
+            onSeek={onSeek}
+            percentagePlayed={percentagePlayed}
             playerSettings={playerSettings}
-            progressing={progressing}
-            bufferedSize={plyaerBufferedSize}
             proceedWithPlayer={proceedWithPlayer}
+            progressing={progressing}
           />
         </div>
       </div>

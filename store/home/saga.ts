@@ -28,13 +28,11 @@ import { episode } from './types.d';
 const getPlayer = state => state.home.player;
 const getPlaylist = state => state.home.playlist;
 const getPlayerSettings = state => state.home.currentSettings;
+const getCurrentPlay = state => state.home.currentPlay;
 
 function playerListen(player: Howl) {
   return eventChannel(emitter => {
     player.once('load', () => {
-      console.log(
-        'loading >>>>>>>>>>>>>...L..0..A..D..I..N..G....<<<<<<<<<<<<',
-      );
       emitter('LOAD');
     });
     player.once('play', () => {
@@ -68,8 +66,13 @@ function* fetchEpisodesGenerator({
 }) {
   try {
     const fetchedEpisodes = yield call(axiosGet, PODCASTS_URL, payload);
-    const { data: fetchedEpisodesData } = fetchedEpisodes;
-    yield put(fetchEpisodesSucceeded(fetchedEpisodesData));
+    const { data: fetchedEpisodesData, headers } = fetchedEpisodes;
+    yield put(
+      fetchEpisodesSucceeded({
+        data: fetchedEpisodesData,
+        pagination: headers['x-wp-total'],
+      }),
+    );
   } catch (err) {
     yield put(fetchEpisodesFailed(err));
   }
@@ -111,7 +114,6 @@ function* playCertainAudioGenerator({
 }
 
 function* changePLayerStatusGenerator({ type, payload }) {
-  console.log('on change >>>', payload.type);
   const player = yield select(getPlayer);
   switch (payload.type) {
     case 'LOAD':
@@ -141,24 +143,49 @@ function* changePLayerStatusGenerator({ type, payload }) {
   }
 }
 
-function* preeceedWithPlaylistGenerator(type: string, payload: string) {
+function* preeceedWithPlaylistGenerator({
+  type,
+  payload,
+}: {
+  type: string;
+  payload: { type: number };
+}) {
+  const { playlistIndex } = yield select(getCurrentPlay);
   const playlist = yield select(getPlaylist);
+ 
+  // eslint-disable-next-line prefer-const
   let plays = [...playlist];
-  console.log('playlist ', playlist);
-  if (playlist.length === 0) {
-    
-    //reset the player
+  if (plays.length - 1 === playlistIndex && !payload.type) {
+    // let's get more of these
+    return;
   }
-  if (!payload) {
-    let playerNow = plays.shift();
-    console.log('on paly ',playerNow);
+  if (!payload.type) {
+    const playerNow = plays[playlistIndex + 1];
+    yield put(updatedPlaylist(playlistIndex + 1));
     yield put(playCertainAudio(playerNow));
-    yield put(updatedPlaylist(plays));
-
   } else {
-    let playerNow = playlist.unshift();
+    const playerNow =
+      plays[playlistIndex > 0 ? playlistIndex - 1 : plays.length - 1];
+    yield put(updatedPlaylist(playlistIndex - 1));
     yield put(playCertainAudio(playerNow));
-    yield put(updatedPlaylist(plays));
+  }
+}
+
+function* playerSeekedGenerator({
+  type,
+  payload,
+}: {
+  type: string;
+  payload: number;
+}) {
+  const { audioPlayer, currentPlayID } = yield select(getPlayer);
+  try {
+    const duration = audioPlayer.duration(currentPlayID);
+    const seekedTime = (duration * payload) / 100;
+    audioPlayer.seek(seekedTime, currentPlayID);
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.log('we got an error :( ', err);
   }
 }
 
@@ -173,5 +200,7 @@ function* homeSaga() {
     actionTypes.PROCEED_WITH_PLAYING,
     preeceedWithPlaylistGenerator,
   );
+
+  yield takeLatest(actionTypes.SEEK_PLAYER, playerSeekedGenerator);
 }
 export default homeSaga;

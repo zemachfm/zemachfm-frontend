@@ -7,10 +7,19 @@ type audioPlayerProps = {
   playerSettings: soundSettings;
 };
 
-type audioPlayerComponent = {
-  duration: string;
+type sliderProps = {
+  bufferedPercent: number;
+  playedPercent: number;
   currentTime: string;
-  percentagePlayed: string;
+  duration: number;
+  onSeek: (number) => void;
+};
+
+type audioPlayerComponent = {
+  duration: number;
+  durationCalcuated: string;
+  currentTime: string;
+  percentagePlayed: number;
   isPlaying: boolean;
   onPlayerChange: (val: string) => playerStatusActionReturn;
   currentPlay: episode;
@@ -18,6 +27,7 @@ type audioPlayerComponent = {
   progressing: boolean;
   bufferedSize: number;
   proceedWithPlayer: (type: number) => void;
+  onSeek: (number) => void;
 };
 
-export { audioPlayerProps, audioPlayerComponent };
+export { audioPlayerProps, audioPlayerComponent, sliderProps };

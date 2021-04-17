@@ -27,7 +27,7 @@ interface EpisodesReturnType {
  * audio player payload type annotations
  */
 interface playerStatus {
-  type: number;
+  type: string;
 }
 
 // eslint-disable-next-line no-shadow
