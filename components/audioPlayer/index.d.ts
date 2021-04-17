@@ -1,5 +1,4 @@
-import { Howl } from 'howler';
-import { playerStatusActionReturn } from '../../store/home';
+import { playerStatusActionReturn } from '../../store/home/actions';
 import { episode, soundSettings, playerStore } from '../../store/home/types.d';
 
 type audioPlayerProps = {
@@ -20,6 +19,5 @@ type audioPlayerComponent = {
   bufferedSize: number;
   proceedWithPlayer: (type: number) => void;
 };
-
 
 export { audioPlayerProps, audioPlayerComponent };

@@ -59,7 +59,8 @@ const homeReducer = produce((draft: IHomeReducer, action) => {
     case actionTypes.REMOVE_PLAYER:
       draft.player.audioPlayer = null;
       draft.player.currentPlayID = null;
-      draft.currentPlay = null;
+      draft.currentPlay.item = null;
+      draft.currentPlay.playlistIndex = 0;
       break;
     case actionTypes.SET_CURRENT_PLAYER_ID:
       draft.player.currentPlayID = payload;
