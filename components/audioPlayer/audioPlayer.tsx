@@ -92,11 +92,15 @@ const AudioPlayerContainer: React.FC<props.audioPlayerProps> = ({
     dispatch(proceedWithPlaying({ type }));
   };
 
+  const onSettingChange = (payload: { value: number; name: string }) => {
+    dispatch(changePlayerSetting(payload));
+  };
+
   return (
     <div className="col-span-24">
       <div className=" fixed bottom-0 z-100 w-full ">
         <div
-          className="relative py-2 bg-white dark:bg-gray-800 bg-opacity-50 bg-clip-padding dark:bg-opacity-60 px-8 shadow-2xl border-t-1 dark:border-gray-900 border-gray-200 z-100"
+          className="relative py-2 bg-white dark:bg-gray-800 bg-opacity-60 bg-clip-padding dark:bg-opacity-80 px-8 shadow-2xl border-t-1 dark:border-gray-900 border-gray-200 z-100"
           style={{ backdropFilter: 'blur(20px)' }}
         >
           <AudioPlayerComponent
@@ -108,6 +112,7 @@ const AudioPlayerContainer: React.FC<props.audioPlayerProps> = ({
             isPlaying={getPlayerStatus(playerStatus)}
             onPlayerChange={onPlayerStateChange}
             onSeek={onSeek}
+            onSettingChange={onSettingChange}
             percentagePlayed={percentagePlayed}
             playerSettings={playerSettings}
             proceedWithPlayer={proceedWithPlayer}

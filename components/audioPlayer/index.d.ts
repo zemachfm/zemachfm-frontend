@@ -28,6 +28,7 @@ type audioPlayerComponent = {
   bufferedSize: number;
   proceedWithPlayer: (type: number) => void;
   onSeek: (number) => void;
+  onSettingChange: (payload: { name: string; value: number }) => void;
 };
 
 export { audioPlayerProps, audioPlayerComponent, sliderProps };

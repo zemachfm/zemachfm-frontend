@@ -1,13 +1,13 @@
 import React from 'react';
+import Slider from '@bit/mui-org.material-ui.slider';
 import Ripples from 'react-ripples';
 import * as Props from './index.d';
 import ForwardIcon from '../../icons/skip-forward-outline.svg';
 import BackwardIcon from '../../icons/skip-back-outline.svg';
 import VolumeIcon from '../../icons/volume-up-outline.svg';
-import ShuffleIcon from '../../icons/shuffle-outline.svg';
 import PlayIcon from '../../icons/play.svg';
 import Pause from '../../icons/pause.svg';
-import PlayerSlide from './slider';
+import PlayerSlide, { VolumeSlider } from './slider';
 
 const PlayerComponent: React.FC<Props.audioPlayerComponent> = ({
   isPlaying,
@@ -16,6 +16,7 @@ const PlayerComponent: React.FC<Props.audioPlayerComponent> = ({
   currentTime,
   percentagePlayed,
   onPlayerChange,
+  onSettingChange,
   currentPlay,
   progressing,
   playerSettings,
@@ -96,16 +97,55 @@ const PlayerComponent: React.FC<Props.audioPlayerComponent> = ({
             {durationCalcuated}
           </span>
         </div>
-        <div className="w-28 ml-4 flex felx-row justify-around items-center ">
-          <Ripples className="rounded-full hover:bg-gray-300  dark:border-gray-900 ">
-            <ShuffleIcon
-              className="w-6 m-2"
-              style={{ fill: playerSettings.shuffle ? '#1f2937' : '#8a8686' }}
-            />
+        <div className="w-30 ml-4 flex felx-row justify-around items-center ">
+          <select
+            className="px-2 py-1 bg-gray-200 dark:bg-black w-15 rounded-md outline-none text-gray-500 focus:border-green-600 focus:border-1 mr-2"
+            onChange={event => {
+              if (event.target.value) {
+                onSettingChange({
+                  value: parseFloat(event.target.value),
+                  name: 'rate',
+                });
+              }
+            }}
+          >
+            <option selected={playerSettings.rate === 0.5}> 0.5x </option>
+            <option selected={playerSettings.rate === 0.75}> 0.75x </option>
+            <option selected={playerSettings.rate === 1}> 1x </option>
+            <option selected={playerSettings.rate === 1.25}> 1.25x </option>
+            <option selected={playerSettings.rate === 1.5}> 1.5x </option>
+            <option selected={playerSettings.rate === 2}> 2x</option>
+            <option selected={playerSettings.rate === 2.5}> 2.5x </option>
+          </select>
+
+          <Ripples
+            onClick={_event => {
+              const me =
+                playerSettings.volume > 0
+                  ? onSettingChange({
+                      value: 0,
+                      name: 'volume',
+                    })
+                  : onSettingChange({
+                      value: 1,
+                      name: 'volume',
+                    });
+            }}
+            className="rounded-full border hover:bg-gray-300 dark:hover:bg-gray-900 z-50 border-gray-300 dark:border-gray-900 mr-2 "
+          >
+            <VolumeIcon className="w-5 m-2" style={{ fill: '#8a8686' }} />
           </Ripples>
-          <Ripples className="rounded-full hover:bg-gray-300  dark:border-gray-900 ">
-            <VolumeIcon className="w-6 m-2" style={{ fill: '#8a8686' }} />
-          </Ripples>
+          <VolumeSlider
+            max={100}
+            min={0}
+            onChangeCommitted={(_event, val: string) =>
+              onSettingChange({
+                value: parseFloat(val) / 100 ? parseFloat(val) / 100 : 0,
+                name: 'volume',
+              })
+            }
+            style={{ width: 60 }}
+          ></VolumeSlider>
         </div>
       </div>
     </div>

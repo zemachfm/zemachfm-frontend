@@ -71,6 +71,9 @@ const homeReducer = produce((draft: IHomeReducer, action) => {
     case actionTypes.STORE_PLAYER_STATUS:
       draft.player.playerStatus = payload;
       break;
+    case actionTypes.CHANGE_PALYER_SETTINGS:
+      draft.currentSettings[payload.name] = payload.value;
+      break;
     default:
       break;
   }

@@ -152,7 +152,7 @@ function* preeceedWithPlaylistGenerator({
 }) {
   const { playlistIndex } = yield select(getCurrentPlay);
   const playlist = yield select(getPlaylist);
- 
+
   // eslint-disable-next-line prefer-const
   let plays = [...playlist];
   if (plays.length - 1 === playlistIndex && !payload.type) {
@@ -189,6 +189,21 @@ function* playerSeekedGenerator({
   }
 }
 
+function* changePlayerSettings({ type, payload }) {
+  const { name, value } = payload;
+  const { audioPlayer, currentPlayID } = yield select(getPlayer);
+  switch (name) {
+    case 'rate':
+      audioPlayer.rate(value, currentPlayID);
+      break;
+    case 'volume':
+      audioPlayer.volume(value, currentPlayID);
+      break;
+    default:
+      break;
+  }
+}
+
 function* homeSaga() {
   yield takeLatest(actionTypes.FETCH_EPISODES, fetchEpisodesGenerator);
   yield takeEvery(actionTypes.PLAY_CERTAIN_AUDIO, playCertainAudioGenerator);
@@ -202,5 +217,6 @@ function* homeSaga() {
   );
 
   yield takeLatest(actionTypes.SEEK_PLAYER, playerSeekedGenerator);
+  yield takeLatest(actionTypes.CHANGE_PALYER_SETTINGS, changePlayerSettings);
 }
 export default homeSaga;

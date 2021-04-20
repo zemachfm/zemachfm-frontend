@@ -122,7 +122,11 @@ const deletePlaylist = (
   payload,
 });
 
-const changePlayerSetting = (payload: { name: string; value: string }) => ({
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+const changePlayerSetting = (payload: {
+  name: string;
+  value: string | boolean;
+}) => ({
   type: actionTypes.CHANGE_PALYER_SETTINGS,
   payload,
 });
