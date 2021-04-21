@@ -15,6 +15,11 @@ type sliderProps = {
   onSeek: (number) => void;
 };
 
+type volumeSliderProps = {
+  volume: number;
+  onVolumeChange: (payload: { name: string; value: number }) => void;
+};
+
 type audioPlayerComponent = {
   duration: number;
   durationCalcuated: string;
@@ -31,4 +36,9 @@ type audioPlayerComponent = {
   onSettingChange: (payload: { name: string; value: number }) => void;
 };
 
-export { audioPlayerProps, audioPlayerComponent, sliderProps };
+export {
+  audioPlayerProps,
+  audioPlayerComponent,
+  sliderProps,
+  volumeSliderProps,
+};

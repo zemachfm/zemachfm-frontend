@@ -18,13 +18,6 @@ const MainSlider = withStyles({
   },
 })(Slider);
 
-const VolumeSlider = withStyles({
-  rail: {
-    opacity: 0.1,
-    backgroundColor: '#ddd',
-  },
-})(Slider);
-
 const PlayerSlide: FC<sliderProps> = ({
   bufferedPercent,
   playedPercent,
@@ -86,4 +79,3 @@ const PlayerSlide: FC<sliderProps> = ({
   );
 };
 export default PlayerSlide;
-export { VolumeSlider };

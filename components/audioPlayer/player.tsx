@@ -5,9 +5,11 @@ import * as Props from './index.d';
 import ForwardIcon from '../../icons/skip-forward-outline.svg';
 import BackwardIcon from '../../icons/skip-back-outline.svg';
 import VolumeIcon from '../../icons/volume-up-outline.svg';
+import VolumeOffIcon from '../../icons/volume-off-outline.svg';
 import PlayIcon from '../../icons/play.svg';
 import Pause from '../../icons/pause.svg';
-import PlayerSlide, { VolumeSlider } from './slider';
+import PlayerSlide from './slider';
+import VolumeSlider from './audioSlider';
 
 const PlayerComponent: React.FC<Props.audioPlayerComponent> = ({
   isPlaying,
@@ -37,7 +39,7 @@ const PlayerComponent: React.FC<Props.audioPlayerComponent> = ({
       </div>
       <div className="flex flex-row justify-between items-center px-4 ">
         <Ripples
-          className="rounded-full border  hover:bg-gray-300 dark:hover:bg-gray-900 border-gray-300 dark:border-gray-900"
+          className="rounded-full border cursor-pointer	  hover:bg-gray-300 dark:hover:bg-gray-900 border-gray-300 dark:border-gray-900"
           onClick={() => proceedWithPlayer(1)}
         >
           <BackwardIcon
@@ -47,7 +49,7 @@ const PlayerComponent: React.FC<Props.audioPlayerComponent> = ({
         </Ripples>
         {isPlaying ? (
           <Ripples
-            className={`rounded-full hover:bg-gray-300 dark:hover:bg-gray-900 border border-gray-300 dark:border-gray-900 shadow ${
+            className={`rounded-full cursor-pointer	 hover:bg-gray-300 dark:hover:bg-gray-900 border border-gray-300 dark:border-gray-900 shadow ${
               progressing ? 'animate-pulse' : ''
             } `}
             onClick={() => onPlayerChange('PAUSE')}
@@ -59,7 +61,7 @@ const PlayerComponent: React.FC<Props.audioPlayerComponent> = ({
           </Ripples>
         ) : (
           <Ripples
-            className={`rounded-full hover:bg-gray-300 dark:hover:bg-gray-900 border border-gray-300 dark:border-gray-900 shadow ${
+            className={`rounded-full cursor-pointer	 hover:bg-gray-300 dark:hover:bg-gray-900 border border-gray-300 dark:border-gray-900 shadow ${
               progressing ? 'animate-pulse' : ''
             } `}
             onClick={() => onPlayerChange('PLAY')}
@@ -72,7 +74,7 @@ const PlayerComponent: React.FC<Props.audioPlayerComponent> = ({
         )}
 
         <Ripples
-          className="rounded-full border hover:bg-gray-300 dark:hover:bg-gray-900 border-gray-300 dark:border-gray-900 "
+          className="rounded-full border cursor-pointer	 hover:bg-gray-300 dark:hover:bg-gray-900 border-gray-300 dark:border-gray-900 "
           onClick={() => proceedWithPlayer(0)}
         >
           <ForwardIcon
@@ -82,7 +84,7 @@ const PlayerComponent: React.FC<Props.audioPlayerComponent> = ({
         </Ripples>
       </div>
     </div>
-    <div className="lg:col-span-8 md:col-span-8 grid grid-cols-7">
+    <div className="lg:col-span- md:col-span-8 grid grid-cols-7">
       <div className="flex row justify-between col-span-5 md:col-span-6 items-center ">
         <div className="flex flex-row w-full items-center">
           <span className="text-sm text-gray-400 mr-2 ">{currentTime}</span>
@@ -99,7 +101,7 @@ const PlayerComponent: React.FC<Props.audioPlayerComponent> = ({
         </div>
         <div className="w-30 ml-4 flex felx-row justify-around items-center ">
           <select
-            className="px-2 py-1 bg-gray-200 dark:bg-black w-15 rounded-md outline-none text-gray-500 focus:border-green-600 focus:border-1 mr-2"
+            className="px-2 py-1 bg-gray-200 cursor-pointer	 dark:bg-gray-900 w-15 rounded-md outline-none text-gray-500 focus:border-green-600 focus:border-1 mr-2"
             onChange={event => {
               if (event.target.value) {
                 onSettingChange({
@@ -119,6 +121,7 @@ const PlayerComponent: React.FC<Props.audioPlayerComponent> = ({
           </select>
 
           <Ripples
+            className="rounded-full cursor-pointer	 border hover:bg-gray-300 dark:hover:bg-gray-900 z-50 border-gray-300 dark:border-gray-900 mr-2 "
             onClick={_event => {
               const me =
                 playerSettings.volume > 0
@@ -131,20 +134,16 @@ const PlayerComponent: React.FC<Props.audioPlayerComponent> = ({
                       name: 'volume',
                     });
             }}
-            className="rounded-full border hover:bg-gray-300 dark:hover:bg-gray-900 z-50 border-gray-300 dark:border-gray-900 mr-2 "
           >
-            <VolumeIcon className="w-5 m-2" style={{ fill: '#8a8686' }} />
+            {playerSettings.volume === 0 ? (
+              <VolumeOffIcon className="w-5 m-2" style={{ fill: '#8a8686' }} />
+            ) : (
+              <VolumeIcon className="w-5 m-2" style={{ fill: '#8a8686' }} />
+            )}
           </Ripples>
           <VolumeSlider
-            max={100}
-            min={0}
-            onChangeCommitted={(_event, val: string) =>
-              onSettingChange({
-                value: parseFloat(val) / 100 ? parseFloat(val) / 100 : 0,
-                name: 'volume',
-              })
-            }
-            style={{ width: 60 }}
+            onVolumeChange={onSettingChange}
+            volume={playerSettings.volume}
           ></VolumeSlider>
         </div>
       </div>
