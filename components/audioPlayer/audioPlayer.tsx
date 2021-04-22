@@ -73,7 +73,9 @@ const AudioPlayerContainer: React.FC<props.audioPlayerProps> = ({
   }, [currentPlayID]);
 
   const onPlayerStateChange = (type: string) => {
-    dispatch(changePlayerStatus({ type }));
+    if (!progressing) {
+      dispatch(changePlayerStatus({ type }));
+    }
   };
 
   const getPlayerStatus = item => {

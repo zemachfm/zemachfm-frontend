@@ -86,6 +86,8 @@ function* playCertainAudioGenerator({
   payload: episode;
 }) {
   const player = yield select(getPlayer);
+  const playlist: episode[] = yield select(getPlaylist);
+  const foundIndex = playlist.findIndex(element => element.id === payload.id);
   const playerSettings = yield select(getPlayerSettings);
   if (player.audioPlayer) {
     /**
@@ -95,12 +97,14 @@ function* playCertainAudioGenerator({
     player.audioPlayer.off('play', null, player.currentPlayID);
     player.audioPlayer.unload();
   }
-  const sound = new Howl({
+  const sound: Howl = new Howl({
     src: [payload.meta.audio_file],
     html5: true,
     ...playerSettings,
   });
-  yield put(setPlayer({ player: sound, item: payload }));
+  yield put(
+    setPlayer({ player: sound, item: payload, playerIndex: foundIndex }),
+  );
   const channel = yield call(playerListen, sound);
   try {
     while (true) {

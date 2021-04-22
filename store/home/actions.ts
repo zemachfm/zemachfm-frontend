@@ -87,9 +87,18 @@ const playCertainAudio = function makeActionPlayCertainAudio(
   };
 };
 
-const setPlayer = function setPlayer(
-  payload: Howl,
-): { type: string; payload: Howl } {
+const setPlayer = function setPlayer(payload: {
+  player: HTMLUnknownElement;
+  item: episode;
+  playerIndex: number;
+}): {
+  type: string;
+  payload: {
+    player: HTMLUnknownElement;
+    item: episode;
+    playerIndex: number;
+  };
+} {
   return {
     payload,
     type: actionTypes.SET_PLAYER,
@@ -125,7 +134,7 @@ const deletePlaylist = (
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const changePlayerSetting = (payload: {
   name: string;
-  value: string | boolean;
+  value: number | string | boolean;
 }) => ({
   type: actionTypes.CHANGE_PALYER_SETTINGS,
   payload,

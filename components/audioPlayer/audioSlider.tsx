@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { ChangeEvent, FC, useEffect, useState } from 'react';
 import Slider from '@bit/mui-org.material-ui.slider';
 import { withStyles } from '@bit/mui-org.material-ui.styles';
 import { volumeSliderProps } from './index.d';
@@ -22,9 +22,9 @@ const PlayerSlide: FC<volumeSliderProps> = ({ volume, onVolumeChange }) => {
     setSliderValue(value);
   };
 
-  const onChangeCommited = (_e, val: string) => {
+  const onChangeCommited = (_e: ChangeEvent, val: number) => {
     onVolumeChange({
-      value: parseFloat(val) / 100 ? parseFloat(val) / 100 : 0,
+      value: val / 100 ? val / 100 : 0,
       name: 'volume',
     });
   };

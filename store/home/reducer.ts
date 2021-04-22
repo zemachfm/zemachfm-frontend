@@ -55,6 +55,7 @@ const homeReducer = produce((draft: IHomeReducer, action) => {
       draft.player.audioPlayer = payload.player;
       draft.currentPlay.item = payload.item;
       draft.player.currentPlayID = payload.index;
+      draft.currentPlay.playlistIndex = payload.playerIndex;
       break;
     case actionTypes.PLAYLIST_UPDATE:
       draft.currentPlay.playlistIndex = payload;

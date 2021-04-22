@@ -1,13 +1,14 @@
-import { applyMiddleware, createStore, Store } from 'redux';
+/* eslint-disable import/no-extraneous-dependencies */
+import { AnyAction, applyMiddleware, createStore, Store } from 'redux';
 import createSagaMiddleware, { Task } from 'redux-saga';
-import { createWrapper, Context, MakeStore } from 'next-redux-wrapper';
+import { createWrapper, MakeStore } from 'next-redux-wrapper';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './reducer';
 import rootSaga from './saga';
-import { IHomeReducer } from './home/types';
+import { IHomeReducer } from './home/types.d';
 
 const bindMiddleware = middleware => {
   if (process.env.NODE_ENV !== 'production') {
-    const { composeWithDevTools } = require('redux-devtools-extension');
     return composeWithDevTools(applyMiddleware(...middleware));
   }
   return applyMiddleware(...middleware);
@@ -17,18 +18,13 @@ interface SagaStore extends Store {
   sagaTask?: Task;
 }
 
-const makeStore: MakeStore<IHomeReducer> = (context: Context) => {
+const makeStore: MakeStore<IHomeReducer, AnyAction> = () => {
   const sagaMiddleware = createSagaMiddleware();
-  const store: IHomeReducer = createStore(
-    rootReducer,
-    bindMiddleware([sagaMiddleware]),
-  );
+  const store = createStore(rootReducer, bindMiddleware([sagaMiddleware]));
   (store as SagaStore).sagaTask = sagaMiddleware.run(rootSaga);
 
   return store;
 };
-
-const useDispatchType = typeof makeStore.dispatch;
 
 const wrapper = createWrapper<IHomeReducer>(makeStore, { debug: true });
 export { makeStore, wrapper };
