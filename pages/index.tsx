@@ -109,6 +109,8 @@ const Home: FC<prop> = ({ content, locale }) => {
             currentPlay={currentPlay.item}
             player={player}
             playerSettings={currentSettings}
+            theme={state.theme}
+
           />
         ) : null}
       </div>

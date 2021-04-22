@@ -11,7 +11,7 @@ const EpisodeCardsContainer: FC<episodeCardsContainerType> = ({
   currentPlay,
 }) => {
   // needs fix
-  const Dispatch = useDispatch<any>();
+  const Dispatch = useDispatch();
 
   const onEpisodeCardPlay = item => {
     Dispatch(playCertainAudio(item));

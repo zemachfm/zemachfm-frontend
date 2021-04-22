@@ -13,6 +13,7 @@ const AudioPlayerContainer: React.FC<props.audioPlayerProps> = ({
   player,
   currentPlay,
   playerSettings,
+  theme,
 }) => {
   const { audioPlayer, currentPlayID, playerStatus } = player;
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const AudioPlayerContainer: React.FC<props.audioPlayerProps> = ({
   const [plyaerBufferedSize, setPlayerBufferedSize] = React.useState<number>(0);
 
   React.useEffect(() => {
-    if (currentPlayID) {
+    if (currentPlayID && audioPlayer) {
       // eslint-disable-next-line no-underscore-dangle
       const audio = audioPlayer._sounds[0]._node;
 
@@ -36,7 +37,7 @@ const AudioPlayerContainer: React.FC<props.audioPlayerProps> = ({
       });
 
       audio.addEventListener('timeupdate', () => {
-        if (player.currentPlayID) {
+        if (currentPlayID) {
           if (!audio) {
             return;
           }
@@ -70,7 +71,11 @@ const AudioPlayerContainer: React.FC<props.audioPlayerProps> = ({
         setProgressing(true);
       });
     }
-  }, [currentPlayID]);
+    return () => {
+      audioPlayer.stop();
+    };
+    // eslint-disable-next-line no-underscore-dangle
+  }, [audioPlayer, currentPlayID]);
 
   const onPlayerStateChange = (type: string) => {
     if (!progressing) {
@@ -119,6 +124,7 @@ const AudioPlayerContainer: React.FC<props.audioPlayerProps> = ({
             playerSettings={playerSettings}
             proceedWithPlayer={proceedWithPlayer}
             progressing={progressing}
+            theme={theme}
           />
         </div>
       </div>

@@ -38,7 +38,7 @@ const EpisodeCard: React.FC<episodeCard> = ({
         >
           <PlayIcon
             className={`mt-0 h-6 w-6 fill-current dark:text-gray-300 text-gray-500 ${
-              playing ? 'text-green-500' : ''
+              playing ? 'text-green-500 dark:text-green-600' : ''
             } `}
           />
         </Ripples>

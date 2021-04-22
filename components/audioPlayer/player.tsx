@@ -1,5 +1,4 @@
 import React from 'react';
-import Slider from '@bit/mui-org.material-ui.slider';
 import Ripples from 'react-ripples';
 import * as Props from './index.d';
 import ForwardIcon from '../../icons/skip-forward-outline.svg';
@@ -25,6 +24,7 @@ const PlayerComponent: React.FC<Props.audioPlayerComponent> = ({
   bufferedSize,
   proceedWithPlayer,
   onSeek,
+  theme,
 }) => (
   <div className="grid lg:grid-cols-12 md:grid-cols-4 sm:grid-cols-4 justify-center align-middle gap-4 ">
     <div className="col-span-4 grid grid-cols-3">
@@ -94,6 +94,7 @@ const PlayerComponent: React.FC<Props.audioPlayerComponent> = ({
             duration={duration}
             onSeek={onSeek}
             playedPercent={percentagePlayed}
+            theme={theme}
           />
           <span className="text-sm text-gray-400 ml-2 ">
             {durationCalcuated}
@@ -122,7 +123,8 @@ const PlayerComponent: React.FC<Props.audioPlayerComponent> = ({
 
           <Ripples
             className="rounded-full cursor-pointer	 border hover:bg-gray-300 dark:hover:bg-gray-900 z-50 border-gray-300 dark:border-gray-900 mr-2 "
-            onClick={_event => {
+            onClick={() => {
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
               const me =
                 playerSettings.volume > 0
                   ? onSettingChange({

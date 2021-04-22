@@ -5,6 +5,7 @@ type audioPlayerProps = {
   player: playerStore;
   currentPlay: episode;
   playerSettings: soundSettings;
+  theme: string;
 };
 
 type sliderProps = {
@@ -12,6 +13,7 @@ type sliderProps = {
   playedPercent: number;
   currentTime: string;
   duration: number;
+  theme: string;
   onSeek: (number) => void;
 };
 
@@ -34,6 +36,7 @@ type audioPlayerComponent = {
   proceedWithPlayer: (type: number) => void;
   onSeek: (number) => void;
   onSettingChange: (payload: { name: string; value: number }) => void;
+  theme: string;
 };
 
 export {

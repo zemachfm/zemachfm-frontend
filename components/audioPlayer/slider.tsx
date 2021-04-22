@@ -24,6 +24,7 @@ const PlayerSlide: FC<sliderProps> = ({
   currentTime,
   duration,
   onSeek,
+  theme,
 }) => {
   const [sliderValue, setSliderValue] = useState<number>(playedPercent);
   const [currentTimeCalc, setCurrentTimeCalc] = useState<string>(currentTime);
@@ -46,7 +47,6 @@ const PlayerSlide: FC<sliderProps> = ({
 
   const onChangeCommited = (_e, value) => {
     // eslint-disable-next-line no-console
-    console.log('on change commited', _e, value);
     setIsOnSlide(false);
     onSeek(value);
   };
@@ -71,7 +71,10 @@ const PlayerSlide: FC<sliderProps> = ({
         id="player"
         max={100}
         onChange={onSlide}
-        style={{ position: 'absolute', color: '#acf9b1' }}
+        style={{
+          position: 'absolute',
+          color: theme === 'light' ? '#acf9b1' : '#9bc59e',
+        }}
         value={bufferedPercent}
         valueLabelDisplay="off"
       />
