@@ -59,15 +59,15 @@ const Home: FC<prop> = ({ content, locale }) => {
   }, [state.theme]);
 
   return (
-    <div>
+    <div className="bg-gray-100 dark:bg-black">
       <Head>
         <title>Create Next App</title>
         <link href="/favicon.ico" rel="icon" />
       </Head>
-      <div className="bg-gray-100 dark:bg-black flex flex-col absolute h-full w-full ">
-        {mobileMenuVisible && (
-          <SmallDeviceSideBar toogleMenu={toogleMobileMenu} />
-        )}
+      {mobileMenuVisible && (
+        <SmallDeviceSideBar toogleMenu={toogleMobileMenu} />
+      )}
+      <main className="mx-5">
         <NavBar
           appName={content.appName}
           locale={locale}
@@ -75,7 +75,6 @@ const Home: FC<prop> = ({ content, locale }) => {
           theme={state.theme}
           toogleMobileMenu={toogleMobileMenu}
         />
-
         <div className="px-5 mt-5 dark:bg-black">
           <main className=" grid grid-cols-10 ">
             <div className="h-full w-full flex flex-col justify-center">
@@ -103,16 +102,7 @@ const Home: FC<prop> = ({ content, locale }) => {
             </div>
           </main>
         </div>
-
-        {state.player.audioPlayer ? (
-          <AudioPlayers
-            currentPlay={currentPlay.item}
-            player={player}
-            playerSettings={currentSettings}
-            theme={state.theme}
-          />
-        ) : null}
-      </div>
+      </main>
     </div>
   );
 };
