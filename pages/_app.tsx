@@ -5,7 +5,7 @@ import { makeStore as SagaStore, wrapper } from '../store/store';
 import '../styles/globals.css';
 
 class WrappedApp extends App<AppInitialProps> {
-  public static getInitialProps = async ({ Component, ctx }: AppContext) => {
+  public static getInitialProps = async ({ Component, ctx }: any) => {
     // 1. Wait for all page actions to dispatch
     const pageProps = {
       ...(Component.getInitialProps
@@ -16,7 +16,7 @@ class WrappedApp extends App<AppInitialProps> {
     // 2. Stop the saga if on server
     if (ctx.req) {
       ctx.store.dispatch(END);
-      await (ctx.store as SagaStore).sagaTask.toPromise();
+      await ctx.store.sagaTask.toPromise();
     }
 
     // 3. Return props
