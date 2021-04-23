@@ -84,6 +84,7 @@ const Home: FC<prop> = ({ content, locale }) => {
             <div className="col-span-7 px-5">
               <EpisodeCardsContainer
                 currentPlay={currentPlay.item}
+                playerStatus={state.player.playerStatus}
                 starterEpisodes={episodes}
                 subTitle={content.episodesDescription}
                 title={content.episodes}

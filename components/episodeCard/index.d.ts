@@ -9,6 +9,7 @@ type episodeCard = {
   item: episode;
   playing: boolean;
   index: number;
+  playerStatus: number;
 };
 
 type episodeCardsContainerType = {
@@ -16,5 +17,6 @@ type episodeCardsContainerType = {
   subTitle: string;
   starterEpisodes: episode[];
   currentPlay: episode;
+  playerStatus: number;
 };
 export { episodeCard, episodeCardsContainerType };
