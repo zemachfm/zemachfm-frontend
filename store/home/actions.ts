@@ -79,7 +79,7 @@ const proceedWithPlaying = function makeActionNextSong(payload: {
 };
 
 const playCertainAudio = function makeActionPlayCertainAudio(
-  payload: actionsTypes.audioId,
+  payload: string,
 ): actionsTypes.palyCertainAudioType {
   return {
     payload,

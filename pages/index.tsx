@@ -122,7 +122,7 @@ export const getStaticProps = wrapper.getStaticProps(
     store,
     locale,
   }: GetStaticPropsContext & {
-    store: Store<IHomeReducer, AnyAction>;
+    store: any;
   }) => {
     store.dispatch(fetchEpisodes());
     store.dispatch(END);
