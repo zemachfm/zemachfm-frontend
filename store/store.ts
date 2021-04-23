@@ -18,7 +18,7 @@ interface SagaStore extends Store {
   sagaTask?: Task;
 }
 
-const makeStore: MakeStore<IHomeReducer, AnyAction> = () => {
+const makeStore: any = () => {
   const sagaMiddleware = createSagaMiddleware();
   const store = createStore(rootReducer, bindMiddleware([sagaMiddleware]));
   (store as SagaStore).sagaTask = sagaMiddleware.run(rootSaga);
