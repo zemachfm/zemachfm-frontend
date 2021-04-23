@@ -16,7 +16,7 @@ class WrappedApp extends App<AppInitialProps> {
     // 2. Stop the saga if on server
     if (ctx.req) {
       ctx.store.dispatch(END);
-      await ctx.store.sagaTask.toPromise();
+      await (ctx.store as SagaStore).sagaTask.toPromise();
     }
 
     // 3. Return props
