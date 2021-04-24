@@ -19,6 +19,7 @@ import AudioPlayers from '../components/audioPlayer/audioPlayer';
 import SideBar from '../components/Sidebar';
 import SmallDeviceSideBar from '../components/Sidebar/smallDevice.sidebar';
 import prop from '../types/index.d';
+import Hosts from '../components/Hosts';
 
 const Home: FC<prop> = ({ content, locale }) => {
   const state: IHomeReducer = useSelector((root: TRootReducer) => root.home);
@@ -76,7 +77,7 @@ const Home: FC<prop> = ({ content, locale }) => {
           toogleMobileMenu={toogleMobileMenu}
         />
 
-        <div className="px-5 mt-5 dark:bg-black">
+        <div className="bg-gray-100 px-5 mt-5 dark:bg-black">
           <main className=" grid grid-cols-12 lg:grid-cols-10 ">
             <div className="h-full w-full flex-col justify-center hidden lg:flex">
               <SideBar sideBarContents={content.sidebar} />
@@ -89,7 +90,8 @@ const Home: FC<prop> = ({ content, locale }) => {
                 subTitle={content.episodesDescription}
                 title={content.episodes}
               />
-              <div className=" mx-4 flex flex-col col-span-7 px-5 dark:bg-black">
+              <Hosts />
+              <div className="mx-4 flex flex-col col-span-7 px-5 dark:bg-black">
                 <footer className="py-5 my-5 margin-auto dark:bg-black">
                   <h1 className="dark:text-white text-2xl  text-center">
                     Make it happen, zemach{' '}
