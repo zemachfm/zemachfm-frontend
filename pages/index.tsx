@@ -79,7 +79,7 @@ const Home: FC<prop> = ({ content, locale }) => {
         <div className="px-5 mt-5 dark:bg-black">
           <main className=" grid grid-cols-12 lg:grid-cols-10 ">
             <div className="h-full w-full flex-col justify-center hidden lg:flex">
-              <SideBar />
+              <SideBar sideBarContents={content.sidebar} />
             </div>
             <div className="col-span-12 lg:col-span-7 px-5">
               <EpisodeCardsContainer

@@ -1,27 +1,24 @@
-import { ReactElement, useRef, useState } from 'react';
+import { ReactElement, useState } from 'react';
+import { withStyles } from '@bit/mui-org.material-ui.styles';
 import Link from 'next/link';
-import { usePopper } from 'react-popper';
+import Popover from '@bit/mui-org.material-ui.popover';
 import Moon from '../../icons/moon.svg';
 import Sun from '../../icons/sun.svg';
 import MenuIcon from '../../icons/menu.svg';
 import { INavBarProps } from './index.d';
 import LanguageIcon from '../../icons/globe.svg';
-import useOutsideClickListener from '../../lib/hooks/useOutsideClickListener';
+
+const LanguagePopover = withStyles({
+  paper: {
+    background: 'transparent',
+  },
+})(Popover);
 
 const NavBar = (props: INavBarProps): ReactElement => {
   const [referenceElement, setReferenceElement] = useState(null);
-  const [popperElement, setPopperElement] = useState(null);
   const [langPopoverDisplay, setLangPopoverDisplay] = useState(false);
 
-  const languagePopperWrapper = useRef<HTMLDivElement>(null);
-
-  const { styles, attributes } = usePopper(referenceElement, popperElement);
-
   const toogleLangPopOver = () => setLangPopoverDisplay(!langPopoverDisplay);
-
-  useOutsideClickListener(languagePopperWrapper, () => {
-    setLangPopoverDisplay(false);
-  });
 
   return (
     <nav>
@@ -51,47 +48,45 @@ const NavBar = (props: INavBarProps): ReactElement => {
               <LanguageIcon className="dark:text-white" />
             </button>
 
-            {langPopoverDisplay ? (
-              <div ref={languagePopperWrapper}>
-                <div
-                  className="p-5  border-solid bg-white shadow-md border-gray-100 dark:bg-gray-800 text-gray-800 rounded-xl dark:text-white z-10"
-                  ref={setPopperElement}
-                  style={styles.popper}
-                  {...attributes.popper}
-                >
-                  <ul>
-                    <li className="w-full">
-                      <Link href="/" locale="am">
-                        <a
-                          className={` ${
-                            props.locale === 'am'
-                              ? 'border-yellow-400 border-2 text-yellow-400'
-                              : ''
-                          } px-10 py-2 min-w-full`}
-                          type="button"
-                        >
-                          አማርኛ
-                        </a>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/" locale="en">
-                        <a
-                          className={` ${
-                            props.locale === 'en'
-                              ? 'border-yellow-400 border-2 text-yellow-400'
-                              : ''
-                          } px-10 py-2`}
-                          type="button"
-                        >
-                          English
-                        </a>
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
+            <LanguagePopover
+              anchorEl={referenceElement}
+              anchorOrigin={{ horizontal: 'center', vertical: 'bottom' }}
+              onClose={toogleLangPopOver}
+              open={langPopoverDisplay}
+            >
+              <div className="p-5  border-solid bg-white shadow-md border-gray-100 dark:bg-gray-800 text-gray-800 rounded-xl dark:text-white z-10">
+                <ul>
+                  <li className="w-full">
+                    <Link href="/" locale="am">
+                      <a
+                        className={` ${
+                          props.locale === 'am'
+                            ? 'border-yellow-400 border-2 text-yellow-400'
+                            : ''
+                        } px-10 py-2 min-w-full`}
+                        type="button"
+                      >
+                        አማርኛ
+                      </a>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/" locale="en">
+                      <a
+                        className={` ${
+                          props.locale === 'en'
+                            ? 'border-yellow-400 border-2 text-yellow-400'
+                            : ''
+                        } px-10 py-2`}
+                        type="button"
+                      >
+                        English
+                      </a>
+                    </Link>
+                  </li>
+                </ul>
               </div>
-            ) : null}
+            </LanguagePopover>
 
             <button
               className="ml-5"
