@@ -5,7 +5,7 @@ import ForwardIcon from '../../icons/skip-forward-outline.svg';
 import BackwardIcon from '../../icons/skip-back-outline.svg';
 import VolumeIcon from '../../icons/volume-up-outline.svg';
 import VolumeOffIcon from '../../icons/volume-off-outline.svg';
-import ArrowUpward from '../../icons/arrow-ios-upward-outline.svg';
+import ArrowUpward from '../../icons/chevron-up.svg';
 import PlayIcon from '../../icons/play.svg';
 import Pause from '../../icons/pause.svg';
 import PlayerSlide from './slider';
@@ -98,10 +98,10 @@ const PlayerComponent: React.FC<Props.audioPlayerComponent> = ({
                 }}
               >
                 <ArrowUpward
-                  className={`w-10 h-10 p-1 rounded-full transition ease-in duration-200 ${
+                  className={`w-8 h-8 p-1 rounded-full transition ease-in duration-200 ${
                     mobileMoreMenu ? 'transform rotate-180 ' : ''
                   } `}
-                  style={{ fill: '#8a8686' }}
+                  style={{ color: '#8a8686' }}
                 />
               </Ripples>
             </div>
