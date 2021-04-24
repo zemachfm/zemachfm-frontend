@@ -30,37 +30,39 @@ const Hosts = () => {
           This are your podcast hosts
         </p>
       </div>
-      <div className="flex flex-col justify-between flex-1 md:flex-row">
+      <div className="grid grid-cols-2 gap-4 justify-between flex-1 md:flex-row">
         {hosts.map(host => (
-          <figure
-            className="rounded-xl flex dark:bg-gray-900 bg-white shadow-md flex-col w-1/2 mr-6"
-            key={host.name}
-          >
-            <img
-              alt={host.name}
-              className="h-32 w-32 md:w-48 md:h-auto mx-auto rounded-full m-6"
-              height="512"
-              src={host.image}
-              width="384"
-            />
-            <div className="p-8 space-y-4 text-center">
-              <figcaption className="font-medium">
-                <div className="text-green-400 text-2xl">{host.name}</div>
-                <div className="text-gray-500 dark:text-gray-400">
+          <div className="grid grid-cols-6 rounded-xl gap-5 bg-white">
+            <figure
+              className="flex-col col-span-2 bg-gradient-to-t from-gray-300 to-green-500 px-4 py-4 rounded-l-xl"
+              key={host.name}
+            >
+              <img
+                alt={host.name}
+                className="h-22 w-22 md:w-48 md:h-auto mx-auto rounded-full m-6"
+                height="512"
+                src={host.image}
+                width="384"
+              />
+            </figure>
+            <div className="p-1 col-span-3 space-y-4 text-left py-4">
+              <figcaption className="">
+                <div className="text-gray-800 text-2xl font-medium">{host.name}</div>
+                <div className="text-gray-500 text-sm  dark:text-gray-400">
                   Software Engineer, Ethiopia
                 </div>
               </figcaption>
               <blockquote>
-                <p className="text-lg dark:text-gray-100 font-medium">
+                <p className=" dark:text-gray-100 text-gray-400">
                   {host.description}
                 </p>
               </blockquote>
-              <div className="flex justify-center border-t-2 border-gray-200 flex-1 pt-2">
-                <InstagramIcon className="mr-6 text-yellow-500" />
-                <TwitterIcon className="text-yellow-500" />
+              <div className="flex justify-start border-t-1 flex-1 pt-2">
+                <InstagramIcon className="mr-6 text-red-500" />
+                <TwitterIcon className="text-blue-500" />
               </div>
             </div>
-          </figure>
+          </div>
         ))}
       </div>
     </section>
