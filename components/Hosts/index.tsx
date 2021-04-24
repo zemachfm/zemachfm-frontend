@@ -34,7 +34,7 @@ const Hosts = () => {
         {hosts.map(host => (
           <div className="grid grid-cols-6 rounded-xl gap-5 bg-white">
             <figure
-              className="flex-col col-span-2 bg-gradient-to-t from-gray-300 to-green-500 px-4 py-4 rounded-l-xl"
+              className="flex-col col-span-2 bg-gradient-to-t from-gray-200 to-white px-4 py-4 rounded-l-xl"
               key={host.name}
             >
               <img
@@ -47,13 +47,13 @@ const Hosts = () => {
             </figure>
             <div className="p-1 col-span-3 space-y-4 text-left py-4">
               <figcaption className="">
-                <div className="text-gray-800 text-2xl font-medium">{host.name}</div>
-                <div className="text-gray-500 text-sm  dark:text-gray-400">
+                <div className="text-gray-800 text-3xl font-medium">{host.name}</div>
+                <div className="text-gray-400 text-sm mt-1 ml-1  dark:text-gray-400">
                   Software Engineer, Ethiopia
                 </div>
               </figcaption>
               <blockquote>
-                <p className=" dark:text-gray-100 text-gray-400">
+                <p className=" dark:text-gray-100 text-gray-500">
                   {host.description}
                 </p>
               </blockquote>
