@@ -118,18 +118,18 @@ function* playCertainAudioGenerator({
 }
 
 function* changePLayerStatusGenerator({ type, payload }) {
-  const player = yield select(getPlayer);
+  const { audioPlayer, currentPlayID } = yield select(getPlayer);
   switch (payload.type) {
     case 'LOAD':
       // eslint-disable-next-line no-case-declarations
-      const playerID = player.audioPlayer.play();
+      const playerID = audioPlayer.play();
       yield put(setCurrentPlayerID(playerID));
       break;
     case 'ON_PLAY':
       yield put(storePlayerStatus(1));
       break;
     case 'PAUSE':
-      player.audioPlayer.pause(player.currentPlayID);
+      audioPlayer.pause(currentPlayID);
       yield put(storePlayerStatus(2));
 
       break;
@@ -137,11 +137,11 @@ function* changePLayerStatusGenerator({ type, payload }) {
       yield put(storePlayerStatus(2));
       break;
     case 'PLAY':
-      player.audioPlayer.play(player.currentPlayID);
+      audioPlayer.play(currentPlayID);
       yield put(storePlayerStatus(1));
       break;
     case 'STOP':
-      player.stop(player.currentPlayID);
+      audioPlayer.stop(currentPlayID);
       break;
     default:
   }

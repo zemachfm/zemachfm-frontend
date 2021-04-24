@@ -71,9 +71,6 @@ const AudioPlayerContainer: React.FC<props.audioPlayerProps> = ({
         setProgressing(true);
       });
     }
-    return () => {
-      audioPlayer.stop();
-    };
     // eslint-disable-next-line no-underscore-dangle
   }, [audioPlayer, currentPlayID]);
 

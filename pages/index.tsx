@@ -77,13 +77,14 @@ const Home: FC<prop> = ({ content, locale }) => {
         />
 
         <div className="px-5 mt-5 dark:bg-black">
-          <main className=" grid grid-cols-10 ">
-            <div className="h-full w-full flex flex-col justify-center">
+          <main className=" grid grid-cols-12 lg:grid-cols-10 ">
+            <div className="h-full w-full flex-col justify-center hidden lg:flex">
               <SideBar />
             </div>
-            <div className="col-span-7 px-5">
+            <div className="col-span-12 lg:col-span-7 px-5">
               <EpisodeCardsContainer
                 currentPlay={currentPlay.item}
+                playerStatus={state.player.playerStatus}
                 starterEpisodes={episodes}
                 subTitle={content.episodesDescription}
                 title={content.episodes}
@@ -96,7 +97,7 @@ const Home: FC<prop> = ({ content, locale }) => {
                 </footer>
               </div>
             </div>
-            <div className="col-span-2">
+            <div className="col-span-2 hidden lg:flex">
               <div className="h-full w-full flex relative flex-col justify-center">
                 <AudioPlayer />
               </div>

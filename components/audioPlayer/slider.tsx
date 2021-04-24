@@ -9,6 +9,10 @@ const BufferedSlider = withStyles({
     height: 0,
     width: 0,
   },
+  rail: {
+    opacity: 0.1,
+    backgroundColor: '#ddd',
+  },
 })(Slider);
 
 const MainSlider = withStyles({

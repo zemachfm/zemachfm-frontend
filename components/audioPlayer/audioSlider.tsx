@@ -35,7 +35,7 @@ const PlayerSlide: FC<volumeSliderProps> = ({ volume, onVolumeChange }) => {
       min={0}
       onChange={onSlide}
       onChangeCommitted={onChangeCommited}
-      style={{ width: 60, color: '#44b54c' }}
+      style={{ width: 60, color: '#44b54c', verticalAlign: 'bottom' }}
       value={sliderValue}
       valueLabelDisplay="auto"
       valueLabelFormat={() => `${sliderValue}%`}
