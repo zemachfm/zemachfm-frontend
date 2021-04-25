@@ -1,5 +1,6 @@
 import React from 'react';
 import { createRipples } from 'react-ripples';
+import Image from 'next/image';
 import { episodeCard } from './index.d';
 import PlayIcon from '../../icons/play.svg';
 import PauseIcon from '../../icons/pause.svg';
@@ -62,7 +63,16 @@ const EpisodeCard: React.FC<episodeCard> = ({
   return (
     <div className="border-solid bg-white to-white border-2 border-gray-100 dark:border-gray-900 dark:bg-gray-900 text-gray-800 rounded-xl overflow-hidden flex flex-col justify-between">
       <div className=" flex flex-row justify-between p-5">
-        <img className=" rounded-full h-20 w-20" src={image} />
+        <div className="rounded-full h-20 w-20">
+          <Image
+            alt="alt"
+            className="rounded-full h-20 w-20"
+            height="80"
+            layout="fixed"
+            src={image}
+            width="80"
+          />
+        </div>
         <p
           className="col-start-5 mt-0 ml-4 text-lg	text-left w-full mb-4 font-normal overflow-ellipsis overflow-hidden h-20 text-gray-700 dark:text-gray-200"
           dangerouslySetInnerHTML={{ __html: title }}

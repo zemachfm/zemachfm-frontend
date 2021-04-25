@@ -14,7 +14,9 @@ webpacked['i18n'] = {
   locales: ['en', 'am'],
   defaultLocale: 'en',
 };
-
+webpacked.images = {
+  domains: ['zemachfm.com'],
+}
 webpacked.target = 'serverless';
 
 module.exports = webpacked;
