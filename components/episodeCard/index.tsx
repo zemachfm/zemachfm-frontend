@@ -2,14 +2,20 @@ import { FC } from 'react';
 import { useDispatch } from 'react-redux';
 import { episodeCardsContainerType } from './index.d';
 import EpisodeCard from './episodeCard';
-import { playCertainAudio, changePlayerStatus } from '../../store/home/actions';
+import {
+  playCertainAudio,
+  changePlayerStatus,
+  addPaginationPage,
+} from '../../store/home/actions';
 
 const EpisodeCardsContainer: FC<episodeCardsContainerType> = ({
   title,
   subTitle,
   starterEpisodes,
   currentPlay,
-  playerStatus
+  playerStatus,
+  more,
+  loading,
 }) => {
   // needs fix
   const Dispatch = useDispatch();
@@ -25,6 +31,15 @@ const EpisodeCardsContainer: FC<episodeCardsContainerType> = ({
   const onDownload = () => {
     // on download
   };
+
+  const onLoadMore = () => {
+    Dispatch(addPaginationPage(1));
+  };
+
+  const EpisodeList = loading
+    ? [...Array(2).fill({ loading: true }), ...starterEpisodes]
+    : starterEpisodes;
+
   return (
     <>
       <div className="flex flex-row justify-between">
@@ -37,23 +52,35 @@ const EpisodeCardsContainer: FC<episodeCardsContainerType> = ({
       </div>
 
       <div className="grid grid-cols lg:grid-cols-3 gap-4 ">
-        {starterEpisodes
-          ? starterEpisodes.map((item, index) => (
-              <EpisodeCard
-                image={item.small_player}
-                index={index}
-                item={item}
-                key={item.id}
-                onDownload={onDownload}
-                onPause={onPause}
-                onPlay={onEpisodeCardPlay}
-                playerStatus={playerStatus}
-                playing={currentPlay ? item.id === currentPlay.id : false}
-                title={item.title.rendered}
-              />
-            ))
+        {EpisodeList
+          ? EpisodeList.map((item, index) => {
+              if (item.loading) {
+                return <EpisodeCard loading />;
+              }
+              return (
+                <EpisodeCard
+                  image={item.small_player}
+                  index={index}
+                  item={item}
+                  key={item.id}
+                  loading={false}
+                  onDownload={onDownload}
+                  onPause={onPause}
+                  onPlay={onEpisodeCardPlay}
+                  playerStatus={playerStatus}
+                  playing={currentPlay ? item.id === currentPlay.id : false}
+                  title={item.title.rendered}
+                />
+              );
+            })
           : null}
       </div>
+      <button
+        className="px-3 py-2 text-green-600 hover:underline rounded mt-4"
+        onClick={onLoadMore}
+      >
+        {more}
+      </button>
     </>
   );
 };

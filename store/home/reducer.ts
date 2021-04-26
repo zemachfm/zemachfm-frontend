@@ -10,7 +10,7 @@ const initialState: IHomeReducer = {
   theme: 'light',
   playlist: [],
   paginaton: {
-    per_page: 10,
+    per_page: 9,
     page: 1,
     total: null,
   },
@@ -41,12 +41,15 @@ const homeReducer = produce((draft: IHomeReducer, action) => {
       break;
     case actionTypes.FETCH_EPISODES_SUCCEDDED:
       draft.loading = false;
-      draft.episodes = payload.data;
-      draft.playlist = payload.data;
+      draft.episodes = [...draft.episodes, ...payload.data];
+      draft.playlist = [...draft.playlist, ...payload.data];
       draft.paginaton.total = payload.pagination;
       break;
     case actionTypes.FETCH_EPISODES_FAILED:
       draft.loading = false;
+      break;
+    case actionTypes.ADD_PAGINATION_PAGE:
+      draft.paginaton.page += payload;
       break;
     case actionTypes.CHANGE_THEME:
       draft.theme = payload;

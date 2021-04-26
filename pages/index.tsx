@@ -47,10 +47,6 @@ const Home: FC<prop> = ({ content, locale }) => {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(fetchEpisodes());
-  }, [dispatch]);
-
-  useEffect(() => {
     if (state.theme === 'dark') {
       document.documentElement.classList.add('dark');
     } else {
@@ -84,6 +80,8 @@ const Home: FC<prop> = ({ content, locale }) => {
             <div className="col-span-12 lg:col-span-7 px-5">
               <EpisodeCardsContainer
                 currentPlay={currentPlay.item}
+                loading={state.loading}
+                more={content.more}
                 playerStatus={state.player.playerStatus}
                 starterEpisodes={episodes}
                 subTitle={content.episodesDescription}

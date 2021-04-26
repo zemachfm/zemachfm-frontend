@@ -1,15 +1,16 @@
 import { episode } from '../../store/home/types.d';
 
 type episodeCard = {
-  title: string;
+  title?: string;
   image?: string;
-  onPlay: (item: episode) => void;
-  onPause: (type: string) => void;
-  onDownload: (item: episode) => void;
-  item: episode;
-  playing: boolean;
-  index: number;
-  playerStatus: number;
+  onPlay?: (item: episode) => void;
+  onPause?: (type: string) => void;
+  onDownload?: (item: episode) => void;
+  item?: episode;
+  playing?: boolean;
+  index?: number;
+  playerStatus?: number;
+  loading?: boolean;
 };
 
 type episodeCardsContainerType = {
@@ -18,5 +19,7 @@ type episodeCardsContainerType = {
   starterEpisodes: episode[];
   currentPlay: episode;
   playerStatus: number;
+  loading: boolean;
+  more: string;
 };
 export { episodeCard, episodeCardsContainerType };

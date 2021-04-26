@@ -2,6 +2,7 @@ interface translatedStrings {
   appName: string;
   episodes: string;
   episodesDescription: string;
+  more: string;
 }
 
 type indexPageType = {

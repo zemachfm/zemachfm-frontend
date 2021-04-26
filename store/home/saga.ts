@@ -29,6 +29,7 @@ const getPlayer = state => state.home.player;
 const getPlaylist = state => state.home.playlist;
 const getPlayerSettings = state => state.home.currentSettings;
 const getCurrentPlay = state => state.home.currentPlay;
+const getPagination = state => state.home.paginaton;
 
 function playerListen(player: Howl) {
   return eventChannel(emitter => {
@@ -65,7 +66,10 @@ function* fetchEpisodesGenerator({
   payload: null;
 }) {
   try {
-    const fetchedEpisodes = yield call(axiosGet, PODCASTS_URL, payload);
+    const pagination = yield select(getPagination);
+    const fetchedEpisodes = yield call(axiosGet, PODCASTS_URL, {
+      ...pagination,
+    });
     const { data: fetchedEpisodesData, headers } = fetchedEpisodes;
     yield put(
       fetchEpisodesSucceeded({
@@ -222,5 +226,6 @@ function* homeSaga() {
 
   yield takeLatest(actionTypes.SEEK_PLAYER, playerSeekedGenerator);
   yield takeLatest(actionTypes.CHANGE_PALYER_SETTINGS, changePlayerSettings);
+  yield takeEvery(actionTypes.ADD_PAGINATION_PAGE, fetchEpisodesGenerator);
 }
 export default homeSaga;

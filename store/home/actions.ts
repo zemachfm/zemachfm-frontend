@@ -10,6 +10,8 @@ const actionTypes = {
   FETCH_EPISODES: 'FETCH_EPISODES',
   FETCH_EPISODES_FAILED: 'FETCH_EPISODES_FAILED',
   FETCH_EPISODES_SUCCEDDED: 'FETCH_EPISODES_SUCCEDDED',
+  FETCH_MORE: 'FETCH_MORE',
+  ADD_PAGINATION_PAGE: 'ADD_PAGINATION_PAGE',
   CHANGE_THEME: 'CHANGE_THEME',
   /**
    *
@@ -41,6 +43,13 @@ const fetchEpisodesSucceeded = (
   payload: actionsTypes.EpisodesReturnType,
 ): { type: string; payload: actionsTypes.EpisodesReturnType } =>
   makeAction(payload, actionTypes.FETCH_EPISODES_SUCCEDDED);
+
+const addPaginationPage = (
+  payload: number,
+): { payload: number; type: string } => ({
+  payload,
+  type: actionTypes.ADD_PAGINATION_PAGE,
+});
 
 const changeThemeAction = (
   payload: ThemeTypes,
@@ -153,6 +162,7 @@ export {
   fetchEpisodes,
   fetchEpisodesFailed,
   fetchEpisodesSucceeded,
+  addPaginationPage,
   changeThemeAction,
   /**
    * player actions
