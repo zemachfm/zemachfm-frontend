@@ -50,6 +50,7 @@ const homeReducer = produce((draft: IHomeReducer, action) => {
       break;
     case actionTypes.ADD_PAGINATION_PAGE:
       draft.paginaton.page += payload;
+      draft.loading = true;
       break;
     case actionTypes.CHANGE_THEME:
       draft.theme = payload;

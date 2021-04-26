@@ -37,7 +37,7 @@ const EpisodeCardsContainer: FC<episodeCardsContainerType> = ({
   };
 
   const EpisodeList = loading
-    ? [...Array(2).fill({ loading: true }), ...starterEpisodes]
+    ? [...starterEpisodes, ...Array(3).fill({ loading: true })]
     : starterEpisodes;
 
   return (
