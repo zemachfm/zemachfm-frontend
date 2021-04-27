@@ -20,6 +20,7 @@ import SideBar from '../components/Sidebar';
 import SmallDeviceSideBar from '../components/Sidebar/smallDevice.sidebar';
 import prop from '../types/index.d';
 import Hosts from '../components/Hosts';
+import { Guests } from '../components/guests';
 
 const Home: FC<prop> = ({ content, locale }) => {
   const state: IHomeReducer = useSelector((root: TRootReducer) => root.home);
@@ -88,6 +89,7 @@ const Home: FC<prop> = ({ content, locale }) => {
                 subTitle={content.episodesDescription}
                 title={content.episodes}
               />
+              <Guests title="Guests So Far" />
               <Hosts />
               <div className="mx-4 flex flex-col col-span-7 px-5 dark:bg-black">
                 <footer className="py-5 my-5 margin-auto dark:bg-black">
