@@ -30,6 +30,7 @@ const getPlaylist = state => state.home.playlist;
 const getPlayerSettings = state => state.home.currentSettings;
 const getCurrentPlay = state => state.home.currentPlay;
 const getPagination = state => state.home.paginaton;
+const getEpisodes = state => state.home.episodes;
 
 function playerListen(player: Howl) {
   return eventChannel(emitter => {
@@ -67,6 +68,10 @@ function* fetchEpisodesGenerator({
 }) {
   try {
     const pagination = yield select(getPagination);
+    const episodes = yield select(getEpisodes);
+    if (pagination.total && pagination.total <= episodes.length) {
+      return;
+    }
     const fetchedEpisodes = yield call(axiosGet, PODCASTS_URL, {
       ...pagination,
     });

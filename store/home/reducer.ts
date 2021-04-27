@@ -34,6 +34,7 @@ const initialState: IHomeReducer = {
 
 const homeReducer = produce((draft: IHomeReducer, action) => {
   const { payload } = action;
+  const addition = draft.paginaton.page * draft.paginaton.per_page;
 
   switch (action.type) {
     case HYDRATE:
@@ -43,14 +44,16 @@ const homeReducer = produce((draft: IHomeReducer, action) => {
       draft.loading = false;
       draft.episodes = [...draft.episodes, ...payload.data];
       draft.playlist = [...draft.playlist, ...payload.data];
-      draft.paginaton.total = payload.pagination;
+      draft.paginaton.total = parseInt(payload.pagination, 10);
       break;
     case actionTypes.FETCH_EPISODES_FAILED:
       draft.loading = false;
       break;
     case actionTypes.ADD_PAGINATION_PAGE:
-      draft.paginaton.page += payload;
-      draft.loading = true;
+      if (draft.paginaton.total && addition < draft.paginaton.total) {
+        draft.paginaton.page += payload;
+        draft.loading = true;
+      }
       break;
     case actionTypes.CHANGE_THEME:
       draft.theme = payload;
