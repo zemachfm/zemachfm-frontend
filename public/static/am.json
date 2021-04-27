@@ -2,5 +2,12 @@
   "appName": "ዘማች",
   "episodes": "የድምጽ ስርጭት ክፍሎች",
   "episodesDescription": "በቅርብ የተለቀቁ የዘማች ኤፍ ኤም የድምጽ ስርጭት ክፍሎች",
-  "more": "ተጨማሪ አምጣ"
+  "more": "ተጨማሪ አምጣ",
+  "sidebar": {
+    "episodes": "ክፍሎች",
+    "hosts": "አቅርቢዎች",
+    "guests": "እንግዳዎች",
+    "story": "አጀማመራችን",
+    "contact": "ያገኙን"
+  }
 }

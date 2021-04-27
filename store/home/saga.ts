@@ -226,6 +226,6 @@ function* homeSaga() {
 
   yield takeLatest(actionTypes.SEEK_PLAYER, playerSeekedGenerator);
   yield takeLatest(actionTypes.CHANGE_PALYER_SETTINGS, changePlayerSettings);
- yield takeEvery(actionTypes.ADD_PAGINATION_PAGE, fetchEpisodesGenerator);
+  yield takeEvery(actionTypes.ADD_PAGINATION_PAGE, fetchEpisodesGenerator);
 }
 export default homeSaga;

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 const AudioPlayer: FC = () => (
-  <div className=" fixed shadow-sm h-full w-12/12 px-4 mx-4 rounded-xl">
+  <div className=" fixed shadow-sm h-full w-12/12 px-4 mx-4 rounded-xl top-1/4">
     <div className="flex flex-col justify-between h-auto relative w-full align-middle">
       <div className="grid col-2 w-full">
         <img

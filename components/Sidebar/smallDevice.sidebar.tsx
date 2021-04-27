@@ -8,7 +8,7 @@ import CloseIcon from '../../icons/x.svg';
 import { SmallDeviceMenuProps } from './index.d';
 
 const SmallDeviceSideBar: React.FC<SmallDeviceMenuProps> = props => (
-  <div className="lg:hidden block bg-white dark:bg-gray-800 dark:text-white absolute w-full h-screen z-30 font-bold">
+  <div className="lg:hidden block bg-white dark:bg-gray-800 dark:text-white fixed w-full h-screen z-30 font-bold">
     <div className="mt-5 px-5 flex items-center justify-between">
       <h3 className="text-3xl text-yellow-400">Menu</h3>
       <button onClick={props.toogleMenu}>
