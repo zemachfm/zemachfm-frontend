@@ -89,8 +89,8 @@ const Home: FC<prop> = ({ content, locale }) => {
                 subTitle={content.episodesDescription}
                 title={content.episodes}
               />
-              <Guests title="Guests So Far" />
               <Hosts />
+              <Guests title="Guests So Far" />
               <div className="mx-4 flex flex-col col-span-7 px-5 dark:bg-black">
                 <footer className="py-5 my-5 margin-auto dark:bg-black">
                   <h1 className="dark:text-white text-2xl  text-center">
