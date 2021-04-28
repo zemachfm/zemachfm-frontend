@@ -124,6 +124,13 @@ const Home: FC<prop> = ({ content, locale }) => {
     }
   }, []);
 
+  React.useEffect(() => {
+    const currentHash =
+      typeof window !== 'undefined' ? window.location.hash : '';
+    setLinks(linksDefault);
+    handleRouteChange(currentHash);
+  }, [locale]);
+
   return (
     <div>
       <Head>
