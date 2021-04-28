@@ -1,5 +1,12 @@
 {
   "appName": "Zemach",
   "episodes": "Episodes",
-  "episodesDescription": "Latest Episodes from Zemach FM podcast"
+  "episodesDescription": "Latest Episodes from Zemach FM podcast",
+  "sidebar" : {
+    "episodes": "Episodes",
+    "hosts": "Hosts",
+    "guests": "Guests",
+    "story": "Story",
+    "contact": "Contact"
+  }
 }
