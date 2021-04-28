@@ -3,7 +3,7 @@ import { ISideBarContents } from '../../types/index.d';
 
 interface SmallDeviceMenuProps {
   toogleMenu: () => void;
-  handleRouteChange: (link: string) => void;
+  handleRouteChange: (link: string, isMobile?: boolean) => void;
   links: ISideBarLink[];
 }
 

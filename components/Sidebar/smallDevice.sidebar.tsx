@@ -20,7 +20,7 @@ const SmallDeviceSideBar: React.FC<SmallDeviceMenuProps> = props => (
       {props.links.map(link => (
         <a
           href={link.route}
-          onClick={() => props.handleRouteChange(link.route)}
+          onClick={() => props.handleRouteChange(link.route, true)}
         >
           <li
             className={`flex ${

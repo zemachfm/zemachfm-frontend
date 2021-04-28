@@ -32,9 +32,9 @@ const Hosts = () => {
       </div>
       <div className="grid grid-cols-1 gap-4 justify-between flex-1 lg:grid-cols-2">
         {hosts.map(host => (
-          <div className="grid grid-cols-6 rounded-xl gap-5 bg-white dark:bg-gray-900">
+          <div className="grid lg:grid-cols-6 grid-cols-4 rounded-xl gap-5 bg-white dark:bg-gray-900">
             <figure
-              className="flex-col col-span-2 bg-gradient-to-t from-gray-200 to-white px-4 py-4 rounded-l-xl dark:from-gray-900 dark:to-gray-800"
+              className="flex-col lg:col-span-2 col-span-4 bg-gradient-to-t from-gray-200 to-white px-4 py-4 rounded-l-xl dark:from-gray-900 dark:to-gray-800 w-full"
               key={host.name}
             >
               <img
@@ -45,7 +45,7 @@ const Hosts = () => {
                 width="384"
               />
             </figure>
-            <div className="p-1 col-span-3 space-y-4 text-left py-4">
+            <div className="lg:p-1 p-4 lg:col-span-3 col-span-4 space-y-4 text-left lg:py-4">
               <figcaption className="">
                 <div className="text-gray-800 text-3xl font-medium dark:text-white">
                   {host.name}

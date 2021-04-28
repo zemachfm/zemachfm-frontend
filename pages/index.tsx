@@ -34,39 +34,7 @@ const Home: FC<prop> = ({ content, locale }) => {
   const { episodes, player, currentPlay, currentSettings } = state;
   const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
 
-  const toogleMobileMenu = () => {
-    setMobileMenuVisible(!mobileMenuVisible);
-  };
-
-  const onThemeChange = (theme: ThemeTypes) => {
-    localStorage.setItem(localStorageKeys.theme, theme);
-    dispatch(changeThemeAction(theme));
-  };
-
-  useEffect(() => {
-    // Remember theme option
-    if (localStorageKeys.theme in localStorage) {
-      const themeValue = localStorage.getItem(localStorageKeys.theme);
-
-      if (themeValue === 'dark' || themeValue === 'light') {
-        dispatch(changeThemeAction(themeValue));
-      }
-    }
-  }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(fetchEpisodes());
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (state.theme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [state.theme]);
-
-  const links: ISideBarLink[] = [
+  const linksDefault: ISideBarLink[] = [
     {
       active: false,
       label: content.sidebar.episodes,
@@ -99,24 +67,60 @@ const Home: FC<prop> = ({ content, locale }) => {
     },
   ];
 
-  const [theLinks, setTheLinks] = React.useState(links);
+  const toogleMobileMenu = () => {
+    setMobileMenuVisible(!mobileMenuVisible);
+  };
+
+  const onThemeChange = (theme: ThemeTypes) => {
+    localStorage.setItem(localStorageKeys.theme, theme);
+    dispatch(changeThemeAction(theme));
+  };
+
+  useEffect(() => {
+    // Remember theme option
+    if (localStorageKeys.theme in localStorage) {
+      const themeValue = localStorage.getItem(localStorageKeys.theme);
+
+      if (themeValue === 'dark' || themeValue === 'light') {
+        dispatch(changeThemeAction(themeValue));
+      }
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchEpisodes());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (state.theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [state.theme]);
+
+  const [links, setLinks] = React.useState(linksDefault);
 
   const isActive = (link: string, changeTo: string) =>
     link?.replace('#', '') === changeTo.replace('#', '');
 
-  const handleChange = (changeTo: string) => {
-    setTheLinks(oldLinks =>
+  const handleRouteChange = (changeTo: string, isMobile?: boolean) => {
+    setLinks(oldLinks =>
       oldLinks.map(link => ({
         ...link,
         active: isActive(link.route, changeTo),
       })),
     );
+
+    if (isMobile) {
+      toogleMobileMenu();
+    }
   };
 
   React.useEffect(() => {
     if (typeof window !== 'undefined') {
       const { hash } = window.location;
-      handleChange(hash);
+      handleRouteChange(hash);
     }
   }, []);
 
@@ -129,8 +133,8 @@ const Home: FC<prop> = ({ content, locale }) => {
       <div className="bg-gray-100 dark:bg-black flex flex-col absolute h-full w-full ">
         {mobileMenuVisible && (
           <SmallDeviceSideBar
-            handleRouteChange={handleChange}
-            links={theLinks}
+            handleRouteChange={handleRouteChange}
+            links={links}
             toogleMenu={toogleMobileMenu}
           />
         )}
@@ -145,7 +149,7 @@ const Home: FC<prop> = ({ content, locale }) => {
         <div className="bg-gray-100 px-5 mt-5 dark:bg-black">
           <main className=" grid grid-cols-12 lg:grid-cols-10 ">
             <div className="h-full w-full flex-col justify-center hidden lg:flex">
-              <SideBar handleRouteChange={handleChange} links={theLinks} />
+              <SideBar handleRouteChange={handleRouteChange} links={links} />
             </div>
             <div className="col-span-12 lg:col-span-7 px-5">
               <EpisodeCardsContainer
