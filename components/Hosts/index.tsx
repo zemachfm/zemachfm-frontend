@@ -21,7 +21,7 @@ const Hosts = () => {
   ];
 
   return (
-    <section id="#hosts">
+    <section id="hosts">
       <div className="flex flex-col">
         <h1 className=" text-6xl my-10 font-bold dark:text-gray-200 mb-2 ">
           Hosts
@@ -30,11 +30,11 @@ const Hosts = () => {
           This are your podcast hosts
         </p>
       </div>
-      <div className="grid grid-cols-2 gap-4 justify-between flex-1 md:flex-row">
+      <div className="grid grid-cols-1 gap-4 justify-between flex-1 lg:grid-cols-2">
         {hosts.map(host => (
-          <div className="grid grid-cols-6 rounded-xl gap-5 bg-white">
+          <div className="grid grid-cols-6 rounded-xl gap-5 bg-white dark:bg-gray-900">
             <figure
-              className="flex-col col-span-2 bg-gradient-to-t from-gray-200 to-white px-4 py-4 rounded-l-xl"
+              className="flex-col col-span-2 bg-gradient-to-t from-gray-200 to-white px-4 py-4 rounded-l-xl dark:from-gray-900 dark:to-gray-800"
               key={host.name}
             >
               <img
@@ -47,7 +47,9 @@ const Hosts = () => {
             </figure>
             <div className="p-1 col-span-3 space-y-4 text-left py-4">
               <figcaption className="">
-                <div className="text-gray-800 text-3xl font-medium">{host.name}</div>
+                <div className="text-gray-800 text-3xl font-medium dark:text-white">
+                  {host.name}
+                </div>
                 <div className="text-gray-400 text-sm mt-1 ml-1  dark:text-gray-400">
                   Software Engineer, Ethiopia
                 </div>

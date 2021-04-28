@@ -20,6 +20,13 @@ import SideBar from '../components/Sidebar';
 import SmallDeviceSideBar from '../components/Sidebar/smallDevice.sidebar';
 import prop from '../types/index.d';
 import Hosts from '../components/Hosts';
+import GridIcon from '../icons/grid.svg';
+import RadioIcon from '../icons/radio.svg';
+import UsersIcon from '../icons/users.svg';
+import MessageIcon from '../icons/message-circle.svg';
+import BookIcon from '../icons/book.svg';
+import routes from '../lib/constants/hashRoutes';
+import { ISideBarLink } from '../components/Sidebar/index.d';
 
 const Home: FC<prop> = ({ content, locale }) => {
   const state: IHomeReducer = useSelector((root: TRootReducer) => root.home);
@@ -59,6 +66,60 @@ const Home: FC<prop> = ({ content, locale }) => {
     }
   }, [state.theme]);
 
+  const links: ISideBarLink[] = [
+    {
+      active: false,
+      label: content.sidebar.episodes,
+      route: routes.index,
+      icon: <GridIcon />,
+    },
+    {
+      active: false,
+      label: content.sidebar.hosts,
+      route: routes.hosts,
+      icon: <UsersIcon />,
+    },
+    {
+      active: false,
+      label: content.sidebar.guests,
+      route: routes.guests,
+      icon: <RadioIcon />,
+    },
+    {
+      active: false,
+      label: content.sidebar.story,
+      route: routes.story,
+      icon: <BookIcon />,
+    },
+    {
+      active: false,
+      label: content.sidebar.contact,
+      route: routes.contact,
+      icon: <MessageIcon />,
+    },
+  ];
+
+  const [theLinks, setTheLinks] = React.useState(links);
+
+  const isActive = (link: string, changeTo: string) =>
+    link?.replace('#', '') === changeTo.replace('#', '');
+
+  const handleChange = (changeTo: string) => {
+    setTheLinks(oldLinks =>
+      oldLinks.map(link => ({
+        ...link,
+        active: isActive(link.route, changeTo),
+      })),
+    );
+  };
+
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const { hash } = window.location;
+      handleChange(hash);
+    }
+  }, []);
+
   return (
     <div>
       <Head>
@@ -67,7 +128,11 @@ const Home: FC<prop> = ({ content, locale }) => {
       </Head>
       <div className="bg-gray-100 dark:bg-black flex flex-col absolute h-full w-full ">
         {mobileMenuVisible && (
-          <SmallDeviceSideBar toogleMenu={toogleMobileMenu} />
+          <SmallDeviceSideBar
+            handleRouteChange={handleChange}
+            links={theLinks}
+            toogleMenu={toogleMobileMenu}
+          />
         )}
         <NavBar
           appName={content.appName}
@@ -80,7 +145,7 @@ const Home: FC<prop> = ({ content, locale }) => {
         <div className="bg-gray-100 px-5 mt-5 dark:bg-black">
           <main className=" grid grid-cols-12 lg:grid-cols-10 ">
             <div className="h-full w-full flex-col justify-center hidden lg:flex">
-              <SideBar sideBarContents={content.sidebar} />
+              <SideBar handleRouteChange={handleChange} links={theLinks} />
             </div>
             <div className="col-span-12 lg:col-span-7 px-5">
               <EpisodeCardsContainer

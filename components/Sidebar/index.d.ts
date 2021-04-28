@@ -1,11 +1,21 @@
+import { ReactNode } from 'react';
 import { ISideBarContents } from '../../types/index.d';
 
 interface SmallDeviceMenuProps {
   toogleMenu: () => void;
+  handleRouteChange: (link: string) => void;
+  links: ISideBarLink[];
 }
 
+interface ISideBarLink {
+  active: boolean;
+  label: string;
+  route: string;
+  icon: ReactNode;
+}
 interface SideBarProps {
-  sideBarContents: ISideBarContents;
+  links: ISideBarLink[];
+  handleRouteChange: (link: string) => void;
 }
 
-export { SmallDeviceMenuProps, SideBarProps };
+export { SmallDeviceMenuProps, SideBarProps, ISideBarLink };
