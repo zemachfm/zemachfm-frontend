@@ -20,6 +20,7 @@ interface audioMeta {
   duration: string;
   filesize: string;
   filesize_raw: string;
+  date_recorded: string;
 }
 
 interface soundSettings {

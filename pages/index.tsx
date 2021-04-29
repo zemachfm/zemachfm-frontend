@@ -20,7 +20,7 @@ import SideBar from '../components/Sidebar';
 import SmallDeviceSideBar from '../components/Sidebar/smallDevice.sidebar';
 import prop from '../types/index.d';
 import Hosts from '../components/Hosts';
-import { Guests } from '../components/guests';
+import Guests from '../components/guests';
 
 const Home: FC<prop> = ({ content, locale }) => {
   const state: IHomeReducer = useSelector((root: TRootReducer) => root.home);

@@ -7,6 +7,7 @@ import {
   changePlayerStatus,
   addPaginationPage,
 } from '../../store/home/actions';
+import { episode } from '../../store/home/types.d';
 
 const EpisodeCardsContainer: FC<episodeCardsContainerType> = ({
   title,
@@ -28,8 +29,8 @@ const EpisodeCardsContainer: FC<episodeCardsContainerType> = ({
     Dispatch(changePlayerStatus({ type }));
   };
 
-  const onDownload = () => {
-    // on download
+  const onDownload = async (item: episode) => {
+    window.open(item.download_link, '_black').focus();
   };
 
   const onLoadMore = () => {
