@@ -54,10 +54,10 @@ const GuestCard: FC<hostProps> = ({
     <div className="rounded-lg relative overflow-hidden  bg-whtite ">
       <img className="w-full" src={item.episode_player_image} />
       <div
-        className="absolute bg-opacity-10 bg-green-200 bottom-0 w-full"
-        style={{ backdropFilter: 'blur(7px)' }}
+        className="absolute bg-opacity-10 bg-gray-200 bottom-0 w-full"
+        style={{ backdropFilter: 'blur(10px)' }}
       >
-        <div className="px-4 py-2">
+        <div className="px-4 py-2 bg-opacity-20 bg-gray-900">
           {playing ? (
             PlayStatus(playerStatus)
           ) : (
