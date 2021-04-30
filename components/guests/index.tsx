@@ -11,7 +11,7 @@ const Guests: FC<props> = ({ title, episodes, subTitle }) => {
       </h1>
       <p className="text-gray-400 text-lg mb-7">{subTitle}</p>
 
-      <div className="grid grid-cols-4 gap-6 ">
+      <div className="grid xl:grid-cols-4 lg:grid-cols-2 grid-cols-1 gap-6 ">
         {episodes
           ? episodes.map(episode => <GuestCard item={episode} />)
           : null}

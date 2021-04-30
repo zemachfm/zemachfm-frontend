@@ -83,6 +83,12 @@ interface siteSettings {
   };
 }
 
+interface guests {
+  loading: boolean;
+  episodes: episode[];
+  pagination: pagination;
+}
+
 interface IHomeReducer {
   episodes: {
     paginaton: pagination;
@@ -99,6 +105,7 @@ interface IHomeReducer {
     currentSettings: soundSettings;
   };
   settings: siteSettings;
+  guests: guests;
   theme: ThemeTypes;
 }
 

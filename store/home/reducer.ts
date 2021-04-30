@@ -58,6 +58,15 @@ const initialState: IHomeReducer = {
       quote: 'checkout This Podcast,Zeamch Fm',
     },
   },
+  guests: {
+    loading: false,
+    episodes: [],
+    pagination: {
+      total: 10,
+      page: 1,
+      per_page: 4,
+    },
+  },
 };
 
 const homeReducer = produce((draft: IHomeReducer, action) => {
