@@ -8,7 +8,7 @@ import {
   select,
   takeEvery,
 } from 'redux-saga/effects';
-import { PODCASTS_URL, SETTINGS_URL } from '../../lib/store/url';
+import { GUESTS_URL, PODCASTS_URL, SETTINGS_URL } from '../../lib/store/url';
 import { axiosGet } from '../../lib/store/axiosReq';
 import {
   fetchEpisodesSucceeded,
@@ -23,6 +23,8 @@ import {
   updatedPlaylist,
   fetchSettingsSucceeded,
   fetchSettingsFailed,
+  fetchGuestSucceeded,
+  fetchGUestsFailed,
 } from './actions';
 import { EpisodesReturnType } from './index.d';
 import { episode } from './types.d';
@@ -32,6 +34,7 @@ const getPlaylist = state => state.home.player.playlist;
 const getPlayerSettings = state => state.home.player.currentSettings;
 const getCurrentPlay = state => state.home.player.currentPlay;
 const getPagination = state => state.home.episodes.paginaton;
+const getGuestsPagination = state => state.home.guests.paginaton;
 const getEpisodes = state => state.home.episodes.episodes;
 
 function playerListen(player: Howl) {
@@ -229,6 +232,27 @@ function* fetchSettingsGenerator({ type }: { type: string }) {
   }
 }
 
+function* fetchGuestsGenerator({ type }: { type: string }) {
+  const pagination = yield select(getGuestsPagination);
+  try {
+    const { data: fetchedEpisodes, headers } = yield call(
+      axiosGet,
+      GUESTS_URL,
+      {
+        ...pagination,
+      },
+    );
+    yield put(
+      fetchGuestSucceeded({
+        data: fetchedEpisodes,
+        pagination: headers['x-wp-total'],
+      }),
+    );
+  } catch (err) {
+    yield put(fetchGUestsFailed(err.message));
+  }
+}
+
 function* homeSaga() {
   yield takeLatest(actionTypes.FETCH_EPISODES, fetchEpisodesGenerator);
   yield takeEvery(actionTypes.PLAY_CERTAIN_AUDIO, playCertainAudioGenerator);
@@ -245,5 +269,6 @@ function* homeSaga() {
   yield takeLatest(actionTypes.CHANGE_PALYER_SETTINGS, changePlayerSettings);
   yield takeEvery(actionTypes.ADD_PAGINATION_PAGE, fetchEpisodesGenerator);
   yield takeLatest(actionTypes.FETCH_SETTINGS, fetchSettingsGenerator);
+  yield takeLatest(actionTypes.FETCH_GUESTS, fetchGuestsGenerator);
 }
 export default homeSaga;

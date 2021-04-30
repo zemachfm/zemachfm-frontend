@@ -204,9 +204,10 @@ const fetchGuests = (): { type: string } => ({
   type: actionTypes.FETCH_GUESTS,
 });
 
-const fetchGuestSucceeded = (
-  payload: episode[],
-): { type: string; payload: episode[] } => ({
+const fetchGuestSucceeded = (payload: {
+  data: episode[];
+  pagination: number;
+}): { type: string; payload: episode[] } => ({
   type: actionTypes.FETCH_GUESTS_SUCCEEDED,
   payload,
 });
@@ -217,7 +218,6 @@ const fetchGUestsFailed = (
   type: actionTypes.FETCH_GUESTS_FAILED,
   payload,
 });
-
 
 export {
   actionTypes,

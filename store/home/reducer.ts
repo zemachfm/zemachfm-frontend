@@ -129,6 +129,18 @@ const homeReducer = produce((draft: IHomeReducer, action) => {
       draft.settings.platforms = payload.platforms;
       draft.settings.name = payload.name;
       break;
+    case actionTypes.FETCH_GUESTS:
+      draft.guests.loading = true;
+      break;
+    case actionTypes.FETCH_GUESTS_SUCCEEDED:
+      draft.guests.loading = false;
+      draft.guests.episodes = [...draft.guests.episodes, ...payload.data];
+      draft.player.playlist = [...draft.player.playlist, ...payload.data];
+      draft.guests.pagination.total = parseInt(payload.pagination, 10);
+      break;
+    case actionTypes.FETCH_GUESTS_FAILED:
+      draft.guests.loading = false;
+      break;
     default:
       break;
   }
