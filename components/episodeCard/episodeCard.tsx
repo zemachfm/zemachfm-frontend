@@ -34,6 +34,7 @@ const EpisodeCard: React.FC<episodeCard> = ({
   playing,
   playerStatus,
   loading,
+  settings,
 }) => {
   const [showShare, setShowShare] = React.useState<boolean>(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -42,11 +43,18 @@ const EpisodeCard: React.FC<episodeCard> = ({
     window.addEventListener('scroll', () => {
       handleClose();
     });
-  });
+    return window.removeEventListener('scroll', () => {
+      handleClose();
+    });
+  }, []);
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
     setShowShare(true);
+  };
+
+  const onPlatformClick = (url: string) => {
+    window.open(url, '_blank').focus();
   };
 
   const handleClose = () => {
@@ -185,17 +193,32 @@ const EpisodeCard: React.FC<episodeCard> = ({
                       showShare ? 'flex' : 'hidden'
                     } `}
                   >
-                    <FacebookShareButton url={'https://facebook.com/zemach-fm'}>
-                      <FacebookIcon name="facebook" size="33" />
+                    <FacebookShareButton
+                      hashtag="#zemachfm"
+                      quote={` ${settings.share.shareTitle} ${item.title.rendered} `}
+                      url={settings.social.facebook}
+                    >
+                      <FacebookIcon size="33" />
                     </FacebookShareButton>
-                    <TwitterShareButton url={'https://twitter.com/zemach-fm'}>
-                      <TwitterIcon name="zeamch fm" size="33" />
+                    <TwitterShareButton
+                      hashtags={settings.share.hashtag}
+                      related={settings.share.hashtag}
+                      title={settings.share.shareTitle}
+                      url={settings.social.twitter}
+                    >
+                      <TwitterIcon size="33" />
                     </TwitterShareButton>
-                    <TelegramShareButton url="https://t.me/zemachfm">
-                      <TelegramIcon name="zemach fm" size="33" />
+                    <TelegramShareButton
+                      title={settings.share.shareTitle}
+                      url={settings.social.telegram}
+                    >
+                      <TelegramIcon size="33" />
                     </TelegramShareButton>
-                    <WhatsappShareButton url="zemachfm.com">
-                      <WhatsappIcon name="zemach fm" size="33" />
+                    <WhatsappShareButton
+                      title={settings.share.shareTitle}
+                      url={item.link}
+                    >
+                      <WhatsappIcon size="33" />
                     </WhatsappShareButton>
                   </div>
                 </PopOver>
@@ -208,12 +231,20 @@ const EpisodeCard: React.FC<episodeCard> = ({
                 </Ripples>
               </div>
               <div className="flex flex-row justify-end">
-                <Ripples className="rounded-full cursor-pointer mx-auto p-2  hover:bg-gray-300 dark:hover:bg-black dark:border-gray-900">
+                <Ripples
+                  className="rounded-full cursor-pointer mx-auto p-2  hover:bg-gray-300 dark:hover:bg-black dark:border-gray-900"
+                  onClick={() => onPlatformClick(settings.platforms.spotify)}
+                >
                   <Spotify className="h-4 w-4 fill-current text-gray-400 dark:text-gray-600 " />
                 </Ripples>
               </div>
               <div className="flex flex-row justify-end">
-                <Ripples className="rounded-full cursor-pointer mx-auto p-2 hover:bg-gray-300 dark:hover:bg-black dark:border-gray-900">
+                <Ripples
+                  className="rounded-full cursor-pointer mx-auto p-2 hover:bg-gray-300 dark:hover:bg-black dark:border-gray-900"
+                  onClick={() =>
+                    onPlatformClick(settings.platforms.googlePodcast)
+                  }
+                >
                   <GooglePodcast className="h-4 w-4 fill-current text-gray-400 dark:text-gray-600 " />
                 </Ripples>
               </div>

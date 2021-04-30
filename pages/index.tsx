@@ -12,7 +12,11 @@ import { wrapper } from '../store/store';
 import NavBar from '../components/Navbar';
 import { IHomeReducer, ThemeTypes } from '../store/home/types.d';
 import { TRootReducer } from '../store/reducer';
-import { fetchEpisodes, changeThemeAction } from '../store/home/actions';
+import {
+  fetchEpisodes,
+  changeThemeAction,
+  fetchSettings,
+} from '../store/home/actions';
 import localStorageKeys from '../lib/constants/localStorageKeys';
 import AudioPlayer from '../components/audioPlayer';
 import AudioPlayers from '../components/audioPlayer/audioPlayer';
@@ -25,6 +29,7 @@ import Guests from '../components/guests';
 const Home: FC<prop> = ({ content, locale }) => {
   const state: IHomeReducer = useSelector((root: TRootReducer) => root.home);
   const dispatch = useDispatch();
+
   const { episodes, player, currentPlay, currentSettings } = state;
   const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
 
@@ -41,7 +46,6 @@ const Home: FC<prop> = ({ content, locale }) => {
     // Remember theme option
     if (localStorageKeys.theme in localStorage) {
       const themeValue = localStorage.getItem(localStorageKeys.theme);
-
       if (themeValue === 'dark' || themeValue === 'light') {
         dispatch(changeThemeAction(themeValue));
       }
@@ -85,6 +89,7 @@ const Home: FC<prop> = ({ content, locale }) => {
                 loading={state.loading}
                 more={content.more}
                 playerStatus={state.player.playerStatus}
+                settings={state.settings}
                 starterEpisodes={episodes}
                 subTitle={content.episodesDescription}
                 title={content.episodes}
@@ -128,6 +133,7 @@ export const getStaticProps = wrapper.getStaticProps(
     store: any;
   }) => {
     store.dispatch(fetchEpisodes());
+    store.dispatch(fetchSettings());
     store.dispatch(END);
     await store.sagaTask.toPromise();
     const dir = path.join(process.cwd(), 'public', 'static');

@@ -37,6 +37,7 @@ interface episode {
   description: renderedType;
   content: renderedType;
   excerpt: renderedType;
+  link: string;
   data: string;
   meta: audioMeta;
   episode_featured_image: string;
@@ -57,7 +58,33 @@ interface pagination {
   total: number;
 }
 
+interface siteSettings {
+  name: string;
+  social: {
+    facebook: string;
+    twitter: string;
+    instagram: string;
+    linkedIn: string;
+    github: string;
+    telegram: string;
+  };
+  platforms: {
+    spotify: string;
+    googlePodcast: string;
+    itunes: string;
+    soundCloud: string;
+    youtube: string;
+  };
+  share: {
+    shareDescription: string;
+    hashtag: string[];
+    shareTitle: string;
+    quote: string;
+  };
+}
+
 interface IHomeReducer {
+  settings: siteSettings;
   loading: boolean;
   theme: ThemeTypes;
   episodes: episode[];
@@ -71,4 +98,11 @@ interface IHomeReducer {
   paginaton: pagination;
 }
 
-export type { episode, ThemeTypes, IHomeReducer, soundSettings, playerStore };
+export type {
+  episode,
+  siteSettings,
+  ThemeTypes,
+  IHomeReducer,
+  soundSettings,
+  playerStore,
+};

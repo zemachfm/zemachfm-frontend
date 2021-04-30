@@ -17,6 +17,7 @@ const EpisodeCardsContainer: FC<episodeCardsContainerType> = ({
   playerStatus,
   more,
   loading,
+  settings,
 }) => {
   // needs fix
   const Dispatch = useDispatch();
@@ -70,6 +71,7 @@ const EpisodeCardsContainer: FC<episodeCardsContainerType> = ({
                   onPlay={onEpisodeCardPlay}
                   playerStatus={playerStatus}
                   playing={currentPlay ? item.id === currentPlay.id : false}
+                  settings={settings}
                   title={item.title.rendered}
                 />
               );

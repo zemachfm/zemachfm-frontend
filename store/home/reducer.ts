@@ -30,6 +30,30 @@ const initialState: IHomeReducer = {
     shuffle: true,
     rate: 1,
   },
+  settings: {
+    name: ' Zemach FM',
+    social: {
+      facebook: 'https://facebook.com/zeamch-fm',
+      twitter: 'https://twitter.com/zemachfm',
+      instagram: 'https://instagram.com/zemachfm',
+      linkedIn: 'https://linkedin.com/company/zemachfm',
+      github: 'https://github.com/zemachfm',
+      telegram: 'https://t.me/zemachfm'
+    },
+    platforms: {
+      spotify: '',
+      googlePodcast: '',
+      itunes: '',
+      soundCloud: '',
+      youtube: '',
+    },
+    share: {
+      shareDescription: ' Checkout Zemach FM Podcast',
+      hashtag: ['zemachfm', 'techpodcastethiopia', 'techpodcast'],
+      shareTitle: 'Zemach fm Podcast',
+      quote: 'checkout This Podcast,Zeamch Fm',
+    },
+  },
 };
 
 const homeReducer = produce((draft: IHomeReducer, action) => {
@@ -81,6 +105,12 @@ const homeReducer = produce((draft: IHomeReducer, action) => {
       break;
     case actionTypes.CHANGE_PALYER_SETTINGS:
       draft.currentSettings[payload.name] = payload.value;
+      break;
+    case actionTypes.FETCH_SETTINGS_SUCCEEDED:
+      draft.settings.social = payload.socialMedia;
+      draft.settings.share = payload.sharingNames;
+      draft.settings.platforms = payload.platforms;
+      draft.settings.name = payload.name;
       break;
     default:
       break;

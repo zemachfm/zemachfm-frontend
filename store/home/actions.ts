@@ -1,6 +1,6 @@
 import { Howl } from 'howler';
 import { makeAction } from '../../lib/store/makeActions';
-import { episode, ThemeTypes } from './types.d';
+import { episode, ThemeTypes, siteSettings } from './types.d';
 import * as actionsTypes from './index.d';
 
 const actionTypes = {
@@ -13,6 +13,15 @@ const actionTypes = {
   FETCH_MORE: 'FETCH_MORE',
   ADD_PAGINATION_PAGE: 'ADD_PAGINATION_PAGE',
   CHANGE_THEME: 'CHANGE_THEME',
+
+  /**
+   * get settings
+   */
+
+  FETCH_SETTINGS: 'FETCH_SETTINGS',
+  FETCH_SETTINGS_SUCCEEDED: 'FETCH_SETTINGS_SUCCEEDED',
+  FETCH_SETTINGS_FAILED: 'FETCH_SETTINGS_FAILED',
+
   /**
    *
    */
@@ -154,6 +163,28 @@ const seekPlayer = (payload: number): { type: string; payload: number } => ({
   payload,
 });
 
+/**
+ * settings for pdocast
+ */
+const fetchSettings = (): { type: string } => ({
+  type: actionTypes.FETCH_SETTINGS,
+});
+
+const fetchSettingsFailed = (msg: string): { type: string; msg: string } => ({
+  type: actionTypes.FETCH_SETTINGS_FAILED,
+  msg,
+});
+
+const fetchSettingsSucceeded = (
+  settings: siteSettings,
+): {
+  type: string;
+  payload: siteSettings;
+} => ({
+  type: actionTypes.FETCH_SETTINGS_SUCCEEDED,
+  payload: settings,
+});
+
 export {
   actionTypes,
   /**
@@ -178,4 +209,10 @@ export {
   updatedPlaylist,
   deletePlaylist,
   seekPlayer,
+  /**
+   * settings actions
+   */
+  fetchSettings,
+  fetchSettingsFailed,
+  fetchSettingsSucceeded,
 };

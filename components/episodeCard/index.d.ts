@@ -1,4 +1,4 @@
-import { episode } from '../../store/home/types.d';
+import { episode, siteSettings } from '../../store/home/types.d';
 
 type episodeCard = {
   title?: string;
@@ -11,6 +11,7 @@ type episodeCard = {
   index?: number;
   playerStatus?: number;
   loading?: boolean;
+  settings: siteSettings,
 };
 
 type episodeCardsContainerType = {
@@ -21,5 +22,6 @@ type episodeCardsContainerType = {
   playerStatus: number;
   loading: boolean;
   more: string;
+  settings: siteSettings;
 };
 export { episodeCard, episodeCardsContainerType };
