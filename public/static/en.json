@@ -3,7 +3,9 @@
   "episodes": "Episodes",
   "episodesDescription": "Latest Episodes from Zemach FM podcast",
   "more": "Load More",
-  "sidebar" : {
+  "guests": "Guests",
+  "guestDescription": "Guests we talked to in Our Podcast so far",
+  "sidebar": {
     "episodes": "Episodes",
     "hosts": "Hosts",
     "guests": "Guests",

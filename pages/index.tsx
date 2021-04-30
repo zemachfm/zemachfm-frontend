@@ -30,16 +30,24 @@ const Home: FC<prop> = ({ content, locale }) => {
   const state: IHomeReducer = useSelector((root: TRootReducer) => root.home);
   const dispatch = useDispatch();
 
-  const { episodes, player, currentPlay, currentSettings } = state;
+  const {
+    episodes: episodesDataCont,
+    player: playersDataCont,
+    theme,
+    settings,
+  } = state;
+  const { episodes, loading } = episodesDataCont;
+  const { player, currentPlay, currentSettings } = playersDataCont;
+
   const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
 
   const toogleMobileMenu = () => {
     setMobileMenuVisible(!mobileMenuVisible);
   };
 
-  const onThemeChange = (theme: ThemeTypes) => {
-    localStorage.setItem(localStorageKeys.theme, theme);
-    dispatch(changeThemeAction(theme));
+  const onThemeChange = (themeSelected: ThemeTypes) => {
+    localStorage.setItem(localStorageKeys.theme, themeSelected);
+    dispatch(changeThemeAction(themeSelected));
   };
 
   useEffect(() => {
@@ -53,12 +61,12 @@ const Home: FC<prop> = ({ content, locale }) => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (state.theme === 'dark') {
+    if (theme === 'dark') {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
     }
-  }, [state.theme]);
+  }, [theme]);
 
   return (
     <div>
@@ -74,7 +82,7 @@ const Home: FC<prop> = ({ content, locale }) => {
           appName={content.appName}
           locale={locale}
           onChangeTheme={onThemeChange}
-          theme={state.theme}
+          theme={theme}
           toogleMobileMenu={toogleMobileMenu}
         />
 
@@ -86,16 +94,20 @@ const Home: FC<prop> = ({ content, locale }) => {
             <div className="col-span-12 lg:col-span-7 px-5">
               <EpisodeCardsContainer
                 currentPlay={currentPlay.item}
-                loading={state.loading}
+                loading={loading}
                 more={content.more}
-                playerStatus={state.player.playerStatus}
-                settings={state.settings}
+                playerStatus={player.playerStatus}
+                settings={settings}
                 starterEpisodes={episodes}
                 subTitle={content.episodesDescription}
                 title={content.episodes}
               />
               <Hosts />
-              <Guests title="Guests So Far" />
+              <Guests
+                episodes={episodes}
+                subTitle={content.guestDescription}
+                title={content.guests}
+              />
               <div className="mx-4 flex flex-col col-span-7 px-5 dark:bg-black">
                 <footer className="py-5 my-5 margin-auto dark:bg-black">
                   <h1 className="dark:text-white text-2xl  text-center">
@@ -112,12 +124,12 @@ const Home: FC<prop> = ({ content, locale }) => {
           </main>
         </div>
 
-        {state.player.audioPlayer ? (
+        {player.audioPlayer ? (
           <AudioPlayers
             currentPlay={currentPlay.item}
             player={player}
             playerSettings={currentSettings}
-            theme={state.theme}
+            theme={theme}
           />
         ) : null}
       </div>

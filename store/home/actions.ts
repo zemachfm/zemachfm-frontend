@@ -12,6 +12,10 @@ const actionTypes = {
   FETCH_EPISODES_SUCCEDDED: 'FETCH_EPISODES_SUCCEDDED',
   FETCH_MORE: 'FETCH_MORE',
   ADD_PAGINATION_PAGE: 'ADD_PAGINATION_PAGE',
+
+  /**
+   * theme
+   */
   CHANGE_THEME: 'CHANGE_THEME',
 
   /**
@@ -23,7 +27,14 @@ const actionTypes = {
   FETCH_SETTINGS_FAILED: 'FETCH_SETTINGS_FAILED',
 
   /**
-   *
+   * get Guests
+   */
+  FETCH_GUESTS: 'FETCH_GUESTS',
+  FETCH_GUESTS_SUCCEEDED: 'FETCH_GUESTS_SUCCEEDED',
+  FETCH_GUESTS_FAILED: 'FETCH_GUESTS_FAILED',
+
+  /**
+   * Player tweak
    */
   CHANGE_PLAYER_STATUS: 'CHANGE_PLAYER_STATUS',
   SEEK_PLAYER: 'SEEK_PLAYER',
@@ -185,6 +196,29 @@ const fetchSettingsSucceeded = (
   payload: settings,
 });
 
+/**
+ * get guests
+ */
+
+const fetchGuests = (): { type: string } => ({
+  type: actionTypes.FETCH_GUESTS,
+});
+
+const fetchGuestSucceeded = (
+  payload: episode[],
+): { type: string; payload: episode[] } => ({
+  type: actionTypes.FETCH_GUESTS_SUCCEEDED,
+  payload,
+});
+
+const fetchGUestsFailed = (
+  payload: string,
+): { type: string; payload: string } => ({
+  type: actionTypes.FETCH_GUESTS_FAILED,
+  payload,
+});
+
+
 export {
   actionTypes,
   /**
@@ -215,4 +249,10 @@ export {
   fetchSettings,
   fetchSettingsFailed,
   fetchSettingsSucceeded,
+  /**
+   * get guests
+   */
+  fetchGuests,
+  fetchGuestSucceeded,
+  fetchGUestsFailed,
 };

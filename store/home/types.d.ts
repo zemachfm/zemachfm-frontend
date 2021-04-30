@@ -84,18 +84,22 @@ interface siteSettings {
 }
 
 interface IHomeReducer {
-  settings: siteSettings;
-  loading: boolean;
-  theme: ThemeTypes;
-  episodes: episode[];
-  playlist: episode[];
-  currentPlay: {
-    item: episode;
-    playlistIndex: number;
+  episodes: {
+    paginaton: pagination;
+    loading: boolean;
+    episodes: episode[];
   };
-  player: playerStore;
-  currentSettings: soundSettings;
-  paginaton: pagination;
+  player: {
+    playlist: episode[];
+    currentPlay: {
+      item: episode;
+      playlistIndex: number;
+    };
+    player: playerStore;
+    currentSettings: soundSettings;
+  };
+  settings: siteSettings;
+  theme: ThemeTypes;
 }
 
 export type {

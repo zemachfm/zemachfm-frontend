@@ -27,12 +27,12 @@ import {
 import { EpisodesReturnType } from './index.d';
 import { episode } from './types.d';
 
-const getPlayer = state => state.home.player;
-const getPlaylist = state => state.home.playlist;
-const getPlayerSettings = state => state.home.currentSettings;
-const getCurrentPlay = state => state.home.currentPlay;
-const getPagination = state => state.home.paginaton;
-const getEpisodes = state => state.home.episodes;
+const getPlayer = state => state.home.player.player;
+const getPlaylist = state => state.home.player.playlist;
+const getPlayerSettings = state => state.home.player.currentSettings;
+const getCurrentPlay = state => state.home.player.currentPlay;
+const getPagination = state => state.home.episodes.paginaton;
+const getEpisodes = state => state.home.episodes.episodes;
 
 function playerListen(player: Howl) {
   return eventChannel(emitter => {
