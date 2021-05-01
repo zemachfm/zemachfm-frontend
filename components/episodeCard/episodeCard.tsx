@@ -177,7 +177,6 @@ const EpisodeCard: React.FC<episodeCard> = ({
                     horizontal: 'center',
                   }}
                   container={containerRef.current}
-                  id={`id${item.id}`}
                   onClose={() => {
                     setShowShare(!showShare);
                     handleClose();
@@ -224,7 +223,6 @@ const EpisodeCard: React.FC<episodeCard> = ({
                 </PopOver>
                 <Ripples
                   className="rounded-full cursor-pointer mx-auto p-2 hover:bg-gray-300 dark:hover:bg-black dark:border-gray-900"
-                  id={`id${item.id}`}
                   onClick={handleClick}
                 >
                   <ShareIcon className="h-4 w-4 fill-current text-gray-400 dark:text-gray-600 " />
