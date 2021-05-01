@@ -207,7 +207,7 @@ const fetchGuests = (): { type: string } => ({
 const fetchGuestSucceeded = (payload: {
   data: episode[];
   pagination: number;
-}): { type: string; payload: episode[] } => ({
+}): { type: string; payload: { data: episode[]; pagination: number } } => ({
   type: actionTypes.FETCH_GUESTS_SUCCEEDED,
   payload,
 });

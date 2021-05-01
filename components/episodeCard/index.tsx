@@ -57,7 +57,7 @@ const EpisodeCardsContainer: FC<episodeCardsContainerType> = ({
         {EpisodeList
           ? EpisodeList.map((item, index) => {
               if (item.loading) {
-                return <EpisodeCard loading />;
+                return <EpisodeCard loading settings={settings} />;
               }
               return (
                 <EpisodeCard
