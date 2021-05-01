@@ -76,7 +76,7 @@ const homeReducer = produce((draft: IHomeReducer, action) => {
 
   switch (action.type) {
     case HYDRATE:
-      draft = { ...draft, ...payload.home };
+      draft = { ...draft, ...payload.home, ...{ player: draft.player } };
       break;
     case actionTypes.FETCH_EPISODES_SUCCEDDED:
       draft.episodes.loading = false;

@@ -20,7 +20,6 @@ import {
 } from '../store/home/actions';
 import localStorageKeys from '../lib/constants/localStorageKeys';
 import AudioPlayer from '../components/audioPlayer';
-import AudioPlayers from '../components/audioPlayer/audioPlayer';
 import SideBar from '../components/Sidebar';
 import SmallDeviceSideBar from '../components/Sidebar/smallDevice.sidebar';
 import prop from '../types/index.d';
@@ -46,7 +45,7 @@ const Home: FC<prop> = ({ content, locale }) => {
     guests,
   } = state;
   const { episodes, loading } = episodesDataCont;
-  const { player, currentPlay, currentSettings } = playersDataCont;
+  const { player, currentPlay } = playersDataCont;
 
   const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
 
@@ -169,7 +168,7 @@ const Home: FC<prop> = ({ content, locale }) => {
             <div className="h-full w-full flex-col justify-center hidden lg:flex">
               <SideBar handleRouteChange={handleRouteChange} links={links} />
             </div>
-            <div className="col-span-12 lg:col-span-7 px-5">
+            <div className="col-span-12 lg:col-span-7 lg:px-5">
               <EpisodeCardsContainer
                 currentPlay={currentPlay.item}
                 loading={loading}
@@ -205,15 +204,6 @@ const Home: FC<prop> = ({ content, locale }) => {
             </div>
           </main>
         </div>
-
-        {player.audioPlayer ? (
-          <AudioPlayers
-            currentPlay={currentPlay.item}
-            player={player}
-            playerSettings={currentSettings}
-            theme={theme}
-          />
-        ) : null}
       </div>
     </div>
   );
