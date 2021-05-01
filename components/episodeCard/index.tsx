@@ -2,14 +2,22 @@ import { FC } from 'react';
 import { useDispatch } from 'react-redux';
 import { episodeCardsContainerType } from './index.d';
 import EpisodeCard from './episodeCard';
-import { playCertainAudio, changePlayerStatus } from '../../store/home/actions';
+import {
+  playCertainAudio,
+  changePlayerStatus,
+  addPaginationPage,
+} from '../../store/home/actions';
+import { episode } from '../../store/home/types.d';
 
 const EpisodeCardsContainer: FC<episodeCardsContainerType> = ({
   title,
   subTitle,
   starterEpisodes,
   currentPlay,
-  playerStatus
+  playerStatus,
+  more,
+  loading,
+  settings,
 }) => {
   // needs fix
   const Dispatch = useDispatch();
@@ -22,9 +30,18 @@ const EpisodeCardsContainer: FC<episodeCardsContainerType> = ({
     Dispatch(changePlayerStatus({ type }));
   };
 
-  const onDownload = () => {
-    // on download
+  const onDownload = async (item: episode) => {
+    window.open(item.download_link, '_black').focus();
   };
+
+  const onLoadMore = () => {
+    Dispatch(addPaginationPage(1));
+  };
+
+  const EpisodeList = loading
+    ? [...starterEpisodes, ...Array(3).fill({ loading: true })]
+    : starterEpisodes;
+
   return (
     <>
       <div className="flex flex-row justify-between">
@@ -37,23 +54,36 @@ const EpisodeCardsContainer: FC<episodeCardsContainerType> = ({
       </div>
 
       <div className="grid grid-cols lg:grid-cols-3 gap-4 ">
-        {starterEpisodes
-          ? starterEpisodes.map((item, index) => (
-              <EpisodeCard
-                image={item.small_player}
-                index={index}
-                item={item}
-                key={item.id}
-                onDownload={onDownload}
-                onPause={onPause}
-                onPlay={onEpisodeCardPlay}
-                playerStatus={playerStatus}
-                playing={currentPlay ? item.id === currentPlay.id : false}
-                title={item.title.rendered}
-              />
-            ))
+        {EpisodeList
+          ? EpisodeList.map((item, index) => {
+              if (item.loading) {
+                return <EpisodeCard loading settings={settings} />;
+              }
+              return (
+                <EpisodeCard
+                  image={item.small_player}
+                  index={index}
+                  item={item}
+                  key={item.id}
+                  loading={false}
+                  onDownload={onDownload}
+                  onPause={onPause}
+                  onPlay={onEpisodeCardPlay}
+                  playerStatus={playerStatus}
+                  playing={currentPlay ? item.id === currentPlay.id : false}
+                  settings={settings}
+                  title={item.title.rendered}
+                />
+              );
+            })
           : null}
       </div>
+      <button
+        className="px-3 py-2 text-green-600 hover:underline rounded mt-4"
+        onClick={onLoadMore}
+      >
+        {more}
+      </button>
     </>
   );
 };

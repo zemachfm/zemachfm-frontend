@@ -12,7 +12,12 @@ import { wrapper } from '../store/store';
 import NavBar from '../components/Navbar';
 import { IHomeReducer, ThemeTypes } from '../store/home/types.d';
 import { TRootReducer } from '../store/reducer';
-import { fetchEpisodes, changeThemeAction } from '../store/home/actions';
+import {
+  fetchEpisodes,
+  changeThemeAction,
+  fetchSettings,
+  fetchGuests,
+} from '../store/home/actions';
 import localStorageKeys from '../lib/constants/localStorageKeys';
 import AudioPlayer from '../components/audioPlayer';
 import AudioPlayers from '../components/audioPlayer/audioPlayer';
@@ -20,6 +25,7 @@ import SideBar from '../components/Sidebar';
 import SmallDeviceSideBar from '../components/Sidebar/smallDevice.sidebar';
 import prop from '../types/index.d';
 import Hosts from '../components/Hosts';
+import Guests from '../components/guests';
 import GridIcon from '../icons/grid.svg';
 import RadioIcon from '../icons/radio.svg';
 import UsersIcon from '../icons/users.svg';
@@ -31,7 +37,17 @@ import { ISideBarLink } from '../components/Sidebar/index.d';
 const Home: FC<prop> = ({ content, locale }) => {
   const state: IHomeReducer = useSelector((root: TRootReducer) => root.home);
   const dispatch = useDispatch();
-  const { episodes, player, currentPlay, currentSettings } = state;
+
+  const {
+    episodes: episodesDataCont,
+    player: playersDataCont,
+    theme,
+    settings,
+    guests,
+  } = state;
+  const { episodes, loading } = episodesDataCont;
+  const { player, currentPlay, currentSettings } = playersDataCont;
+
   const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
 
   const linksDefault: ISideBarLink[] = [
@@ -71,16 +87,15 @@ const Home: FC<prop> = ({ content, locale }) => {
     setMobileMenuVisible(!mobileMenuVisible);
   };
 
-  const onThemeChange = (theme: ThemeTypes) => {
-    localStorage.setItem(localStorageKeys.theme, theme);
-    dispatch(changeThemeAction(theme));
+  const onThemeChange = (themeSelected: ThemeTypes) => {
+    localStorage.setItem(localStorageKeys.theme, themeSelected);
+    dispatch(changeThemeAction(themeSelected));
   };
 
   useEffect(() => {
     // Remember theme option
     if (localStorageKeys.theme in localStorage) {
       const themeValue = localStorage.getItem(localStorageKeys.theme);
-
       if (themeValue === 'dark' || themeValue === 'light') {
         dispatch(changeThemeAction(themeValue));
       }
@@ -88,16 +103,12 @@ const Home: FC<prop> = ({ content, locale }) => {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(fetchEpisodes());
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (state.theme === 'dark') {
+    if (theme === 'dark') {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
     }
-  }, [state.theme]);
+  }, [theme]);
 
   const [links, setLinks] = React.useState(linksDefault);
 
@@ -149,7 +160,7 @@ const Home: FC<prop> = ({ content, locale }) => {
           appName={content.appName}
           locale={locale}
           onChangeTheme={onThemeChange}
-          theme={state.theme}
+          theme={theme}
           toogleMobileMenu={toogleMobileMenu}
         />
 
@@ -161,12 +172,24 @@ const Home: FC<prop> = ({ content, locale }) => {
             <div className="col-span-12 lg:col-span-7 px-5">
               <EpisodeCardsContainer
                 currentPlay={currentPlay.item}
-                playerStatus={state.player.playerStatus}
+                loading={loading}
+                more={content.more}
+                playerStatus={player.playerStatus}
+                settings={settings}
                 starterEpisodes={episodes}
                 subTitle={content.episodesDescription}
                 title={content.episodes}
               />
               <Hosts />
+              <Guests
+                currentPlay={currentPlay.item}
+                episodes={guests.episodes}
+                loading={guests.loading}
+                more={content.more}
+                playerStatus={player.playerStatus}
+                subTitle={content.guestDescription}
+                title={content.guests}
+              />
               <div className="mx-4 flex flex-col col-span-7 px-5 dark:bg-black">
                 <footer className="py-5 my-5 margin-auto dark:bg-black">
                   <h1 className="dark:text-white text-2xl  text-center">
@@ -183,12 +206,12 @@ const Home: FC<prop> = ({ content, locale }) => {
           </main>
         </div>
 
-        {state.player.audioPlayer ? (
+        {player.audioPlayer ? (
           <AudioPlayers
             currentPlay={currentPlay.item}
             player={player}
             playerSettings={currentSettings}
-            theme={state.theme}
+            theme={theme}
           />
         ) : null}
       </div>
@@ -204,6 +227,8 @@ export const getStaticProps = wrapper.getStaticProps(
     store: any;
   }) => {
     store.dispatch(fetchEpisodes());
+    store.dispatch(fetchSettings());
+    store.dispatch(fetchGuests());
     store.dispatch(END);
     await store.sagaTask.toPromise();
     const dir = path.join(process.cwd(), 'public', 'static');

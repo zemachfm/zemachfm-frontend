@@ -20,6 +20,7 @@ interface audioMeta {
   duration: string;
   filesize: string;
   filesize_raw: string;
+  date_recorded: string;
 }
 
 interface soundSettings {
@@ -36,6 +37,7 @@ interface episode {
   description: renderedType;
   content: renderedType;
   excerpt: renderedType;
+  link: string;
   data: string;
   meta: audioMeta;
   episode_featured_image: string;
@@ -56,18 +58,62 @@ interface pagination {
   total: number;
 }
 
-interface IHomeReducer {
-  loading: boolean;
-  theme: ThemeTypes;
-  episodes: episode[];
-  playlist: episode[];
-  currentPlay: {
-    item: episode;
-    playlistIndex: number;
+interface siteSettings {
+  name: string;
+  social: {
+    facebook: string;
+    twitter: string;
+    instagram: string;
+    linkedIn: string;
+    github: string;
+    telegram: string;
   };
-  player: playerStore;
-  currentSettings: soundSettings;
-  paginaton: pagination;
+  platforms: {
+    spotify: string;
+    googlePodcast: string;
+    itunes: string;
+    soundCloud: string;
+    youtube: string;
+  };
+  share: {
+    shareDescription: string;
+    hashtag: string[];
+    shareTitle: string;
+    quote: string;
+  };
 }
 
-export type { episode, ThemeTypes, IHomeReducer, soundSettings, playerStore };
+interface guests {
+  loading: boolean;
+  episodes: episode[];
+  pagination: pagination;
+}
+
+interface IHomeReducer {
+  episodes: {
+    paginaton: pagination;
+    loading: boolean;
+    episodes: episode[];
+  };
+  player: {
+    playlist: episode[];
+    currentPlay: {
+      item: episode;
+      playlistIndex: number;
+    };
+    player: playerStore;
+    currentSettings: soundSettings;
+  };
+  settings: siteSettings;
+  guests: guests;
+  theme: ThemeTypes;
+}
+
+export type {
+  episode,
+  siteSettings,
+  ThemeTypes,
+  IHomeReducer,
+  soundSettings,
+  playerStore,
+};

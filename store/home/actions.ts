@@ -1,6 +1,6 @@
 import { Howl } from 'howler';
 import { makeAction } from '../../lib/store/makeActions';
-import { episode, ThemeTypes } from './types.d';
+import { episode, ThemeTypes, siteSettings } from './types.d';
 import * as actionsTypes from './index.d';
 
 const actionTypes = {
@@ -10,9 +10,31 @@ const actionTypes = {
   FETCH_EPISODES: 'FETCH_EPISODES',
   FETCH_EPISODES_FAILED: 'FETCH_EPISODES_FAILED',
   FETCH_EPISODES_SUCCEDDED: 'FETCH_EPISODES_SUCCEDDED',
-  CHANGE_THEME: 'CHANGE_THEME',
+  FETCH_MORE: 'FETCH_MORE',
+  ADD_PAGINATION_PAGE: 'ADD_PAGINATION_PAGE',
+
   /**
-   *
+   * theme
+   */
+  CHANGE_THEME: 'CHANGE_THEME',
+
+  /**
+   * get settings
+   */
+
+  FETCH_SETTINGS: 'FETCH_SETTINGS',
+  FETCH_SETTINGS_SUCCEEDED: 'FETCH_SETTINGS_SUCCEEDED',
+  FETCH_SETTINGS_FAILED: 'FETCH_SETTINGS_FAILED',
+
+  /**
+   * get Guests
+   */
+  FETCH_GUESTS: 'FETCH_GUESTS',
+  FETCH_GUESTS_SUCCEEDED: 'FETCH_GUESTS_SUCCEEDED',
+  FETCH_GUESTS_FAILED: 'FETCH_GUESTS_FAILED',
+
+  /**
+   * Player tweak
    */
   CHANGE_PLAYER_STATUS: 'CHANGE_PLAYER_STATUS',
   SEEK_PLAYER: 'SEEK_PLAYER',
@@ -41,6 +63,13 @@ const fetchEpisodesSucceeded = (
   payload: actionsTypes.EpisodesReturnType,
 ): { type: string; payload: actionsTypes.EpisodesReturnType } =>
   makeAction(payload, actionTypes.FETCH_EPISODES_SUCCEDDED);
+
+const addPaginationPage = (
+  payload: number,
+): { payload: number; type: string } => ({
+  payload,
+  type: actionTypes.ADD_PAGINATION_PAGE,
+});
 
 const changeThemeAction = (
   payload: ThemeTypes,
@@ -145,6 +174,51 @@ const seekPlayer = (payload: number): { type: string; payload: number } => ({
   payload,
 });
 
+/**
+ * settings for pdocast
+ */
+const fetchSettings = (): { type: string } => ({
+  type: actionTypes.FETCH_SETTINGS,
+});
+
+const fetchSettingsFailed = (msg: string): { type: string; msg: string } => ({
+  type: actionTypes.FETCH_SETTINGS_FAILED,
+  msg,
+});
+
+const fetchSettingsSucceeded = (
+  settings: siteSettings,
+): {
+  type: string;
+  payload: siteSettings;
+} => ({
+  type: actionTypes.FETCH_SETTINGS_SUCCEEDED,
+  payload: settings,
+});
+
+/**
+ * get guests
+ */
+
+const fetchGuests = (): { type: string } => ({
+  type: actionTypes.FETCH_GUESTS,
+});
+
+const fetchGuestSucceeded = (payload: {
+  data: episode[];
+  pagination: number;
+}): { type: string; payload: { data: episode[]; pagination: number } } => ({
+  type: actionTypes.FETCH_GUESTS_SUCCEEDED,
+  payload,
+});
+
+const fetchGUestsFailed = (
+  payload: string,
+): { type: string; payload: string } => ({
+  type: actionTypes.FETCH_GUESTS_FAILED,
+  payload,
+});
+
 export {
   actionTypes,
   /**
@@ -153,6 +227,7 @@ export {
   fetchEpisodes,
   fetchEpisodesFailed,
   fetchEpisodesSucceeded,
+  addPaginationPage,
   changeThemeAction,
   /**
    * player actions
@@ -168,4 +243,16 @@ export {
   updatedPlaylist,
   deletePlaylist,
   seekPlayer,
+  /**
+   * settings actions
+   */
+  fetchSettings,
+  fetchSettingsFailed,
+  fetchSettingsSucceeded,
+  /**
+   * get guests
+   */
+  fetchGuests,
+  fetchGuestSucceeded,
+  fetchGUestsFailed,
 };

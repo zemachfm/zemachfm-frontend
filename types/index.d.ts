@@ -9,7 +9,10 @@ interface translatedStrings {
   appName: string;
   episodes: string;
   episodesDescription: string;
+  more: string;
   sidebar: ISideBarContents;
+  guests: string;
+  guestDescription: string;
 }
 
 type indexPageType = {
