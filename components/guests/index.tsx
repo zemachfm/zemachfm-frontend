@@ -23,7 +23,7 @@ const Guests: FC<props> = ({
   };
 
   return (
-    <div>
+    <div id="guests">
       <h1 className=" text-6xl my-10 font-bold dark:text-gray-200 mb-2 ">
         {title}
       </h1>
