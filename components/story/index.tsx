@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 const OurStory: FC<Record<string, null>> = () => (
   <div id="our-story">
-    <h1 className=" text-6xl font-bold my-5 ">Our stroy</h1>
+    <h1 className=" text-6xl font-bold my-8 ">Our stroy</h1>
     <p className="text-gray-600">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
