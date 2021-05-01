@@ -17,30 +17,21 @@ const SmallDeviceSideBar: React.FC<SmallDeviceMenuProps> = props => (
     </div>
 
     <ul className="flex flex-col h-full px-5">
-      <li className="flex bg-yellow-400 mt-10 text-gray-700 rounded-r-full py-3 px-1">
-        <GridIcon className="mr-5" />
-        <span>Episodes</span>
-      </li>
-
-      <li className="flex py-3 mt-10 px-1">
-        <UsersIcon className="mr-5" />
-        <span>Hosts</span>
-      </li>
-
-      <li className="flex py-3 mt-10 px-1">
-        <RadioIcon className="mr-5" />
-        <span>Guests</span>
-      </li>
-
-      <li className="flex py-3 mt-10 px-1">
-        <BookIcon className="mr-5" />
-        <span>Story</span>
-      </li>
-
-      <li className="flex py-3 mt-10 px-1">
-        <MessageIcon className="mr-5" />
-        <span>Contact</span>
-      </li>
+      {props.links.map(link => (
+        <a
+          href={link.route}
+          onClick={() => props.handleRouteChange(link.route, true)}
+        >
+          <li
+            className={`flex ${
+              link.active ? 'bg-yellow-400  text-gray-700 rounded-r-full ' : ''
+            } py-3 mt-10 px-1`}
+          >
+            {link.icon}
+            <span>{link.label}</span>
+          </li>
+        </a>
+      ))}
     </ul>
   </div>
 );
