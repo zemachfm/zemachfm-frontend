@@ -36,7 +36,6 @@ const ContactUs = () => {
               id="name"
               name="name"
               placeholder="name"
-              type="text"
             ></textarea>
             <button
               className="px-6 py-2 text-xl font-bold text-left bg-green-400 text-white rounded-md"
