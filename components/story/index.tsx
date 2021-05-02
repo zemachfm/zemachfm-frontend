@@ -14,7 +14,7 @@ const OurStory: FC<storyIndex> = ({ story }) => {
 
   return (
     <div id="our-story">
-      <h1 className=" text-6xl font-bold mt-8 mb-4 "> {title} </h1>
+      <h1 className=" text-6xl font-bold mt-8 mb-3 dark:text-white text-gray-900 "> {title} </h1>
       <div
         className="text-gray-400 mb-5 "
         dangerouslySetInnerHTML={{ __html: description }}

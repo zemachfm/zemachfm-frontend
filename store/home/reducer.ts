@@ -155,6 +155,9 @@ const homeReducer = produce((draft: IHomeReducer, action) => {
       draft.settings.share = payload.sharingNames;
       draft.settings.platforms = payload.platforms;
       draft.settings.name = payload.name;
+      draft.settings.story.storyLine = payload.story.storyLine;
+      draft.settings.story.cards = payload.story.cards;
+      draft.settings.story.numberOfCards = payload.story.numberOfCards;
       break;
     case actionTypes.FETCH_GUESTS:
       draft.guests.loading = true;
