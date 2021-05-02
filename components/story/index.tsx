@@ -1,69 +1,38 @@
 import { FC } from 'react';
-import Face from '../../icons/smiling-face-outline.svg';
+import { storyIndex } from './index.d';
+import StoryCard from './storyCard';
 
-const OurStory: FC<Record<string, null>> = () => (
-  <div id="our-story">
-    <h1 className=" text-6xl font-bold mt-8 mb-4 ">Our stroy</h1>
-    <p className="text-gray-600 ">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-      est laborum.
-    </p>
-    <div className="grid grid-cols-4 gap-4 mt-10">
-      <div className="bg-green-400 p-4 text-left transition-all duration-100 hover:shadow-xl text-white rounded-lg">
-        <div className="text-3xl border-b border-gray-100 pb-3 mb-4 text-left font-bold">
-          Mission
-          <span className=" float-right ">
-            <Face
-              className=" rounded-full w-12 h-12 p-2 "
-              style={{ fill: '#fff' }}
-            />
-          </span>
-        </div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
-      </div>
+const OurStory: FC<storyIndex> = ({ story }) => {
+  const { storyLine, cards, numberOfCards } = story;
+  const { title, description } = storyLine;
+  const colors = [
+    'text-green-500',
+    'text-indigo-500',
+    'text-yellow-500',
+    'text-red-500',
+  ];
 
-      <div className="bg-yellow-500 p-4 text-left transition-all duration-100 hover:shadow-xl text-white rounded-lg">
-        <div className="text-3xl border-b border-gray-100 pb-3 mb-4 text-left font-bold">
-          Vission
-          <span className=" float-right ">
-            <Face
-              className=" rounded-full w-12 h-12 p-2 "
-              style={{ fill: '#fff' }}
-            />
-          </span>
-        </div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
-      </div>
-      <div className="bg-red-400 p-4 text-left transition-all duration-100 hover:shadow-xl text-white rounded-lg">
-        <div className="text-3xl border-b border-gray-100 pb-3 mb-4 text-left font-bold">
-          Mission
-          <span className=" float-right ">
-            <Face
-              className=" rounded-full w-12 h-12 p-2 "
-              style={{ fill: '#fff' }}
-            />
-          </span>
-        </div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
-      </div>
-      <div className="bg-blue-500 p-4 text-left transition-all duration-100 hover:shadow-xl text-white rounded-lg">
-        <div className="text-3xl border-b border-gray-100 pb-3 mb-4 text-left font-bold">
-          Mission
-          <span className=" float-right ">
-            <Face
-              className=" rounded-full w-12 h-12 p-2 "
-              style={{ fill: '#fff' }}
-            />
-          </span>
-        </div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
+  return (
+    <div id="our-story">
+      <h1 className=" text-6xl font-bold mt-8 mb-4 "> {title} </h1>
+      <div
+        className="text-gray-400 mb-5 "
+        dangerouslySetInnerHTML={{ __html: description }}
+      ></div>
+      <div className={`grid gap-6 grid-cols-${numberOfCards}`}>
+        {cards
+          ? cards.map((card, index) =>
+              card.title ? (
+                <StoryCard
+                  color={colors[index]}
+                  description={card.description}
+                  title={card.title}
+                />
+              ) : null,
+            )
+          : null}
       </div>
     </div>
-  </div>
-);
+  );
+};
 export default OurStory;

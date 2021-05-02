@@ -33,7 +33,7 @@ import MessageIcon from '../icons/message-circle.svg';
 import BookIcon from '../icons/book.svg';
 import routes from '../lib/constants/hashRoutes';
 import { ISideBarLink } from '../components/Sidebar/index.d';
-import OurStory from '../components/story';
+import OurStory from '../components/story/index';
 
 const Home: FC<prop> = ({ content, locale }) => {
   const state: IHomeReducer = useSelector((root: TRootReducer) => root.home);
@@ -191,7 +191,7 @@ const Home: FC<prop> = ({ content, locale }) => {
                 subTitle={content.guestDescription}
                 title={content.guests}
               />
-              <OurStory />
+              <OurStory story={settings.story} />
               <div className="mx-4 flex flex-col col-span-7 px-5 dark:bg-black">
                 <footer className="py-5 my-5 margin-auto dark:bg-black">
                   <h1 className="dark:text-white text-2xl  text-center">

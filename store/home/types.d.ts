@@ -81,12 +81,25 @@ interface siteSettings {
     shareTitle: string;
     quote: string;
   };
+  story: story;
 }
 
 interface guests {
   loading: boolean;
   episodes: episode[];
   pagination: pagination;
+}
+
+interface story {
+  storyLine: {
+    title: string;
+    description: string;
+  };
+  cards: {
+    title: string;
+    description: string;
+  }[];
+  numberOfCards: number;
 }
 
 interface IHostRequest {
@@ -123,6 +136,7 @@ interface IHomeReducer {
 
 export type {
   episode,
+  story,
   siteSettings,
   ThemeTypes,
   IHomeReducer,
