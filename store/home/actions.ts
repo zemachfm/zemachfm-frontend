@@ -1,6 +1,6 @@
 import { Howl } from 'howler';
 import { makeAction } from '../../lib/store/makeActions';
-import { episode, ThemeTypes, siteSettings } from './types.d';
+import { episode, ThemeTypes, siteSettings, Hosts } from './types.d';
 import * as actionsTypes from './index.d';
 
 const actionTypes = {
@@ -49,6 +49,13 @@ const actionTypes = {
   PLAYLIST_UPDATE: 'PLAYLIST_UPDATE',
   RESET_PLAYLIST: 'RESET_PLAYLIST',
   PLAY_CERTAIN_AUDIO: 'PLAY_CERTAIN_AUDIO',
+
+  /**
+   * Hosts
+   */
+  FETCH_HOSTS: 'FETCH_HOSTS',
+  FETCHING_HOSTS_SUCCEEDED: 'FETCHING_HOSTS_SUCCEEDED',
+  FETCHING_HOSTS_FAILED: 'FETCHING_HOSTS_FAILED',
 };
 
 const fetchEpisodes = (): { type: string; payload: null } =>
@@ -219,6 +226,28 @@ const fetchGUestsFailed = (
   payload,
 });
 
+/**
+ * get hosts
+ */
+
+const fetchHosts = (): { type: string } => ({
+  type: actionTypes.FETCH_HOSTS,
+});
+
+const fetchHostsSucceeded = (payload: {
+  data: Hosts;
+}): { type: string; payload: { data: Hosts } } => ({
+  type: actionTypes.FETCHING_HOSTS_SUCCEEDED,
+  payload,
+});
+
+const fetchHostsFailed = (
+  payload: string,
+): { type: string; payload: string } => ({
+  type: actionTypes.FETCHING_HOSTS_FAILED,
+  payload,
+});
+
 export {
   actionTypes,
   /**
@@ -255,4 +284,10 @@ export {
   fetchGuests,
   fetchGuestSucceeded,
   fetchGUestsFailed,
+  /**
+   * get hosts
+   */
+  fetchHostsSucceeded,
+  fetchHostsFailed,
+  fetchHosts,
 };

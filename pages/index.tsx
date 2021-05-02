@@ -17,6 +17,7 @@ import {
   changeThemeAction,
   fetchSettings,
   fetchGuests,
+  fetchHosts,
 } from '../store/home/actions';
 import localStorageKeys from '../lib/constants/localStorageKeys';
 import AudioPlayer from '../components/audioPlayer';
@@ -216,6 +217,7 @@ export const getStaticProps = wrapper.getStaticProps(
     store.dispatch(fetchEpisodes());
     store.dispatch(fetchSettings());
     store.dispatch(fetchGuests());
+    store.dispatch(fetchHosts());
     store.dispatch(END);
     await store.sagaTask.toPromise();
     const dir = path.join(process.cwd(), 'public', 'static');
