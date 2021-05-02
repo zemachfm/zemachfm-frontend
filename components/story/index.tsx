@@ -24,7 +24,7 @@ const OurStory: FC<Record<string, null>> = () => (
             />
           </span>
         </div>
-        <p>so this might not go as well as we thogut</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
       </div>
 
       <div className="bg-yellow-500 p-4 text-left transition-all duration-100 hover:shadow-xl text-white rounded-lg">
@@ -37,7 +37,7 @@ const OurStory: FC<Record<string, null>> = () => (
             />
           </span>
         </div>
-        <p>so this might not go as well as we thogut</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
       </div>
       <div className="bg-red-400 p-4 text-left transition-all duration-100 hover:shadow-xl text-white rounded-lg">
         <div className="text-3xl border-b border-gray-100 pb-3 mb-4 text-left font-bold">
@@ -49,7 +49,7 @@ const OurStory: FC<Record<string, null>> = () => (
             />
           </span>
         </div>
-        <p>so this might not go as well as we thogut</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
       </div>
       <div className="bg-blue-500 p-4 text-left transition-all duration-100 hover:shadow-xl text-white rounded-lg">
         <div className="text-3xl border-b border-gray-100 pb-3 mb-4 text-left font-bold">
@@ -61,7 +61,7 @@ const OurStory: FC<Record<string, null>> = () => (
             />
           </span>
         </div>
-        <p>so this might not go as well as we thogut</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
       </div>
     </div>
   </div>
