@@ -67,6 +67,7 @@ const initialState: IHomeReducer = {
       per_page: 4,
     },
   },
+  hosts: { data: [], loading: false },
 };
 
 const homeReducer = produce((draft: IHomeReducer, action) => {
@@ -140,6 +141,16 @@ const homeReducer = produce((draft: IHomeReducer, action) => {
       break;
     case actionTypes.FETCH_GUESTS_FAILED:
       draft.guests.loading = false;
+      break;
+    case actionTypes.FETCH_HOSTS:
+      draft.hosts.loading = true;
+      break;
+    case actionTypes.FETCHING_HOSTS_SUCCEEDED:
+      draft.hosts.loading = false;
+      draft.hosts.data = payload.data;
+      break;
+    case actionTypes.FETCHING_HOSTS_FAILED:
+      draft.hosts.loading = false;
       break;
     default:
       break;

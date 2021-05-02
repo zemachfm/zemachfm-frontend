@@ -89,6 +89,14 @@ interface guests {
   pagination: pagination;
 }
 
+interface IHostRequest {
+  content: renderedType;
+  excerpt: renderedType;
+  title: renderedType;
+}
+
+type Hosts = IHostRequest[];
+
 interface IHomeReducer {
   episodes: {
     paginaton: pagination;
@@ -107,6 +115,10 @@ interface IHomeReducer {
   settings: siteSettings;
   guests: guests;
   theme: ThemeTypes;
+  hosts: {
+    data: Hosts;
+    loading: boolean;
+  };
 }
 
 export type {
@@ -116,4 +128,5 @@ export type {
   IHomeReducer,
   soundSettings,
   playerStore,
+  Hosts,
 };
