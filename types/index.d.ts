@@ -22,4 +22,4 @@ type indexPageType = {
 
 export default indexPageType;
 
-export { ISideBarContents };
+export { ISideBarContents, translatedStrings };
