@@ -18,7 +18,7 @@ const Hosts: React.FC<HostsProps> = props => (
       {props.hosts.map(host => (
         <div className="grid lg:grid-cols-6 grid-cols-4 rounded-xl gap-5 bg-white dark:bg-gray-900">
           <figure
-            className="flex-col lg:col-span-2 col-span-4 bg-gradient-to-t from-gray-200 to-white px-4 py-4 rounded-l-xl dark:from-gray-900 dark:to-gray-800 w-full"
+            className="flex flex-col lg:col-span-2 col-span-4 bg-gradient-to-t justify-center from-gray-200 to-white px-4 py-4 rounded-l-xl dark:from-gray-900 dark:to-gray-800 w-full"
             key={host.post?.post_title}
           >
             {props.loading ? (
@@ -38,9 +38,9 @@ const Hosts: React.FC<HostsProps> = props => (
               {props.loading ? (
                 <div className=" w-full h-4 bg-gradient-to-r dark:from-gray-600 from-gray-200 to-gray-300 dark:to-gray-500 bg-gray-200 animate-pulse " />
               ) : (
-                <div className="text-gray-800 text-3xl font-medium dark:text-white">
+                <h4 className="text-gray-800 lg:text-2xl md:text-2xl text-xl  font-medium dark:text-white">
                   {host.post?.post_title}
-                </div>
+                </h4>
               )}
               {props.loading ? (
                 <div className="w-1/2 h-2 mt-2 bg-gradient-to-r dark:from-gray-600 from-gray-200 to-gray-300 dark:to-gray-500 bg-gray-200 animate-pulse " />
@@ -54,7 +54,7 @@ const Hosts: React.FC<HostsProps> = props => (
             {props.loading ? (
               <div className="w-full h-40 mt-2 bg-gradient-to-r dark:from-gray-600 from-gray-200 to-gray-300 dark:to-gray-500 bg-gray-200 animate-pulse " />
             ) : (
-              <div>
+              <div className="flex flex-col justify-between">
                 <blockquote>
                   <p className=" dark:text-gray-100 text-gray-500">
                     {host.post?.post_excerpt}
