@@ -77,7 +77,10 @@ const Hosts: React.FC<HostsProps> = props => (
                 </div>
 
                 <div className="mt-2">
-                  <a className="text-green-500 font-bold flex gap-2">
+                  <a
+                    className="text-green-500 font-bold flex gap-2"
+                    href={`/host/${host?.post?.post_name}`}
+                  >
                     Read More <ArrowForwardIcon />
                   </a>
                 </div>

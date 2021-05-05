@@ -76,6 +76,7 @@ interface IPost {
   post_title: string;
   post_excerpt: string;
   post_type: string;
+  post_name: string;
 }
 
 interface siteSettings {

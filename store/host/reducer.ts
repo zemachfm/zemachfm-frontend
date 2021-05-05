@@ -14,7 +14,7 @@ const hostPageReducer = produce((draft: IHostPageStates, action) => {
 
   switch (action?.type) {
     case HYDRATE:
-      draft = { ...draft, host: payload };
+      draft = { ...draft, ...payload.host };
       break;
     case hostPageActionTypes.FETCH_HOST:
       draft.gettingHost = true;
@@ -28,6 +28,8 @@ const hostPageReducer = produce((draft: IHostPageStates, action) => {
     default:
       break;
   }
+
+  return draft;
 }, intialState);
 
 export default hostPageReducer;

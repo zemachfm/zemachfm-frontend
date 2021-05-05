@@ -24,9 +24,16 @@ const SingleHost: FC<hostPageType> = ({ locale, content, name }) => {
         <link href="/favicon.ico" rel="icon" />
       </Head>
 
-      <div className="xl:w-3/6 w-6/6 px-5 mx-auto mt-20">
+      <div className="xl:w-3/6 w-6/6 px-5 mx-auto mt-20 text-center">
+        <img
+          alt={hostPageState?.host?.post?.post_title}
+          className="h-22 w-22 md:w-48 md:h-auto mx-auto rounded-full m-6"
+          height="512"
+          src={hostPageState?.host?.img}
+          width="384"
+        />
         <h1
-          className="text-6xl  text-left my-4 font-bold"
+          className="text-6xl  text-center my-4 font-bold"
           dangerouslySetInnerHTML={{
             __html: hostPageState?.host?.post?.post_title,
           }}
