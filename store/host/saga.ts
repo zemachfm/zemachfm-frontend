@@ -13,9 +13,14 @@ function* fetchSingleHostSaga({
 }) {
   try {
     const url = `${GET_HOST_URL}?name=${payload}`;
-    const host: IHostRequest = yield call(axiosGet, url, {});
+    const response = yield call(axiosGet, url, {});
+    const host: IHostRequest = response.data;
 
-    yield put(hostFetched(host));
+    if (typeof host === 'object' && host.post) {
+      yield put(hostFetched(host));
+    } else {
+      yield put(hostFetched(null));
+    }
   } catch (error) {
     yield put(hostFetchFailed());
   }

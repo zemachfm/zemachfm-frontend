@@ -2,7 +2,7 @@ import { IHostRequest } from '../home/types.d';
 
 interface IHostPageStates {
   gettingHost: boolean;
-  host?: IHostRequest;
+  host: IHostRequest | null;
 }
 
 export default IHostPageStates;

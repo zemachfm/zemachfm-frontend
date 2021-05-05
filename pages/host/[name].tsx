@@ -10,9 +10,9 @@ import { wrapper } from '../../store/store';
 import { fetchHost } from '../../store/host/actions';
 import { TRootReducer } from '../../store/reducer';
 import IHostPageState from '../../store/host/types';
-import { hostPageType } from '../../types/index.d';
+import { hostPageType } from '../../types';
 
-const SinglePodcast: FC<hostPageType> = ({ locale, content, name }) => {
+const SingleHost: FC<hostPageType> = ({ locale, content, name }) => {
   const hostPageState: IHostPageState = useSelector(
     (root: TRootReducer) => root.host,
   );
@@ -71,5 +71,5 @@ const getStaticPaths: GetStaticPaths<{ name: string }> = async ({ name }) => ({
   fallback: 'blocking',
 });
 
-export default SinglePodcast;
+export default SingleHost;
 export { getStaticPaths, getStaticProps };

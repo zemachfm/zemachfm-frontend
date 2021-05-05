@@ -6,7 +6,7 @@ import IHostPageStates from './types';
 
 const intialState: IHostPageStates = {
   gettingHost: false,
-  host: undefined,
+  host: null,
 };
 
 const hostPageReducer = produce((draft: IHostPageStates, action) => {
