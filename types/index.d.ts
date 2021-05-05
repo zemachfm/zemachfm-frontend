@@ -23,7 +23,7 @@ type indexPageType = {
 type hostPageType = {
   locale: 'am' | 'en';
   content: translatedStrings;
-  slug: string;
+  name: string;
 };
 
 export default indexPageType;

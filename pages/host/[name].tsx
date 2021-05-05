@@ -10,7 +10,7 @@ import { wrapper } from '../../store/store';
 import { fetchHost } from '../../store/host/actions';
 import { TRootReducer } from '../../store/reducer';
 import IHostPageState from '../../store/host/types';
-import { hostPageType } from '../../types';
+import { hostPageType } from '../../types/index.d';
 
 const SingleHost: FC<hostPageType> = ({ locale, content, name }) => {
   const hostPageState: IHostPageState = useSelector(
