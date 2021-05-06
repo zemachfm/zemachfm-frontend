@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { GetStaticPaths, GetStaticPropsContext } from 'next';
 import path from 'path';
-import {  useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Head from 'next/head';
 import { END } from 'redux-saga';
 import fs from 'fs';
@@ -17,7 +17,7 @@ const SinglePodcast: FC<singlePodcastType> = ({ locale, content, slug }) => {
   );
 
   return (
-    <div>
+    <div className="dark:bg-black bg-gray-50">
       <Head>
         <title>
           {' '}
@@ -28,7 +28,7 @@ const SinglePodcast: FC<singlePodcastType> = ({ locale, content, slug }) => {
         <link href="/favicon.ico" rel="icon" />
       </Head>
       {singlePodcastState[slug] ? (
-        <div className="xl:w-3/6 w-6/6 px-5 mx-auto mt-20">
+        <div className="xl:w-3/6 w-6/6 px-5 mx-auto pt-20 pb-20 ">
           <h1
             className="text-6xl  text-left my-4 font-bold"
             dangerouslySetInnerHTML={{
