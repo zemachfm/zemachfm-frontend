@@ -28,4 +28,4 @@ type hostPageType = {
 
 export default indexPageType;
 
-export { ISideBarContents, hostPageType };
+export { ISideBarContents, hostPageType, translatedStrings };
