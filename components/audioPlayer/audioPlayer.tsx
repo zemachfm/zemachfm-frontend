@@ -9,7 +9,7 @@ import {
   proceedWithPlaying,
 } from '../../store/home/actions';
 
-const AudioPlayerContainer: React.FC<props.audioPlayerProps> = ({
+const AudioPlayerWrapper: React.FC<props.audioPlayerProps> = ({
   player,
   currentPlay,
   playerSettings,
@@ -129,4 +129,4 @@ const AudioPlayerContainer: React.FC<props.audioPlayerProps> = ({
   );
 };
 
-export default AudioPlayerContainer;
+export default AudioPlayerWrapper;

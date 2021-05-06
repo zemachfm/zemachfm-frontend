@@ -57,6 +57,32 @@ const initialState: IHomeReducer = {
       shareTitle: 'Zemach fm Podcast',
       quote: 'checkout This Podcast,Zeamch Fm',
     },
+    story: {
+      storyLine: {
+        title: 'Our Story',
+        description:
+          '<p>Hi There we started our podcast from the way back nov 20 2020 was the first time we publish our first podcast , long time right ?</p>\n',
+      },
+      cards: [
+        {
+          title: 'Mission',
+          description: '<p>descripton</p>\n',
+        },
+        {
+          title: 'Others',
+          description: '<p>whi</p>\n',
+        },
+        {
+          title: '',
+          description: '',
+        },
+        {
+          title: '',
+          description: '',
+        },
+      ],
+      numberOfCards: 4,
+    },
   },
   guests: {
     loading: false,
@@ -77,7 +103,7 @@ const homeReducer = produce((draft: IHomeReducer, action) => {
 
   switch (action.type) {
     case HYDRATE:
-      draft = { ...draft, ...payload.home };
+      draft = { ...draft, ...payload.home, ...{ player: draft.player } };
       break;
     case actionTypes.FETCH_EPISODES_SUCCEDDED:
       draft.episodes.loading = false;
@@ -129,6 +155,9 @@ const homeReducer = produce((draft: IHomeReducer, action) => {
       draft.settings.share = payload.sharingNames;
       draft.settings.platforms = payload.platforms;
       draft.settings.name = payload.name;
+      draft.settings.story.storyLine = payload.story.storyLine;
+      draft.settings.story.cards = payload.story.cards;
+      draft.settings.story.numberOfCards = payload.story.numberOfCards;
       break;
     case actionTypes.FETCH_GUESTS:
       draft.guests.loading = true;
