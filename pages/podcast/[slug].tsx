@@ -28,7 +28,7 @@ const SinglePodcast: FC<singlePodcastType> = ({ locale, content, slug }) => {
         <link href="/favicon.ico" rel="icon" />
       </Head>
       {singlePodcastState[slug] ? (
-        <div className="xl:w-3/6 w-6/6 px-5 mx-auto pt-20 pb-40 ">
+        <div className="xl:w-3/6 w-6/6 px-5 mx-auto pt-20 pb-28 ">
           <h1
             className="text-6xl  text-left my-4 font-bold"
             dangerouslySetInnerHTML={{
