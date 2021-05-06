@@ -8,7 +8,12 @@ import {
   select,
   takeEvery,
 } from 'redux-saga/effects';
-import { GUESTS_URL, PODCASTS_URL, SETTINGS_URL } from '../../lib/store/url';
+import {
+  GUESTS_URL,
+  HOSTS_URL,
+  PODCASTS_URL,
+  SETTINGS_URL,
+} from '../../lib/store/url';
 import { axiosGet } from '../../lib/store/axiosReq';
 import {
   fetchEpisodesSucceeded,
@@ -25,6 +30,8 @@ import {
   fetchSettingsFailed,
   fetchGuestSucceeded,
   fetchGUestsFailed,
+  fetchHostsFailed,
+  fetchHostsSucceeded,
 } from './actions';
 import { EpisodesReturnType } from './index.d';
 import { episode } from './types.d';
@@ -225,7 +232,6 @@ function* changePlayerSettings({ type, payload }) {
 function* fetchSettingsGenerator({ type }: { type: string }) {
   try {
     const { data: fetchedSettings } = yield call(axiosGet, SETTINGS_URL, {});
-    console.log('fetched ', fetchedSettings);
     yield put(fetchSettingsSucceeded(fetchedSettings));
   } catch (err) {
     yield put(fetchSettingsFailed(err));
@@ -253,6 +259,16 @@ function* fetchGuestsGenerator({ type }: { type: string }) {
   }
 }
 
+function* fetchHostsGenerator() {
+  try {
+    const { data } = yield call(axiosGet, HOSTS_URL, {});
+
+    yield put(fetchHostsSucceeded({ data }));
+  } catch (error) {
+    yield put(fetchHostsFailed(error.message || ''));
+  }
+}
+
 function* homeSaga() {
   yield takeLatest(actionTypes.FETCH_EPISODES, fetchEpisodesGenerator);
   yield takeEvery(actionTypes.PLAY_CERTAIN_AUDIO, playCertainAudioGenerator);
@@ -270,5 +286,6 @@ function* homeSaga() {
   yield takeEvery(actionTypes.ADD_PAGINATION_PAGE, fetchEpisodesGenerator);
   yield takeLatest(actionTypes.FETCH_SETTINGS, fetchSettingsGenerator);
   yield takeLatest(actionTypes.FETCH_GUESTS, fetchGuestsGenerator);
+  yield takeLatest(actionTypes.FETCH_HOSTS, fetchHostsGenerator);
 }
 export default homeSaga;

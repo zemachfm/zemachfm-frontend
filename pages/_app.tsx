@@ -2,6 +2,7 @@ import React from 'react';
 import App, { AppInitialProps, AppContext } from 'next/app';
 import { END } from 'redux-saga';
 import { makeStore as SagaStore, wrapper } from '../store/store';
+import AudioPlayerContainer from '../components/audioPlayer/audioPlayerCont';
 import '../styles/globals.css';
 
 class WrappedApp extends App<AppInitialProps> {
@@ -27,7 +28,12 @@ class WrappedApp extends App<AppInitialProps> {
 
   public render() {
     const { Component, pageProps } = this.props;
-    return <Component {...pageProps} />;
+    return (
+      <>
+        <Component {...pageProps} />
+        <AudioPlayerContainer />
+      </>
+    );
   }
 }
 

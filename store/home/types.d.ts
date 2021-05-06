@@ -81,6 +81,7 @@ interface siteSettings {
     shareTitle: string;
     quote: string;
   };
+  story: story;
 }
 
 interface guests {
@@ -88,6 +89,26 @@ interface guests {
   episodes: episode[];
   pagination: pagination;
 }
+
+interface story {
+  storyLine: {
+    title: string;
+    description: string;
+  };
+  cards: {
+    title: string;
+    description: string;
+  }[];
+  numberOfCards: number;
+}
+
+interface IHostRequest {
+  content: renderedType;
+  excerpt: renderedType;
+  title: renderedType;
+}
+
+type Hosts = IHostRequest[];
 
 interface IHomeReducer {
   episodes: {
@@ -107,13 +128,19 @@ interface IHomeReducer {
   settings: siteSettings;
   guests: guests;
   theme: ThemeTypes;
+  hosts: {
+    data: Hosts;
+    loading: boolean;
+  };
 }
 
 export type {
   episode,
+  story,
   siteSettings,
   ThemeTypes,
   IHomeReducer,
   soundSettings,
   playerStore,
+  Hosts,
 };

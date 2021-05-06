@@ -17,10 +17,10 @@ import {
   changeThemeAction,
   fetchSettings,
   fetchGuests,
+  fetchHosts,
 } from '../store/home/actions';
 import localStorageKeys from '../lib/constants/localStorageKeys';
 import AudioPlayer from '../components/audioPlayer';
-import AudioPlayers from '../components/audioPlayer/audioPlayer';
 import SideBar from '../components/Sidebar';
 import SmallDeviceSideBar from '../components/Sidebar/smallDevice.sidebar';
 import prop from '../types/index.d';
@@ -33,6 +33,7 @@ import MessageIcon from '../icons/message-circle.svg';
 import BookIcon from '../icons/book.svg';
 import routes from '../lib/constants/hashRoutes';
 import { ISideBarLink } from '../components/Sidebar/index.d';
+import OurStory from '../components/story/index';
 
 const Home: FC<prop> = ({ content, locale }) => {
   const state: IHomeReducer = useSelector((root: TRootReducer) => root.home);
@@ -46,7 +47,7 @@ const Home: FC<prop> = ({ content, locale }) => {
     guests,
   } = state;
   const { episodes, loading } = episodesDataCont;
-  const { player, currentPlay, currentSettings } = playersDataCont;
+  const { player, currentPlay } = playersDataCont;
 
   const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
 
@@ -169,7 +170,7 @@ const Home: FC<prop> = ({ content, locale }) => {
             <div className="h-full w-full flex-col justify-center hidden lg:flex">
               <SideBar handleRouteChange={handleRouteChange} links={links} />
             </div>
-            <div className="col-span-12 lg:col-span-7 px-5">
+            <div className="col-span-12 lg:col-span-7 lg:px-5">
               <EpisodeCardsContainer
                 currentPlay={currentPlay.item}
                 loading={loading}
@@ -190,6 +191,7 @@ const Home: FC<prop> = ({ content, locale }) => {
                 subTitle={content.guestDescription}
                 title={content.guests}
               />
+              <OurStory story={settings.story} />
               <div className="mx-4 flex flex-col col-span-7 px-5 dark:bg-black">
                 <footer className="py-5 my-5 margin-auto dark:bg-black">
                   <h1 className="dark:text-white text-2xl  text-center">
@@ -198,22 +200,8 @@ const Home: FC<prop> = ({ content, locale }) => {
                 </footer>
               </div>
             </div>
-            <div className="col-span-2 hidden lg:flex">
-              <div className="h-full w-full flex relative flex-col justify-center">
-                <AudioPlayer />
-              </div>
-            </div>
           </main>
         </div>
-
-        {player.audioPlayer ? (
-          <AudioPlayers
-            currentPlay={currentPlay.item}
-            player={player}
-            playerSettings={currentSettings}
-            theme={theme}
-          />
-        ) : null}
       </div>
     </div>
   );
@@ -229,6 +217,7 @@ export const getStaticProps = wrapper.getStaticProps(
     store.dispatch(fetchEpisodes());
     store.dispatch(fetchSettings());
     store.dispatch(fetchGuests());
+    store.dispatch(fetchHosts());
     store.dispatch(END);
     await store.sagaTask.toPromise();
     const dir = path.join(process.cwd(), 'public', 'static');
