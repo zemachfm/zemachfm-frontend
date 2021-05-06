@@ -20,24 +20,30 @@ const SinglePodcast: FC<singlePodcastType> = ({ locale, content, slug }) => {
   return (
     <div>
       <Head>
-        <title> {singlePodcastState[slug][0].title.rendered} </title>
+        <title>
+          {' '}
+          {singlePodcastState[slug]
+            ? singlePodcastState[slug][0].title.rendered
+            : 'loading'}{' '}
+        </title>
         <link href="/favicon.ico" rel="icon" />
       </Head>
-
-      <div className="xl:w-3/6 w-6/6 px-5 mx-auto mt-20">
-        <h1
-          className="text-6xl  text-left my-4 font-bold"
-          dangerouslySetInnerHTML={{
-            __html: singlePodcastState[slug][0].title.rendered,
-          }}
-        ></h1>
-        <div
-          className="w-full text-lg text-gray-600 dark:text-gray-200 fill-current "
-          dangerouslySetInnerHTML={{
-            __html: singlePodcastState[slug][0].content.rendered,
-          }}
-        ></div>
-      </div>
+      {singlePodcastState[slug] ? (
+        <div className="xl:w-3/6 w-6/6 px-5 mx-auto mt-20">
+          <h1
+            className="text-6xl  text-left my-4 font-bold"
+            dangerouslySetInnerHTML={{
+              __html: singlePodcastState[slug][0].title.rendered,
+            }}
+          ></h1>
+          <div
+            className="w-full text-lg text-gray-600 dark:text-gray-200 fill-current "
+            dangerouslySetInnerHTML={{
+              __html: singlePodcastState[slug][0].content.rendered,
+            }}
+          ></div>
+        </div>
+      ) : null}
     </div>
   );
 };
