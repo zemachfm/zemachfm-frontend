@@ -13,38 +13,38 @@ const ContactUs = () => {
         </h1>
         <p className="text-gray-400 text-lg mb-1"> Get intouch with us </p>
       </div>
-      <form action="POST">
-        <div className="grid grid-cols-1  pt-8 gap-6 w-3/6 mr-auto mb-5 pb-4 rounded-xl">
-          <div>
-            <input
-              className="bg-gray-200 border-2 focus:outline-none outline-none focus:border-green-500  w-full mb-4 border-gray-300 rounded text-gray-600 py-3 px-4"
-              id="name"
-              name="name"
-              placeholder="name"
-              type="text"
-            />
-            <input
-              className="bg-gray-200 border-2 focus:outline-none outline-none focus:border-green-500  w-full mb-4 border-gray-300 rounded text-gray-600 py-3 px-4"
-              id="name"
-              name="name"
-              placeholder="name"
-              type="text"
-            />
-
-            <textarea
-              className="bg-gray-200 border-2 focus:outline-none outline-none focus:border-green-500  w-full mb-4 border-gray-300 rounded text-gray-600 py-3 px-4"
-              id="name"
-              name="name"
-              placeholder="name"
-            ></textarea>
-            <button
-              className="px-6 py-2 text-xl font-bold text-left bg-green-400 text-white rounded-md"
-              type="submit"
-            >
-              Send
-            </button>
-          </div>
+      <form action="POST" className=" py-5 px-4 rounded-3xl">
+        <div>
+          HI, My name is
+          <input
+            className=" bg-transparent inline border-b-2 focus:outline-none outline-none focus:border-green-500  mb-4 border-gray-500 text-gray-600 py-3 px-4"
+            id="name"
+            name="name"
+            placeholder="name"
+            type="text"
+          />
+          . . If you want to get back to me use
+          <input
+            className="  bg-transparent inline border-b-2 focus:outline-none outline-none focus:border-green-500  mb-4 border-gray-500 text-gray-600 py-3 px-4"
+            id="email"
+            name="email"
+            placeholder="email"
+            type="email"
+          />
         </div>
+        <div>
+          <span>I Would like to say</span>
+          <input
+            className="  bg-transparent inline border-b-2 focus:outline-none w-5/6 outline-none focus:border-green-500  mb-4 border-gray-500 text-gray-600 py-3 px-4"
+            id="message"
+            name="message"
+            placeholder="message"
+            type="text"
+          />
+        </div>
+        <button className="my-4 px-6 block mb-4 text-gray-200 py-3 font-bold bg-green-400 rounded-lg">
+          Send
+        </button>
       </form>
     </div>
   );
