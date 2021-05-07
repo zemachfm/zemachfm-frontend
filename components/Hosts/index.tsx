@@ -1,10 +1,10 @@
 import React from 'react';
+import Link from 'next/link';
 import { HostsProps } from './types.d';
 import InstagramIcon from '../../icons/instagram.svg';
 import TwitterIcon from '../../icons/twitter.svg';
 import LinkedInIcon from '../../icons/linkedin.svg';
 import GithubIcon from '../../icons/github.svg';
-import ArrowForwardIcon from '../../icons/arrow-right.svg';
 
 const Hosts: React.FC<HostsProps> = props => (
   <section id="hosts">
@@ -39,9 +39,13 @@ const Hosts: React.FC<HostsProps> = props => (
               {props.loading ? (
                 <div className=" w-full h-4 bg-gradient-to-r dark:from-gray-600 from-gray-200 to-gray-300 dark:to-gray-500 bg-gray-200 animate-pulse " />
               ) : (
-                <h4 className="text-gray-800 pl-4 lg:text-2xl md:text-2xl text-xl  font-medium dark:text-white">
-                  {host.post?.post_title}
-                </h4>
+                <Link href={`/host/${host?.post?.post_name}`} passHref>
+                  <a>
+                    <h4 className="text-gray-800 pl-4 lg:text-2xl md:text-2xl text-xl  font-medium dark:text-white hover:text-green-500 dark:hover:text-green-500">
+                      {host.post?.post_title}
+                    </h4>
+                  </a>
+                </Link>
               )}
               {props.loading ? (
                 <div className="w-1/2 h-2 mt-2 bg-gradient-to-r dark:from-gray-600 from-gray-200 to-gray-300 dark:to-gray-500 bg-gray-200 animate-pulse " />
@@ -80,7 +84,7 @@ const Hosts: React.FC<HostsProps> = props => (
                 {/* <div className="mt-2">
                   <a
                     className="text-green-500 font-bold flex gap-2"
-                    href={`/host/${host?.post?.post_name}`}
+                    href={/host/${host?.post?.post_name}}
                   >
                     Read More <ArrowForwardIcon />
                   </a>

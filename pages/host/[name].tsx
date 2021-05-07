@@ -1,8 +1,7 @@
-import { FC, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { FC } from 'react';
 import { GetStaticPaths, GetStaticPropsContext } from 'next';
 import path from 'path';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Head from 'next/head';
 import { END } from 'redux-saga';
 import fs from 'fs';
@@ -60,20 +59,20 @@ const getStaticProps = wrapper.getStaticProps(
     store.dispatch(fetchHost(params.name.toString()));
     store.dispatch(END);
     await store.sagaTask.toPromise();
-    const dir = path.join(process.cwd(), 'public', 'static');
-    const filePath = `${dir}/${locale}.json`;
-    const buffer = fs.readFileSync(filePath);
-    const content = JSON.parse(buffer.toString());
+    // const dir = path.join(process.cwd(), 'public', 'static');
+    // const filePath = `${dir}/${locale}.json`;
+    // const buffer = fs.readFileSync(filePath);
+    // const content = JSON.parse(buffer.toString());
     return {
       props: {
-        content,
+        // content,
         locale,
         name: params.name,
       },
     };
   },
 );
-const getStaticPaths: GetStaticPaths<{ name: string }> = async ({ name }) => ({
+const getStaticPaths: GetStaticPaths<{ name: string }> = async () => ({
   paths: [],
   fallback: 'blocking',
 });

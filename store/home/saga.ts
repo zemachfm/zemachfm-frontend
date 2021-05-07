@@ -261,7 +261,7 @@ function* fetchGuestsGenerator({ type }: { type: string }) {
 
 function* fetchHostsGenerator() {
   try {
-    const { data } = yield call(axiosGet, HOSTS_URL);
+    const { data } = yield call(axiosGet, HOSTS_URL, {});
 
     yield put(fetchHostsSucceeded({ data }));
   } catch (error) {
