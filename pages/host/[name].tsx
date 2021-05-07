@@ -1,8 +1,7 @@
-import { FC, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { FC } from 'react';
 import { GetStaticPaths, GetStaticPropsContext } from 'next';
 import path from 'path';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Head from 'next/head';
 import { END } from 'redux-saga';
 import fs from 'fs';
@@ -73,7 +72,7 @@ const getStaticProps = wrapper.getStaticProps(
     };
   },
 );
-const getStaticPaths: GetStaticPaths<{ name: string }> = async ({ name }) => ({
+const getStaticPaths: GetStaticPaths<{ name: string }> = async () => ({
   paths: [],
   fallback: 'blocking',
 });
