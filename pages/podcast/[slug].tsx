@@ -71,7 +71,7 @@ const getStaticProps = wrapper.getStaticProps(
     };
   },
 );
-const getStaticPaths: GetStaticPaths<{ slug: string }> = async ({ slug }) => ({
+const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => ({
   paths: [],
   fallback: 'blocking',
 });
