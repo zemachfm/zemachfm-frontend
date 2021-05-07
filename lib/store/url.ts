@@ -12,7 +12,7 @@ const PODCASTS_URL = `${API_URL}/podcast`;
 const GUESTS_URL = `${PODCASTS_URL}?tags=82`;
 const SETTINGS_URL = `${CUSTOM_API_URL}/settings`;
 const GET_HOST_URL = `${CUSTOM_API_URL}/host`;
-const HOSTS_URL = `${API_URL}/hosts`;
+const HOSTS_URL = `${CUSTOM_API_URL}/hosts`;
 const SINGLE_PODCAST = (slug: string): string =>
   `${API_URL}/podcast?slug=${slug};`;
 export {
