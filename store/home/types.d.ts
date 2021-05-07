@@ -58,16 +58,30 @@ interface pagination {
   total: number;
 }
 
+interface ISocialMedias {
+  facebook: string;
+  twitter: string;
+  instagram: string;
+  linkedIn: string;
+  github: string;
+}
+
+interface IFullSocialMedias extends ISocialMedias {
+  telegram: string;
+}
+
+interface IPost {
+  post_date: string;
+  post_content: string;
+  post_title: string;
+  post_excerpt: string;
+  post_type: string;
+  post_name: string;
+}
+
 interface siteSettings {
   name: string;
-  social: {
-    facebook: string;
-    twitter: string;
-    instagram: string;
-    linkedIn: string;
-    github: string;
-    telegram: string;
-  };
+  social: IFullSocialMedias;
   platforms: {
     spotify: string;
     googlePodcast: string;
@@ -103,9 +117,9 @@ interface story {
 }
 
 interface IHostRequest {
-  content: renderedType;
-  excerpt: renderedType;
-  title: renderedType;
+  post: IPost;
+  img: string;
+  socialMedia: ISocialMedias;
 }
 
 type Hosts = IHostRequest[];
@@ -143,4 +157,5 @@ export type {
   soundSettings,
   playerStore,
   Hosts,
+  IHostRequest,
 };

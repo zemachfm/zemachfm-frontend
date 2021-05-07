@@ -181,7 +181,7 @@ const Home: FC<prop> = ({ content, locale }) => {
                 subTitle={content.episodesDescription}
                 title={content.episodes}
               />
-              <Hosts />
+              <Hosts hosts={state.hosts.data} loading={state.hosts.loading} />
               <Guests
                 currentPlay={currentPlay.item}
                 episodes={guests.episodes}

@@ -20,6 +20,12 @@ type indexPageType = {
   content: translatedStrings;
 };
 
+type hostPageType = {
+  locale: 'am' | 'en';
+  content: translatedStrings;
+  name: string;
+};
+
 export default indexPageType;
 
-export { ISideBarContents };
+export { ISideBarContents, hostPageType };
