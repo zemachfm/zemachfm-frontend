@@ -23,3 +23,15 @@ a {
 * {
   box-sizing: border-box;
 }
+
+/**
+* single podcast css
+*/
+
+ul.wp-block-social-links {
+  display: flex;
+  margin-top: 20px;
+}
+.wp-social-link {
+  margin-left: 10px;
+}
