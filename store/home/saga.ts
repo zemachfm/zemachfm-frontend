@@ -232,7 +232,6 @@ function* changePlayerSettings({ type, payload }) {
 function* fetchSettingsGenerator({ type }: { type: string }) {
   try {
     const { data: fetchedSettings } = yield call(axiosGet, SETTINGS_URL, {});
-    console.log('fetched ', fetchedSettings);
     yield put(fetchSettingsSucceeded(fetchedSettings));
   } catch (err) {
     yield put(fetchSettingsFailed(err));
@@ -262,7 +261,7 @@ function* fetchGuestsGenerator({ type }: { type: string }) {
 
 function* fetchHostsGenerator() {
   try {
-    const { data } = yield call(axiosGet, HOSTS_URL);
+    const { data } = yield call(axiosGet, HOSTS_URL, {});
 
     yield put(fetchHostsSucceeded({ data }));
   } catch (error) {
