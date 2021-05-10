@@ -19,7 +19,7 @@ const OurStory: FC<storyIndex> = ({ story }) => {
         className="text-gray-400 mb-5 "
         dangerouslySetInnerHTML={{ __html: description }}
       ></div>
-      <div className={`grid gap-6 grid-cols-${numberOfCards}`}>
+      <div className={`grid gap-6 md:grid-cols-2 grid-cols-1 xl:grid-cols-${numberOfCards}`}>
         {cards
           ? cards.map((card, index) =>
               card.title ? (
