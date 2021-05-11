@@ -11,14 +11,17 @@ const CUSTOM_API_URL = `${BASE_URL}/wp-json/custom/v1`;
 const PODCASTS_URL = `${API_URL}/podcast`;
 const GUESTS_URL = `${PODCASTS_URL}?tags=82`;
 const SETTINGS_URL = `${CUSTOM_API_URL}/settings`;
-const HOSTS_URL = `${CUSTOM_API_URL}/hosts`;
 const GET_HOST_URL = `${CUSTOM_API_URL}/host`;
+const HOSTS_URL = `${API_URL}/hosts`;
+const SINGLE_PODCAST = (slug: string): string =>
+  `${API_URL}/podcast?slug=${slug};`;
 export {
   BASE_URL,
   API_URL,
   PODCASTS_URL,
   SETTINGS_URL,
+  GET_HOST_URL,
   GUESTS_URL,
   HOSTS_URL,
-  GET_HOST_URL,
+  SINGLE_PODCAST,
 };

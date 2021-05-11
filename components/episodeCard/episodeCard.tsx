@@ -1,6 +1,7 @@
 import React from 'react';
 import { createRipples } from 'react-ripples';
 import Image from 'next/image';
+import Link from 'next/link';
 import PopOver from '@bit/mui-org.material-ui.popover';
 import {
   FacebookShareButton,
@@ -123,10 +124,12 @@ const EpisodeCard: React.FC<episodeCard> = ({
           </div>
         ) : (
           <div className="flex flex-col w-full ">
-            <p
-              className="col-start-5 mt-0 ml-4 text-lg	text-left w-full mb-1 font-normal overflow-ellipsis overflow-hidden h-auto text-gray-700 dark:text-gray-200"
-              dangerouslySetInnerHTML={{ __html: title }}
-            ></p>
+            <Link href={`podcast/${item.slug}`}>
+              <p
+                className="col-start-5 mt-0 ml-4 text-lg cursor-pointer	text-left w-full mb-1 font-normal overflow-ellipsis overflow-hidden h-auto text-gray-700 dark:text-gray-200"
+                dangerouslySetInnerHTML={{ __html: title }}
+              ></p>
+            </Link>
             <span className="text-gray-400 dark:text-gray-500  ml-4 text-xs my-0">
               {item.meta.date_recorded
                 ? `Recorded ${item.meta.date_recorded} /`

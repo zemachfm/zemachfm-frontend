@@ -32,6 +32,7 @@ interface soundSettings {
 }
 
 interface episode {
+  slug: string;
   id: number;
   title: renderedType;
   description: renderedType;
