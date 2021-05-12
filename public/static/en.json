@@ -11,5 +11,19 @@
     "guests": "Guests",
     "story": "Story",
     "contact": "Contact"
+  },
+  "contactUs": {
+    "title": "Contact Us",
+    "subtitle": "Share your thoughts about this podcast, we are always trying to get better help us by sharing your thoughts",
+    "additional": "don't hesitate to share",
+    "nameIntro": "My name is",
+    "name": "name",
+    "emailIntro": "If you want to get back to me, my email is",
+    "email": " email ( optional )",
+    "messageIntro": " I wanted to say",
+    "message": "message",
+    "sentButton": "send",
+    "sending": "sending ...",
+    "sent": "We have got your message, Thank you. We will send Confirmation Email"
   }
 }

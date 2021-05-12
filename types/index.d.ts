@@ -5,6 +5,22 @@ interface ISideBarContents {
   story: string;
   contact: string;
 }
+
+interface contactUsStringType {
+  title: string;
+  subtitle: string;
+  additional: string;
+  nameIntro: string;
+  name: string;
+  emailIntro: string;
+  email: string;
+  messageIntro: string;
+  message: string;
+  sentButton: string;
+  sending: string;
+  sent: string;
+}
+
 interface translatedStrings {
   appName: string;
   episodes: string;
@@ -13,6 +29,7 @@ interface translatedStrings {
   sidebar: ISideBarContents;
   guests: string;
   guestDescription: string;
+  contactUs: contactUsStringType;
 }
 
 type indexPageType = {
@@ -28,4 +45,9 @@ type hostPageType = {
 
 export default indexPageType;
 
-export { ISideBarContents, hostPageType, translatedStrings };
+export {
+  ISideBarContents,
+  contactUsStringType,
+  hostPageType,
+  translatedStrings,
+};
