@@ -1,4 +1,6 @@
 import React from 'react';
+import path from 'path';
+import fs from 'fs';
 import App, { AppInitialProps, AppContext } from 'next/app';
 import NProgress from 'nprogress';
 import Router from 'next/router';
@@ -20,7 +22,7 @@ Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
 class WrappedApp extends App<AppInitialProps> {
-  public static getInitialProps = async ({ Component, ctx }: any) => {
+  public static getInitialProps = async ({ Component, ctx, router }: any) => {
     // 1. Wait for all page actions to dispatch
     const pageProps = {
       ...(Component.getInitialProps
@@ -34,6 +36,13 @@ class WrappedApp extends App<AppInitialProps> {
       await ctx.store.sagaTask.toPromise();
     }
 
+    const dir = path.join(process.cwd(), 'public', 'static');
+    const filePath = `${dir}/${router?.locale || 'am'}.json`;
+    const buffer = fs.readFileSync(filePath);
+    const content = JSON.parse(buffer.toString());
+
+    pageProps.content = content;
+
     // 3. Return props
     return {
       pageProps,
@@ -42,6 +51,7 @@ class WrappedApp extends App<AppInitialProps> {
 
   public render() {
     const { Component, pageProps } = this.props;
+
     return (
       <>
         <Component {...pageProps} />
