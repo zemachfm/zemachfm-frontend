@@ -44,6 +44,7 @@ interface episode {
   episode_featured_image: string;
   episode_player_image: string;
   small_player: string;
+  big_player: string;
   download_link: string;
 }
 
