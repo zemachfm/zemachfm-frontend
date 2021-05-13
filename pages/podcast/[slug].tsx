@@ -1,8 +1,7 @@
-import { FC, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { FC } from 'react';
 import { GetStaticPaths, GetStaticPropsContext } from 'next';
 import path from 'path';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Head from 'next/head';
 import { END } from 'redux-saga';
 import fs from 'fs';
@@ -18,26 +17,32 @@ const SinglePodcast: FC<singlePodcastType> = ({ locale, content, slug }) => {
   );
 
   return (
-    <div>
+    <div className="dark:bg-black bg-gray-50">
       <Head>
-        <title> {singlePodcastState[slug][0].title.rendered} </title>
+        <title>
+          {' '}
+          {singlePodcastState[slug]
+            ? singlePodcastState[slug][0].title.rendered
+            : 'loading'}{' '}
+        </title>
         <link href="/favicon.ico" rel="icon" />
       </Head>
-
-      <div className="xl:w-3/6 w-6/6 px-5 mx-auto mt-20">
-        <h1
-          className="text-6xl  text-left my-4 font-bold"
-          dangerouslySetInnerHTML={{
-            __html: singlePodcastState[slug][0].title.rendered,
-          }}
-        ></h1>
-        <div
-          className="w-full text-lg text-gray-600 dark:text-gray-200 fill-current "
-          dangerouslySetInnerHTML={{
-            __html: singlePodcastState[slug][0].content.rendered,
-          }}
-        ></div>
-      </div>
+      {singlePodcastState[slug] ? (
+        <div className="xl:w-3/6 w-6/6 px-5 mx-auto pt-20 pb-28 ">
+          <h1
+            className="text-6xl  text-left my-4 font-bold"
+            dangerouslySetInnerHTML={{
+              __html: singlePodcastState[slug][0].title.rendered,
+            }}
+          ></h1>
+          <div
+            className="w-full text-lg text-gray-600 dark:text-gray-200 fill-current "
+            dangerouslySetInnerHTML={{
+              __html: singlePodcastState[slug][0].content.rendered,
+            }}
+          ></div>
+        </div>
+      ) : null}
     </div>
   );
 };
@@ -66,7 +71,7 @@ const getStaticProps = wrapper.getStaticProps(
     };
   },
 );
-const getStaticPaths: GetStaticPaths<{ slug: string }> = async ({ slug }) => ({
+const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => ({
   paths: [],
   fallback: 'blocking',
 });
