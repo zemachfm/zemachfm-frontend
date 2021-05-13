@@ -102,7 +102,7 @@ const AudioPlayerWrapper: React.FC<props.audioPlayerProps> = ({
 
   return (
     <div className="col-span-24">
-      <div className=" fixed bottom-0 z-100 w-full ">
+      <div className=" fixed bottom-0 z-20 w-full ">
         <div
           className="relative py-2 bg-white dark:bg-gray-800 bg-opacity-60 bg-clip-padding dark:bg-opacity-80 px-8 shadow-2xl border-t-1 dark:border-gray-900 border-gray-200 z-100"
           style={{ backdropFilter: 'blur(20px)' }}
