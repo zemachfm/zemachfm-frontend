@@ -1,31 +1,113 @@
 import axios from 'axios';
-import { FC, useState } from 'react';
+import { FC, useState, FormEvent } from 'react';
 import ForwardIcon from '../../icons/arrow-ios-forward-outline.svg';
 import { CONTACT_US } from '../../lib/store/url';
+import { validateEmail, stripTags } from '../../lib/utils/validation';
 import contactUsType from './index.d';
 
+interface typeVal {
+  error: boolean;
+  value: string;
+  touched: boolean;
+  name: string;
+}
+
 const ContactUs: FC<contactUsType> = ({ content }) => {
-  const [name, setName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
-  const [message, setMessage] = useState<string>('');
+  const [name, setName] = useState<typeVal>({
+    value: '',
+    error: true,
+    touched: false,
+    name: 'name',
+  });
+  const [email, setEmail] = useState<typeVal>({
+    value: '',
+    error: true,
+    touched: false,
+    name: 'email',
+  });
+  const [message, setMessage] = useState<typeVal>({
+    value: '',
+    error: true,
+    touched: false,
+    name: 'message',
+  });
   const [loading, setLoading] = useState<boolean>(false);
   const [submitted, setSubmitted] = useState<boolean>(false);
 
+  const onFocus = (type: string): void => {
+    switch (type) {
+      case 'name':
+        setName({
+          ...name,
+          touched: true,
+        });
+        break;
+      case 'email':
+        setEmail({
+          ...email,
+          touched: true,
+        });
+        break;
+      case 'message':
+        setMessage({
+          ...message,
+          touched: true,
+        });
+        break;
+      default:
+    }
+  };
+
+  const onChange = (
+    event: FormEvent<HTMLInputElement>,
+    type: typeVal,
+  ): void => {
+    switch (type.name) {
+      case 'email':
+        setEmail({
+          ...email,
+          value: stripTags(event.currentTarget.value),
+          error: validateEmail(event.currentTarget.value),
+          touched: true,
+        });
+        break;
+      case 'name':
+        setName({
+          ...name,
+          value: stripTags(event.currentTarget.value),
+          error: event.currentTarget.value.length < 1,
+          touched: true,
+        });
+        break;
+      case 'message':
+        setMessage({
+          ...message,
+          value: stripTags(event.currentTarget.value),
+          error: event.currentTarget.value.length < 1,
+          touched: true,
+        });
+        break;
+      default:
+    }
+  };
+
   const onSubmit = async e => {
     e.preventDefault();
-    setLoading(true);
-    try {
-      const response = await axios.post(CONTACT_US, {
-        name,
-        email,
-        message,
-      });
-
+    if (!name.error && !email.error && !message.error) {
       setLoading(true);
-      setSubmitted(true);
-    } catch (err) {
-      setLoading(false);
-      setSubmitted(false);
+      try {
+        await axios.post(CONTACT_US, {
+          name,
+          email,
+          message,
+        });
+
+        setLoading(true);
+        setSubmitted(true);
+      } catch (err) {
+        setLoading(false);
+        setSubmitted(false);
+      }
     }
   };
 
@@ -35,10 +117,12 @@ const ContactUs: FC<contactUsType> = ({ content }) => {
         <h1 className=" text-6xl my-10 font-bold dark:text-gray-200 mb-3 ">
           {content.title}
         </h1>
-        <p className="text-gray-400 text-lg mb-1 ">{content.subtitle}</p>
+        <p className="text-gray-600 text-lg mb-1 dark:text-gray-200">
+          {content.subtitle}
+        </p>
       </div>
       {submitted ? (
-        <p className="text-3xl my-10">{content.sent}</p>
+        <p className="text-3xl my-10 dark:text-white">{content.sent}</p>
       ) : (
         <form
           action="POST"
@@ -46,48 +130,71 @@ const ContactUs: FC<contactUsType> = ({ content }) => {
           onSubmit={onSubmit}
         >
           {loading ? (
-            <div className="absolute bg-gray-50 z-10 flex flex-row justify-items-center bg-opacity-50 w-full h-full items-center">
-              <p className="text-2xl w-full text-center"> {content.sending} </p>
+            <div className="absolute bg-gray-50 dark:bg-gray-800 dark:bg-opacity-60 z-10 flex flex-row justify-items-center bg-opacity-50 w-full h-full items-center">
+              <p className="text-2xl w-full text-center dark:text-gray-200">
+                {content.sending}
+              </p>
             </div>
           ) : null}
-          <h3 className="text-2xl mb-4">{content.additional}</h3>
+          <h3 className="text-2xl mb-4 dark:text-gray-50">
+            {content.additional}
+          </h3>
 
           <div>
-            {content.nameIntro}
-            <input
-              className=" mx-2 bg-transparent inline border-b-2 focus:outline-none outline-none focus:border-green-500  mb-4 border-gray-500 text-gray-600 py-3 px-4"
-              id="name"
-              name="name"
-              onChange={e => setName(e.target.value)}
-              placeholder={content.name}
-              type="text"
-              value={name}
-            />
-            {content.emailIntro}
-            <input
-              className=" mx-2 bg-transparent inline border-b-2 focus:outline-none outline-none focus:border-green-500  mb-4 border-gray-500 text-gray-600 py-3 px-4"
-              id="email"
-              name="email"
-              onChange={e => setEmail(e.target.value)}
-              placeholder={content.email}
-              type="email"
-              value={email}
-            />
+            <span className="block lg:inline dark:text-gray-100 ">
+              {content.nameIntro}
+              <input
+                className={`mx-2 w-full lg:w-auto bg-transparent inline border-b-2 focus:outline-none outline-none focus:border-green-500  mb-4 dark:text-gray-100 ${
+                  name.error && name.touched
+                    ? 'border-red-400'
+                    : 'border-gray-500'
+                } text-gray-900 py-3 px-4`}
+                id="name"
+                name="name"
+                onChange={e => onChange(e, name)}
+                onFocus={() => onFocus(name.name)}
+                placeholder={content.name}
+                type="text"
+                value={name.value}
+              />
+            </span>
+            <span className="block lg:inline dark:text-gray-100 ">
+              {content.emailIntro}
+              <input
+                className={` mx-2 w-full lg:w-auto bg-transparent inline border-b-2 focus:outline-none outline-none focus:border-green-500  mb-4  ${
+                  email.error && email.touched
+                    ? 'border-red-400'
+                    : 'border-gray-500'
+                } dark:text-gray-100 text-gray-900 py-3 px-4`}
+                id="email"
+                name="email"
+                onChange={e => onChange(e, email)}
+                onFocus={() => onFocus(email.name)}
+                placeholder={content.email}
+                type="email"
+                value={email.value}
+              />
+            </span>
           </div>
-          <div className="mt-3">
+          <div className="mt-3 dark:text-gray-100">
             <span> {content.messageIntro} </span>
             <input
-              className="  bg-transparent inline border-b-2 ml-4 focus:outline-none w-5/6 outline-none focus:border-green-500  mb-4 border-gray-500 text-gray-600 py-3 px-4"
+              className={`w-full lg:w-5/6  bg-transparent inline border-b-2 ml-4 focus:outline-none dark:text-gray-100 outline-none focus:border-green-500  mb-4 ${
+                message.error && message.touched
+                  ? 'border-red-400'
+                  : 'border-gray-500'
+              }  text-gray-900 py-3 px-4`}
               id="message"
               name="message"
-              onChange={e => setMessage(e.target.value)}
+              onChange={e => onChange(e, message)}
+              onFocus={() => onFocus(message.name)}
               placeholder={content.message}
               type="text"
-              value={message}
+              value={message.value}
             />
           </div>
           <button
-            className="my-4 px-6 flex flex-row mb-4 outline-none focus:outine-none items-center text-gray-200 py-3 font-bold bg-green-400 hover:bg-green-500 hover:shadow-lg rounded-lg"
+            className="my-4 px-6 flex flex-row mb-4 outline-none focus:outine-none items-center text-gray-200 py-3 font-bold bg-green-500 dark:bg-green-600 dark:text-gray-100 hover:bg-green-500 hover:shadow-lg rounded-lg"
             type="submit"
           >
             <span> {content.sentButton} </span>
