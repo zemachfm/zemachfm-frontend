@@ -32,7 +32,7 @@ const Hosts: React.FC<HostsProps> = props => (
             )}
           </figure>
           <div
-            className="lg:p-1 p-4 lg:col-span-5 2xl:relative lg:absolute 2xl:bg-white lg:dark:bg-gray-900 lg:bg-gray-100 bg-white  lg:bg-opacity-70 lg:dark:bg-opacity-60 bottom-0 z-10 flex flex-col justify-around col-span-4 space-y-4 text-left lg:py-4"
+            className="lg:p-1 p-4 lg:col-span-5 2xl:relative lg:absolute dark:bg-gray-900 2xl:bg-white lg:dark:bg-gray-900 lg:bg-gray-100 bg-white  lg:bg-opacity-70 lg:dark:bg-opacity-60 bottom-0 z-10 flex flex-col justify-around col-span-4 space-y-4 text-left lg:py-4"
             style={{ backdropFilter: 'blur(2px)' }}
           >
             <figcaption className="">
@@ -80,15 +80,6 @@ const Hosts: React.FC<HostsProps> = props => (
                     <LinkedInIcon className="text-blue-400 fill-current ml-6" />
                   </a>
                 </div>
-
-                {/* <div className="mt-2">
-                  <a
-                    className="text-green-500 font-bold flex gap-2"
-                    href={/host/${host?.post?.post_name}}
-                  >
-                    Read More <ArrowForwardIcon />
-                  </a>
-                </div> */}
               </div>
             )}
           </div>

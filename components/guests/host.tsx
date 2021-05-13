@@ -51,7 +51,7 @@ const GuestCard: FC<hostProps> = ({
   };
 
   return (
-    <div className="rounded-lg relative overflow-hidden  bg-whtite ">
+    <div className="rounded-lg relative overflow-hidden  ">
       <img className="w-full" src={item.big_player} />
       <div
         className="absolute bg-opacity-10 bg-gray-200 bottom-0 w-full"
