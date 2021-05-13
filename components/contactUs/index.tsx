@@ -4,6 +4,7 @@ import ForwardIcon from '../../icons/arrow-ios-forward-outline.svg';
 import { CONTACT_US } from '../../lib/store/url';
 import { validateEmail, stripTags } from '../../lib/utils/validation';
 import contactUsType from './index.d';
+import ResizingTextarea from './resizingTextarea';
 
 interface typeVal {
   error: boolean;
@@ -114,7 +115,10 @@ const ContactUs: FC<contactUsType> = ({ content }) => {
   return (
     <div>
       <div className="flex flex-col">
-        <h1 className=" text-6xl my-10 font-bold dark:text-gray-200 mb-3 ">
+        <h1
+          className=" text-6xl my-10 font-bold dark:text-gray-200 mb-3 "
+          id="contact"
+        >
           {content.title}
         </h1>
         <p className="text-gray-600 text-lg mb-1 dark:text-gray-200">
@@ -177,9 +181,9 @@ const ContactUs: FC<contactUsType> = ({ content }) => {
             </span>
           </div>
           <div className="mt-3 dark:text-gray-100">
-            <span> {content.messageIntro} </span>
-            <input
-              className={`w-full lg:w-5/6  bg-transparent inline border-b-2 ml-4 focus:outline-none dark:text-gray-100 outline-none focus:border-green-500  mb-4 ${
+            <span className="block" > {content.messageIntro} </span>
+            <ResizingTextarea
+              className={`w-full lg:w-5/6  bg-transparent inline border-b-2  overflow-y-hidden focus:outline-none dark:text-gray-100 outline-none focus:border-green-500  mb-4 ${
                 message.error && message.touched
                   ? 'border-red-400'
                   : 'border-gray-500'
@@ -189,7 +193,6 @@ const ContactUs: FC<contactUsType> = ({ content }) => {
               onChange={e => onChange(e, message)}
               onFocus={() => onFocus(message.name)}
               placeholder={content.message}
-              type="text"
               value={message.value}
             />
           </div>
