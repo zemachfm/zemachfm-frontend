@@ -6,6 +6,13 @@ interface ISideBarContents {
   contact: string;
 }
 
+interface footer {
+  subtitle: string;
+  recentEpisodes: string;
+  platforms: string;
+  copyright: string;
+}
+
 interface contactUsStringType {
   title: string;
   subtitle: string;
@@ -30,6 +37,7 @@ interface translatedStrings {
   guests: string;
   guestDescription: string;
   contactUs: contactUsStringType;
+  footer: footer;
 }
 
 type indexPageType = {

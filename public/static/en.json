@@ -25,5 +25,11 @@
     "sentButton": "send",
     "sending": "sending ...",
     "sent": "We have got your message, Thank you. We will send Confirmation Email"
+  },
+  "footer": {
+    "subtitle": "Zemach FM is an amharic technology podcast that focus on past , present and future technological advances. ",
+    "recentEpisodes": "Our Podcast Pick",
+    "platforms": "Platforms you can find us",
+    "copyright": "Copyright reserved."
   }
 }

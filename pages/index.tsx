@@ -20,7 +20,6 @@ import {
   fetchHosts,
 } from '../store/home/actions';
 import localStorageKeys from '../lib/constants/localStorageKeys';
-import AudioPlayer from '../components/audioPlayer';
 import SideBar from '../components/Sidebar';
 import SmallDeviceSideBar from '../components/Sidebar/smallDevice.sidebar';
 import prop from '../types/index.d';
@@ -35,6 +34,7 @@ import routes from '../lib/constants/hashRoutes';
 import { ISideBarLink } from '../components/Sidebar/index.d';
 import OurStory from '../components/story/index';
 import ContactUs from '../components/contactUs';
+import Footer from '../components/footer';
 
 const Home: FC<prop> = ({ content, locale }) => {
   const state: IHomeReducer = useSelector((root: TRootReducer) => root.home);
@@ -194,13 +194,7 @@ const Home: FC<prop> = ({ content, locale }) => {
               />
               <OurStory story={settings.story} />
               <ContactUs content={content.contactUs} />
-              <div className="mx-4 flex flex-col col-span-7 px-5 dark:bg-black">
-                <footer className="py-5 my-5 margin-auto dark:bg-black">
-                  <h1 className="dark:text-white text-2xl  text-center">
-                    Make it happen, zemach{' '}
-                  </h1>
-                </footer>
-              </div>
+              <Footer content={content} playing={!!currentPlay.item} />
             </div>
           </main>
         </div>
