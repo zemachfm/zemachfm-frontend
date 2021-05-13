@@ -98,9 +98,9 @@ const ContactUs: FC<contactUsType> = ({ content }) => {
       setLoading(true);
       try {
         await axios.post(CONTACT_US, {
-          name,
-          email,
-          message,
+          name: name.value,
+          email: email.value,
+          message: message.value,
         });
 
         setLoading(true);
@@ -181,7 +181,7 @@ const ContactUs: FC<contactUsType> = ({ content }) => {
             </span>
           </div>
           <div className="mt-3 dark:text-gray-100">
-            <span className="block" > {content.messageIntro} </span>
+            <span className="block"> {content.messageIntro} </span>
             <ResizingTextarea
               className={`w-full lg:w-5/6  bg-transparent inline border-b-2  overflow-y-hidden focus:outline-none dark:text-gray-100 outline-none focus:border-green-500  mb-4 ${
                 message.error && message.touched
