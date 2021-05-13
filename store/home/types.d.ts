@@ -81,16 +81,18 @@ interface IPost {
   post_name: string;
 }
 
+interface platforms {
+  spotify: string;
+  googlePodcast: string;
+  itunes: string;
+  soundCloud: string;
+  youtube: string;
+}
+
 interface siteSettings {
   name: string;
   social: IFullSocialMedias;
-  platforms: {
-    spotify: string;
-    googlePodcast: string;
-    itunes: string;
-    soundCloud: string;
-    youtube: string;
-  };
+  platforms: platforms;
   share: {
     shareDescription: string;
     hashtag: string[];
@@ -160,4 +162,6 @@ export type {
   playerStore,
   Hosts,
   IHostRequest,
+  IFullSocialMedias,
+  platforms,
 };

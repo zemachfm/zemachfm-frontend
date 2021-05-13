@@ -194,7 +194,12 @@ const Home: FC<prop> = ({ content, locale }) => {
               />
               <OurStory story={settings.story} />
               <ContactUs content={content.contactUs} />
-              <Footer content={content} playing={!!currentPlay.item} />
+              <Footer
+                content={content}
+                platforms={settings.platforms}
+                playing={!!currentPlay.item}
+                social={settings.social}
+              />
             </div>
           </main>
         </div>
