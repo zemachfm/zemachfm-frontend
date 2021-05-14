@@ -94,6 +94,7 @@ const initialState: IHomeReducer = {
     },
   },
   hosts: { data: [], loading: false },
+  mobileMenuVisible: false,
 };
 
 const homeReducer = produce((draft: IHomeReducer, action) => {

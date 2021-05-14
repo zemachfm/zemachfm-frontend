@@ -9,6 +9,7 @@ import { makeStore as SagaStore, wrapper } from '../store/store';
 import AudioPlayerContainer from '../components/audioPlayer/audioPlayerCont';
 import '../styles/globals.css';
 import 'nprogress/nprogress.css';
+import NavBar from '../components/Navbar';
 
 NProgress.configure({
   minimum: 0.3,
@@ -37,11 +38,12 @@ class WrappedApp extends App<AppInitialProps> {
     }
 
     const dir = path.join(process.cwd(), 'public', 'static');
-    const filePath = `${dir}/${router?.locale || 'am'}.json`;
+    const filePath = `${dir}/${router?.locale || 'en'}.json`;
     const buffer = fs.readFileSync(filePath);
     const content = JSON.parse(buffer.toString());
 
     pageProps.content = content;
+    pageProps.locale = router?.locale || 'en';
 
     // 3. Return props
     return {
@@ -53,10 +55,17 @@ class WrappedApp extends App<AppInitialProps> {
     const { Component, pageProps } = this.props;
 
     return (
-      <>
+      <div className="bg-gray-100 dark:bg-black flex flex-col absolute h-full w-full ">
+        <NavBar
+          appName={pageProps?.content?.appName}
+          locale={pageProps?.locale}
+          toogleMobileMenu={() => {
+            const m = 1;
+          }}
+        />
         <Component {...pageProps} />
         <AudioPlayerContainer />
-      </>
+      </div>
     );
   }
 }

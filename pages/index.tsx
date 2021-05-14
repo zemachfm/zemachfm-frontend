@@ -158,13 +158,6 @@ const Home: FC<prop> = ({ content, locale }) => {
             toogleMenu={toogleMobileMenu}
           />
         )}
-        <NavBar
-          appName={content.appName}
-          locale={locale}
-          onChangeTheme={onThemeChange}
-          theme={theme}
-          toogleMobileMenu={toogleMobileMenu}
-        />
 
         <div className="bg-gray-100 px-5 mt-5 dark:bg-black">
           <main className=" grid grid-cols-12 lg:grid-cols-10 ">

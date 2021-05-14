@@ -2,11 +2,16 @@ import { ReactElement, useState } from 'react';
 import { withStyles } from '@bit/mui-org.material-ui.styles';
 import Link from 'next/link';
 import Popover from '@bit/mui-org.material-ui.popover';
+import { useDispatch, useSelector } from 'react-redux';
 import Moon from '../../icons/moon.svg';
 import Sun from '../../icons/sun.svg';
 import MenuIcon from '../../icons/menu.svg';
 import { INavBarProps } from './index.d';
 import LanguageIcon from '../../icons/globe.svg';
+import { IHomeReducer, ThemeTypes } from '../../store/home/types.d';
+import localStorageKeys from '../../lib/constants/localStorageKeys';
+import { changeThemeAction } from '../../store/home/actions';
+import { TRootReducer } from '../../store/reducer';
 
 const LanguagePopover = withStyles({
   paper: {
@@ -17,8 +22,17 @@ const LanguagePopover = withStyles({
 const NavBar = (props: INavBarProps): ReactElement => {
   const [referenceElement, setReferenceElement] = useState(null);
   const [langPopoverDisplay, setLangPopoverDisplay] = useState(false);
+  const dispatch = useDispatch();
+  const { theme }: IHomeReducer = useSelector(
+    (root: TRootReducer) => root.home,
+  );
 
   const toogleLangPopOver = () => setLangPopoverDisplay(!langPopoverDisplay);
+
+  const onThemeChange = (themeSelected: ThemeTypes) => {
+    localStorage.setItem(localStorageKeys.theme, themeSelected);
+    dispatch(changeThemeAction(themeSelected));
+  };
 
   return (
     <nav>
@@ -90,15 +104,9 @@ const NavBar = (props: INavBarProps): ReactElement => {
 
             <button
               className="ml-5"
-              onClick={() =>
-                props.onChangeTheme(props.theme === 'dark' ? 'light' : 'dark')
-              }
+              onClick={() => onThemeChange(theme === 'dark' ? 'light' : 'dark')}
             >
-              {props.theme === 'light' ? (
-                <Moon />
-              ) : (
-                <Sun className="text-white" />
-              )}
+              {theme === 'light' ? <Moon /> : <Sun className="text-white" />}
             </button>
           </div>
         </div>
