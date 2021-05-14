@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import path from 'path';
 import fs from 'fs';
 import App, { AppInitialProps, AppContext } from 'next/app';
@@ -11,6 +11,7 @@ import '../styles/globals.css';
 import 'nprogress/nprogress.css';
 import NavBar from '../components/Navbar';
 import BackToTop from '../components/shared/baackToTop';
+import Footer from '../components/footer';
 
 NProgress.configure({
   minimum: 0.3,
@@ -58,14 +59,16 @@ class WrappedApp extends App<AppInitialProps> {
 
   public render() {
     const { Component, pageProps } = this.props;
-
+    const FooterElement = (): ReactElement => (
+      <Footer content={pageProps.content} />
+    );
     return (
       <div className="bg-gray-100 dark:bg-black flex flex-col absolute h-full w-full ">
         <NavBar
           appName={pageProps?.content?.appName}
           locale={pageProps?.locale}
         />
-        <Component {...pageProps} />
+        <Component {...pageProps} Footer={FooterElement}></Component>
         <AudioPlayerContainer />
         <BackToTop />
       </div>

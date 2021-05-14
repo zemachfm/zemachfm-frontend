@@ -31,9 +31,8 @@ import routes from '../lib/constants/hashRoutes';
 import { ISideBarLink } from '../components/Sidebar/index.d';
 import OurStory from '../components/story/index';
 import ContactUs from '../components/contactUs';
-import Footer from '../components/footer';
 
-const Home: FC<prop> = ({ content, locale }) => {
+const Home: FC<prop> = ({ content, locale, Footer }) => {
   const state: IHomeReducer = useSelector((root: TRootReducer) => root.home);
   const dispatch = useDispatch();
 
@@ -178,13 +177,7 @@ const Home: FC<prop> = ({ content, locale }) => {
               />
               <OurStory story={settings.story} />
               <ContactUs content={content.contactUs} />
-              {/* <Footer
-                content={content}
-                guests={guests.episodes}
-                platforms={settings.platforms}
-                playing={!!currentPlay.item}
-                social={settings.social}
-              /> */}
+              {Footer()}
             </div>
           </main>
         </div>

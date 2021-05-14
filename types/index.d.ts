@@ -1,3 +1,5 @@
+import { ReactElement } from 'react';
+
 interface ISideBarContents {
   episodes: string;
   hosts: string;
@@ -43,12 +45,14 @@ interface translatedStrings {
 type indexPageType = {
   locale: 'am' | 'en';
   content: translatedStrings;
+  Footer: () => ReactElement;
 };
 
 type hostPageType = {
   locale: 'am' | 'en';
   content: translatedStrings;
   name: string;
+  Footer: () => ReactElement;
 };
 
 export default indexPageType;
