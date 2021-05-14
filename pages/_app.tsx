@@ -11,6 +11,7 @@ import '../styles/globals.css';
 import 'nprogress/nprogress.css';
 import NavBar from '../components/Navbar';
 import BackToTop from '../components/shared/baackToTop';
+import Footer from '../components/footer';
 
 NProgress.configure({
   minimum: 0.3,
@@ -68,6 +69,7 @@ class WrappedApp extends App<AppInitialProps> {
         <Component {...pageProps} />
         <AudioPlayerContainer />
         <BackToTop />
+        <Footer content={pageProps?.content} />
       </div>
     );
   }

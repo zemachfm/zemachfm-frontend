@@ -1,5 +1,8 @@
 import Link from 'next/link';
 import { FC } from 'react';
+import { useSelector } from 'react-redux';
+import { IHomeReducer } from '../../store/home/types.d';
+import { TRootReducer } from '../../store/reducer';
 import footerProps from './types.d';
 import Spotify from '../../icons/spotify.svg';
 import Itunes from '../../icons/itunes.svg';
@@ -11,13 +14,12 @@ import TelegramIcon from '../../icons/telegram.svg';
 import LinkedIn from '../../icons/linkedin.svg';
 import Instagram from '../../icons/instagram.svg';
 
-const Footer: FC<footerProps> = ({
-  content,
-  playing,
-  social,
-  platforms,
-  guests,
-}) => {
+const Footer: FC<footerProps> = ({ content }) => {
+  const state: IHomeReducer = useSelector((root: TRootReducer) => root.home);
+  const { settings, player, guests } = state;
+  const { item } = player.currentPlay;
+  const { social, platforms } = settings;
+  const playing = !!item;
   const getIcon = name => {
     switch (name) {
       case 'spotify':
@@ -59,7 +61,7 @@ const Footer: FC<footerProps> = ({
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-5">
           <div className="lg:col-span-3 col-span-2">
             <img
-              alt="yoknow"
+              alt="zemachfm"
               className=" w-20 h-20"
               height="80"
               src="/assets/zemach-small.png"
@@ -80,9 +82,11 @@ const Footer: FC<footerProps> = ({
               {content.footer.recentEpisodes}
             </h3>
 
-            {guests.map(episode => (
+            {guests.episodes.map(episode => (
               <li className="text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white truncate">
-                <Link href={`/podcast/${episode.slug}`}>{episode.title.rendered}</Link>
+                <Link href={`/podcast/${episode.slug}`}>
+                  {episode.title.rendered}
+                </Link>
               </li>
             ))}
           </ul>
