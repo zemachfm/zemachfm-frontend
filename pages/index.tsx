@@ -178,13 +178,13 @@ const Home: FC<prop> = ({ content, locale }) => {
               />
               <OurStory story={settings.story} />
               <ContactUs content={content.contactUs} />
-              <Footer
+              {/* <Footer
                 content={content}
                 guests={guests.episodes}
                 platforms={settings.platforms}
                 playing={!!currentPlay.item}
                 social={settings.social}
-              />
+              /> */}
             </div>
           </main>
         </div>
