@@ -9,7 +9,12 @@ import { TRootReducer } from '../../store/reducer';
 import singlePodcastDataTypes from '../../store/podcastSingle/types.d';
 import singlePodcastType from '../../types/singlePodcast.d';
 
-const SinglePodcast: FC<singlePodcastType> = ({ locale, content, slug }) => {
+const SinglePodcast: FC<singlePodcastType> = ({
+  locale,
+  content,
+  slug,
+  Footer,
+}) => {
   const singlePodcastState: singlePodcastDataTypes = useSelector(
     (root: TRootReducer) => root.singlePodcast,
   );
@@ -40,6 +45,7 @@ const SinglePodcast: FC<singlePodcastType> = ({ locale, content, slug }) => {
               __html: singlePodcastState[slug][0].content.rendered,
             }}
           ></div>
+          {Footer()}
         </div>
       ) : null}
     </div>

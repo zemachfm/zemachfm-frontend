@@ -32,7 +32,7 @@ import { ISideBarLink } from '../components/Sidebar/index.d';
 import OurStory from '../components/story/index';
 import ContactUs from '../components/contactUs';
 
-const Home: FC<prop> = ({ content, locale }) => {
+const Home: FC<prop> = ({ content, locale, Footer }) => {
   const state: IHomeReducer = useSelector((root: TRootReducer) => root.home);
   const dispatch = useDispatch();
 
@@ -177,6 +177,7 @@ const Home: FC<prop> = ({ content, locale }) => {
               />
               <OurStory story={settings.story} />
               <ContactUs content={content.contactUs} />
+              {Footer()}
             </div>
           </main>
         </div>

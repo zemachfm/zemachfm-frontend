@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import path from 'path';
 import fs from 'fs';
 import App, { AppInitialProps, AppContext } from 'next/app';
@@ -59,16 +59,18 @@ class WrappedApp extends App<AppInitialProps> {
 
   public render() {
     const { Component, pageProps } = this.props;
+    const FooterElement = (): ReactElement => (
+      <Footer content={pageProps.content} />
+    );
     return (
       <div className="bg-gray-100 dark:bg-black flex flex-col absolute h-full w-full ">
         <NavBar
           appName={pageProps?.content?.appName}
           locale={pageProps?.locale}
         />
-        <Component {...pageProps} />
+        <Component {...pageProps} Footer={FooterElement}></Component>
         <AudioPlayerContainer />
         <BackToTop />
-        <Footer content={pageProps.content} />
       </div>
     );
   }
