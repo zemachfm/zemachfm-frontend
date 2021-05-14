@@ -10,7 +10,7 @@ import { INavBarProps } from './index.d';
 import LanguageIcon from '../../icons/globe.svg';
 import { IHomeReducer, ThemeTypes } from '../../store/home/types.d';
 import localStorageKeys from '../../lib/constants/localStorageKeys';
-import { changeThemeAction } from '../../store/home/actions';
+import { changeThemeAction, toogleMobileMenu } from '../../store/home/actions';
 import { TRootReducer } from '../../store/reducer';
 
 const LanguagePopover = withStyles({
@@ -34,15 +34,16 @@ const NavBar = (props: INavBarProps): ReactElement => {
     dispatch(changeThemeAction(themeSelected));
   };
 
+  const onDisplayMobileMenu = () => {
+    dispatch(toogleMobileMenu());
+  };
+
   return (
     <nav>
       <div className="max-w-8xl mx-auto px-2 sm:px-6 lg:px-8 dark:text-white">
         <div className="relative flex justify-between items-center h-16">
           <div className="flex items-center">
-            <button
-              className="block lg:hidden"
-              onClick={props.toogleMobileMenu}
-            >
+            <button className="block lg:hidden" onClick={onDisplayMobileMenu}>
               <MenuIcon />
             </button>
             <img

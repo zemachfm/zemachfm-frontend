@@ -10,6 +10,7 @@ import AudioPlayerContainer from '../components/audioPlayer/audioPlayerCont';
 import '../styles/globals.css';
 import 'nprogress/nprogress.css';
 import NavBar from '../components/Navbar';
+import BackToTop from '../components/shared/baackToTop';
 
 NProgress.configure({
   minimum: 0.3,
@@ -59,12 +60,10 @@ class WrappedApp extends App<AppInitialProps> {
         <NavBar
           appName={pageProps?.content?.appName}
           locale={pageProps?.locale}
-          toogleMobileMenu={() => {
-            const m = 1;
-          }}
         />
         <Component {...pageProps} />
         <AudioPlayerContainer />
+        <BackToTop />
       </div>
     );
   }
