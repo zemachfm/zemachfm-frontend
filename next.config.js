@@ -20,6 +20,12 @@ webpacked['i18n'] = {
   locales: ['en', 'am'],
   defaultLocale: 'en',
 };
+webpacked.env = {
+  host:
+    process.env.NODE_ENV === 'production'
+      ? 'https://staging.zemachfm.com'
+      : 'http://localhost:3000',
+};
 webpacked.images = {
   domains: ['zemachfm.com'],
 };

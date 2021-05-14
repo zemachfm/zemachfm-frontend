@@ -39,9 +39,9 @@ class WrappedApp extends App<AppInitialProps> {
       await ctx.store.sagaTask.toPromise();
     }
 
-    const req = ctx?.req;
-    const baseUrl = req ? `${req.headers?.referer}` : '';
-    const filePath = `${baseUrl}static/${router?.locale || 'en'}.json`;
+    // const req = ctx?.req;
+    const baseUrl = process.env.host;
+    const filePath = `${baseUrl}/static/${router?.locale || 'en'}.json`;
     const data = await fetch(filePath);
     // const buffer = fs.readFileSync(filePath);
     // const content = JSON.parse(buffer.toString());
