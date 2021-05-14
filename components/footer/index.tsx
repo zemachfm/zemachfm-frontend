@@ -20,6 +20,9 @@ const Footer: FC<footerProps> = ({ content }) => {
   const { item } = player.currentPlay;
   const { social, platforms } = settings;
   const playing = !!item;
+
+  const { footer, appName } = content;
+
   const getIcon = name => {
     switch (name) {
       case 'spotify':
@@ -69,17 +72,14 @@ const Footer: FC<footerProps> = ({ content }) => {
             />
           </div>
           <div className=" col-span-2 lg:col-span-1">
-            <h3 className="mb-4 text-2xl dark:text-white">
-              {' '}
-              {content.appName}{' '}
-            </h3>
+            <h3 className="mb-4 text-2xl dark:text-white">{appName} </h3>
             <p className="text-gray-500 dark:text-gray-300">
-              {content.footer.subtitle}
+              {footer.subtitle}
             </p>
           </div>
           <ul>
             <h3 className="mb-4 text-2xl dark:text-white ">
-              {content.footer.recentEpisodes}
+              {footer.recentEpisodes}
             </h3>
 
             {guests.episodes.map(episode => (
@@ -93,8 +93,7 @@ const Footer: FC<footerProps> = ({ content }) => {
           <div>
             {' '}
             <h3 className="mb-4 text-2xl dark:text-white">
-              {' '}
-              {content.footer.platforms}{' '}
+              {footer.platforms}
             </h3>
             <ul>{renderPlatform()}</ul>
           </div>
@@ -121,7 +120,7 @@ const Footer: FC<footerProps> = ({ content }) => {
                 </a>
               </div>
               <span className="text-center lg:text-left text-gray-500 dark:text-gray-400 block w-full lg:w-auto lg:inline">
-                © {content.footer.copyright}{' '}
+                © {footer.copyright}
               </span>
             </div>
           </div>

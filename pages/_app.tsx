@@ -59,7 +59,6 @@ class WrappedApp extends App<AppInitialProps> {
 
   public render() {
     const { Component, pageProps } = this.props;
-
     return (
       <div className="bg-gray-100 dark:bg-black flex flex-col absolute h-full w-full ">
         <NavBar
@@ -69,7 +68,7 @@ class WrappedApp extends App<AppInitialProps> {
         <Component {...pageProps} />
         <AudioPlayerContainer />
         <BackToTop />
-        <Footer content={pageProps?.content} />
+        <Footer content={pageProps.content} />
       </div>
     );
   }
