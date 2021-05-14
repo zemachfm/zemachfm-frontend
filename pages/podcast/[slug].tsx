@@ -1,10 +1,8 @@
 import { FC } from 'react';
 import { GetStaticPaths, GetStaticPropsContext } from 'next';
-import path from 'path';
 import { useSelector } from 'react-redux';
 import Head from 'next/head';
 import { END } from 'redux-saga';
-import fs from 'fs';
 import { wrapper } from '../../store/store';
 import { fetchSinglePodcast } from '../../store/podcastSingle/actions';
 import { TRootReducer } from '../../store/reducer';
@@ -35,6 +33,7 @@ const SinglePodcast: FC<singlePodcastType> = ({ locale, content, slug }) => {
               __html: singlePodcastState[slug][0].title.rendered,
             }}
           ></h1>
+
           <div
             className="w-full text-lg text-gray-600 dark:text-gray-200 fill-current "
             dangerouslySetInnerHTML={{
@@ -58,13 +57,8 @@ const getStaticProps = wrapper.getStaticProps(
     store.dispatch(fetchSinglePodcast(params.slug.toString()));
     store.dispatch(END);
     await store.sagaTask.toPromise();
-    const dir = path.join(process.cwd(), 'public', 'static');
-    const filePath = `${dir}/${locale}.json`;
-    const buffer = fs.readFileSync(filePath);
-    const content = JSON.parse(buffer.toString());
     return {
       props: {
-        content,
         locale,
         slug: params.slug,
       },
