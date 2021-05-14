@@ -56,6 +56,11 @@ const actionTypes = {
   FETCH_HOSTS: 'FETCH_HOSTS',
   FETCHING_HOSTS_SUCCEEDED: 'FETCHING_HOSTS_SUCCEEDED',
   FETCHING_HOSTS_FAILED: 'FETCHING_HOSTS_FAILED',
+
+  /**
+   * Mobile Menu
+   */
+  TOOGLE_MOBILE_MENU: 'TOOGLE_MOBILE_MENU',
 };
 
 const fetchEpisodes = (): { type: string; payload: null } =>
@@ -248,6 +253,10 @@ const fetchHostsFailed = (
   payload,
 });
 
+const toogleMobileMenu = (): { type: string } => ({
+  type: actionTypes.TOOGLE_MOBILE_MENU,
+});
+
 export {
   actionTypes,
   /**
@@ -290,4 +299,5 @@ export {
   fetchHostsSucceeded,
   fetchHostsFailed,
   fetchHosts,
+  toogleMobileMenu,
 };

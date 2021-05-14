@@ -94,6 +94,7 @@ const initialState: IHomeReducer = {
     },
   },
   hosts: { data: [], loading: false },
+  mobileMenuVisible: false,
 };
 
 const homeReducer = produce((draft: IHomeReducer, action) => {
@@ -180,6 +181,9 @@ const homeReducer = produce((draft: IHomeReducer, action) => {
       break;
     case actionTypes.FETCHING_HOSTS_FAILED:
       draft.hosts.loading = false;
+      break;
+    case actionTypes.TOOGLE_MOBILE_MENU:
+      draft.mobileMenuVisible = !draft.mobileMenuVisible;
       break;
     default:
       break;

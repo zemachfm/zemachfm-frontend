@@ -59,13 +59,9 @@ const getStaticProps = wrapper.getStaticProps(
     store.dispatch(fetchHost(params.name.toString()));
     store.dispatch(END);
     await store.sagaTask.toPromise();
-    // const dir = path.join(process.cwd(), 'public', 'static');
-    // const filePath = `${dir}/${locale}.json`;
-    // const buffer = fs.readFileSync(filePath);
-    // const content = JSON.parse(buffer.toString());
+
     return {
       props: {
-        // content,
         locale,
         name: params.name,
       },
