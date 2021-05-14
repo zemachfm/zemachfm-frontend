@@ -1,16 +1,12 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import Head from 'next/head';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetStaticPropsContext } from 'next';
-import { AnyAction, Store } from 'redux';
 import { END } from 'redux-saga';
 
-import path from 'path';
-import fs from 'fs';
 import EpisodeCardsContainer from '../components/episodeCard';
 import { wrapper } from '../store/store';
-import NavBar from '../components/Navbar';
-import { IHomeReducer, ThemeTypes } from '../store/home/types.d';
+import { IHomeReducer } from '../store/home/types.d';
 import { TRootReducer } from '../store/reducer';
 import {
   fetchEpisodes,
@@ -18,6 +14,7 @@ import {
   fetchSettings,
   fetchGuests,
   fetchHosts,
+  toogleMobileMenu,
 } from '../store/home/actions';
 import localStorageKeys from '../lib/constants/localStorageKeys';
 import SideBar from '../components/Sidebar';
@@ -46,11 +43,10 @@ const Home: FC<prop> = ({ content, locale }) => {
     theme,
     settings,
     guests,
+    mobileMenuVisible,
   } = state;
   const { episodes, loading } = episodesDataCont;
   const { player, currentPlay } = playersDataCont;
-
-  const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
 
   const linksDefault: ISideBarLink[] = [
     {
@@ -85,15 +81,6 @@ const Home: FC<prop> = ({ content, locale }) => {
     },
   ];
 
-  const toogleMobileMenu = () => {
-    setMobileMenuVisible(!mobileMenuVisible);
-  };
-
-  const onThemeChange = (themeSelected: ThemeTypes) => {
-    localStorage.setItem(localStorageKeys.theme, themeSelected);
-    dispatch(changeThemeAction(themeSelected));
-  };
-
   useEffect(() => {
     // Remember theme option
     if (localStorageKeys.theme in localStorage) {
@@ -117,6 +104,10 @@ const Home: FC<prop> = ({ content, locale }) => {
   const isActive = (link: string, changeTo: string) =>
     link?.replace('#', '') === changeTo.replace('#', '');
 
+  const onMobileMenuToogle = () => {
+    dispatch(toogleMobileMenu());
+  };
+
   const handleRouteChange = (changeTo: string, isMobile?: boolean) => {
     setLinks(oldLinks =>
       oldLinks.map(link => ({
@@ -126,7 +117,7 @@ const Home: FC<prop> = ({ content, locale }) => {
     );
 
     if (isMobile) {
-      toogleMobileMenu();
+      onMobileMenuToogle();
     }
   };
 
@@ -155,16 +146,9 @@ const Home: FC<prop> = ({ content, locale }) => {
           <SmallDeviceSideBar
             handleRouteChange={handleRouteChange}
             links={links}
-            toogleMenu={toogleMobileMenu}
+            toogleMenu={onMobileMenuToogle}
           />
         )}
-        <NavBar
-          appName={content.appName}
-          locale={locale}
-          onChangeTheme={onThemeChange}
-          theme={theme}
-          toogleMobileMenu={toogleMobileMenu}
-        />
 
         <div className="bg-gray-100 px-5 mt-5 dark:bg-black">
           <main className=" grid grid-cols-12 lg:grid-cols-10 ">
@@ -222,13 +206,9 @@ export const getStaticProps = wrapper.getStaticProps(
     store.dispatch(fetchHosts());
     store.dispatch(END);
     await store.sagaTask.toPromise();
-    const dir = path.join(process.cwd(), 'public', 'static');
-    const filePath = `${dir}/${locale}.json`;
-    const buffer = fs.readFileSync(filePath);
-    const content = JSON.parse(buffer.toString());
+
     return {
       props: {
-        content,
         locale,
       },
     };

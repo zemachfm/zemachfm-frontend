@@ -150,6 +150,7 @@ interface IHomeReducer {
     data: Hosts;
     loading: boolean;
   };
+  mobileMenuVisible: boolean;
 }
 
 export type {

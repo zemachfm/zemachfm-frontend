@@ -1,4 +1,6 @@
 import React from 'react';
+import path from 'path';
+import fs from 'fs';
 import App, { AppInitialProps, AppContext } from 'next/app';
 import NProgress from 'nprogress';
 import Router from 'next/router';
@@ -7,6 +9,8 @@ import { makeStore as SagaStore, wrapper } from '../store/store';
 import AudioPlayerContainer from '../components/audioPlayer/audioPlayerCont';
 import '../styles/globals.css';
 import 'nprogress/nprogress.css';
+import NavBar from '../components/Navbar';
+import BackToTop from '../components/shared/baackToTop';
 
 NProgress.configure({
   minimum: 0.3,
@@ -20,7 +24,8 @@ Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
 class WrappedApp extends App<AppInitialProps> {
-  public static getInitialProps = async ({ Component, ctx }: any) => {
+  public static getInitialProps = async (props: any) => {
+    const { Component, ctx, router } = props;
     // 1. Wait for all page actions to dispatch
     const pageProps = {
       ...(Component.getInitialProps
@@ -34,6 +39,17 @@ class WrappedApp extends App<AppInitialProps> {
       await ctx.store.sagaTask.toPromise();
     }
 
+    // const req = ctx?.req;
+    const baseUrl = process.env.host;
+    const filePath = `${baseUrl}/static/${router?.locale || 'en'}.json`;
+    const data = await fetch(filePath);
+    // const buffer = fs.readFileSync(filePath);
+    // const content = JSON.parse(buffer.toString());
+    const content = await data.json();
+
+    pageProps.content = content;
+    pageProps.locale = router?.locale || 'en';
+
     // 3. Return props
     return {
       pageProps,
@@ -42,11 +58,17 @@ class WrappedApp extends App<AppInitialProps> {
 
   public render() {
     const { Component, pageProps } = this.props;
+
     return (
-      <>
+      <div className="bg-gray-100 dark:bg-black flex flex-col absolute h-full w-full ">
+        <NavBar
+          appName={pageProps?.content?.appName}
+          locale={pageProps?.locale}
+        />
         <Component {...pageProps} />
         <AudioPlayerContainer />
-      </>
+        <BackToTop />
+      </div>
     );
   }
 }
