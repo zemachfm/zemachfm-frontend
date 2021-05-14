@@ -15,6 +15,8 @@ const GET_HOST_URL = `${CUSTOM_API_URL}/host`;
 const HOSTS_URL = `${CUSTOM_API_URL}/hosts`;
 const SINGLE_PODCAST = (slug: string): string =>
   `${API_URL}/podcast?slug=${slug};`;
+
+const CONTACT_US = `${CUSTOM_API_URL}/contact`;
 export {
   BASE_URL,
   API_URL,
@@ -24,4 +26,5 @@ export {
   GUESTS_URL,
   HOSTS_URL,
   SINGLE_PODCAST,
+  CONTACT_US,
 };

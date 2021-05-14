@@ -52,7 +52,7 @@ const GuestCard: FC<hostProps> = ({
 
   return (
     <div className="rounded-lg relative overflow-hidden  bg-whtite ">
-      <img className="w-full" src={item.episode_player_image} />
+      <img className="w-full" src={item.big_player} />
       <div
         className="absolute bg-opacity-10 bg-gray-200 bottom-0 w-full"
         style={{ backdropFilter: 'blur(10px)' }}
