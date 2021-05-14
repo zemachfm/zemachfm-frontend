@@ -24,7 +24,8 @@ Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
 class WrappedApp extends App<AppInitialProps> {
-  public static getInitialProps = async ({ Component, ctx, router }: any) => {
+  public static getInitialProps = async (props: any) => {
+    const { Component, ctx, router } = props;
     // 1. Wait for all page actions to dispatch
     const pageProps = {
       ...(Component.getInitialProps
@@ -38,10 +39,13 @@ class WrappedApp extends App<AppInitialProps> {
       await ctx.store.sagaTask.toPromise();
     }
 
-    const dir = path.join(process.cwd(), 'public', 'static');
-    const filePath = `${dir}/${router?.locale || 'en'}.json`;
-    const buffer = fs.readFileSync(filePath);
-    const content = JSON.parse(buffer.toString());
+    const req = ctx?.req;
+    const baseUrl = req ? `${req.headers?.referer}` : '';
+    const filePath = `${baseUrl}static/${router?.locale || 'en'}.json`;
+    const data = await fetch(filePath);
+    // const buffer = fs.readFileSync(filePath);
+    // const content = JSON.parse(buffer.toString());
+    const content = await data.json();
 
     pageProps.content = content;
     pageProps.locale = router?.locale || 'en';
