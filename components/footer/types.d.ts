@@ -1,4 +1,8 @@
-import { IFullSocialMedias, platforms } from '../../store/home/types.d';
+import {
+  IFullSocialMedias,
+  platforms,
+  episode,
+} from '../../store/home/types.d';
 import { translatedStrings } from '../../types/index.d';
 
 type footerProps = {
@@ -6,6 +10,7 @@ type footerProps = {
   playing: boolean;
   social: IFullSocialMedias;
   platforms: platforms;
+  guests: episode[];
 };
 
 export default footerProps;

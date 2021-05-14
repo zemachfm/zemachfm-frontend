@@ -164,4 +164,5 @@ export type {
   IHostRequest,
   IFullSocialMedias,
   platforms,
+  guests,
 };

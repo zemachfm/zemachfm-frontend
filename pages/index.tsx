@@ -196,6 +196,7 @@ const Home: FC<prop> = ({ content, locale }) => {
               <ContactUs content={content.contactUs} />
               <Footer
                 content={content}
+                guests={guests.episodes}
                 platforms={settings.platforms}
                 playing={!!currentPlay.item}
                 social={settings.social}
