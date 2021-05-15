@@ -130,7 +130,7 @@ const ContactUs: FC<contactUsType> = ({ content }) => {
       ) : (
         <form
           action="POST"
-          className="pt-2 pb-5 px-10 rounded-xl relative w-full dark:bg-black bg-white mt-5 "
+          className="pt-2 pb-5 pr-10 rounded-xl relative w-full mt-2 "
           onSubmit={onSubmit}
         >
           {loading ? (
