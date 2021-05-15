@@ -33,24 +33,15 @@ const SinglePodcast: FC<singlePodcastType> = ({
       {singlePodcastState[slug] ? (
         <div className="xl:w-3/6 w-6/6 px-5 mx-auto pt-20 pb-28 ">
           <h1
-            className="text-6xl  text-left dark:text-white mt-4 mb-3 font-bold"
+            className="text-5xl  text-left dark:text-white mt-4 mb-3 font-bold"
             dangerouslySetInnerHTML={{
               __html: singlePodcastState[slug][0].title.rendered,
             }}
           ></h1>
-          <div className="flex flex-row gap-4 text-gray-600 mb-8">
-            <p className="text-xl">
-              {' '}
-              recorded {singlePodcastState[slug][0].meta.date_recorded}{' '}
-            </p>
-            <p className="text-xl">
-              {' '}
-              duration {singlePodcastState[slug][0].meta.duration}{' '}
-            </p>
-            <p className="text-xl">
-              {' '}
-              size {singlePodcastState[slug][0].meta.filesize}{' '}
-            </p>
+          <div className="flex flex-row gap-4 text-gray-600 dark:text-gray-400 mb-8 text-lg">
+            <p> recorded {singlePodcastState[slug][0].meta.date_recorded} </p> -
+            <p> duration {singlePodcastState[slug][0].meta.duration} </p> -
+            <p> size {singlePodcastState[slug][0].meta.filesize} </p>
           </div>
 
           <div

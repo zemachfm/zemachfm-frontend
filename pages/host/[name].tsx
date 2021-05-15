@@ -32,7 +32,7 @@ const SingleHost: FC<hostPageType> = ({ locale, content, name }) => {
           width="384"
         />
         <h1
-          className="text-6xl  text-center my-4 font-bold"
+          className="text-5xl  text-center my-4 font-bold"
           dangerouslySetInnerHTML={{
             __html: hostPageState?.host?.post?.post_title,
           }}

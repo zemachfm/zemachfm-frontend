@@ -46,7 +46,7 @@ const EpisodeCardsContainer: FC<episodeCardsContainerType> = ({
     <>
       <div className="flex flex-row justify-between">
         <div className="flex flex-col">
-          <h1 className=" text-6xl my-10 font-bold dark:text-gray-200 mb-2 ">
+          <h1 className=" text-5xl my-10 font-bold dark:text-gray-200 mb-2 ">
             {title}
           </h1>
           <p className="text-gray-400 text-lg mb-7">{subTitle}</p>
