@@ -46,14 +46,14 @@ const EpisodeCardsContainer: FC<episodeCardsContainerType> = ({
     <>
       <div className="flex flex-row justify-between">
         <div className="flex flex-col">
-          <h1 className=" text-5xl my-10 font-bold dark:text-gray-200 mb-2 ">
+          <h1 className=" text-3xl lg:text-4xl 2xl:text-5xl  my-10 font-bold dark:text-gray-200 mb-2 ">
             {title}
           </h1>
           <p className="text-gray-400 text-lg mb-7">{subTitle}</p>
         </div>
       </div>
 
-      <div className="grid grid-cols lg:grid-cols-3 gap-4 ">
+      <div className="grid grid-cols grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4 ">
         {EpisodeList
           ? EpisodeList.map((item, index) => {
               if (item.loading) {

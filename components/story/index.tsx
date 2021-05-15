@@ -14,7 +14,7 @@ const OurStory: FC<storyIndex> = ({ story }) => {
 
   return (
     <div id="our-story">
-      <h1 className=" text-5xl font-bold mt-8 mb-3 dark:text-white text-gray-900 ">
+      <h1 className=" text-3xl lg:text-4xl 2xl:text-5xl  font-bold mt-8 mb-3 dark:text-white text-gray-900 ">
         {' '}
         {title}{' '}
       </h1>
@@ -23,7 +23,7 @@ const OurStory: FC<storyIndex> = ({ story }) => {
         dangerouslySetInnerHTML={{ __html: description }}
       ></div>
       <div
-        className={`grid gap-6 md:grid-cols-2 grid-cols-1 xl:grid-cols-${numberOfCards}`}
+        className={`grid gap-6 md:grid-cols-2 grid-cols-1 2xl:grid-cols-${numberOfCards}`}
       >
         {cards
           ? cards.map((card, index) =>
