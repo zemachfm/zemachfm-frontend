@@ -1,4 +1,5 @@
 /* eslint-disable no-param-reassign */
+import { settings } from 'cluster';
 import { produce } from 'immer';
 import { HYDRATE } from 'next-redux-wrapper';
 import { actionTypes } from './actions';
@@ -101,10 +102,31 @@ const homeReducer = produce((draft: IHomeReducer, action) => {
   const { payload } = action;
   const addition =
     draft.episodes.paginaton.page * draft.episodes.paginaton.per_page;
-
+  const newState = { ...draft };
   switch (action.type) {
     case HYDRATE:
-      draft = { ...draft, ...payload.home, ...{ player: draft.player } };
+      if (payload.home.settings.platforms.spotify) {
+        newState.settings = payload.home.settings;
+      }
+
+      if (
+        payload.home.episodes.episodes.length > draft.episodes.episodes.length
+      ) {
+        newState.episodes = payload.home.episodes;
+      }
+
+      if (payload.home.guests.episodes.length > 0) {
+        newState.guests = payload.home.guests;
+      }
+
+      if (payload.home.hosts.data.length > 0) {
+        newState.hosts = payload.home.hosts;
+      }
+
+      draft = {
+        ...newState,
+        ...{ theme: draft.theme },
+      };
       break;
     case actionTypes.FETCH_EPISODES_SUCCEDDED:
       draft.episodes.loading = false;
