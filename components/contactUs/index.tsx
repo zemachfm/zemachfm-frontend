@@ -130,7 +130,7 @@ const ContactUs: FC<contactUsType> = ({ content }) => {
       ) : (
         <form
           action="POST"
-          className="pt-2 pb-5 px-0 rounded-xl relative w-full "
+          className="pt-2 pb-5 px-10 rounded-xl relative w-full dark:bg-black bg-white mt-5 "
           onSubmit={onSubmit}
         >
           {loading ? (
@@ -140,7 +140,7 @@ const ContactUs: FC<contactUsType> = ({ content }) => {
               </p>
             </div>
           ) : null}
-          <h3 className="text-2xl mb-4 dark:text-gray-50">
+          <h3 className="text-2xl mb-14 capitalize dark:text-gray-50 my-10 ">
             {content.additional}
           </h3>
 
