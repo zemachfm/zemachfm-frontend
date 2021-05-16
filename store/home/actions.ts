@@ -189,8 +189,9 @@ const seekPlayer = (payload: number): { type: string; payload: number } => ({
 /**
  * settings for pdocast
  */
-const fetchSettings = (): { type: string } => ({
+const fetchSettings = (payload: string): { type: string; payload: string } => ({
   type: actionTypes.FETCH_SETTINGS,
+  payload,
 });
 
 const fetchSettingsFailed = (msg: string): { type: string; msg: string } => ({

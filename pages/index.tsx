@@ -194,7 +194,7 @@ export const getStaticProps = wrapper.getStaticProps(
     store: any;
   }) => {
     store.dispatch(fetchEpisodes());
-    store.dispatch(fetchSettings());
+    store.dispatch(fetchSettings(locale));
     store.dispatch(fetchGuests());
     store.dispatch(fetchHosts());
     store.dispatch(END);
