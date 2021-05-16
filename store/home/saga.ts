@@ -34,7 +34,6 @@ import {
   fetchHostsSucceeded,
   proceedWithPlaying,
 } from './actions';
-import { EpisodesReturnType } from './index.d';
 import { episode } from './types.d';
 
 const getPlayer = state => state.home.player.player;
@@ -170,7 +169,7 @@ function* changePLayerStatusGenerator({ type, payload }) {
       audioPlayer.stop(currentPlayID);
       break;
     case 'ON_END':
-      yield put(proceedWithPlaying(O));
+      yield put(proceedWithPlaying({ type: 0 }));
       break;
     default:
   }
@@ -184,14 +183,12 @@ function* preeceedWithPlaylistGenerator({
   payload: { type: number };
 }) {
   const { playlistIndex } = yield select(getCurrentPlay);
+
   const playlist = yield select(getPlaylist);
 
+ 
   // eslint-disable-next-line prefer-const
   let plays = [...playlist];
-  if (plays.length - 1 === playlistIndex && !payload.type) {
-    // let's get more of these
-    return;
-  }
   if (!payload.type) {
     const playerNow = plays[playlistIndex + 1];
     yield put(updatedPlaylist(playlistIndex + 1));

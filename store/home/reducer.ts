@@ -102,7 +102,7 @@ const homeReducer = produce((draft: IHomeReducer, action) => {
   const { payload } = action;
   const addition =
     draft.episodes.paginaton.page * draft.episodes.paginaton.per_page;
-  const newState = { ...draft };
+  const newState: IHomeReducer = { ...draft };
   switch (action.type) {
     case HYDRATE:
       if (payload.home.settings.platforms.spotify) {
@@ -121,6 +121,13 @@ const homeReducer = produce((draft: IHomeReducer, action) => {
 
       if (payload.home.hosts.data.length > 0) {
         newState.hosts = payload.home.hosts;
+      }
+
+      if (payload.home.player.playlist.length > 0) {
+        newState.player = {
+          ...newState.player,
+          ...{ playlist: payload.home.player.playlist },
+        };
       }
 
       draft = {
