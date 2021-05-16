@@ -32,6 +32,7 @@ import {
   fetchGUestsFailed,
   fetchHostsFailed,
   fetchHostsSucceeded,
+  proceedWithPlaying,
 } from './actions';
 import { EpisodesReturnType } from './index.d';
 import { episode } from './types.d';
@@ -54,6 +55,10 @@ function playerListen(player: Howl) {
     });
     player.once('pause', () => {
       emitter('ON_PAUSE');
+    });
+
+    player.once('end', () => {
+      emitter('ON_END');
     });
 
     player.onplayerror = () => {
@@ -163,6 +168,9 @@ function* changePLayerStatusGenerator({ type, payload }) {
       break;
     case 'STOP':
       audioPlayer.stop(currentPlayID);
+      break;
+    case 'ON_END':
+      yield put(proceedWithPlaying(O));
       break;
     default:
   }

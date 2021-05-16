@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import Ripples from 'react-ripples';
-import { hostProps } from '.';
+import { hostProps } from './index.d';
 import PlayIcon from '../../icons/play.svg';
 import PlusIcon from '../../icons/plus-circle-outline.svg';
 import PauseIcon from '../../icons/pause.svg';
