@@ -116,7 +116,7 @@ const ContactUs: FC<contactUsType> = ({ content }) => {
     <div>
       <div className="flex flex-col">
         <h1
-          className=" text-6xl my-10 font-bold dark:text-gray-200 mb-3 "
+          className=" text-3xl lg:text-4xl 2xl:text-5xl  my-10 font-bold dark:text-gray-200 mb-3 "
           id="contact"
         >
           {content.title}
@@ -130,7 +130,7 @@ const ContactUs: FC<contactUsType> = ({ content }) => {
       ) : (
         <form
           action="POST"
-          className="pt-2 pb-5 px-0 rounded-xl relative w-full "
+          className="pt-2 pb-5 pr-10 rounded-xl relative w-full mt-2 "
           onSubmit={onSubmit}
         >
           {loading ? (
@@ -140,7 +140,7 @@ const ContactUs: FC<contactUsType> = ({ content }) => {
               </p>
             </div>
           ) : null}
-          <h3 className="text-2xl mb-4 dark:text-gray-50">
+          <h3 className="text-2xl mb-14 capitalize dark:text-gray-50 my-10 ">
             {content.additional}
           </h3>
 

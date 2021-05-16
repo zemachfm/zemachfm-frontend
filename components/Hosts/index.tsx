@@ -9,7 +9,7 @@ import GithubIcon from '../../icons/github.svg';
 const Hosts: React.FC<HostsProps> = props => (
   <section id="hosts">
     <div className="flex flex-col">
-      <h1 className=" text-6xl my-10 font-bold dark:text-gray-200 mb-2 ">
+      <h1 className=" text-3xl lg:text-4xl 2xl:text-5xl  my-10 font-bold dark:text-gray-200 mb-2 ">
         Hosts
       </h1>
       <p className="text-gray-400 text-lg mb-7">This are your podcast hosts</p>
@@ -67,17 +67,17 @@ const Hosts: React.FC<HostsProps> = props => (
                 <div className=" border-t dark:border-black border-gray-100 mt-4"></div>
                 <div className="flex justify-start border-t-1 flex-1 mt-1 pt-2 ">
                   <a href={host.socialMedia?.instagram || ''} target="_blank">
-                    <InstagramIcon className="text-red-500" />
+                    <InstagramIcon className="stroke-current text-gray-400 hover:text-red-400" />
                   </a>
                   <a href={host.socialMedia?.twitter || ''} target="_blank">
-                    <TwitterIcon className="text-blue-500 fill-current ml-6" />
+                    <TwitterIcon className=" ml-6 stroke-current text-gray-400 hover:text-blue-400" />
                   </a>
                   <a href={host?.socialMedia?.github || ''} target="_blank">
-                    <GithubIcon className="text-gray-900 fill-current dark:text-white ml-6" />
+                    <GithubIcon className="stroke-current text-gray-400 ml-6 hover:text-black dark:hover:text-white" />
                   </a>
 
                   <a href={host?.socialMedia?.linkedIn || ''} target="_blank">
-                    <LinkedInIcon className="text-blue-400 fill-current ml-6" />
+                    <LinkedInIcon className="stroke-current relative text-gray-400 ml-6 hover:text-blue-500" />
                   </a>
                 </div>
               </div>

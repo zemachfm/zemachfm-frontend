@@ -55,29 +55,29 @@ const Footer: FC<footerProps> = ({ content }) => {
       return null;
     });
   return (
-    <div className="my-4 flex flex-col col-span-7 dark:bg-black">
+    <div className="my-4 flex flex-col border-t-2 border-gray-200 dark:border-gray-900 col-span-7 dark:bg-black">
       <footer
-        className={`py-5 my-5  margin-auto ${
-          playing ? 'mb-28' : ''
+        className={`py-5 mb-5  margin-auto ${
+          playing ? 'mb-32' : ''
         } dark:bg-black`}
       >
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-5">
-          <div className="lg:col-span-3 col-span-2">
-            <img
-              alt="zemachfm"
-              className=" w-20 h-20"
-              height="80"
-              src="/assets/zemach-small.png"
-              width="80"
-            />
-          </div>
+        <div className="grid grid-cols-2 items-center lg:grid-cols-3 gap-5">
           <div className=" col-span-2 lg:col-span-1">
-            <h3 className="mb-4 text-2xl dark:text-white">{appName} </h3>
+            <h3 className="mb-4 text-2xl dark:text-white flex items-center">
+              <img
+                alt="zemachfm"
+                className=" w-20 h-20"
+                height="80"
+                src="/assets/zemach-small.png"
+                width="80"
+              />
+              <span className="block">{appName}</span>
+            </h3>
             <p className="text-gray-500 dark:text-gray-300">
               {footer.subtitle}
             </p>
           </div>
-          <ul>
+          <ul className="flex flex-col">
             <h3 className="mb-4 text-2xl dark:text-white ">
               {footer.recentEpisodes}
             </h3>
@@ -90,8 +90,7 @@ const Footer: FC<footerProps> = ({ content }) => {
               </li>
             ))}
           </ul>
-          <div>
-            {' '}
+          <div className="lg:ml-4">
             <h3 className="mb-4 text-2xl dark:text-white">
               {footer.platforms}
             </h3>
