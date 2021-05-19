@@ -39,7 +39,6 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
   const {
     episodes: episodesDataCont,
     player: playersDataCont,
-    theme,
     settings,
     guests,
     mobileMenuVisible,
@@ -79,24 +78,6 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
       icon: <MessageIcon />,
     },
   ];
-
-  useEffect(() => {
-    // Remember theme option
-    if (localStorageKeys.theme in localStorage) {
-      const themeValue = localStorage.getItem(localStorageKeys.theme);
-      if (themeValue === 'dark' || themeValue === 'light') {
-        dispatch(changeThemeAction(themeValue));
-      }
-    }
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [theme]);
 
   const [links, setLinks] = React.useState(linksDefault);
 

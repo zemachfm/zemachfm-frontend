@@ -1,6 +1,7 @@
-import { ReactElement, useState } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 import { withStyles } from '@bit/mui-org.material-ui.styles';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import Popover from '@bit/mui-org.material-ui.popover';
 import { useDispatch, useSelector } from 'react-redux';
 import Moon from '../../icons/moon.svg';
@@ -28,6 +29,7 @@ const NavBar = (props: INavBarProps): ReactElement => {
   );
 
   const toogleLangPopOver = () => setLangPopoverDisplay(!langPopoverDisplay);
+  const { asPath } = useRouter();
 
   const onThemeChange = (themeSelected: ThemeTypes) => {
     localStorage.setItem(localStorageKeys.theme, themeSelected);
@@ -37,6 +39,24 @@ const NavBar = (props: INavBarProps): ReactElement => {
   const onDisplayMobileMenu = () => {
     dispatch(toogleMobileMenu());
   };
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [theme]);
+
+  useEffect(() => {
+    // Remember theme option
+    if (localStorageKeys.theme in localStorage) {
+      const themeValue = localStorage.getItem(localStorageKeys.theme);
+      if (themeValue === 'dark' || themeValue === 'light') {
+        dispatch(changeThemeAction(themeValue));
+      }
+    }
+  }, [dispatch]);
 
   return (
     <nav>
@@ -51,13 +71,21 @@ const NavBar = (props: INavBarProps): ReactElement => {
               className="p-0 h-12 w-auto  border-yellow-400 border-2 rounded-full lg:block hidden"
               src="/assets/zemach-small.png"
             />
-            <h1 className="text-2xl ml-3 font-bold text-yellow-400 lg:block hidden">
-              {props.appName}
-            </h1>
+            <Link href="/" passHref>
+              <a>
+                <h1 className="text-2xl ml-3 font-bold text-yellow-400 lg:block hidden">
+                  {props.appName}
+                </h1>
+              </a>
+            </Link>
           </div>
-          <h1 className="text-2xl ml-3 font-bold text-yellow-400 lg:hidden block">
-            {props.appName}
-          </h1>
+          <Link href="/" passHref>
+            <a>
+              <h1 className="text-2xl ml-3 font-bold text-yellow-400 lg:hidden block">
+                {props.appName}
+              </h1>
+            </a>
+          </Link>
           <div className="flex items-center justify-between">
             <button onClick={toogleLangPopOver} ref={setReferenceElement}>
               <LanguageIcon className="dark:text-white" />
@@ -72,7 +100,7 @@ const NavBar = (props: INavBarProps): ReactElement => {
               <div className="p-5  border-solid bg-white shadow-md border-gray-100 dark:bg-gray-800 text-gray-800 rounded-xl dark:text-white z-10">
                 <ul>
                   <li className="w-full">
-                    <Link href="/" locale="am">
+                    <Link href={asPath} locale="am">
                       <a
                         className={` ${
                           props.locale === 'am'
@@ -86,7 +114,7 @@ const NavBar = (props: INavBarProps): ReactElement => {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/" locale="en">
+                    <Link href={asPath} locale="en">
                       <a
                         className={` ${
                           props.locale === 'en'
