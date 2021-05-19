@@ -12,6 +12,10 @@
     "story": "Story",
     "contact": "Contact"
   },
+  "hosts": {
+    "title": "Hosts",
+    "description": "Below are your ZemachFM podcast hosts, get to know them."
+  },
   "contactUs": {
     "title": "Contact Us",
     "subtitle": "Share your thoughts about this podcast, we are always trying to get better help us by sharing your thoughts",

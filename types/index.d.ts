@@ -30,6 +30,11 @@ interface contactUsStringType {
   sent: string;
 }
 
+interface IHostsString {
+  title: string;
+  description: string;
+}
+
 interface translatedStrings {
   appName: string;
   episodes: string;
@@ -39,6 +44,7 @@ interface translatedStrings {
   guests: string;
   guestDescription: string;
   contactUs: contactUsStringType;
+  hosts?: IHostsString;
   footer: footer;
 }
 
@@ -62,4 +68,5 @@ export {
   contactUsStringType,
   hostPageType,
   translatedStrings,
+  IHostsString,
 };

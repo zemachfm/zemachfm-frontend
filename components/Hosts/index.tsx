@@ -10,9 +10,11 @@ const Hosts: React.FC<HostsProps> = props => (
   <section id="hosts">
     <div className="flex flex-col">
       <h1 className=" text-3xl lg:text-4xl 2xl:text-5xl  my-10 font-bold dark:text-gray-200 mb-2 ">
-        Hosts
+        {props.sectionContent?.title}
       </h1>
-      <p className="text-gray-400 text-lg mb-7">This are your podcast hosts</p>
+      <p className="text-gray-400 text-lg mb-7">
+        {props.sectionContent?.description}
+      </p>
     </div>
     <div className="grid grid-cols-1 gap-10 justify-between flex-1 lg:grid-cols-2">
       {Array.isArray(props.hosts) &&
