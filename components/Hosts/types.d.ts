@@ -1,4 +1,5 @@
 import { Hosts } from '../../store/home/types.d';
+import { hosts as hostString } from '../../types/index.d';
 
 interface Ihost {
   name: string;
@@ -8,4 +9,5 @@ interface Ihost {
 export interface HostsProps {
   hosts: Hosts;
   loading: boolean;
+  content: hostString;
 }

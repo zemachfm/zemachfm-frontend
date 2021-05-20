@@ -32,4 +32,9 @@
     "platforms": "Platforms you can find us",
     "copyright": "Copyright reserved."
   }
+  ,
+  "hosts": {
+    "title": "Hosts" ,
+    "subtitle": "hosts and producers of this podcast."
+  }
 }

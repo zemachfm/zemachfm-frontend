@@ -15,6 +15,11 @@ interface footer {
   copyright: string;
 }
 
+interface hosts {
+  title: string;
+  subtitle: string;
+}
+
 interface contactUsStringType {
   title: string;
   subtitle: string;
@@ -40,6 +45,7 @@ interface translatedStrings {
   guestDescription: string;
   contactUs: contactUsStringType;
   footer: footer;
+  hosts: hosts;
 }
 
 type indexPageType = {
@@ -62,4 +68,5 @@ export {
   contactUsStringType,
   hostPageType,
   translatedStrings,
+  hosts,
 };

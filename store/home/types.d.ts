@@ -124,6 +124,7 @@ interface IHostRequest {
   post: IPost;
   img: string;
   socialMedia: ISocialMedias;
+  subtitle: string;
 }
 
 type Hosts = IHostRequest[];

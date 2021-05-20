@@ -10,9 +10,9 @@ const Hosts: React.FC<HostsProps> = props => (
   <section id="hosts">
     <div className="flex flex-col">
       <h1 className=" text-3xl lg:text-4xl 2xl:text-5xl  my-10 font-bold dark:text-gray-200 mb-2 ">
-        Hosts
+        {props.content.title}
       </h1>
-      <p className="text-gray-400 text-lg mb-7">This are your podcast hosts</p>
+      <p className="text-gray-400 text-lg mb-7"> {props.content.subtitle} </p>
     </div>
     <div className="grid grid-cols-1 gap-10 justify-between flex-1 lg:grid-cols-2">
       {props.hosts.map(host => (
@@ -51,7 +51,7 @@ const Hosts: React.FC<HostsProps> = props => (
                 <div className="w-1/2 h-2 mt-2 bg-gradient-to-r dark:from-gray-600 from-gray-200 to-gray-300 dark:to-gray-500 bg-gray-200 animate-pulse " />
               ) : (
                 <div className="text-gray-500 pl-4 text-md mt-1 ml-1  dark:text-gray-400">
-                  Software Engineer, Ethiopia
+                 {host.subtitle}
                 </div>
               )}
             </figcaption>
