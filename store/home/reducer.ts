@@ -61,17 +61,16 @@ const initialState: IHomeReducer = {
     story: {
       storyLine: {
         title: 'Our Story',
-        description:
-          '<p>Hi There we started our podcast from the way back nov 20 2020 was the first time we publish our first podcast , long time right ?</p>\n',
+        description: '',
       },
       cards: [
         {
-          title: 'Mission',
-          description: '<p>descripton</p>\n',
+          title: '',
+          description: '',
         },
         {
-          title: 'Others',
-          description: '<p>whi</p>\n',
+          title: '',
+          description: '',
         },
         {
           title: '',

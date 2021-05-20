@@ -186,7 +186,6 @@ function* preeceedWithPlaylistGenerator({
 
   const playlist = yield select(getPlaylist);
 
- 
   // eslint-disable-next-line prefer-const
   let plays = [...playlist];
   if (!payload.type) {
@@ -234,9 +233,18 @@ function* changePlayerSettings({ type, payload }) {
   }
 }
 
-function* fetchSettingsGenerator({ type }: { type: string }) {
+function* fetchSettingsGenerator({
+  type,
+  payload,
+}: {
+  type: string;
+  payload: string;
+}) {
   try {
-    const { data: fetchedSettings } = yield call(axiosGet, SETTINGS_URL, {});
+    const lang = payload || 'en';
+    const { data: fetchedSettings } = yield call(axiosGet, SETTINGS_URL, {
+      lang,
+    });
     yield put(fetchSettingsSucceeded(fetchedSettings));
   } catch (err) {
     yield put(fetchSettingsFailed(err));
@@ -264,9 +272,16 @@ function* fetchGuestsGenerator({ type }: { type: string }) {
   }
 }
 
-function* fetchHostsGenerator() {
+function* fetchHostsGenerator({
+  type,
+  payload,
+}: {
+  type: string;
+  payload: string;
+}) {
+  const lang = payload || 'en';
   try {
-    const { data } = yield call(axiosGet, HOSTS_URL, {});
+    const { data } = yield call(axiosGet, HOSTS_URL, { lang });
 
     yield put(fetchHostsSucceeded({ data }));
   } catch (error) {

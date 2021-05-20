@@ -39,7 +39,6 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
   const {
     episodes: episodesDataCont,
     player: playersDataCont,
-    theme,
     settings,
     guests,
     mobileMenuVisible,
@@ -79,24 +78,6 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
       icon: <MessageIcon />,
     },
   ];
-
-  useEffect(() => {
-    // Remember theme option
-    if (localStorageKeys.theme in localStorage) {
-      const themeValue = localStorage.getItem(localStorageKeys.theme);
-      if (themeValue === 'dark' || themeValue === 'light') {
-        dispatch(changeThemeAction(themeValue));
-      }
-    }
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [theme]);
 
   const [links, setLinks] = React.useState(linksDefault);
 
@@ -165,7 +146,11 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
                 subTitle={content.episodesDescription}
                 title={content.episodes}
               />
-              <Hosts hosts={state.hosts.data} loading={state.hosts.loading} />
+              <Hosts
+                content={content.hosts}
+                hosts={state.hosts.data}
+                loading={state.hosts.loading}
+              />
               <Guests
                 currentPlay={currentPlay.item}
                 episodes={guests.episodes}
@@ -194,9 +179,9 @@ export const getStaticProps = wrapper.getStaticProps(
     store: any;
   }) => {
     store.dispatch(fetchEpisodes());
-    store.dispatch(fetchSettings());
+    store.dispatch(fetchSettings(locale));
     store.dispatch(fetchGuests());
-    store.dispatch(fetchHosts());
+    store.dispatch(fetchHosts(locale));
     store.dispatch(END);
     await store.sagaTask.toPromise();
 
