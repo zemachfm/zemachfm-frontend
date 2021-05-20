@@ -42,7 +42,7 @@ const SinglePodcast: FC<singlePodcastType> = ({
             <p>
               recorded
               <span className="block lg:inline lg:ml-2">
-                {singlePodcastState[slug][0].meta.date_recorded} 
+                {singlePodcastState[slug][0].meta.date_recorded}
               </span>
             </p>
             -
