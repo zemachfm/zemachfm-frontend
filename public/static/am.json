@@ -3,7 +3,7 @@
   "episodes": "የድምጽ ስርጭት ክፍሎች",
   "episodesDescription": "በቅርብ የተለቀቁ የዘማች ኤፍ ኤም የድምጽ ስርጭት ክፍሎች",
   "more": "ተጨማሪ አምጣ",
-  "guests": "እንግዳዎች",
+  "guests": "እንግዶች",
   "guestDescription": "እስካሁን በ ፖድካስታችን የቀረቡ እንግዳዎች",
   "sidebar": {
     "episodes": "ክፍሎች",
@@ -31,5 +31,9 @@
     "recentEpisodes": "ምርጥ የድምጽ ስርጭቶች",
     "platforms": " የምንገኝበት ቦታወች ",
     "copyright": "ኮፒ ራይቱ የተጠበቀ ነው።"
+  },
+  "hosts": {
+    "title": "አዘጋጆች" ,
+    "subtitle": "የፕሮግራሙ አዘጋጂና አቅራቢዎች ።"
   }
 }
