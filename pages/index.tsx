@@ -196,7 +196,7 @@ export const getStaticProps = wrapper.getStaticProps(
     store.dispatch(fetchEpisodes());
     store.dispatch(fetchSettings(locale));
     store.dispatch(fetchGuests());
-    store.dispatch(fetchHosts());
+    store.dispatch(fetchHosts(locale));
     store.dispatch(END);
     await store.sagaTask.toPromise();
 

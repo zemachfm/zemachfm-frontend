@@ -236,8 +236,9 @@ const fetchGUestsFailed = (
  * get hosts
  */
 
-const fetchHosts = (): { type: string } => ({
+const fetchHosts = (payload: string): { type: string; payload: string } => ({
   type: actionTypes.FETCH_HOSTS,
+  payload,
 });
 
 const fetchHostsSucceeded = (payload: {

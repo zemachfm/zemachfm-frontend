@@ -233,7 +233,13 @@ function* changePlayerSettings({ type, payload }) {
   }
 }
 
-function* fetchSettingsGenerator({ type, payload }: { type: string }) {
+function* fetchSettingsGenerator({
+  type,
+  payload,
+}: {
+  type: string;
+  payload: string;
+}) {
   try {
     const lang = payload || 'en';
     const { data: fetchedSettings } = yield call(axiosGet, SETTINGS_URL, {
@@ -266,9 +272,16 @@ function* fetchGuestsGenerator({ type }: { type: string }) {
   }
 }
 
-function* fetchHostsGenerator() {
+function* fetchHostsGenerator({
+  type,
+  payload,
+}: {
+  type: string;
+  payload: string;
+}) {
+  const lang = payload || 'en';
   try {
-    const { data } = yield call(axiosGet, HOSTS_URL, {});
+    const { data } = yield call(axiosGet, HOSTS_URL, { lang });
 
     yield put(fetchHostsSucceeded({ data }));
   } catch (error) {
