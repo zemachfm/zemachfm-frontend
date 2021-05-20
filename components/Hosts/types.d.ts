@@ -7,7 +7,7 @@ interface Ihost {
   image: string;
 }
 export interface HostsProps {
-  hosts: Hosts;
+  hosts?: Hosts;
   loading: boolean;
-  content: hostString;
+  content?: hostString;
 }

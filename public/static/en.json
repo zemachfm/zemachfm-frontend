@@ -31,10 +31,9 @@
     "recentEpisodes": "Our Podcast Pick",
     "platforms": "Platforms you can find us",
     "copyright": "Copyright reserved."
-  }
-  ,
+  },
   "hosts": {
-    "title": "Hosts" ,
+    "title": "Hosts",
     "subtitle": "hosts and producers of this podcast."
   }
 }

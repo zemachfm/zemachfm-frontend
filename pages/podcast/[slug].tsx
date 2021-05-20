@@ -38,10 +38,27 @@ const SinglePodcast: FC<singlePodcastType> = ({
               __html: singlePodcastState[slug][0].title.rendered,
             }}
           ></h1>
-          <div className="flex flex-row gap-4 text-gray-600 dark:text-gray-400 mb-8 text-lg">
-            <p> recorded {singlePodcastState[slug][0].meta.date_recorded} </p> -
-            <p> duration {singlePodcastState[slug][0].meta.duration} </p> -
-            <p> size {singlePodcastState[slug][0].meta.filesize} </p>
+          <div className="flex flex-row  gap-4 text-gray-600 dark:text-gray-400 mb-8 text-lg">
+            <p>
+              recorded
+              <span className="block lg:inline lg:ml-2">
+                {singlePodcastState[slug][0].meta.date_recorded} 
+              </span>
+            </p>
+            -
+            <p>
+              duration
+              <span className="block lg:inline lg:ml-2">
+                {singlePodcastState[slug][0].meta.duration}
+              </span>
+            </p>
+            -
+            <p>
+              size
+              <span className="block lg:inline lg:ml-2">
+                {singlePodcastState[slug][0].meta.filesize}
+              </span>
+            </p>
           </div>
 
           <div

@@ -35,6 +35,11 @@ interface contactUsStringType {
   sent: string;
 }
 
+interface IHostsString {
+  title: string;
+  description: string;
+}
+
 interface translatedStrings {
   appName: string;
   episodes: string;
