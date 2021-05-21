@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import Head from 'next/head';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetStaticPropsContext } from 'next';
@@ -10,13 +10,11 @@ import { IHomeReducer } from '../store/home/types.d';
 import { TRootReducer } from '../store/reducer';
 import {
   fetchEpisodes,
-  changeThemeAction,
   fetchSettings,
   fetchGuests,
   fetchHosts,
   toogleMobileMenu,
 } from '../store/home/actions';
-import localStorageKeys from '../lib/constants/localStorageKeys';
 import SideBar from '../components/Sidebar';
 import SmallDeviceSideBar from '../components/Sidebar/smallDevice.sidebar';
 import prop from '../types/index.d';
@@ -45,6 +43,9 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
   } = state;
   const { episodes, loading } = episodesDataCont;
   const { player, currentPlay } = playersDataCont;
+
+  const recentEpisode =
+    Array.isArray(episodes) && episodes?.length > 0 ? episodes[0] : null;
 
   const linksDefault: ISideBarLink[] = [
     {
@@ -129,7 +130,31 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
             toogleMenu={onMobileMenuToogle}
           />
         )}
+        {recentEpisode && (
+          <div className="h-full w-full col-span-2 flex flex-row-reverse mt-4">
+            <div className="lg:flex flex-row w-full ml-44 place-self-end py-14 p-7 justify-self-end bg-gradient-to-r from-green-500 to-green-400 bg-transparent rounded-tl-xl rounded-bl-xl top-3">
+              <div>
+                <h2 className="text-2xl font-bold text-white w-2/4">
+                  {recentEpisode?.title?.rendered}
+                </h2>
+                <p
+                  className="text-gray-100 w-4/5 mt-3 text-justify"
+                  dangerouslySetInnerHTML={{
+                    __html: recentEpisode?.excerpt?.rendered,
+                  }}
+                />
+                <button className="bg-white w-36 mt-3 py-3 text-green-500 rounded-3xl font-bold">
+                  Play Now
+                </button>
+              </div>
 
+              <img
+                className="w-80 h-80 rounded-2xl border-8 border-green-300"
+                src={recentEpisode?.episode_player_image}
+              />
+            </div>
+          </div>
+        )}
         <div className="bg-gray-100 px-5 mt-5 dark:bg-black">
           <main className=" grid grid-cols-12 lg:grid-cols-10 ">
             <div className="h-full w-full flex-col justify-center hidden lg:flex">
