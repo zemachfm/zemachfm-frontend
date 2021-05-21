@@ -35,5 +35,12 @@
   "hosts": {
     "title": "Hosts",
     "subtitle": "hosts and producers of this podcast."
+  },
+  "podcastPage": {
+    "headings": {
+      "duration": "Duration",
+      "recorded": "Recorded",
+      "size": "Sizes"
+    }
   }
 }
