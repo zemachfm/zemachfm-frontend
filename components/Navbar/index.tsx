@@ -99,7 +99,7 @@ const NavBar = (props: INavBarProps): ReactElement => {
             >
               <div className="p-5  border-solid bg-white shadow-md border-gray-100 dark:bg-gray-800 text-gray-800 rounded-xl dark:text-white z-10">
                 <ul>
-                  <li className="w-full">
+                  <li className="my-4">
                     <Link href={asPath} locale="am">
                       <a
                         className={` ${
@@ -107,21 +107,19 @@ const NavBar = (props: INavBarProps): ReactElement => {
                             ? 'border-yellow-400 border-2 text-yellow-400'
                             : ''
                         } px-10 py-2 min-w-full`}
-                        type="button"
                       >
                         አማርኛ
                       </a>
                     </Link>
                   </li>
-                  <li>
+                  <li className="my-4">
                     <Link href={asPath} locale="en">
                       <a
                         className={` ${
                           props.locale === 'en'
                             ? 'border-yellow-400 border-2 text-yellow-400'
                             : ''
-                        } px-10 py-2`}
-                        type="button"
+                        } px-10 py-2 min-w-full`}
                       >
                         English
                       </a>
