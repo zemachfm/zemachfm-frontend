@@ -35,5 +35,12 @@
   "hosts": {
     "title": "አዘጋጆች",
     "subtitle": "የፕሮግራሙ አዘጋጆች እና አቅራቢዎች ።"
+  },
+  "podcastPage": {
+    "headings": {
+      "duration": "የቆይታ ጊዜ",
+      "recorded": "የቅጂ ቀን",
+      "size": "መጠን"
+    }
   }
 }

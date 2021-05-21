@@ -20,6 +20,12 @@ interface hosts {
   subtitle: string;
 }
 
+interface IPodcastPageHeadings {
+  recorded: string;
+  duration: string;
+  size: string;
+}
+
 interface contactUsStringType {
   title: string;
   subtitle: string;
@@ -51,6 +57,9 @@ interface translatedStrings {
   contactUs: contactUsStringType;
   footer: footer;
   hosts: hosts;
+  podcastPage: {
+    headings: IPodcastPageHeadings;
+  };
 }
 
 type indexPageType = {
