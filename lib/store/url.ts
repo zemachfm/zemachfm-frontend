@@ -8,6 +8,7 @@ const CUSTOM_API_URL = `${BASE_URL}/wp-json/custom/v1`;
 /**
  * podcast
  */
+const RSS_URL = `${BASE_URL}/feed/podcast`;
 const PODCASTS_URL = `${API_URL}/podcast`;
 const GUESTS_URL = `${PODCASTS_URL}?tags=82`;
 const SETTINGS_URL = `${CUSTOM_API_URL}/settings`;
@@ -20,6 +21,7 @@ const CONTACT_US = `${CUSTOM_API_URL}/contact`;
 export {
   BASE_URL,
   API_URL,
+  RSS_URL,
   PODCASTS_URL,
   SETTINGS_URL,
   GET_HOST_URL,
