@@ -187,6 +187,7 @@ const homeReducer = produce((draft: IHomeReducer, action) => {
       draft.settings.story.storyLine = payload.story.storyLine;
       draft.settings.story.cards = payload.story.cards;
       draft.settings.story.numberOfCards = payload.story.numberOfCards;
+      draft.settings.rightSidebar = payload.rightSidebar;
       break;
     case actionTypes.FETCH_GUESTS:
       draft.guests.loading = true;

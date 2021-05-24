@@ -73,6 +73,7 @@ interface IFullSocialMedias extends ISocialMedias {
 }
 
 interface IPost {
+  ID: number;
   post_date: string;
   post_content: string;
   post_title: string;
@@ -89,6 +90,21 @@ interface platforms {
   youtube: string;
 }
 
+interface rightSidebar {
+  image: {
+    sizes: {
+      'big-thumb': string;
+    };
+  };
+  title: string;
+  content: string;
+  link: {
+    title: string;
+    url: string;
+    target?: string;
+  };
+}
+
 interface siteSettings {
   name: string;
   social: IFullSocialMedias;
@@ -100,6 +116,7 @@ interface siteSettings {
     quote: string;
   };
   story: story;
+  rightSidebar?: rightSidebar;
 }
 
 interface guests {
@@ -167,4 +184,5 @@ export type {
   IFullSocialMedias,
   platforms,
   guests,
+  rightSidebar,
 };

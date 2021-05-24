@@ -34,6 +34,7 @@ const Guests: FC<props> = ({
           ? episodes.map(episode => (
               <GuestCard
                 item={episode}
+                key={episode.id}
                 onPause={onPause}
                 onPlay={onEpisodeCardPlay}
                 playerStatus={playerStatus}
