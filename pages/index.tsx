@@ -31,6 +31,7 @@ import routes from '../lib/constants/hashRoutes';
 import { ISideBarLink } from '../components/Sidebar/index.d';
 import OurStory from '../components/story/index';
 import ContactUs from '../components/contactUs';
+import RightSidebar from '../components/rightSide';
 
 const Home: FC<prop> = ({ content, locale, Footer }) => {
   const state: IHomeReducer = useSelector((root: TRootReducer) => root.home);
@@ -163,6 +164,9 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
               <OurStory story={settings.story} />
               <ContactUs content={content.contactUs} />
               {Footer()}
+            </div>
+            <div className="col-span-2 mt-28">
+              <RightSidebar content={settings.rightSidebar} />
             </div>
           </main>
         </div>

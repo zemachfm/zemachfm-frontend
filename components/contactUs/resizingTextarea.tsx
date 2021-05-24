@@ -29,9 +29,8 @@ const ResizingTextarea: FC<resizingTextArea> = ({
       ref={textareaRef}
       rows={1}
       style={{ resize: 'none', height: 50 }}
-    >
-      {value}
-    </textarea>
+      value={value}
+    ></textarea>
   );
 };
 
