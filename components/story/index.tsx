@@ -31,6 +31,7 @@ const OurStory: FC<storyIndex> = ({ story }) => {
                 <StoryCard
                   color={colors[index]}
                   description={card.description}
+                  key={card.title}
                   title={card.title}
                 />
               ) : null,

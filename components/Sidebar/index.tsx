@@ -8,6 +8,7 @@ const SideBar: React.FC<SideBarProps> = props => (
       {props.links.map(link => (
         <a
           href={link.route}
+          key={link.label}
           onClick={() => props.handleRouteChange(link.route)}
         >
           <li

@@ -17,7 +17,10 @@ const Hosts: React.FC<HostsProps> = props => (
     <div className="grid grid-cols-1 gap-10 justify-between flex-1 lg:grid-cols-2">
       {Array.isArray(props.hosts) &&
         props.hosts.map(host => (
-          <div className="grid 2xl:grid-cols-8 lg:grid-cols-4 grid-cols-4 relative overflow-hidden rounded-xl gap-0 bg-white dark:bg-gray-900">
+          <div
+            className="grid 2xl:grid-cols-8 lg:grid-cols-4 grid-cols-4 relative overflow-hidden rounded-xl gap-0 bg-white dark:bg-gray-900"
+            key={host.post.ID}
+          >
             <figure
               className="flex flex-col 2xl:col-span-3 col-span-4 lg:col-span-4 bg-gradient-to-t justify-center from-gray-200 to-white rounded-l-xl dark:from-gray-900 dark:to-gray-800 w-full"
               key={host.post?.post_title}
