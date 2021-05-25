@@ -137,7 +137,7 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
             <div className="h-full w-full flex-col justify-center hidden lg:flex">
               <SideBar handleRouteChange={handleRouteChange} links={links} />
             </div>
-            <div className="col-span-12 lg:col-span-7 lg:px-5">
+            <div className="col-span-12 lg:col-span-9 lg:px-5">
               {recentEpisode && (
                 <div className="w-full flex mt-4">
                   <div className="flex place-self-end py-14 p-7 justify-self-end bg-gradient-to-r from-green-500 to-green-400 bg-transparent rounded-xl top-3">
@@ -163,36 +163,45 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
                   </div>
                 </div>
               )}
-              <EpisodeCardsContainer
-                currentPlay={currentPlay.item}
-                loading={loading}
-                more={content.more}
-                playerStatus={player.playerStatus}
-                settings={settings}
-                starterEpisodes={episodes}
-                subTitle={content.episodesDescription}
-                title={content.episodes}
-              />
-              <Hosts
-                content={content.hosts}
-                hosts={state.hosts.data}
-                loading={state.hosts.loading}
-              />
-              <Guests
-                currentPlay={currentPlay.item}
-                episodes={guests.episodes}
-                loading={guests.loading}
-                more={content.more}
-                playerStatus={player.playerStatus}
-                subTitle={content.guestDescription}
-                title={content.guests}
-              />
-              <OurStory story={settings.story} />
-              <ContactUs content={content.contactUs} />
-              {Footer()}
-            </div>
-            <div className="col-span-2 mt-28">
-              <RightSidebar content={settings.rightSidebar} />
+              <div className="grid grid-cols-12">
+                <div className="col-span-12 lg:col-span-10">
+                  <EpisodeCardsContainer
+                    currentPlay={currentPlay.item}
+                    loading={loading}
+                    more={content.more}
+                    playerStatus={player.playerStatus}
+                    settings={settings}
+                    starterEpisodes={episodes}
+                    subTitle={content.episodesDescription}
+                    title={content.episodes}
+                  />
+                </div>
+                <div className="col-span-12 lg:col-span-2 mt-36">
+                  <RightSidebar content={settings.rightSidebar} />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-12">
+                <div className="col-span-12 lg:col-span-10">
+                  <Hosts
+                    content={content.hosts}
+                    hosts={state.hosts.data}
+                    loading={state.hosts.loading}
+                  />
+                  <Guests
+                    currentPlay={currentPlay.item}
+                    episodes={guests.episodes}
+                    loading={guests.loading}
+                    more={content.more}
+                    playerStatus={player.playerStatus}
+                    subTitle={content.guestDescription}
+                    title={content.guests}
+                  />
+                  <OurStory story={settings.story} />
+                  <ContactUs content={content.contactUs} />
+                  {Footer()}
+                </div>
+              </div>
             </div>
           </main>
         </div>
