@@ -43,7 +43,7 @@ const EpisodeCardsContainer: FC<episodeCardsContainerType> = ({
     : starterEpisodes;
 
   return (
-    <>
+    <div>
       <div className="flex flex-row justify-between">
         <div className="flex flex-col">
           <h1 className=" text-3xl lg:text-4xl 2xl:text-5xl  my-10 font-bold dark:text-gray-200 mb-2 ">
@@ -84,7 +84,7 @@ const EpisodeCardsContainer: FC<episodeCardsContainerType> = ({
       >
         {more}
       </button>
-    </>
+    </div>
   );
 };
 export default EpisodeCardsContainer;
