@@ -2,11 +2,11 @@ import { FC } from 'react';
 import rightSideProps from './types.d';
 
 const RightSidebar: FC<rightSideProps> = ({ content }) => (
-  <div className="flex flex-col rounded-2xl lg:ml-4 mt-2 overflow-hidden bg-white dark:bg-gray-900">
+  <div className="flex flex-col rounded-2xl 2xl:px-6 lg:ml-4 mt-2 overflow-hidden">
     <div className="w-full h-auto">
       <img
         alt=""
-        className="rounded-t-2xl"
+        className="rounded-2xl mx-auto w-full"
         src={content.image.sizes['big-thumb']}
       />
     </div>

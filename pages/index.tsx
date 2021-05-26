@@ -22,6 +22,7 @@ import Hosts from '../components/Hosts';
 import Guests from '../components/guests';
 import GridIcon from '../icons/grid.svg';
 import RadioIcon from '../icons/radio.svg';
+import PlayIcon from '../icons/play.svg';
 import UsersIcon from '../icons/users.svg';
 import MessageIcon from '../icons/message-circle.svg';
 import BookIcon from '../icons/book.svg';
@@ -140,18 +141,22 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
             <div className="col-span-12 lg:col-span-9 lg:px-5">
               {recentEpisode && (
                 <div className="w-full flex mt-4">
-                  <div className="flex place-self-end py-14 p-7 justify-self-end bg-gradient-to-r from-green-500 to-green-400 bg-transparent rounded-xl top-3">
-                    <div>
-                      <h2 className="text-2xl font-bold text-white w-2/4">
-                        {recentEpisode?.title?.rendered}
-                      </h2>
-                      <div
-                        className="text-gray-100 w-4/5 mt-3 text-justify"
-                        dangerouslySetInnerHTML={{
-                          __html: recentEpisode?.excerpt?.rendered,
-                        }}
-                      />
-                      <button className="bg-white w-36 mt-3 py-3 text-green-500 rounded-3xl font-bold">
+                  <div className="flex h-full py-14 p-7 justify-self-end bg-gradient-to-r  dark:from-yellow-600 dark:to-green-600 from-yellow-500 to-green-500 bg-transparent rounded-xl top-3">
+                    <div className="flex flex-col justify-between">
+                      <div>
+                        <h2 className="text-5xl  mb-8 block font-bold text-white w-4/4">
+                          Good Morning !<br /> <br />
+                          {recentEpisode?.title?.rendered}
+                        </h2>
+                        <div
+                          className="text-gray-100 w-4/5 mt-3 text-justify"
+                          dangerouslySetInnerHTML={{
+                            __html: recentEpisode?.excerpt?.rendered,
+                          }}
+                        />
+                      </div>
+                      <button className="bg-white  flex w-48 items-center hover:bg-gray-100 px-4 mt-6 py-2 dark:bg-gray-900 dark:text-gray-100 text-gray-700 rounded-lg font-bold text-lg">
+                        <PlayIcon className=" rounded-full fill-current  dark:text-gray-100 text-gray-700 w-10 h-10 p-2 " />
                         Play Now
                       </button>
                     </div>
@@ -164,7 +169,7 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
                 </div>
               )}
               <div className="grid grid-cols-12">
-                <div className="col-span-12 lg:col-span-10">
+                <div className="col-span-12 lg:col-span-9">
                   <EpisodeCardsContainer
                     currentPlay={currentPlay.item}
                     loading={loading}
@@ -176,13 +181,13 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
                     title={content.episodes}
                   />
                 </div>
-                <div className="col-span-12 lg:col-span-2 mt-36">
+                <div className="col-span-12 lg:col-span-3 mt-36">
                   <RightSidebar content={settings.rightSidebar} />
                 </div>
               </div>
 
               <div className="grid grid-cols-12">
-                <div className="col-span-12 lg:col-span-10">
+                <div className="col-span-12 lg:col-span-9">
                   <Hosts
                     content={content.hosts}
                     hosts={state.hosts.data}
