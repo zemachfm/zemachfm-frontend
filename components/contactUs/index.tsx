@@ -130,7 +130,7 @@ const ContactUs: FC<contactUsType> = ({ content }) => {
       ) : (
         <form
           action="POST"
-          className="pt-2 pb-5 pr-10 rounded-xl relative w-full mt-2 "
+          className="pt-2 pb-5 rounded-xl relative w-full mt-2 "
           onSubmit={onSubmit}
         >
           {loading ? (
@@ -197,7 +197,7 @@ const ContactUs: FC<contactUsType> = ({ content }) => {
             />
           </div>
           <button
-            className="my-4 px-6 flex flex-row mb-4 outline-none focus:outine-none items-center text-gray-200 py-3 font-bold bg-green-500 dark:bg-green-600 dark:text-gray-100 hover:bg-green-500 hover:shadow-lg rounded-lg"
+            className="my-4 px-6 uppercase flex flex-row mb-4 outline-none focus:outine-none items-center text-white py-3 font-bold bg-green-500 dark:bg-green-600 dark:text-gray-100 hover:bg-green-500 hover:shadow-lg rounded-lg"
             type="submit"
           >
             <span> {content.sentButton} </span>

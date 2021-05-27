@@ -42,5 +42,12 @@
       "recorded": "Recorded",
       "size": "Sizes"
     }
+  },
+  "topBanner": {
+    "goodMorning": "Good Morning",
+    "goodAfternoon": "Good Afternoon",
+    "goodEvening": "Good Evening",
+    "play": "Play Now",
+    "pause": "Pause"
   }
 }
