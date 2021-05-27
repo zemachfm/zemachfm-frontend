@@ -22,7 +22,7 @@ import Hosts from '../components/Hosts';
 import Guests from '../components/guests';
 import GridIcon from '../icons/grid.svg';
 import RadioIcon from '../icons/radio.svg';
-import PlayIcon from '../icons/play.svg';
+
 import UsersIcon from '../icons/users.svg';
 import MessageIcon from '../icons/message-circle.svg';
 import BookIcon from '../icons/book.svg';
@@ -31,6 +31,7 @@ import { ISideBarLink } from '../components/Sidebar/index.d';
 import OurStory from '../components/story/index';
 import ContactUs from '../components/contactUs';
 import RightSidebar from '../components/rightSide';
+import TopBanner from '../components/Topbanner';
 
 const Home: FC<prop> = ({ content, locale, Footer }) => {
   const state: IHomeReducer = useSelector((root: TRootReducer) => root.home);
@@ -139,35 +140,7 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
               <SideBar handleRouteChange={handleRouteChange} links={links} />
             </div>
             <div className="col-span-12 lg:col-span-9 lg:px-5">
-              {recentEpisode && (
-                <div className="w-full flex mt-4">
-                  <div className="flex h-full py-14 p-7 justify-self-end bg-gradient-to-r  dark:from-yellow-600 dark:to-green-600 from-yellow-500 to-green-500 bg-transparent rounded-xl top-3">
-                    <div className="flex flex-col justify-between">
-                      <div>
-                        <h2 className="text-5xl  mb-8 block font-bold text-white w-4/4">
-                          Good Morning !<br /> <br />
-                          {recentEpisode?.title?.rendered}
-                        </h2>
-                        <div
-                          className="text-gray-100 w-4/5 mt-3 text-justify"
-                          dangerouslySetInnerHTML={{
-                            __html: recentEpisode?.excerpt?.rendered,
-                          }}
-                        />
-                      </div>
-                      <button className="bg-white  flex w-48 items-center hover:bg-gray-100 px-4 mt-6 py-2 dark:bg-gray-900 dark:text-gray-100 text-gray-700 rounded-lg font-bold text-lg">
-                        <PlayIcon className=" rounded-full fill-current  dark:text-gray-100 text-gray-700 w-10 h-10 p-2 " />
-                        Play Now
-                      </button>
-                    </div>
-
-                    <img
-                      className="w-80 h-80 rounded-2xl border-8 border-green-300"
-                      src={recentEpisode?.episode_player_image}
-                    />
-                  </div>
-                </div>
-              )}
+              <TopBanner recentEpisode={recentEpisode} />
               <div className="grid grid-cols-12">
                 <div className="col-span-12 lg:col-span-9">
                   <EpisodeCardsContainer
