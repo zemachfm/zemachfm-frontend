@@ -46,6 +46,13 @@ interface IHostsString {
   description: string;
 }
 
+interface ITopBannerContent {
+  goodMorning: string;
+  goodAfternoon: string;
+  goodEvening: string;
+  play: string;
+}
+
 interface translatedStrings {
   appName: string;
   episodes: string;
@@ -60,6 +67,7 @@ interface translatedStrings {
   podcastPage: {
     headings: IPodcastPageHeadings;
   };
+  topBanner: ITopBannerContent;
 }
 
 type indexPageType = {
@@ -83,4 +91,5 @@ export {
   hostPageType,
   translatedStrings,
   hosts,
+  ITopBannerContent,
 };

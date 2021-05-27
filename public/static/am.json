@@ -42,5 +42,11 @@
       "recorded": "የቅጂ ቀን",
       "size": "መጠን"
     }
+  },
+  "topBanner": {
+    "goodMorning": "እንደምን አደሩ",
+    "goodAfternoon": "እንደምን አረፈዱ",
+    "goodEvening": "እንደምን አምሹ",
+    "play": "አጫውት"
   }
 }

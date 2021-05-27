@@ -140,7 +140,10 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
               <SideBar handleRouteChange={handleRouteChange} links={links} />
             </div>
             <div className="col-span-12 lg:col-span-9 lg:px-5">
-              <TopBanner recentEpisode={recentEpisode} />
+              <TopBanner
+                recentEpisode={recentEpisode}
+                topBannerContent={content.topBanner}
+              />
               <div className="grid grid-cols-12">
                 <div className="col-span-12 lg:col-span-9">
                   <EpisodeCardsContainer
