@@ -1,6 +1,9 @@
 import axios from 'axios';
 import JsonFeedToRss from 'jsonfeed-to-atom';
 import { title } from 'process';
+import { GetServerSideProps } from 'next';
+import fs from 'fs';
+import path from 'path';
 import feeded from 'rss-parser';
 import { RSS_URL } from '../../lib/store/url';
 
@@ -89,29 +92,28 @@ const getRssXml = blogPosts => {
 				<title> ${blogPosts.itunes.image.title} </title>
 				<link> ${blogPosts.itunes.image.link} </link>
 			</image>
-					<itunes:category text="${blogPosts.itunes.category[0]}">
-							</itunes:category>
-							<itunes:category text="${blogPosts.itunes.category[1]}">
-									<itunes:category text="${blogPosts.itunes.category[2]}"></itunes:category>
-							</itunes:category>
-							<itunes:category text="${blogPosts.itunes.category[3]}">
-							</itunes:category>
-						
+									
 		<generator>zemachfm.com</generator>
         ${rssItemsXml}
     </channel>
   </rss>`;
 };
 
-const RSSFeed = props => getRssXml(props.items);
+const PodcastFeed = () => null;
 
-const getStaticProps = async context => {
-  const RSSFeedData = await parser.parseURL(RSS_URL);
-
+const getStaticProps: GetServerSideProps = async ({ res }) => {
+  if (res) {
+    const RSSFeedData = await parser.parseURL(RSS_URL);
+    const processedXml = getRssXml(RSSFeedData);
+    res.setHeader('Content-Type', 'text/xml');
+    res.write(processedXml.toString());
+    res.end();
+  }
   return {
-    props: JSON.parse(JSON.stringify(RSSFeedData)),
+    props: {},
   };
 };
 
 export { getStaticProps };
-export default RSSFeed;
+
+export default PodcastFeed;
