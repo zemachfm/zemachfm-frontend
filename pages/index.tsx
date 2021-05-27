@@ -14,6 +14,7 @@ import {
   fetchGuests,
   fetchHosts,
   toogleMobileMenu,
+  playCertainAudio,
 } from '../store/home/actions';
 import SideBar from '../components/Sidebar';
 import SmallDeviceSideBar from '../components/Sidebar/smallDevice.sidebar';
@@ -141,6 +142,8 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
             </div>
             <div className="col-span-12 lg:col-span-9 lg:px-5">
               <TopBanner
+                currentPlay={currentPlay.item}
+                playerStatus={player.playerStatus}
                 recentEpisode={recentEpisode}
                 topBannerContent={content.topBanner}
               />

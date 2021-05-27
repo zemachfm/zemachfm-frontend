@@ -1,10 +1,15 @@
 import { ReactNode } from 'react';
+import { useDispatch } from 'react-redux';
 import { IToBannerProps } from './types.d';
 import MorningIcon from '../../icons/morning.svg';
 import NightIcon from '../../icons/night.svg';
 import PlayIcon from '../../icons/play.svg';
+import PauseIcon from '../../icons/pause.svg';
+import { changePlayerStatus, playCertainAudio } from '../../store/home/actions';
 
 const TopBanner = (props: IToBannerProps) => {
+  const dispatch = useDispatch();
+
   const getAppropirateGreetinContent = (): {
     greeting: string;
     artWork: ReactNode;
@@ -39,7 +44,57 @@ const TopBanner = (props: IToBannerProps) => {
     };
   };
 
+  const onPlayBannerEpisode = () => {
+    dispatch(playCertainAudio((props.recentEpisode as unknown) as string));
+  };
+
+  const onPlayingStateAction = (type: string) => {
+    dispatch(changePlayerStatus({ type }));
+  };
+
   const greeetingContents = getAppropirateGreetinContent();
+
+  const getPlayingBasedButtonProps = (): {
+    onClick?: () => void;
+    icon: ReactNode;
+    text: string;
+  } => {
+    switch (props.playerStatus) {
+      case 0:
+        return {
+          text: props.topBannerContent?.pause,
+          icon: (
+            <PauseIcon className=" rounded-full fill-current  dark:text-gray-100 text-gray-700 w-10 h-10 p-2 " />
+          ),
+        };
+      case 1:
+        return {
+          text: props.topBannerContent?.pause,
+          icon: (
+            <PauseIcon className=" rounded-full fill-current  dark:text-gray-100 text-gray-700 w-10 h-10 p-2 " />
+          ),
+          onClick: () => onPlayingStateAction('PAUSE'),
+        };
+      case 2:
+        return {
+          text: props.topBannerContent?.play,
+          icon: (
+            <PlayIcon className=" rounded-full fill-current  dark:text-gray-100 text-gray-700 w-10 h-10 p-2 " />
+          ),
+          onClick: () => onPlayingStateAction('PLAY'),
+        };
+      default:
+        return {
+          text: props.topBannerContent?.pause,
+          icon: (
+            <PauseIcon className=" rounded-full fill-current  dark:text-gray-100 text-gray-700 w-10 h-10 p-2 " />
+          ),
+          onClick: () => onPlayingStateAction('PAUSE'),
+        };
+    }
+  };
+
+  const playingBasedProps = getPlayingBasedButtonProps();
 
   return props.recentEpisode ? (
     <div className="w-full flex mt-4 flex-col-reverse lg:flex-row py-14 p-7 justify-self-end bg-gradient-to-b lg:bg-gradient-to-r  dark:from-yellow-600 dark:to-green-600 from-yellow-500 to-green-500 bg-transparent rounded-xl top-3">
@@ -65,10 +120,23 @@ const TopBanner = (props: IToBannerProps) => {
               }}
             />
           </div>
-          <button className="bg-white  flex lg:w-48 justify-center items-center hover:bg-gray-100 px-4 mt-6 py-2 dark:bg-gray-900 dark:text-gray-100 text-gray-700 rounded-lg font-bold text-lg">
-            <PlayIcon className=" rounded-full fill-current  dark:text-gray-100 text-gray-700 w-10 h-10 p-2 " />
-            {props.topBannerContent?.play}
-          </button>
+          {props.currentPlay?.id !== props.recentEpisode?.id ? (
+            <button
+              className="bg-white  flex lg:w-48 justify-center items-center hover:bg-gray-100 px-4 mt-6 py-2 dark:bg-gray-900 dark:text-gray-100 text-gray-700 rounded-lg font-bold text-lg"
+              onClick={onPlayBannerEpisode}
+            >
+              <PlayIcon className=" rounded-full fill-current  dark:text-gray-100 text-gray-700 w-10 h-10 p-2 " />
+              {props.topBannerContent?.play}
+            </button>
+          ) : (
+            <button
+              className="bg-white  flex lg:w-48 justify-center items-center hover:bg-gray-100 px-4 mt-6 py-2 dark:bg-gray-900 dark:text-gray-100 text-gray-700 rounded-lg font-bold text-lg"
+              onClick={playingBasedProps.onClick}
+            >
+              {playingBasedProps.icon}
+              {playingBasedProps.text}
+            </button>
+          )}
         </div>
       </div>
       <img

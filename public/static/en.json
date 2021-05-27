@@ -47,6 +47,7 @@
     "goodMorning": "Good Morning",
     "goodAfternoon": "Good Afternoon",
     "goodEvening": "Good Evening",
-    "play": "Play Now"
+    "play": "Play Now",
+    "pause": "Pause"
   }
 }

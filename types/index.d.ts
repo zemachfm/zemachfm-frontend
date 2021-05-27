@@ -51,6 +51,7 @@ interface ITopBannerContent {
   goodAfternoon: string;
   goodEvening: string;
   play: string;
+  pause: string;
 }
 
 interface translatedStrings {
