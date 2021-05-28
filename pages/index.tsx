@@ -123,7 +123,10 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
   return (
     <div>
       <Head>
-        <title>Create Next App</title>
+        <title>
+          {' '}
+          {content.appName} | {content.subtitle}
+        </title>
         <link href="/favicon.ico" rel="icon" />
       </Head>
       <div className="bg-gray-100 dark:bg-black flex flex-col absolute h-full w-full ">

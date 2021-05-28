@@ -50,15 +50,15 @@ const SingleHost: FC<hostPageType> = ({ locale, content, name }) => {
             __html: hostPageState?.host?.post?.post_content,
           }}
         ></div>
-        <div className="flex justify-center lg:mt-6 mt-3 border-t-1 flex-1 mt-1 pt-2 ">
+        <div className="flex justify-center lg:mt-6 mt-3 border-t-1 flex-1 pt-2 ">
           <a
-            href={hostPageState.host.socialMedia?.instagram || ''}
+            href={hostPageState?.host?.socialMedia?.instagram || ''}
             target="_blank"
           >
             <InstagramIcon className="stroke-current 2xl:text-gray-400 lg:text-gray-500 dark:text-gray-400 hover:text-red-400" />
           </a>
           <a
-            href={hostPageState.host.socialMedia?.twitter || ''}
+            href={hostPageState?.host?.socialMedia?.twitter || ''}
             target="_blank"
           >
             <TwitterIcon className=" ml-6 stroke-current 2xl:text-gray-400 lg:text-gray-500 dark:text-gray-400 hover:text-blue-400" />

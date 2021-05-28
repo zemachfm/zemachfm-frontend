@@ -56,6 +56,7 @@ interface ITopBannerContent {
 
 interface translatedStrings {
   appName: string;
+  subtitle: string;
   episodes: string;
   episodesDescription: string;
   more: string;
