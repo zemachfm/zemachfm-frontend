@@ -8,6 +8,7 @@ import { fetchSinglePodcast } from '../../store/podcastSingle/actions';
 import { TRootReducer } from '../../store/reducer';
 import singlePodcastDataTypes from '../../store/podcastSingle/types.d';
 import singlePodcastType from '../../types/singlePodcast.d';
+import { fetchGuests, fetchSettings } from '../../store/home/actions';
 
 const SinglePodcast: FC<singlePodcastType> = ({
   locale,
@@ -83,6 +84,8 @@ const getStaticProps = wrapper.getStaticProps(
     store: any;
   }) => {
     store.dispatch(fetchSinglePodcast(params.slug.toString()));
+    store.dispatch(fetchSettings(locale));
+    store.dispatch(fetchGuests());
     store.dispatch(END);
     await store.sagaTask.toPromise();
     return {

@@ -102,7 +102,7 @@ const TopBanner = (props: IToBannerProps) => {
         <div className="flex flex-col justify-between">
           <div className="flex flex-col items-center lg:items-start">
             {greeetingContents.artWork}
-            <h2 className="text-6xl  mb-8 block font-bold lg:text-left text-white w-4/4">
+            <h2 className="text-4xl  mb-8 block font-bold lg:text-left text-white w-4/4">
               {greeetingContents.greeting}
               <br />
             </h2>
