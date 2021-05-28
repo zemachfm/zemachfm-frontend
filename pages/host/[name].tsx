@@ -10,6 +10,10 @@ import { fetchHost } from '../../store/host/actions';
 import { TRootReducer } from '../../store/reducer';
 import IHostPageState from '../../store/host/types';
 import { hostPageType } from '../../types/index.d';
+import InstagramIcon from '../../icons/instagram.svg';
+import TwitterIcon from '../../icons/twitter.svg';
+import LinkedInIcon from '../../icons/linkedin.svg';
+import GithubIcon from '../../icons/github.svg';
 
 const SingleHost: FC<hostPageType> = ({ locale, content, name }) => {
   const hostPageState: IHostPageState = useSelector(
@@ -32,17 +36,47 @@ const SingleHost: FC<hostPageType> = ({ locale, content, name }) => {
           width="384"
         />
         <h1
-          className="text-3xl lg:text-4xl 2xl:text-5xl dark:text-gray-100  text-center my-4 font-bold"
+          className="text-3xl lg:text-4xl 2xl:text-5xl dark:text-gray-100  text-center mt-4 mb-1 font-bold"
           dangerouslySetInnerHTML={{
             __html: hostPageState?.host?.post?.post_title,
           }}
         ></h1>
+        <p className="text-lg text-gray-500 dark:text-gray-400 mb-4">
+          {hostPageState?.host?.subtitle}
+        </p>
         <div
           className="w-full text-lg text-gray-600 dark:text-gray-200 fill-current "
           dangerouslySetInnerHTML={{
             __html: hostPageState?.host?.post?.post_content,
           }}
         ></div>
+        <div className="flex justify-center lg:mt-6 mt-3 border-t-1 flex-1 mt-1 pt-2 ">
+          <a
+            href={hostPageState.host.socialMedia?.instagram || ''}
+            target="_blank"
+          >
+            <InstagramIcon className="stroke-current 2xl:text-gray-400 lg:text-gray-500 dark:text-gray-400 hover:text-red-400" />
+          </a>
+          <a
+            href={hostPageState.host.socialMedia?.twitter || ''}
+            target="_blank"
+          >
+            <TwitterIcon className=" ml-6 stroke-current 2xl:text-gray-400 lg:text-gray-500 dark:text-gray-400 hover:text-blue-400" />
+          </a>
+          <a
+            href={hostPageState?.host?.socialMedia?.github || ''}
+            target="_blank"
+          >
+            <GithubIcon className="stroke-current 2xl:text-gray-400 lg:text-gray-500 dark:text-gray-400 ml-6 hover:text-black dark:hover:text-white" />
+          </a>
+
+          <a
+            href={hostPageState?.host?.socialMedia?.linkedIn || ''}
+            target="_blank"
+          >
+            <LinkedInIcon className="stroke-current relative 2xl:text-gray-400 lg:text-gray-500 dark:text-gray-400 ml-6 hover:text-blue-500" />
+          </a>
+        </div>
       </div>
     </div>
   );
