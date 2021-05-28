@@ -1,11 +1,11 @@
 {
-  "appName": "Zemach",
+  "appName": "Zemach FM",
   "subtitle": "An Ethiopian Amharic Tech Podcast",
   "episodes": "Episodes",
   "episodesDescription": "Latest Episodes from Zemach FM podcast",
   "more": "Load More",
   "guests": "Guests",
-  "guestDescription": "Guests we talked to in Our Podcast so far",
+  "guestDescription": "Guests we talked to on Our Podcast so far",
   "sidebar": {
     "episodes": "Episodes",
     "hosts": "Hosts",
@@ -28,8 +28,8 @@
     "sent": "We have got your message, Thank you. We will send Confirmation Email"
   },
   "footer": {
-    "subtitle": "Zemach FM is an amharic technology podcast that focus on past , present and future technological advances. ",
-    "recentEpisodes": "Our Podcast Pick",
+    "subtitle": "Zemach FM is an Ethiopian amharic technology podcast that focus on past , present and future technological advances and achievement. ",
+    "recentEpisodes": "Most heard Podcasts",
     "platforms": "Platforms you can find us",
     "copyright": "Copyright reserved."
   },
@@ -41,7 +41,7 @@
     "headings": {
       "duration": "Duration",
       "recorded": "Recorded",
-      "size": "Sizes"
+      "size": "File Size"
     }
   },
   "topBanner": {
