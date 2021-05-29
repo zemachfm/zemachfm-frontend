@@ -15,7 +15,7 @@ const TopBanner = (props: IToBannerProps) => {
     artWork: ReactNode;
   } => {
     const now = new Date();
-    const currentHour = now.getTime();
+    const currentHour = now.getHours();
     const goodMorning = props.topBannerContent?.goodMorning || '';
     const goodAfternoon = props.topBannerContent?.goodAfternoon || '';
     const goodEvening = props.topBannerContent?.goodEvening || '';
