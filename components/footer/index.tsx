@@ -41,7 +41,7 @@ const Footer: FC<footerProps> = ({ content }) => {
     Object.entries(platforms).map(platform => {
       if (platform[1]) {
         return (
-          <li className="mb-2 flex flex-row items-center">
+          <li className="mb-2 flex flex-row items-center" key={platform[0]}>
             {getIcon(platform[0])}
             <a
               className="capitalize ml-2 text-gray-500 hover:text-black dark:hover:text-white dark:text-gray-400"
@@ -83,7 +83,10 @@ const Footer: FC<footerProps> = ({ content }) => {
             </h3>
 
             {guests.episodes.map(episode => (
-              <li className="text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white truncate">
+              <li
+                className="text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white truncate"
+                key={`footer${episode.id}`}
+              >
                 <Link href={`/podcast/${episode.slug}`}>
                   {episode.title.rendered}
                 </Link>

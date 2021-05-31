@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import Head from 'next/head';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetStaticPropsContext } from 'next';
@@ -10,13 +10,12 @@ import { IHomeReducer } from '../store/home/types.d';
 import { TRootReducer } from '../store/reducer';
 import {
   fetchEpisodes,
-  changeThemeAction,
   fetchSettings,
   fetchGuests,
   fetchHosts,
   toogleMobileMenu,
+  playCertainAudio,
 } from '../store/home/actions';
-import localStorageKeys from '../lib/constants/localStorageKeys';
 import SideBar from '../components/Sidebar';
 import SmallDeviceSideBar from '../components/Sidebar/smallDevice.sidebar';
 import prop from '../types/index.d';
@@ -24,6 +23,7 @@ import Hosts from '../components/Hosts';
 import Guests from '../components/guests';
 import GridIcon from '../icons/grid.svg';
 import RadioIcon from '../icons/radio.svg';
+
 import UsersIcon from '../icons/users.svg';
 import MessageIcon from '../icons/message-circle.svg';
 import BookIcon from '../icons/book.svg';
@@ -31,6 +31,8 @@ import routes from '../lib/constants/hashRoutes';
 import { ISideBarLink } from '../components/Sidebar/index.d';
 import OurStory from '../components/story/index';
 import ContactUs from '../components/contactUs';
+import RightSidebar from '../components/rightSide';
+import TopBanner from '../components/Topbanner';
 
 const Home: FC<prop> = ({ content, locale, Footer }) => {
   const state: IHomeReducer = useSelector((root: TRootReducer) => root.home);
@@ -45,6 +47,9 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
   } = state;
   const { episodes, loading } = episodesDataCont;
   const { player, currentPlay } = playersDataCont;
+
+  const recentEpisode =
+    Array.isArray(episodes) && episodes?.length > 0 ? episodes[0] : null;
 
   const linksDefault: ISideBarLink[] = [
     {
@@ -135,34 +140,52 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
             <div className="h-full w-full flex-col justify-center hidden lg:flex">
               <SideBar handleRouteChange={handleRouteChange} links={links} />
             </div>
-            <div className="col-span-12 lg:col-span-7 lg:px-5">
-              <EpisodeCardsContainer
+            <div className="col-span-12 lg:col-span-9 lg:px-5">
+              <TopBanner
                 currentPlay={currentPlay.item}
-                loading={loading}
-                more={content.more}
                 playerStatus={player.playerStatus}
-                settings={settings}
-                starterEpisodes={episodes}
-                subTitle={content.episodesDescription}
-                title={content.episodes}
+                recentEpisode={recentEpisode}
+                topBannerContent={content.topBanner}
               />
-              <Hosts
-                content={content.hosts}
-                hosts={state.hosts.data}
-                loading={state.hosts.loading}
-              />
-              <Guests
-                currentPlay={currentPlay.item}
-                episodes={guests.episodes}
-                loading={guests.loading}
-                more={content.more}
-                playerStatus={player.playerStatus}
-                subTitle={content.guestDescription}
-                title={content.guests}
-              />
-              <OurStory story={settings.story} />
-              <ContactUs content={content.contactUs} />
-              {Footer()}
+              <div className="grid grid-cols-12">
+                <div className="col-span-12 lg:col-span-9">
+                  <EpisodeCardsContainer
+                    currentPlay={currentPlay.item}
+                    loading={loading}
+                    more={content.more}
+                    playerStatus={player.playerStatus}
+                    settings={settings}
+                    starterEpisodes={episodes}
+                    subTitle={content.episodesDescription}
+                    title={content.episodes}
+                  />
+                </div>
+                <div className="col-span-12 lg:col-span-3 mt-36">
+                  <RightSidebar content={settings.rightSidebar} />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-12">
+                <div className="col-span-12 lg:col-span-9">
+                  <Hosts
+                    content={content.hosts}
+                    hosts={state.hosts.data}
+                    loading={state.hosts.loading}
+                  />
+                  <Guests
+                    currentPlay={currentPlay.item}
+                    episodes={guests.episodes}
+                    loading={guests.loading}
+                    more={content.more}
+                    playerStatus={player.playerStatus}
+                    subTitle={content.guestDescription}
+                    title={content.guests}
+                  />
+                  <OurStory story={settings.story} />
+                  <ContactUs content={content.contactUs} />
+                  {Footer()}
+                </div>
+              </div>
             </div>
           </main>
         </div>

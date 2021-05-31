@@ -5,12 +5,7 @@ import StoryCard from './storyCard';
 const OurStory: FC<storyIndex> = ({ story }) => {
   const { storyLine, cards, numberOfCards } = story;
   const { title, description } = storyLine;
-  const colors = [
-    'bg-green-500',
-    'bg-indigo-500',
-    'bg-yellow-500',
-    'bg-red-500',
-  ];
+  const colors = ['bg-green-500', 'bg-gray-200', 'bg-gray-200', 'bg-gray-200'];
 
   return (
     <div id="our-story">
@@ -22,15 +17,14 @@ const OurStory: FC<storyIndex> = ({ story }) => {
         className="text-gray-400 mb-5 "
         dangerouslySetInnerHTML={{ __html: description }}
       ></div>
-      <div
-        className={`grid gap-6 md:grid-cols-2 grid-cols-1 2xl:grid-cols-${numberOfCards}`}
-      >
+      <div className={`grid gap-6 md:grid-cols-2 grid-cols-1 2xl:grid-cols-2`}>
         {cards
           ? cards.map((card, index) =>
               card.title ? (
                 <StoryCard
                   color={colors[index]}
                   description={card.description}
+                  key={card.title}
                   title={card.title}
                 />
               ) : null,
