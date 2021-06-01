@@ -11,7 +11,7 @@ const blogPostsRssXml = blogPosts => {
   iterate.map(post => {
     const postDate = Date.parse(post.pubDate);
     // Remember to change this URL to your own!
-    const postHref = `${post.link.repalce('api.zemachfm', 'zemachfm')}`;
+    const postHref = `${post?.link?.replace('api.zemachfm', 'zemachfm')}`;
 
     if (!latestPostDate || postDate > Date.parse(latestPostDate)) {
       latestPostDate = post.isoDate;
@@ -46,8 +46,8 @@ const blogPostsRssXml = blogPosts => {
         </itunes:image>
         <image>
 			    <url> ${post?.itunes?.image} </url>
-			    <title> ${post?.title} </title>
-    		</image>
+          <title><![CDATA[${post?.title}]]></title>
+        </image>
         <itunes:explicit>${post?.itunes?.explicit}</itunes:explicit>
 	      <itunes:block>no</itunes:block>
 	      <itunes:duration> ${post?.itunes?.duration} </itunes:duration>
@@ -116,7 +116,7 @@ const getRssXml = blogPosts => {
 const MakeRSS = async () => {
   const RSSFeedData = await parser.parseURL(RSS_URL);
   const processedXml = getRssXml(RSSFeedData);
-  fs.writeFileSync('./public/rss.xml', processedXml);
+  fs.writeFileSync('./public/feed/podcast.xml', processedXml);
 };
 
 export default MakeRSS;
