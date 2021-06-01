@@ -24,39 +24,32 @@ const TopBanner = (props: IToBannerProps) => {
     artWork: ReactNode;
   }>({ greeting: goodMorning, artWork: dayTimeArtwork });
 
-  // const getAppropirateGreetinContent = (): {
-  //   greeting: string;
-  //   artWork: ReactNode;
-  // } => {
-  //   const now = new Date();
-  //   const currentHour = now.getHours();
-  //   const goodMorning = props.topBannerContent?.goodMorning || '';
-  //   const goodAfternoon = props.topBannerContent?.goodAfternoon || '';
-  //   const goodEvening = props.topBannerContent?.goodEvening || '';
+  const getAppropirateGreetinContent = (): {
+    greeting: string;
+    artWork: ReactNode;
+  } => {
+    const now = new Date();
+    const currentHour = now.getHours();
 
-  //   let greeting;
-  //   let artWork;
+    let greeting;
+    let artWork;
 
-  //   if (currentHour < 12) {
-  //     greeting = goodMorning;
-  //     artWork = (
-  //       <MorningIcon className="w-36 h-36 text-white hidden lg:block" />
-  //     );
-  //   } else if (currentHour < 18) {
-  //     greeting = goodAfternoon;
-  //     artWork = (
-  //       <MorningIcon className="w-36 h-36 text-white hidden lg:block" />
-  //     );
-  //   } else {
-  //     greeting = goodEvening;
-  //     artWork = <NightIcon className="w-36 h-36 text-white hidden lg:block" />;
-  //   }
+    if (currentHour < 12) {
+      greeting = goodMorning;
+      artWork = dayTimeArtwork;
+    } else if (currentHour < 18) {
+      greeting = goodAfternoon;
+      artWork = dayTimeArtwork;
+    } else {
+      greeting = goodEvening;
+      artWork = nightTimeArtWork;
+    }
 
-  //   return {
-  //     artWork,
-  //     greeting,
-  //   };
-  // };
+    return {
+      artWork,
+      greeting,
+    };
+  };
 
   const onPlayBannerEpisode = () => {
     dispatch(playCertainAudio((props.recentEpisode as unknown) as string));
@@ -67,9 +60,8 @@ const TopBanner = (props: IToBannerProps) => {
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      setGreetingItems({ artWork: nightTimeArtWork, greeting: goodEvening });
-    }, 10000);
+    const currentTimeGreeting = getAppropirateGreetinContent();
+    setGreetingItems(currentTimeGreeting);
   }, []);
 
   const getPlayingBasedButtonProps = (): {
