@@ -11,7 +11,7 @@ const blogPostsRssXml = blogPosts => {
   iterate.map(post => {
     const postDate = Date.parse(post.pubDate);
     // Remember to change this URL to your own!
-    const postHref = `${post.link}`;
+    const postHref = `${post.link.repalce('api.zemachfm', 'zemachfm')}`;
 
     if (!latestPostDate || postDate > Date.parse(latestPostDate)) {
       latestPostDate = post.isoDate;
@@ -23,15 +23,22 @@ const blogPostsRssXml = blogPosts => {
         <link><![CDATA[${postHref}]]></link>
         <pubDate>${post?.pubDate}</pubDate>
         <dc:creator>${post?.creator}</dc:creator>
-        <guid isPermaLink="false"><![CDATA[${postHref}]]></guid>
+        <guid isPermaLink="false"><![CDATA[${postHref.replace(
+          'api.zemachfm',
+          'zemachfm',
+        )}]]></guid>
         <description>
         <![CDATA[${post?.content}]]>
         </description>
-        <itunes:subtitle><![CDATA[${post?.itunes?.subtitle} ]]></itunes:subtitle>
+        <itunes:subtitle><![CDATA[${
+          post?.itunes?.subtitle
+        } ]]></itunes:subtitle>
         <content:encoded>
           <![CDATA[${post['content:encoded']}]]>
         </content:encoded>
-        <enclosure url='${post?.enclosure?.url}' length='${post?.enclosure?.length}' type='${post?.enclosure?.type}'> </enclosure>
+        <enclosure url='${post?.enclosure?.url}' length='${
+      post?.enclosure?.length
+    }' type='${post?.enclosure?.type}'> </enclosure>
         <itunes:summary>
         <![CDATA[${post?.itunes?.summary}]]>
         </itunes:summary>
