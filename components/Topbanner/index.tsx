@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { IToBannerProps } from './types.d';
 import MorningIcon from '../../icons/morning.svg';
@@ -9,6 +9,20 @@ import { changePlayerStatus, playCertainAudio } from '../../store/home/actions';
 
 const TopBanner = (props: IToBannerProps) => {
   const dispatch = useDispatch();
+  const goodMorning = props.topBannerContent?.goodMorning || '';
+  const goodAfternoon = props.topBannerContent?.goodAfternoon || '';
+  const goodEvening = props.topBannerContent?.goodEvening || '';
+  const dayTimeArtwork = (
+    <MorningIcon className="w-36 h-36 text-white hidden lg:block" />
+  );
+  const nightTimeArtWork = (
+    <NightIcon className="w-36 h-36 text-white hidden lg:block" />
+  );
+
+  const [greetingItems, setGreetingItems] = useState<{
+    greeting: string;
+    artWork: ReactNode;
+  }>({ greeting: goodMorning, artWork: dayTimeArtwork });
 
   const getAppropirateGreetinContent = (): {
     greeting: string;
@@ -16,26 +30,19 @@ const TopBanner = (props: IToBannerProps) => {
   } => {
     const now = new Date();
     const currentHour = now.getHours();
-    const goodMorning = props.topBannerContent?.goodMorning || '';
-    const goodAfternoon = props.topBannerContent?.goodAfternoon || '';
-    const goodEvening = props.topBannerContent?.goodEvening || '';
 
     let greeting;
     let artWork;
 
     if (currentHour < 12) {
       greeting = goodMorning;
-      artWork = (
-        <MorningIcon className="w-36 h-36 text-white hidden lg:block" />
-      );
+      artWork = dayTimeArtwork;
     } else if (currentHour < 18) {
       greeting = goodAfternoon;
-      artWork = (
-        <MorningIcon className="w-36 h-36 text-white hidden lg:block" />
-      );
+      artWork = dayTimeArtwork;
     } else {
       greeting = goodEvening;
-      artWork = <NightIcon className="w-36 h-36 text-white hidden lg:block" />;
+      artWork = nightTimeArtWork;
     }
 
     return {
@@ -52,7 +59,10 @@ const TopBanner = (props: IToBannerProps) => {
     dispatch(changePlayerStatus({ type }));
   };
 
-  const greeetingContents = getAppropirateGreetinContent();
+  useEffect(() => {
+    const currentTimeGreeting = getAppropirateGreetinContent();
+    setGreetingItems(currentTimeGreeting);
+  }, []);
 
   const getPlayingBasedButtonProps = (): {
     onClick?: () => void;
@@ -101,9 +111,9 @@ const TopBanner = (props: IToBannerProps) => {
       <div className="flex h-full">
         <div className="flex flex-col justify-between">
           <div className="flex flex-col items-center lg:items-start">
-            {greeetingContents.artWork}
+            {greetingItems.artWork}
             <h2 className="text-4xl  mb-8 block font-bold lg:text-left text-white w-4/4">
-              {greeetingContents.greeting}
+              {greetingItems.greeting}
               <br />
             </h2>
             <img
