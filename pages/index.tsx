@@ -33,6 +33,7 @@ import OurStory from '../components/story/index';
 import ContactUs from '../components/contactUs';
 import RightSidebar from '../components/rightSide';
 import TopBanner from '../components/Topbanner';
+import MakeRSS from '../components/Rss/podcast';
 
 const Home: FC<prop> = ({ content, locale, Footer }) => {
   const state: IHomeReducer = useSelector((root: TRootReducer) => root.home);
@@ -204,6 +205,7 @@ export const getStaticProps = wrapper.getStaticProps(
   }: GetStaticPropsContext & {
     store: any;
   }) => {
+    await MakeRSS();
     store.dispatch(fetchEpisodes());
     store.dispatch(fetchSettings(locale));
     store.dispatch(fetchGuests());

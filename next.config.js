@@ -14,6 +14,16 @@ const webpacked = {
 
     return config;
   },
+  async redirects() {
+    return [
+      {
+        source: '/feed/podcast',
+        destination: '/feed/podcast.xml',
+        permanent: true,
+
+      },
+    ];
+  },
 };
 
 webpacked['i18n'] = {
