@@ -12,7 +12,7 @@ const SideBar: React.FC<SideBarProps> = props => (
           onClick={() => props.handleRouteChange(link.route)}
         >
           <li
-            className={`mt-5 flex flex-row items-center py-5 w-26 px-3 ${
+            className={`mt-5 flex flex-row items-center justify-start py-4 w-26 px-3 ${
               link.active ? ' bg-gray-200 dark:bg-gray-900' : ''
             } rounded-xl dark:text-white text-black cursor-pointer`}
           >
