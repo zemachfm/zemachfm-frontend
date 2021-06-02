@@ -51,32 +51,24 @@ const GuestCard: FC<hostProps> = ({
   };
 
   return (
-    <div className="rounded-lg relative overflow-hidden  ">
+    <div className="rounded-lg bg-white relative overflow-hidden  ">
       <img className="w-full" src={item.big_player} />
       <div
-        className="absolute bg-opacity-10 bg-gray-200 bottom-0 w-full"
+        className="absolute  right-0 bottom-0 w-full"
         style={{ backdropFilter: 'blur(10px)' }}
       >
-        <div className="px-4 py-2 bg-opacity-20 bg-gray-900">
+        <div className="px-4 py-2">
           {playing ? (
             PlayStatus(playerStatus)
           ) : (
             <Ripples
-              className=" rounded-full p-1 cursor-pointer"
+              className=" rounded-full p-1 cursor-pointer text-white"
               onClick={() => onPlay(item)}
             >
-              <PlayIcon
-                className=" rounded-full  w-6 h-6 "
-                style={{ fill: '#fff' }}
-              />
+              <PlayIcon className=" rounded-full fill-current text-white w-6 h-6 " />
+              <span className="ml-2">PLAY</span>
             </Ripples>
           )}
-          <Ripples className="rounded-full mx-5 p-1 cursor-pointer">
-            <PlusIcon
-              className=" rounded-full w-6 h-6  "
-              style={{ fill: '#fff' }}
-            />
-          </Ripples>
         </div>
       </div>
     </div>

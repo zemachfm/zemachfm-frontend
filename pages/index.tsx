@@ -50,7 +50,7 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
   const { player, currentPlay } = playersDataCont;
 
   const recentEpisode =
-    Array.isArray(episodes) && episodes?.length > 0 ? episodes[0] : null;
+    Array.isArray(episodes) && episodes?.length > 0 ? episodes[8] : null;
 
   const linksDefault: ISideBarLink[] = [
     {
