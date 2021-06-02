@@ -34,10 +34,10 @@ const TopBanner = (props: IToBannerProps) => {
     let greeting;
     let artWork;
 
-    if (true) {
+    if (currentHour < 12) {
       greeting = goodMorning;
       artWork = dayTimeArtwork;
-    } else if (false) {
+    } else if (currentHour < 18 ) {
       greeting = goodAfternoon;
       artWork = dayTimeArtwork;
     } else {

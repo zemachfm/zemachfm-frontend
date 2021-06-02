@@ -32,7 +32,7 @@ const SinglePodcast: FC<singlePodcastType> = ({
         <link href="/favicon.ico" rel="icon" />
       </Head>
       {singlePodcastState[slug] ? (
-        <div className="xl:w-3/6 w-6/6 px-5 mx-auto pt-20 pb-28 ">
+        <div className="xl:w-3/6 w-6/6 px-5 mx-auto pt-20 pb-8 ">
           <h1
             className="text-3xl lg:text-4xl 2xl:text-5xl   text-left dark:text-white mt-4 mb-3 font-bold"
             dangerouslySetInnerHTML={{

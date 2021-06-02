@@ -66,7 +66,6 @@ const GuestCard: FC<hostProps> = ({
               onClick={() => onPlay(item)}
             >
               <PlayIcon className=" rounded-full fill-current text-white w-6 h-6 " />
-              <span className="ml-2">PLAY</span>
             </Ripples>
           )}
         </div>

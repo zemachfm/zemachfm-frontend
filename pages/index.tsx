@@ -144,7 +144,7 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
             <div className="h-full w-full flex-col justify-center hidden lg:flex">
               <SideBar handleRouteChange={handleRouteChange} links={links} />
             </div>
-            <div className="col-span-12 lg:col-span-9 lg:px-5">
+            <div className="col-span-12 lg:col-span-9 lg:px-5 2xl:pl-12 2xl:pr-10">
               <TopBanner
                 currentPlay={currentPlay.item}
                 playerStatus={player.playerStatus}
