@@ -16,6 +16,7 @@ interface ISideBarLink {
 interface SideBarProps {
   links: ISideBarLink[];
   handleRouteChange: (link: string) => void;
+  translatedStrings: ISideBarContents;
 }
 
 export { SmallDeviceMenuProps, SideBarProps, ISideBarLink };

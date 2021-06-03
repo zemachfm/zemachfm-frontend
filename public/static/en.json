@@ -11,7 +11,10 @@
     "hosts": "Hosts",
     "guests": "Guests",
     "story": "Story",
-    "contact": "Contact"
+    "contact": "Contact",
+    "feed": "Podcast feed",
+    "emailUs": "Email Us" ,
+    "appVersion": "Zemach version 1.0"
   },
   "contactUs": {
     "title": "Contact Us",

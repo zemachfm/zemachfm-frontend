@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Link from 'next/link';
 import { SideBarProps } from './index.d';
 
 const SideBar: React.FC<SideBarProps> = props => (
@@ -23,17 +23,18 @@ const SideBar: React.FC<SideBarProps> = props => (
       ))}
     </ul>
     <div className="border-t dark:border-gray-900 border-gray-200 mt-4 pl-5 pt-4 w-full ">
-      <ul className="li text-sm dark:text-gray-400 text-gray-600 py-3">
-        First one
-      </ul>
-      <ul className="li text-sm dark:text-gray-400 text-gray-600 py-3">
-        Second one
-      </ul>
-      <ul className="li text-sm  dark:text-gray-400 text-gray-600 py-3">
-        Third one
-      </ul>
-      <ul className="li text-sm dark:text-gray-400 text-gray-600 py-3">
-        Another one
+      <ul>
+        <li className="li text-md dark:text-gray-400 text-gray-500 py-3">
+          <Link href="/feed/podcast.xml">{props.translatedStrings.feed}</Link>
+        </li>
+        <li className="li text-md dark:text-gray-400 text-gray-500 py-3">
+          <a href="mailto:zemachfm@gmal.com">
+            {props.translatedStrings.emailUs}
+          </a>
+        </li>
+        <li className="li text-sm dark:text-gray-600 text-gray-400 py-3">
+          {props.translatedStrings.appVersion}
+        </li>
       </ul>
     </div>
   </div>

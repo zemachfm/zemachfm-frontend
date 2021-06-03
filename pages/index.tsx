@@ -141,9 +141,13 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
         <div className="bg-gray-100 px-5 mt-5 dark:bg-black">
           <main className=" grid grid-cols-12 lg:grid-cols-12 ">
             <div className="h-full col-span-2 flex-col justify-center hidden lg:flex">
-              <SideBar handleRouteChange={handleRouteChange} links={links} />
+              <SideBar
+                handleRouteChange={handleRouteChange}
+                links={links}
+                translatedStrings={content.sidebar}
+              />
             </div>
-            <div className="col-span-12 lg:col-span-8 lg:px-5 ">
+            <div className="col-span-12 lg:col-span-8 lg:px-1 ">
               <TopBanner
                 currentPlay={currentPlay.item}
                 playerStatus={player.playerStatus}
@@ -187,7 +191,7 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
                 </div>
               </div>
             </div>
-            <div className="col-span-12 lg:col-span-2">
+            <div className="col-span-12 hidden lg:flex lg:col-span-2 mt-2">
               <RightSidebar content={settings.rightSidebar} />
             </div>
           </main>

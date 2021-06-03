@@ -11,7 +11,11 @@
     "hosts": "አቅርቢዎች",
     "guests": "እንግዳዎች",
     "story": "አጀማመራችን",
-    "contact": "ያገኙን"
+    "contact": "ያገኙን",
+    "feed": "Podcast feed",
+    "emailUs": "ኢሜል ይፃፍልን" ,
+    "appVersion": "ዘማች version 1.0"
+
   },
   "contactUs": {
     "title": "መልእክት ያድርሱን",

@@ -126,7 +126,7 @@ const EpisodeCard: React.FC<episodeCard> = ({
           <div className="flex flex-col w-full ">
             <Link href={`podcast/${item.slug}`}>
               <p
-                className="col-start-5 mt-0 ml-4 text-lg hover:text-black cursor-pointer	text-left w-full mb-1 font-normal overflow-ellipsis overflow-hidden h-auto text-gray-700 dark:text-gray-200"
+                className="col-start-5 mt-0 ml-4 text-lg hover:text-black dark:hover:text-white cursor-pointer	text-left w-full mb-1 font-normal overflow-ellipsis overflow-hidden h-auto text-gray-700 dark:text-gray-200"
                 dangerouslySetInnerHTML={{ __html: title }}
               ></p>
             </Link>

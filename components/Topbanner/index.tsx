@@ -108,17 +108,18 @@ const TopBanner = (props: IToBannerProps) => {
 
   return props.recentEpisode ? (
     <div
-      className="rounded-xl"
+      className="rounded-full "
       style={{
         backgroundImage: `url(${props.recentEpisode.small_player})`,
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
       }}
     >
       <div
-        className="w-full flex mt-4 bg-opacity-90 dark:bg-opacity-90 flex-col-reverse lg:flex-row py-14 p-7 justify-self-end bg-gray-200 dark:bg-gray-800 bg-transparent rounded-xl top-3"
+        className="w-full flex mt-4 rounded-xl bg-opacity-90 dark:bg-opacity-90 flex-col-reverse lg:flex-row py-14 p-7 justify-self-end bg-gray-200 dark:bg-gray-800 bg-transparent top-3"
         style={{
-          backdropFilter: 'blur(22px)',
+          backdropFilter: 'blur(18px)',
         }}
       >
         <div className="flex h-full">
@@ -132,7 +133,7 @@ const TopBanner = (props: IToBannerProps) => {
                 {greetingItems.artWork}
               </div>
               <img
-                className="w-72 h-72 rounded-2xl block lg:hidden mb-8 border-8 border-green-300"
+                className="w-72 h-72 rounded-2xl block lg:hidden mb-8 "
                 src={props.recentEpisode?.episode_player_image}
               />
               <h3 className="text-3xl font-bold text-gray-900 dark:text-gray-100 w-4/4 self-start">
@@ -156,7 +157,7 @@ const TopBanner = (props: IToBannerProps) => {
               </button>
             ) : (
               <button
-                className=" bg-gradient-to-r from-green-300 to-yellow-300 border-2 focus:outline-none outline-none flex lg:w-48 justify-center items-center hover:bg-gray-100 px-4 mt-6 py-2 dark:bg-gray-900 dark:text-gray-100 text-gray-700 rounded-lg font-bold text-lg"
+                className=" bg-white focus:outline-none outline-none flex lg:w-48 justify-center items-center hover:bg-gray-100 px-4 mt-6 py-2 dark:bg-gray-900 dark:text-gray-100 text-gray-700 rounded-lg font-bold text-lg"
                 onClick={playingBasedProps.onClick}
               >
                 {playingBasedProps.icon}
@@ -165,9 +166,9 @@ const TopBanner = (props: IToBannerProps) => {
             )}
           </div>
         </div>
-        <div className="flex flex-row items-center w-2/6">
+        <div className="hidden lg:flex flex-row items-center w-3/6">
           <img
-            className=" h-auto w-full z-10 rounded-2xl hidden lg:block border-8 flex flex-row items-center border-green-300"
+            className=" h-auto w-full z-10 rounded-2xl lg:block border-1 flex flex-row items-center border-gray-100"
             src={props.recentEpisode?.episode_player_image}
           />
         </div>
