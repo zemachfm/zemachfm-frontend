@@ -28,7 +28,7 @@ const SideBar: React.FC<SideBarProps> = props => (
           <Link href="/feed/podcast.xml">{props.translatedStrings.feed}</Link>
         </li>
         <li className="li text-md dark:text-gray-400 text-gray-500 py-3">
-          <a href="mailto:zemachfm@gmal.com">
+          <a href="mailto:zemachfm@gmal.com" target="_blank">
             {props.translatedStrings.emailUs}
           </a>
         </li>

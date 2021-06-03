@@ -45,7 +45,7 @@ const Hosts: React.FC<HostsProps> = props => (
                 ) : (
                   <Link href={`/host/${host?.post?.post_name}`} passHref>
                     <a>
-                      <h4 className="text-gray-800 pl-4 lg:text-2xl md:text-2xl text-xl  font-medium dark:text-white hover:text-green-500 dark:hover:text-green-500">
+                      <h4 className="text-gray-800 pl-4 lg:text-2xl md:text-2xl text-xl  font-medium dark:text-gray-200 hover:text-black dark:hover:text-white">
                         {host.post?.post_title}
                       </h4>
                     </a>
