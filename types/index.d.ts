@@ -6,6 +6,9 @@ interface ISideBarContents {
   guests: string;
   story: string;
   contact: string;
+  feed: string;
+  emailUs: string;
+  appVersion: string;
 }
 
 interface footer {

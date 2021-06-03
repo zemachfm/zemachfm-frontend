@@ -27,11 +27,6 @@ a {
 /**
 * single podcast css
 */
-
-ul.wp-block-social-links {
-  display: flex;
-  margin-top: 20px;
-}
-.wp-social-link {
-  margin-left: 10px;
+.wp-block-social-links {
+  display: none;
 }

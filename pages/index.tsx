@@ -50,7 +50,7 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
   const { player, currentPlay } = playersDataCont;
 
   const recentEpisode =
-    Array.isArray(episodes) && episodes?.length > 0 ? episodes[0] : null;
+    Array.isArray(episodes) && episodes?.length > 0 ? episodes[8] : null;
 
   const linksDefault: ISideBarLink[] = [
     {
@@ -125,7 +125,6 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
     <div>
       <Head>
         <title>
-          {' '}
           {content.appName} | {content.subtitle}
         </title>
         <link href="/favicon.ico" rel="icon" />
@@ -140,11 +139,15 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
         )}
 
         <div className="bg-gray-100 px-5 mt-5 dark:bg-black">
-          <main className=" grid grid-cols-12 lg:grid-cols-10 ">
-            <div className="h-full w-full flex-col justify-center hidden lg:flex">
-              <SideBar handleRouteChange={handleRouteChange} links={links} />
+          <main className=" grid grid-cols-12 lg:grid-cols-12 ">
+            <div className="h-full col-span-2 flex-col justify-center hidden lg:flex">
+              <SideBar
+                handleRouteChange={handleRouteChange}
+                links={links}
+                translatedStrings={content.sidebar}
+              />
             </div>
-            <div className="col-span-12 lg:col-span-9 lg:px-5">
+            <div className="col-span-12 lg:col-span-8 lg:px-1 ">
               <TopBanner
                 currentPlay={currentPlay.item}
                 playerStatus={player.playerStatus}
@@ -152,7 +155,7 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
                 topBannerContent={content.topBanner}
               />
               <div className="grid grid-cols-12">
-                <div className="col-span-12 lg:col-span-9">
+                <div className="col-span-12 lg:col-span-12">
                   <EpisodeCardsContainer
                     currentPlay={currentPlay.item}
                     loading={loading}
@@ -164,13 +167,10 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
                     title={content.episodes}
                   />
                 </div>
-                <div className="col-span-12 lg:col-span-3 mt-36">
-                  <RightSidebar content={settings.rightSidebar} />
-                </div>
               </div>
 
               <div className="grid grid-cols-12">
-                <div className="col-span-12 lg:col-span-9">
+                <div className="col-span-12 lg:col-span-12">
                   <Hosts
                     content={content.hosts}
                     hosts={state.hosts.data}
@@ -190,6 +190,9 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
                   {Footer()}
                 </div>
               </div>
+            </div>
+            <div className="col-span-12 hidden lg:flex lg:col-span-2 mt-2">
+              <RightSidebar content={settings.rightSidebar} />
             </div>
           </main>
         </div>
