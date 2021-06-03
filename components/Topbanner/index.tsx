@@ -37,7 +37,7 @@ const TopBanner = (props: IToBannerProps) => {
     if (currentHour < 12) {
       greeting = goodMorning;
       artWork = dayTimeArtwork;
-    } else if (currentHour < 18 ) {
+    } else if (currentHour < 18) {
       greeting = goodAfternoon;
       artWork = dayTimeArtwork;
     } else {
@@ -145,6 +145,7 @@ const TopBanner = (props: IToBannerProps) => {
                 }}
               />
             </div>
+
             {props.currentPlay?.id !== props.recentEpisode?.id ? (
               <button
                 className="bg-white  flex lg:w-48 justify-center items-center hover:bg-gray-100 px-4 mt-6 py-2 dark:bg-gray-900 dark:text-gray-100 text-gray-700 rounded-lg font-bold text-lg"
@@ -155,7 +156,7 @@ const TopBanner = (props: IToBannerProps) => {
               </button>
             ) : (
               <button
-                className="bg-white  flex lg:w-48 justify-center items-center hover:bg-gray-100 px-4 mt-6 py-2 dark:bg-gray-900 dark:text-gray-100 text-gray-700 rounded-lg font-bold text-lg"
+                className=" bg-gradient-to-r from-green-300 to-yellow-300 border-2 focus:outline-none outline-none flex lg:w-48 justify-center items-center hover:bg-gray-100 px-4 mt-6 py-2 dark:bg-gray-900 dark:text-gray-100 text-gray-700 rounded-lg font-bold text-lg"
                 onClick={playingBasedProps.onClick}
               >
                 {playingBasedProps.icon}

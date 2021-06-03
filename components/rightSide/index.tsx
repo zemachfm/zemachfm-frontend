@@ -2,7 +2,7 @@ import { FC } from 'react';
 import rightSideProps from './types.d';
 
 const RightSidebar: FC<rightSideProps> = ({ content }) => (
-  <div className="flex flex-col rounded-2xl 2xl:px-6 lg:ml-4 mt-2 overflow-hidden">
+  <div className="flex flex-col rounded-2xl 2xl:px-1 lg:ml-4 mt-2 overflow-hidden">
     <div className="w-full h-auto">
       <img
         alt=""

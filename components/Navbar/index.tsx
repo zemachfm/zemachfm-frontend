@@ -87,7 +87,11 @@ const NavBar = (props: INavBarProps): ReactElement => {
             </a>
           </Link>
           <div className="flex items-center justify-between">
-            <button onClick={toogleLangPopOver} ref={setReferenceElement}>
+            <button
+              className="outline-none focus:outline-none dark:hover:bg-gray-800 hover:bg-gray-300 p-2 rounded-full"
+              onClick={toogleLangPopOver}
+              ref={setReferenceElement}
+            >
               <LanguageIcon className="dark:text-white" />
             </button>
 
@@ -130,7 +134,7 @@ const NavBar = (props: INavBarProps): ReactElement => {
             </LanguagePopover>
 
             <button
-              className="ml-5"
+              className="ml-5 outline-none focus:outline-none dark:hover:bg-gray-800 hover:bg-gray-300 p-2 rounded-full"
               onClick={() => onThemeChange(theme === 'dark' ? 'light' : 'dark')}
             >
               {theme === 'light' ? <Moon /> : <Sun className="text-white" />}
