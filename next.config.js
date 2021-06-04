@@ -20,7 +20,6 @@ const webpacked = {
         source: '/feed/podcast',
         destination: '/feed/podcast.xml',
         permanent: true,
-
       },
     ];
   },
@@ -37,7 +36,7 @@ webpacked.env = {
       : 'http://localhost:3000',
 };
 webpacked.images = {
-  domains: ['zemachfm.com'],
+  domains: ['zemachfm.com', 'res.cloudinary.com'],
 };
 webpacked.target = 'serverless';
 

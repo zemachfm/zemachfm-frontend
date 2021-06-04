@@ -112,7 +112,7 @@ const EpisodeCard: React.FC<episodeCard> = ({
               className="rounded-full h-20 w-20"
               height="80"
               layout="fixed"
-              src={image}
+              src={`https://res.cloudinary.com/dfqnpwpkn/image/fetch/${image}`}
               width="80"
             />
           )}
