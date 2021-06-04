@@ -15,7 +15,7 @@
     "@bit/mui-org.material-ui.popper": "^4.9.10",
     "@bit/mui-org.material-ui.slider": "^4.9.10",
     "@bit/mui-org.material-ui.styles": "^4.9.10",
-    "@netlify/plugin-nextjs": "^3.4.1",
+    "@netlify/plugin-nextjs": "^3.1.1-experimental-odb.1",
     "@svgr/webpack": "^5.5.0",
     "@tailwindcss/line-clamp": "^0.2.0",
     "autoprefixer": "^10.2.3",
