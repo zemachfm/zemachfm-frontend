@@ -52,7 +52,7 @@ const EpisodeCardsContainer: FC<episodeCardsContainerType> = ({
   };
 
   return (
-    <VisibilitySensor intervalCheck={false} onChange={handleVisibility}>
+    <VisibilitySensor onChange={handleVisibility}>
       <div>
         <div className="flex flex-row justify-between">
           <div className="flex flex-col">

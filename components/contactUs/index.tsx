@@ -121,7 +121,7 @@ const ContactUs: FC<contactUsType> = ({ content, handleRouteChange }) => {
   };
 
   return (
-    <VisibilitySensor intervalCheck={false} onChange={handleVisibility}>
+    <VisibilitySensor onChange={handleVisibility}>
       <div>
         <div className="flex flex-col">
           <h1

@@ -156,11 +156,7 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
             </div>
 
             <div className="col-span-12 lg:col-span-8 lg:px-1 ">
-              <VisibilitySensor
-                intervalCheck={false}
-                onChange={handleVisibility}
-                scrollCheck={false}
-              >
+              <VisibilitySensor onChange={handleVisibility} scrollCheck={false}>
                 <>
                   <TopBanner
                     currentPlay={currentPlay.item}
