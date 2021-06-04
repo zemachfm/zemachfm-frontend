@@ -36,7 +36,7 @@ webpacked.env = {
       : 'http://localhost:3000',
 };
 webpacked.images = {
-  domains: ['zemachfm.com', 'res.cloudinary.com'],
+  domains: ['zemachfm.com'],
 };
 webpacked.target = 'serverless';
 

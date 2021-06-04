@@ -103,16 +103,15 @@ const EpisodeCard: React.FC<episodeCard> = ({
   return (
     <div className="border-solid bg-white to-white border-2 h-48 border-gray-100 dark:border-gray-900 dark:bg-gray-900 text-gray-800 rounded-xl overflow-hidden flex flex-col justify-between">
       <div className=" flex flex-row justify-between p-5">
-        <div className="rounded-full h-20 w-20">
+        <div className="rounded-full h-24 w-24">
           {loading ? (
             <div className="w-20 h-20 rounded-full bg-gradient-to-r dark:from-gray-800 from-gray-200 to-gray-300 dark:to-gray-800 bg-gray-200 animate-pulse "></div>
           ) : (
-            <Image
+            <img
               alt="alt"
-              className="rounded-full h-20 w-20"
+              className="rounded-full"
               height="80"
-              layout="fixed"
-              src={`https://res.cloudinary.com/dfqnpwpkn/image/fetch/${image}`}
+              src={image}
               width="80"
             />
           )}
