@@ -166,6 +166,9 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
                     subTitle={content.episodesDescription}
                     title={content.episodes}
                   />
+                  <div className="flex lg:hidden">
+                    <RightSidebar content={settings.rightSidebar} />
+                  </div>
                 </div>
               </div>
 
