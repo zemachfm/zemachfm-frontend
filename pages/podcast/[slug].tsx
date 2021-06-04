@@ -9,6 +9,8 @@ import { TRootReducer } from '../../store/reducer';
 import singlePodcastDataTypes from '../../store/podcastSingle/types.d';
 import singlePodcastType from '../../types/singlePodcast.d';
 import { fetchGuests, fetchSettings } from '../../store/home/actions';
+import { axiosGet } from '../../lib/store/axiosReq';
+import { PODCASTS_URL } from '../../lib/store/url';
 
 const SinglePodcast: FC<singlePodcastType> = ({
   locale,
@@ -96,10 +98,16 @@ const getStaticProps = wrapper.getStaticProps(
     };
   },
 );
-const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => ({
-  paths: [],
-  fallback: 'blocking',
-});
+const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
+  const episodes = await axiosGet(PODCASTS_URL, { per_page: 100 });
+  const paths = episodes.data.map(episode => ({
+    params: { slug: episode.slug },
+  }));
+  return {
+    paths,
+    fallback: 'blocking',
+  };
+};
 
 export default SinglePodcast;
 export { getStaticPaths, getStaticProps };

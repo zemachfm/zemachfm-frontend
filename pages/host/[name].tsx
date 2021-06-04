@@ -13,6 +13,8 @@ import TwitterIcon from '../../icons/twitter.svg';
 import LinkedInIcon from '../../icons/linkedin.svg';
 import GithubIcon from '../../icons/github.svg';
 import { fetchGuests, fetchSettings } from '../../store/home/actions';
+import { axiosGet } from '../../lib/store/axiosReq';
+import { HOSTS_URL } from '../../lib/store/url';
 
 const SingleHost: FC<hostPageType> = ({ locale, content, name, Footer }) => {
   const hostPageState: IHostPageState = useSelector(
@@ -106,10 +108,17 @@ const getStaticProps = wrapper.getStaticProps(
     };
   },
 );
-const getStaticPaths: GetStaticPaths<{ name: string }> = async () => ({
-  paths: [],
-  fallback: 'blocking',
-});
+const getStaticPaths: GetStaticPaths<{ name: string }> = async () => {
+  const hosts = await axiosGet(HOSTS_URL, {});
+  const paths = hosts.data.map(host => ({
+    params: { name: encodeURI(host.post.post_name) },
+  }));
+
+  return {
+    paths,
+    fallback: 'blocking',
+  };
+};
 
 export default SingleHost;
 export { getStaticPaths, getStaticProps };
