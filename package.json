@@ -10,6 +10,7 @@
     "lint": "eslint . --ext .tsx --color -f table"
   },
   "dependencies": {
+    "@types/node": "^15.12.1",
     "@babel/runtime": "^7.13.10",
     "@bit/mui-org.material-ui.popover": "^4.9.10",
     "@bit/mui-org.material-ui.popper": "^4.9.10",
@@ -43,10 +44,10 @@
     "rss-generator": "0.0.3",
     "rss-parser": "^3.12.0",
     "rss-to-json": "^1.1.3",
-    "tailwindcss": "^2.0.2"
+    "tailwindcss": "^2.0.2",
+    "typescript": "^4.3.2"
   },
   "devDependencies": {
-    "@types/node": "^15.12.1",
     "@types/react": "^17.0.0",
     "@types/react-dom": "16.9.8",
     "@types/react-redux": "7.1.9",
@@ -62,8 +63,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "node-pre-gyp": "0.12.0",
     "prettier": "^2.2.1",
-    "redux-devtools-extension": "^2.13.8",
-    "typescript": "^4.3.2"
+    "redux-devtools-extension": "^2.13.8"
   },
   "husky": {
     "hooks": {
