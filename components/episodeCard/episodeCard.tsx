@@ -101,7 +101,7 @@ const EpisodeCard: React.FC<episodeCard> = ({
     }
   };
   return (
-    <div className="border-solid bg-white to-white border-2 h-48 border-gray-100 dark:border-gray-900 dark:bg-gray-900 text-gray-800 rounded-xl overflow-hidden flex flex-col justify-between">
+    <div className="border-solid bg-white to-white border-2 h-52 border-gray-100 dark:border-gray-900 dark:bg-gray-900 text-gray-800 rounded-xl overflow-hidden flex flex-col justify-between">
       <div className=" flex flex-row justify-between p-5">
         <div className="rounded-full h-24 w-24">
           {loading ? (
