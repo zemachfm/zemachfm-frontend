@@ -14,6 +14,7 @@ const Guests: FC<props> = ({
   loading,
   playerStatus,
   handleRouteChange,
+  scrollSpyActive,
 }) => {
   const Dispatch = useDispatch();
 
@@ -32,7 +33,11 @@ const Guests: FC<props> = ({
   };
 
   return (
-    <VisibilitySensor onChange={handleVisibility}>
+    <VisibilitySensor
+      active={scrollSpyActive}
+      intervalDelay={600}
+      onChange={handleVisibility}
+    >
       <div id="guests">
         <h1 className=" text-3xl lg:text-4xl 2xl:text-5xl  my-10 font-bold dark:text-gray-200 mb-2 ">
           {title}

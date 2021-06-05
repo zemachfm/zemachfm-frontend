@@ -112,6 +112,7 @@ const getStaticPaths: GetStaticPaths<{ name: string }> = async () => {
   const hosts = await axiosGet(HOSTS_URL, {});
   const paths = hosts.data.map(host => ({
     params: { name: encodeURI(host.post.post_name) },
+    locale: host.lang.slug,
   }));
 
   return {

@@ -87,6 +87,7 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
   ];
 
   const [links, setLinks] = React.useState(linksDefault);
+  const [scrollSpyActive, setScrollSpyActive] = React.useState(true);
 
   const isActive = (link: string, changeTo: string) =>
     link?.replace('#', '') === changeTo.replace('#', '');
@@ -96,12 +97,16 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
   };
 
   const handleRouteChange = (changeTo: string, isMobile?: boolean) => {
-    setLinks(oldLinks =>
-      oldLinks.map(link => ({
-        ...link,
-        active: isActive(link.route, changeTo),
-      })),
-    );
+    setScrollSpyActive(false);
+
+    setTimeout(() => {
+      setLinks(oldLinks =>
+        oldLinks.map(link => ({
+          ...link,
+          active: isActive(link.route, changeTo),
+        })),
+      );
+    }, 600);
 
     if (isMobile) {
       onMobileMenuToogle();
@@ -120,6 +125,12 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
       handleRouteChange(hash);
     }
   }, []);
+
+  React.useEffect(() => {
+    if (!scrollSpyActive) {
+      setScrollSpyActive(true);
+    }
+  }, [links]);
 
   React.useEffect(() => {
     const currentHash =
@@ -156,7 +167,11 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
             </div>
 
             <div className="col-span-12 lg:col-span-8 lg:px-1 ">
-              <VisibilitySensor onChange={handleVisibility} scrollCheck={false}>
+              <VisibilitySensor
+                active={scrollSpyActive}
+                intervalDelay={600}
+                onChange={handleVisibility}
+              >
                 <>
                   <TopBanner
                     currentPlay={currentPlay.item}
@@ -173,6 +188,7 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
                         loading={loading}
                         more={content.more}
                         playerStatus={player.playerStatus}
+                        scrollSpyActive={scrollSpyActive}
                         settings={settings}
                         starterEpisodes={episodes}
                         subTitle={content.episodesDescription}
@@ -193,6 +209,7 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
                     handleRouteChange={handleRouteChange}
                     hosts={state.hosts.data}
                     loading={state.hosts.loading}
+                    scrollSpyActive={scrollSpyActive}
                   />
                   <Guests
                     currentPlay={currentPlay.item}
@@ -201,16 +218,19 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
                     loading={guests.loading}
                     more={content.more}
                     playerStatus={player.playerStatus}
+                    scrollSpyActive={scrollSpyActive}
                     subTitle={content.guestDescription}
                     title={content.guests}
                   />
                   <OurStory
                     handleRouteChange={handleRouteChange}
+                    scrollSpyActive={scrollSpyActive}
                     story={settings.story}
                   />
                   <ContactUs
                     content={content.contactUs}
                     handleRouteChange={handleRouteChange}
+                    scrollSpyActive={scrollSpyActive}
                   />
                   {Footer()}
                 </div>

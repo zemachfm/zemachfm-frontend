@@ -3,6 +3,7 @@ import { contactUsStringType } from '../../types/index.d';
 type contactUsType = {
   content: contactUsStringType;
   handleRouteChange: (changeTo: string, isMobile?: boolean) => void;
+  scrollSpyActive: boolean;
 };
 
 type resizingTextArea = {

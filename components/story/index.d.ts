@@ -9,6 +9,7 @@ type storyProps = {
 type storyIndex = {
   story: story;
   handleRouteChange: (changeTo: string, isMobile?: boolean) => void;
+  scrollSpyActive: boolean;
 };
 
 export { storyIndex, storyProps };

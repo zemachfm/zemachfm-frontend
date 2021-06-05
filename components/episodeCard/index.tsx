@@ -21,6 +21,7 @@ const EpisodeCardsContainer: FC<episodeCardsContainerType> = ({
   loading,
   settings,
   handleRouteChange,
+  scrollSpyActive,
 }) => {
   // needs fix
   const Dispatch = useDispatch();
@@ -52,7 +53,11 @@ const EpisodeCardsContainer: FC<episodeCardsContainerType> = ({
   };
 
   return (
-    <VisibilitySensor onChange={handleVisibility}>
+    <VisibilitySensor
+      active={scrollSpyActive}
+      intervalDelay={600}
+      onChange={handleVisibility}
+    >
       <div>
         <div className="flex flex-row justify-between">
           <div className="flex flex-col">

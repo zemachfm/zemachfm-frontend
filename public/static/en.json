@@ -13,7 +13,7 @@
     "story": "Story",
     "contact": "Contact",
     "feed": "Podcast feed",
-    "emailUs": "Email Us" ,
+    "emailUs": "Email Us",
     "appVersion": "Zemach version 1.0"
   },
   "contactUs": {
@@ -53,5 +53,11 @@
     "goodEvening": "Good Evening",
     "play": "Play Now",
     "pause": "Pause"
+  },
+  "notFoundPage": {
+    "mainTitle": "404",
+    "subtitle": "Page Not Found",
+    "description": "Sorry we were not able to find that page, please use our main menu and our links to navigate through the site.",
+    "goHome": "Go Home"
   }
 }

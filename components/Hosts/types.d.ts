@@ -11,4 +11,5 @@ export interface HostsProps {
   loading: boolean;
   content?: hostString;
   handleRouteChange: (changeTo: string, isMobile?: boolean) => void;
+  scrollSpyActive: boolean;
 }
