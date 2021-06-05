@@ -100,7 +100,7 @@ const getStaticProps = wrapper.getStaticProps(
 );
 const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
   const episodes = await axiosGet(PODCASTS_URL, { per_page: 100 });
-  const paths = episodes.data.map(episode => [
+  const pathsIterate = episodes.data.map(episode => [
     {
       params: { slug: episode.slug },
       locale: 'am',
@@ -110,6 +110,8 @@ const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
       locale: 'en',
     },
   ]);
+  // eslint-disable-next-line prefer-spread
+  const paths = [].concat.apply([], pathsIterate);
   return {
     paths,
     fallback: 'blocking',
