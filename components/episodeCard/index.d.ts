@@ -11,7 +11,7 @@ type episodeCard = {
   index?: number;
   playerStatus?: number;
   loading?: boolean;
-  settings: siteSettings,
+  settings: siteSettings;
 };
 
 type episodeCardsContainerType = {
@@ -23,5 +23,6 @@ type episodeCardsContainerType = {
   loading: boolean;
   more: string;
   settings: siteSettings;
+  handleRouteChange: (changeTo: string, isMobile?: boolean) => void;
 };
 export { episodeCard, episodeCardsContainerType };
