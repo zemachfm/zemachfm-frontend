@@ -24,5 +24,6 @@ type episodeCardsContainerType = {
   more: string;
   settings: siteSettings;
   handleRouteChange: (changeTo: string, isMobile?: boolean) => void;
+  scrollSpyActive: boolean;
 };
 export { episodeCard, episodeCardsContainerType };

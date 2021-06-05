@@ -9,6 +9,7 @@ type props = {
   playerStatus: number;
   currentPlay: episode;
   handleRouteChange: (changeTo: string, isMobile?: boolean) => void;
+  scrollSpyActive: boolean;
 };
 
 type hostProps = {

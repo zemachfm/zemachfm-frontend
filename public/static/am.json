@@ -13,9 +13,8 @@
     "story": "አጀማመራችን",
     "contact": "ያገኙን",
     "feed": "Podcast feed",
-    "emailUs": "ኢሜል ይፃፍልን" ,
+    "emailUs": "ኢሜል ይፃፍልን",
     "appVersion": "ዘማች version 1.0"
-
   },
   "contactUs": {
     "title": "መልእክት ያድርሱን",
@@ -54,5 +53,11 @@
     "goodEvening": "እንደምን አመሹ",
     "play": "አጫውት",
     "pause": "አፍታ"
+  },
+  "notFoundPage": {
+    "mainTitle": "404",
+    "subtitle": "ገፁ አልተገኘም",
+    "description": "ይቅርታ የጠየቁትን ገፅ ማግኘት አልቻልንም ፣ እባክዎ በድህረ ገፁ ላይ ሚገኙትን ማገናኛዎች ይጠቀሙ።",
+    "goHome": "ወደ ዋና ማውጫ"
   }
 }

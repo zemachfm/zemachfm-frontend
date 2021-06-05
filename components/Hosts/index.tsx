@@ -16,7 +16,11 @@ const Hosts: React.FC<HostsProps> = props => {
   };
 
   return (
-    <VisibilitySensor onChange={handleVisibility}>
+    <VisibilitySensor
+      active={props.scrollSpyActive}
+      intervalDelay={600}
+      onChange={handleVisibility}
+    >
       <section id="hosts">
         <div className="flex flex-col">
           <h1 className=" text-3xl lg:text-4xl 2xl:text-5xl  my-10 font-bold dark:text-gray-200 mb-2 ">

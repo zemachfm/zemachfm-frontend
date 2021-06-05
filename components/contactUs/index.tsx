@@ -15,7 +15,11 @@ interface typeVal {
   name: string;
 }
 
-const ContactUs: FC<contactUsType> = ({ content, handleRouteChange }) => {
+const ContactUs: FC<contactUsType> = ({
+  content,
+  handleRouteChange,
+  scrollSpyActive,
+}) => {
   const [name, setName] = useState<typeVal>({
     value: '',
     error: true,
@@ -121,7 +125,11 @@ const ContactUs: FC<contactUsType> = ({ content, handleRouteChange }) => {
   };
 
   return (
-    <VisibilitySensor onChange={handleVisibility}>
+    <VisibilitySensor
+      active={scrollSpyActive}
+      intervalDelay={600}
+      onChange={handleVisibility}
+    >
       <div>
         <div className="flex flex-col">
           <h1
