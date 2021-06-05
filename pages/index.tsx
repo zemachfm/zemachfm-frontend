@@ -51,7 +51,7 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
   const { player, currentPlay } = playersDataCont;
 
   const recentEpisode =
-    Array.isArray(episodes) && episodes?.length > 0 ? episodes[8] : null;
+    Array.isArray(episodes) && episodes?.length > 0 ? episodes[0] : null;
 
   const linksDefault: ISideBarLink[] = [
     {
@@ -164,6 +164,7 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
                     recentEpisode={recentEpisode}
                     topBannerContent={content.topBanner}
                   />
+
                   <div className="grid grid-cols-12">
                     <div className="col-span-12 lg:col-span-12">
                       <EpisodeCardsContainer
@@ -177,6 +178,9 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
                         subTitle={content.episodesDescription}
                         title={content.episodes}
                       />
+                      <div className="flex lg:hidden">
+                        <RightSidebar content={settings.rightSidebar} />
+                      </div>
                     </div>
                   </div>
                 </>
