@@ -169,7 +169,7 @@ const TopBanner = (props: IToBannerProps) => {
         <div className="hidden lg:flex flex-row items-center w-3/6">
           <img
             className=" h-auto w-full z-10 rounded-2xl lg:block border-1 flex flex-row items-center border-gray-100"
-            src={props.recentEpisode?.episode_player_image}
+            src={props.recentEpisode?.big_player}
           />
         </div>
       </div>

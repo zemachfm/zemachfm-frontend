@@ -21,7 +21,7 @@ const AudioPlayerWrapper: React.FC<props.audioPlayerProps> = ({
   const [duration, setDuration] = React.useState<string>('');
   const [currentTime, setCurrentTime] = React.useState<string>('');
   const [percentagePlayed, setPercentagePlayed] = React.useState<number>(0);
-  const [progressing, setProgressing] = React.useState(true);
+  const [progressing, setProgressing] = React.useState(false);
   const [plyaerBufferedSize, setPlayerBufferedSize] = React.useState<number>(0);
 
   React.useEffect(() => {
@@ -100,6 +100,25 @@ const AudioPlayerWrapper: React.FC<props.audioPlayerProps> = ({
     dispatch(changePlayerSetting(payload));
   };
 
+  document.onkeydown = function playerStatusChange(event: KeyboardEvent): void {
+    if (
+      !(
+        document.activeElement.tagName === 'INPUT' ||
+        document.activeElement.tagName === 'TEXTAREA'
+      )
+    ) {
+      if (event.key === ' ' || event.code === 'Spacebar') {
+        event.preventDefault();
+        if (isPlaying) {
+          onPlayerStateChange('PAUSE');
+        } else {
+          onPlayerStateChange('PLAY');
+        }
+      }
+    } 
+  };
+
+  const isPlaying = getPlayerStatus(playerStatus);
   return (
     <div className="col-span-24">
       <div className=" fixed bottom-0 z-20 w-full ">
@@ -113,7 +132,7 @@ const AudioPlayerWrapper: React.FC<props.audioPlayerProps> = ({
             currentTime={currentTime}
             duration={durationNumber}
             durationCalcuated={duration}
-            isPlaying={getPlayerStatus(playerStatus)}
+            isPlaying={isPlaying}
             onPlayerChange={onPlayerStateChange}
             onSeek={onSeek}
             onSettingChange={onSettingChange}

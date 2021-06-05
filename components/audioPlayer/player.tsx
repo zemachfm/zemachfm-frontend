@@ -30,8 +30,8 @@ const PlayerComponent: React.FC<Props.audioPlayerComponent> = ({
   const [mobileMoreMenu, setMobileMoreMenu] = React.useState<boolean>(false);
   return (
     <div className="grid lg:grid-cols-12 md:grid-cols-4 sm:grid-cols-4 justify-center align-middle lg:gap-4  ">
-      <div className="col-span-4 grid md:grid-cols-3 lg:grid-cols-3 grid-cols-2 order-2 lg:order-1">
-        <div className="flex flex-row items-end row w-full py-2 lg:col-start-2 col-start-1 lg:px-4  ">
+      <div className="col-span-4 grid md:grid-cols-3 xl:grid-cols-2 2xl:grid-cols-3 lg:grid-cols-2 grid-cols-2 order-2 lg:order-1">
+        <div className="flex flex-row items-end row w-full py-2 lg:col-start-1 xl:col-start-1 2xl:col-start-2 col-start-1 lg:px-4  ">
           <img className="rounded w-16" src={currentPlay.small_player} />
           <div className="ml-2 flex flex-col justify-between h-100">
             <h3
