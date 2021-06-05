@@ -8,6 +8,7 @@ type props = {
   more: string;
   playerStatus: number;
   currentPlay: episode;
+  handleRouteChange: (changeTo: string, isMobile?: boolean) => void;
 };
 
 type hostProps = {

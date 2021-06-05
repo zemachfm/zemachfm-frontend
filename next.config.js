@@ -20,7 +20,6 @@ const webpacked = {
         source: '/feed/podcast',
         destination: '/feed/podcast.xml',
         permanent: true,
-
       },
     ];
   },

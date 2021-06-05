@@ -8,6 +8,7 @@ type storyProps = {
 
 type storyIndex = {
   story: story;
+  handleRouteChange: (changeTo: string, isMobile?: boolean) => void;
 };
 
 export { storyIndex, storyProps };

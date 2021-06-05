@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { SideBarProps } from './index.d';
 
 const SideBar: React.FC<SideBarProps> = props => (
-  <div className="lg:flex pb-5 w-2/12 flex-col pr-10  fixed bg-transparent dark:bg-black rounded-xl hidden top-28">
+  <div className="lg:flex pb-5 w-2/12 flex-col pr-10  fixed bg-transparent rounded-xl hidden top-28">
     <ul>
       {props.links.map(link => (
         <a

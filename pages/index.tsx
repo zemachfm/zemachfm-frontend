@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import Head from 'next/head';
+import VisibilitySensor from 'react-visibility-sensor';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetStaticPropsContext } from 'next';
 import { END } from 'redux-saga';
@@ -107,6 +108,12 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
     }
   };
 
+  const handleVisibility = (visible: boolean) => {
+    if (visible) {
+      handleRouteChange(routes.index);
+    }
+  };
+
   React.useEffect(() => {
     if (typeof window !== 'undefined') {
       const { hash } = window.location;
@@ -147,46 +154,60 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
                 translatedStrings={content.sidebar}
               />
             </div>
+
             <div className="col-span-12 lg:col-span-8 lg:px-1 ">
-              <TopBanner
-                currentPlay={currentPlay.item}
-                playerStatus={player.playerStatus}
-                recentEpisode={recentEpisode}
-                topBannerContent={content.topBanner}
-              />
-              <div className="grid grid-cols-12">
-                <div className="col-span-12 lg:col-span-12">
-                  <EpisodeCardsContainer
+              <VisibilitySensor onChange={handleVisibility} scrollCheck={false}>
+                <>
+                  <TopBanner
                     currentPlay={currentPlay.item}
-                    loading={loading}
-                    more={content.more}
                     playerStatus={player.playerStatus}
-                    settings={settings}
-                    starterEpisodes={episodes}
-                    subTitle={content.episodesDescription}
-                    title={content.episodes}
+                    recentEpisode={recentEpisode}
+                    topBannerContent={content.topBanner}
                   />
-                </div>
-              </div>
+                  <div className="grid grid-cols-12">
+                    <div className="col-span-12 lg:col-span-12">
+                      <EpisodeCardsContainer
+                        currentPlay={currentPlay.item}
+                        handleRouteChange={handleRouteChange}
+                        loading={loading}
+                        more={content.more}
+                        playerStatus={player.playerStatus}
+                        settings={settings}
+                        starterEpisodes={episodes}
+                        subTitle={content.episodesDescription}
+                        title={content.episodes}
+                      />
+                    </div>
+                  </div>
+                </>
+              </VisibilitySensor>
 
               <div className="grid grid-cols-12">
                 <div className="col-span-12 lg:col-span-12">
                   <Hosts
                     content={content.hosts}
+                    handleRouteChange={handleRouteChange}
                     hosts={state.hosts.data}
                     loading={state.hosts.loading}
                   />
                   <Guests
                     currentPlay={currentPlay.item}
                     episodes={guests.episodes}
+                    handleRouteChange={handleRouteChange}
                     loading={guests.loading}
                     more={content.more}
                     playerStatus={player.playerStatus}
                     subTitle={content.guestDescription}
                     title={content.guests}
                   />
-                  <OurStory story={settings.story} />
-                  <ContactUs content={content.contactUs} />
+                  <OurStory
+                    handleRouteChange={handleRouteChange}
+                    story={settings.story}
+                  />
+                  <ContactUs
+                    content={content.contactUs}
+                    handleRouteChange={handleRouteChange}
+                  />
                   {Footer()}
                 </div>
               </div>
