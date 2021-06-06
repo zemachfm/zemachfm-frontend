@@ -224,7 +224,7 @@ export const getStaticProps = wrapper.getStaticProps(
   }: GetStaticPropsContext & {
     store: any;
   }) => {
-    // await MakeRSS();
+    await MakeRSS();
     store.dispatch(fetchEpisodes());
     store.dispatch(fetchSettings(locale));
     store.dispatch(fetchGuests());
