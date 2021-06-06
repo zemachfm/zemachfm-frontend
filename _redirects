@@ -1,4 +1,6 @@
 /feed/podcast /feed/podcast.xml
 /en/* /en.html 200
+/en/*/* /en.html 200
 /am/* /am.html 200 
+/am/*/* /am.html 200 
 /* /en.html 200
