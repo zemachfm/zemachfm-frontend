@@ -122,7 +122,7 @@ const ContactUs: FC<contactUsType> = ({ content }) => {
         >
           {content.title}
         </h1>
-        <p className="text-gray-600 text-lg mb-1 dark:text-gray-200">
+        <p className="text-gray-400 text-lg mb-1 dark:text-gray-200">
           {content.subtitle}
         </p>
       </div>
@@ -141,6 +141,7 @@ const ContactUs: FC<contactUsType> = ({ content }) => {
               </p>
             </div>
           ) : null}
+
           <h3 className="text-2xl mb-14 capitalize dark:text-gray-50 my-10 ">
             {content.additional}
           </h3>

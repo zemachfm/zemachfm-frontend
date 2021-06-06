@@ -7,7 +7,12 @@ import routes from '../../lib/constants/hashRoutes';
 const OurStory: FC<storyIndex> = ({ story }) => {
   const { storyLine, cards, numberOfCards } = story;
   const { title, description } = storyLine;
-  const colors = ['bg-green-500', 'bg-gray-200', 'bg-gray-200', 'bg-gray-200'];
+  const colors = [
+    'bg-green-100 border-2 dark:bg-green-700 dark:border-green-800 border-green-200',
+    'bg-white border-2 border-white hover:border-green-200 hover:bg-green-100 dark:bg-gray-900 dark:border-gray-900',
+    'bg-white border-2 border-white hover:border-green-200 hover:bg-green-100 dark:bg-gray-900 dark:border-gray-900',
+    'bg-white border-2 border-white hover:border-green-200 hover:bg-green-100 dark:bg-gray-900 dark:border-gray-900',
+  ];
 
   return (
     <div id="our-story">
@@ -19,7 +24,9 @@ const OurStory: FC<storyIndex> = ({ story }) => {
         className="text-gray-400 mb-5 "
         dangerouslySetInnerHTML={{ __html: description }}
       ></div>
-      <div className={`grid gap-6 md:grid-cols-2 grid-cols-1 2xl:grid-cols-2`}>
+      <div
+        className={`grid gap-6 md:grid-cols-2 grid-cols-1 xl:grid-cols-${numberOfCards}`}
+      >
         {cards
           ? cards.map((card, index) =>
               card.title ? (
