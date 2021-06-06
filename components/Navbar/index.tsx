@@ -68,12 +68,12 @@ const NavBar = (props: INavBarProps): ReactElement => {
             </button>
             <img
               alt="zemach-logo"
-              className="p-0 h-12 w-auto  border-yellow-400 border-2 rounded-full lg:block hidden"
+              className="p-0 h-12 w-auto  border-green-500 border-2 rounded-full lg:block hidden"
               src="/assets/zemach-small.png"
             />
             <Link href="/" passHref>
               <a>
-                <h1 className="text-2xl ml-3 font-bold text-yellow-400 lg:block hidden">
+                <h1 className="text-2xl ml-3 font-bold text-green-500 lg:block hidden">
                   {props.appName}
                 </h1>
               </a>
