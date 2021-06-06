@@ -5,6 +5,7 @@ interface SmallDeviceMenuProps {
   toogleMenu: () => void;
   handleRouteChange: (link: string, isMobile?: boolean) => void;
   links: ISideBarLink[];
+  translatedStrings: ISideBarContents;
 }
 
 interface ISideBarLink {
