@@ -10,6 +10,4 @@ export interface HostsProps {
   hosts?: Hosts;
   loading: boolean;
   content?: hostString;
-  handleRouteChange: (changeTo: string, isMobile?: boolean) => void;
-  scrollSpyActive: boolean;
 }

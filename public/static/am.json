@@ -8,13 +8,14 @@
   "guestDescription": "እስካሁን በ ፖድካስታችን የቀረቡ እንግዶች",
   "sidebar": {
     "episodes": "ክፍሎች",
-    "hosts": "አቅርቢዎች",
+    "hosts": "አቅራቢዎች",
     "guests": "እንግዳዎች",
     "story": "አጀማመራችን",
     "contact": "ያገኙን",
     "feed": "Podcast feed",
     "emailUs": "ኢሜል ይፃፍልን",
-    "appVersion": "ዘማች version 1.0"
+    "appVersion": "ዘማች version 1.0",
+    "group": "የመወያያ ቡድናችንን ይቀላቀሉ"
   },
   "contactUs": {
     "title": "መልእክት ያድርሱን",

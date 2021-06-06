@@ -25,7 +25,14 @@ const SideBar: React.FC<SideBarProps> = props => (
     <div className="border-t dark:border-gray-900 border-gray-200 mt-4 pl-5 pt-4 w-full ">
       <ul>
         <li className="li text-md dark:text-gray-400 text-gray-500 py-3">
-          <Link href="/feed/podcast.xml">{props.translatedStrings.feed}</Link>
+          <Link href="/feed/podcast.xml" locale="en">
+            {props.translatedStrings.feed}
+          </Link>
+        </li>
+        <li className="li text-md dark:text-gray-400 text-gray-500 py-3">
+          <a href="https://t.me/joinchat/SQ-J1gTeld5N_RKJ" target="_blank">
+            {props.translatedStrings.group}
+          </a>
         </li>
         <li className="li text-md dark:text-gray-400 text-gray-500 py-3">
           <a href="mailto:zemachfm@gmal.com" target="_blank">
