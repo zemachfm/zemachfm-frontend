@@ -119,7 +119,7 @@ function* playCertainAudioGenerator({
      * do the actual remvoal
      */
     yield put(removePlayer());
-    player.audioPlayer.off(null, null, player.currentPlayID);
+    player.audioPlayer.off('play', null, player.currentPlayID);
     player.audioPlayer.unload();
   }
   const sound: Howl = new Howl({

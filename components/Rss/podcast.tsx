@@ -76,35 +76,35 @@ const getRssXml = blogPosts => {
 	 xmlns:googleplay="http://www.google.com/schemas/play-podcasts/1.0"
   >
     <channel>
-    <title>${blogPosts.title} </title>
+    <title>${blogPosts?.title} </title>
 		<atom:link href="https://zemachfm.com/feed/podcast" rel="self" type="application/rss+xml"/>
 		<link>https://zemachfm.com/</link>
-		<description> ${blogPosts.description} </description>
-		<lastBuildDate> ${blogPosts.lastBuildDate} </lastBuildDate>
-		<language> ${blogPosts.language} </language>
-		<copyright> ${blogPosts.copyright} </copyright>
+		<description> ${blogPosts?.description} </description>
+		<lastBuildDate> ${blogPosts?.lastBuildDate} </lastBuildDate>
+		<language> ${blogPosts?.language} </language>
+		<copyright> ${blogPosts?.copyright} </copyright>
 
-		<itunes:subtitle> ${blogPosts.itunes.subtitle} </itunes:subtitle>
-		<itunes:author> ${blogPosts.itunes.author} </itunes:author>
+		<itunes:subtitle> ${blogPosts?.itunes?.subtitle} </itunes:subtitle>
+		<itunes:author> ${blogPosts?.itunes?.author} </itunes:author>
 				<itunes:type>episodic</itunes:type>
-					<itunes:summary> ${blogPosts.itunes.summary} </itunes:summary>
+					<itunes:summary> ${blogPosts?.itunes?.summary} </itunes:summary>
 		<itunes:owner>
-			<itunes:name> ${blogPosts.itunes.owner.name} </itunes:name>
-			<itunes:email> ${blogPosts.itunes.owner.email} </itunes:email>
+			<itunes:name> ${blogPosts?.itunes?.owner?.name} </itunes:name>
+			<itunes:email> ${blogPosts?.itunes?.owner?.email} </itunes:email>
 		</itunes:owner>
-		<itunes:explicit> ${blogPosts.itunes.explicit} </itunes:explicit>
-		<itunes:image href="${blogPosts.itunes.image}"></itunes:image>
+		<itunes:explicit> ${blogPosts?.itunes?.explicit} </itunes:explicit>
+		<itunes:image href="${blogPosts?.itunes?.image}"></itunes:image>
 			<image>
-				<url> ${blogPosts.image.url} </url>
-				<title> ${blogPosts.image.title} </title>
-				<link> ${blogPosts.image.link} </link>
+				<url> ${blogPosts?.image?.url} </url>
+				<title> ${blogPosts?.image?.title} </title>
+				<link> ${blogPosts?.image?.link} </link>
 			</image>
-      <itunes:category text="${blogPosts.itunes.categoriesWithSubs[0].name}">
+      <itunes:category text="${blogPosts?.itunes.categoriesWithSubs[0].name}">
 			</itunes:category>
-      <itunes:category text="${blogPosts.itunes.categoriesWithSubs[1].name}">
-      <itunes:category text="${blogPosts.itunes.categoriesWithSubs[1].subs[0].name}"></itunes:category>
+      <itunes:category text="${blogPosts?.itunes.categoriesWithSubs[1].name}">
+      <itunes:category text="${blogPosts?.itunes.categoriesWithSubs[1].subs[0].name}"></itunes:category>
 			</itunes:category>
-      <itunes:category text="${blogPosts.itunes.categoriesWithSubs[2].name}">
+      <itunes:category text="${blogPosts?.itunes.categoriesWithSubs[2].name}">
 			</itunes:category>
 									
 		<generator>zemachfm.com</generator>
