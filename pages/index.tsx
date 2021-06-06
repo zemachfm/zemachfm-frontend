@@ -98,23 +98,15 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
   const handleRouteChange = (changeTo: string, isMobile?: boolean) => {
     setScrollSpyActive(false);
 
-    setTimeout(() => {
-      setLinks(oldLinks =>
-        oldLinks.map(link => ({
-          ...link,
-          active: isActive(link.route, changeTo),
-        })),
-      );
-    }, 600);
+    setLinks(oldLinks =>
+      oldLinks.map(link => ({
+        ...link,
+        active: isActive(link.route, changeTo),
+      })),
+    );
 
     if (isMobile) {
       onMobileMenuToogle();
-    }
-  };
-
-  const handleVisibility = (visible: boolean) => {
-    if (visible) {
-      handleRouteChange(routes.index);
     }
   };
 
