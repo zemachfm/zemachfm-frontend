@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import Head from 'next/head';
-import VisibilitySensor from 'react-visibility-sensor';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetStaticPropsContext } from 'next';
 import { END } from 'redux-saga';
@@ -167,71 +166,51 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
             </div>
 
             <div className="col-span-12 lg:col-span-8 lg:px-1 ">
-              <VisibilitySensor
-                active={scrollSpyActive}
-                intervalDelay={600}
-                onChange={handleVisibility}
-              >
-                <>
-                  <TopBanner
-                    currentPlay={currentPlay.item}
-                    playerStatus={player.playerStatus}
-                    recentEpisode={recentEpisode}
-                    topBannerContent={content.topBanner}
-                  />
+              <TopBanner
+                currentPlay={currentPlay.item}
+                playerStatus={player.playerStatus}
+                recentEpisode={recentEpisode}
+                topBannerContent={content.topBanner}
+              />
 
-                  <div className="grid grid-cols-12">
-                    <div className="col-span-12 lg:col-span-12">
-                      <EpisodeCardsContainer
-                        currentPlay={currentPlay.item}
-                        handleRouteChange={handleRouteChange}
-                        loading={loading}
-                        more={content.more}
-                        playerStatus={player.playerStatus}
-                        scrollSpyActive={scrollSpyActive}
-                        settings={settings}
-                        starterEpisodes={episodes}
-                        subTitle={content.episodesDescription}
-                        title={content.episodes}
-                      />
-                      <div className="flex lg:hidden">
-                        <RightSidebar content={settings.rightSidebar} />
-                      </div>
-                    </div>
+              <div className="grid grid-cols-12">
+                <div className="col-span-12 lg:col-span-12">
+                  <EpisodeCardsContainer
+                    currentPlay={currentPlay.item}
+                    handleRouteChange={handleRouteChange}
+                    loading={loading}
+                    more={content.more}
+                    playerStatus={player.playerStatus}
+                    scrollSpyActive={scrollSpyActive}
+                    settings={settings}
+                    starterEpisodes={episodes}
+                    subTitle={content.episodesDescription}
+                    title={content.episodes}
+                  />
+                  <div className="flex lg:hidden">
+                    <RightSidebar content={settings.rightSidebar} />
                   </div>
-                </>
-              </VisibilitySensor>
+                </div>
+              </div>
 
               <div className="grid grid-cols-12">
                 <div className="col-span-12 lg:col-span-12">
                   <Hosts
                     content={content.hosts}
-                    handleRouteChange={handleRouteChange}
                     hosts={state.hosts.data}
                     loading={state.hosts.loading}
-                    scrollSpyActive={scrollSpyActive}
                   />
                   <Guests
                     currentPlay={currentPlay.item}
                     episodes={guests.episodes}
-                    handleRouteChange={handleRouteChange}
                     loading={guests.loading}
                     more={content.more}
                     playerStatus={player.playerStatus}
-                    scrollSpyActive={scrollSpyActive}
                     subTitle={content.guestDescription}
                     title={content.guests}
                   />
-                  <OurStory
-                    handleRouteChange={handleRouteChange}
-                    scrollSpyActive={scrollSpyActive}
-                    story={settings.story}
-                  />
-                  <ContactUs
-                    content={content.contactUs}
-                    handleRouteChange={handleRouteChange}
-                    scrollSpyActive={scrollSpyActive}
-                  />
+                  <OurStory story={settings.story} />
+                  <ContactUs content={content.contactUs} />
                   {Footer()}
                 </div>
               </div>

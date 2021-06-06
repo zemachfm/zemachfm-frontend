@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import { useDispatch } from 'react-redux';
-import VisibilitySensor from 'react-visibility-sensor';
 import { episodeCardsContainerType } from './index.d';
 import EpisodeCard from './episodeCard';
 import {
@@ -53,54 +52,48 @@ const EpisodeCardsContainer: FC<episodeCardsContainerType> = ({
   };
 
   return (
-    <VisibilitySensor
-      active={scrollSpyActive}
-      intervalDelay={600}
-      onChange={handleVisibility}
-    >
-      <div>
-        <div className="flex flex-row justify-between">
-          <div className="flex flex-col">
-            <h1 className=" text-3xl lg:text-4xl 2xl:text-5xl  my-10 font-bold dark:text-gray-200 mb-2 ">
-              {title}
-            </h1>
-            <p className="text-gray-400 text-lg mb-7">{subTitle}</p>
-          </div>
+    <div>
+      <div className="flex flex-row justify-between">
+        <div className="flex flex-col">
+          <h1 className=" text-3xl lg:text-4xl 2xl:text-5xl  my-10 font-bold dark:text-gray-200 mb-2 ">
+            {title}
+          </h1>
+          <p className="text-gray-400 text-lg mb-7">{subTitle}</p>
         </div>
-
-        <div className="grid grid-cols grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4 ">
-          {EpisodeList
-            ? EpisodeList.map((item, index) => {
-                if (item.loading) {
-                  return <EpisodeCard loading settings={settings} />;
-                }
-                return (
-                  <EpisodeCard
-                    image={item.small_player}
-                    index={index}
-                    item={item}
-                    key={item.id}
-                    loading={false}
-                    onDownload={onDownload}
-                    onPause={onPause}
-                    onPlay={onEpisodeCardPlay}
-                    playerStatus={playerStatus}
-                    playing={currentPlay ? item.id === currentPlay.id : false}
-                    settings={settings}
-                    title={item.title.rendered}
-                  />
-                );
-              })
-            : null}
-        </div>
-        <button
-          className="px-3 py-2 text-green-600 hover:underline rounded mt-4"
-          onClick={onLoadMore}
-        >
-          {more}
-        </button>
       </div>
-    </VisibilitySensor>
+
+      <div className="grid grid-cols grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 gap-4 ">
+        {EpisodeList
+          ? EpisodeList.map((item, index) => {
+              if (item.loading) {
+                return <EpisodeCard loading settings={settings} />;
+              }
+              return (
+                <EpisodeCard
+                  image={item.small_player}
+                  index={index}
+                  item={item}
+                  key={item.id}
+                  loading={false}
+                  onDownload={onDownload}
+                  onPause={onPause}
+                  onPlay={onEpisodeCardPlay}
+                  playerStatus={playerStatus}
+                  playing={currentPlay ? item.id === currentPlay.id : false}
+                  settings={settings}
+                  title={item.title.rendered}
+                />
+              );
+            })
+          : null}
+      </div>
+      <button
+        className="px-3 py-2 text-green-600 hover:underline rounded mt-4"
+        onClick={onLoadMore}
+      >
+        {more}
+      </button>
+    </div>
   );
 };
 export default EpisodeCardsContainer;
