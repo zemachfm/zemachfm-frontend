@@ -32,11 +32,11 @@ webpacked['i18n'] = {
 webpacked.env = {
   host:
     process.env.NODE_ENV === 'production'
-      ? 'https://staging.zemachfm.com'
+      ? 'https://zemachfm.com'
       : 'http://localhost:3000',
 };
 webpacked.images = {
-  domains: ['zemachfm.com'],
+  domains: ['zemachfm.com', 'api.zemachfm.com'],
 };
 webpacked.target = 'serverless';
 

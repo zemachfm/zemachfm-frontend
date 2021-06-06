@@ -6,7 +6,7 @@ const AudioPlayer: FC = () => (
       <div className="grid col-2 w-full">
         <img
           className="rounded-xl"
-          src="https://zemachfm.com/wp-content/uploads/2021/02/wechat-tiktok-.png"
+          src="https://api.zemachfm.com/wp-content/uploads/2021/02/wechat-tiktok-.png"
         />
         <h3 className="text-3xl text-left mt-3 mx-1 dark:text-gray-200 ">
           advertisment or st
