@@ -8,9 +8,9 @@ import CloseIcon from '../../icons/x.svg';
 import { SmallDeviceMenuProps } from './index.d';
 
 const SmallDeviceSideBar: React.FC<SmallDeviceMenuProps> = props => (
-  <div className="lg:hidden block bg-white dark:bg-gray-800 dark:text-white fixed w-full h-screen z-30 font-bold">
+  <div className="lg:hidden block bg-white dark:bg-gray-800 dark:text-white top-0 fixed w-full h-screen z-30 font-bold">
     <div className="mt-5 px-5 flex items-center justify-between">
-      <h3 className="text-3xl text-yellow-400">Menu</h3>
+      <h3 className="text-3xl text-green-500">Menu</h3>
       <button onClick={props.toogleMenu}>
         <CloseIcon />
       </button>
@@ -24,11 +24,11 @@ const SmallDeviceSideBar: React.FC<SmallDeviceMenuProps> = props => (
         >
           <li
             className={`flex ${
-              link.active ? 'bg-yellow-400  text-gray-700 rounded-r-full ' : ''
+              link.active ? 'bg-green-500  text-gray-700 rounded-r-full ' : ''
             } py-3 mt-10 px-1`}
           >
             {link.icon}
-            <span>{link.label}</span>
+            <span className="ml-3">{link.label}</span>
           </li>
         </a>
       ))}

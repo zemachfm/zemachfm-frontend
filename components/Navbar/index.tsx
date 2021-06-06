@@ -63,9 +63,18 @@ const NavBar = (props: INavBarProps): ReactElement => {
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 dark:text-white">
         <div className="relative flex justify-between items-center h-16">
           <div className="flex items-center">
-            <button className="block lg:hidden" onClick={onDisplayMobileMenu}>
-              <MenuIcon />
-            </button>
+            <div className="flex">
+              <button className="block lg:hidden" onClick={onDisplayMobileMenu}>
+                <MenuIcon />
+              </button>
+              <Link href="/" passHref>
+                <a>
+                  <h1 className="text-2xl ml-3 font-bold text-green-500 lg:hidden block">
+                    {props.appName}
+                  </h1>
+                </a>
+              </Link>
+            </div>
             <img
               alt="zemach-logo"
               className="p-0 h-12 w-auto  border-green-500 border-2 rounded-full lg:block hidden"
@@ -79,13 +88,7 @@ const NavBar = (props: INavBarProps): ReactElement => {
               </a>
             </Link>
           </div>
-          <Link href="/" passHref>
-            <a>
-              <h1 className="text-2xl ml-3 font-bold text-yellow-400 lg:hidden block">
-                {props.appName}
-              </h1>
-            </a>
-          </Link>
+
           <div className="flex items-center justify-between">
             <button
               className="outline-none focus:outline-none dark:hover:bg-gray-800 hover:bg-gray-300 p-2 rounded-full"
