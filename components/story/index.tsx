@@ -5,7 +5,11 @@ import StoryCard from './storyCard';
 
 import routes from '../../lib/constants/hashRoutes';
 
-const OurStory: FC<storyIndex> = ({ story, handleRouteChange }) => {
+const OurStory: FC<storyIndex> = ({
+  story,
+  handleRouteChange,
+  scrollSpyActive,
+}) => {
   const { storyLine, cards, numberOfCards } = story;
   const { title, description } = storyLine;
   const colors = [
@@ -22,7 +26,11 @@ const OurStory: FC<storyIndex> = ({ story, handleRouteChange }) => {
   };
 
   return (
-    <VisibilitySensor onChange={handleVisibility}>
+    <VisibilitySensor
+      active={scrollSpyActive}
+      intervalDelay={600}
+      onChange={handleVisibility}
+    >
       <div id="our-story">
         <h1 className=" text-3xl lg:text-4xl 2xl:text-5xl  font-bold mt-8 mb-3 dark:text-white text-gray-900 ">
           {' '}

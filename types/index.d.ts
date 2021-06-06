@@ -50,6 +50,13 @@ interface IHostsString {
   description: string;
 }
 
+interface I404Content {
+  mainTitle?: string;
+  subtitle?: string;
+  description?: string;
+  goHome?: string;
+}
+
 interface ITopBannerContent {
   goodMorning: string;
   goodAfternoon: string;
@@ -74,6 +81,7 @@ interface translatedStrings {
     headings: IPodcastPageHeadings;
   };
   topBanner: ITopBannerContent;
+  notFoundPage: I404Content;
 }
 
 type indexPageType = {
