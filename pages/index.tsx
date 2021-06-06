@@ -144,6 +144,7 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
             handleRouteChange={handleRouteChange}
             links={links}
             toogleMenu={onMobileMenuToogle}
+            translatedStrings={content.sidebar}
           />
         )}
 

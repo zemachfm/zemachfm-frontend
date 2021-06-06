@@ -21,7 +21,7 @@ const AudioPlayerWrapper: React.FC<props.audioPlayerProps> = ({
   const [duration, setDuration] = React.useState<string>('');
   const [currentTime, setCurrentTime] = React.useState<string>('');
   const [percentagePlayed, setPercentagePlayed] = React.useState<number>(0);
-  const [progressing, setProgressing] = React.useState(false);
+  const [progressing, setProgressing] = React.useState(true);
   const [plyaerBufferedSize, setPlayerBufferedSize] = React.useState<number>(0);
 
   React.useEffect(() => {
@@ -115,7 +115,7 @@ const AudioPlayerWrapper: React.FC<props.audioPlayerProps> = ({
           onPlayerStateChange('PLAY');
         }
       }
-    } 
+    }
   };
 
   const isPlaying = getPlayerStatus(playerStatus);
