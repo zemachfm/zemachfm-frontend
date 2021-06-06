@@ -5,11 +5,6 @@
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
-[[redirects]]
-  from = "/*"
-  to = "/404"
-  status = 404
-
 [context.production.environment]
 NEXT_SERVERLESS = "true"
 NODE_ENV = "production"
