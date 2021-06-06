@@ -33,7 +33,7 @@ const OurStory: FC<storyIndex> = ({ story, handleRouteChange }) => {
           dangerouslySetInnerHTML={{ __html: description }}
         ></div>
         <div
-          className={`grid gap-6 md:grid-cols-2 grid-cols-1 2xl:grid-cols-2`}
+          className={`grid gap-6 md:grid-cols-2 grid-cols-1 xl:grid-cols-${numberOfCards}`}
         >
           {cards
             ? cards.map((card, index) =>

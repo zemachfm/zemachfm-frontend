@@ -130,7 +130,7 @@ const ContactUs: FC<contactUsType> = ({ content, handleRouteChange }) => {
           >
             {content.title}
           </h1>
-          <p className="text-gray-600 text-lg mb-1 dark:text-gray-200">
+          <p className="text-gray-400 text-lg mb-1 dark:text-gray-200">
             {content.subtitle}
           </p>
         </div>
