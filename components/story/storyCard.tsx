@@ -6,15 +6,12 @@ const StoryCard: FC<storyProps> = ({ title, description, color }) => (
   <div
     className={`${
       color === 'bg-green-500'
-        ? 'bg-green-500 dark:bg-green-600'
-        : `bg-gray-200 dark:bg-gray-900`
-    } p-4 text-left transition-all duration-200 hover:shadow-xl text-black dark:text-white rounded-lg`}
+        ? `${color} dark:bg-green-600`
+        : `${color} dark:bg-gray-900`
+    } p-4 text-left transition-all duration-200 hover:shadow-sm text-black dark:text-white rounded-lg`}
   >
     <div
-      className={`text-3xl  pb-3 mb-4 text-left font-bold ${
-        color === 'bg-green-500'
-          ? 'text-gray-100 d'
-          : 'dark:text-gray-100 text-gray-900'
+      className={`text-3xl  pb-3 mb-4 text-left font-bold dark:text-gray-100 text-gray-900'
       }`}
     >
       {title}
@@ -23,11 +20,7 @@ const StoryCard: FC<storyProps> = ({ title, description, color }) => (
       </span>
     </div>
     <div
-      className={` ${
-        color === 'bg-green-500'
-          ? 'text-gray-100'
-          : 'dark:text-gray-400 text-gray-600'
-      } dark:text-gray-100 text-sm`}
+      className={`text-gray-600 dark:text-gray-100 text-sm`}
       dangerouslySetInnerHTML={{ __html: description }}
     ></div>
   </div>
