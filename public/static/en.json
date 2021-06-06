@@ -13,8 +13,9 @@
     "story": "Story",
     "contact": "Contact",
     "feed": "Podcast feed",
-    "emailUs": "Email Us" ,
-    "appVersion": "Zemach version 1.0"
+    "emailUs": "Email Us",
+    "appVersion": "Zemach version 1.0",
+    "group": "Join Our Telegram Group"
   },
   "contactUs": {
     "title": "Contact Us",

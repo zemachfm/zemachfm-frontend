@@ -9,6 +9,7 @@ interface ISideBarContents {
   feed: string;
   emailUs: string;
   appVersion: string;
+  group: string;
 }
 
 interface footer {
