@@ -62,7 +62,7 @@ const TopBanner = (props: IToBannerProps) => {
   useEffect(() => {
     const currentTimeGreeting = getAppropirateGreetinContent();
     setGreetingItems(currentTimeGreeting);
-  }, []);
+  }, [props.topBannerContent]);
 
   const getPlayingBasedButtonProps = (): {
     onClick?: () => void;
