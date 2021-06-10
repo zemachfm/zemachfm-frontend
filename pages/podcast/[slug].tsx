@@ -1,6 +1,6 @@
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import { GetStaticPaths, GetStaticPropsContext } from 'next';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Head from 'next/head';
 import { END } from 'redux-saga';
 import { wrapper } from '../../store/store';
@@ -8,9 +8,16 @@ import { fetchSinglePodcast } from '../../store/podcastSingle/actions';
 import { TRootReducer } from '../../store/reducer';
 import singlePodcastDataTypes from '../../store/podcastSingle/types.d';
 import singlePodcastType from '../../types/singlePodcast.d';
-import { fetchGuests, fetchSettings } from '../../store/home/actions';
+import {
+  fetchGuests,
+  fetchSettings,
+  changePlayerStatus,
+  playCertainAudio,
+} from '../../store/home/actions';
 import { axiosGet } from '../../lib/store/axiosReq';
 import { PODCASTS_URL } from '../../lib/store/url';
+import PlayIcon from '../../icons/play.svg';
+import PauseIcon from '../../icons/pause.svg';
 
 const SinglePodcast: FC<singlePodcastType> = ({
   locale,
@@ -21,6 +28,59 @@ const SinglePodcast: FC<singlePodcastType> = ({
   const singlePodcastState: singlePodcastDataTypes = useSelector(
     (root: TRootReducer) => root.singlePodcast,
   );
+  const player = useSelector((root: TRootReducer) => root.home.player);
+
+  const dispatch = useDispatch();
+
+  const onPlayBannerEpisode = (): void => {
+    dispatch(playCertainAudio(singlePodcastState[slug][0]));
+  };
+
+  const onPlayingStateAction = (type: string) => {
+    dispatch(changePlayerStatus({ type }));
+  };
+
+  const getPlayingBasedButtonProps = (): {
+    onClick?: () => void;
+    icon: ReactNode;
+    text: string;
+  } => {
+    switch (player.player.playerStatus) {
+      case 0:
+        return {
+          text: content?.topBanner?.pause,
+          icon: (
+            <PauseIcon className=" rounded-full fill-current  dark:text-gray-100 text-gray-700 w-10 h-10 p-2 " />
+          ),
+        };
+      case 1:
+        return {
+          text: content?.topBanner?.pause,
+          icon: (
+            <PauseIcon className=" rounded-full fill-current  text-gray-100  w-10 h-10 p-2 " />
+          ),
+          onClick: () => onPlayingStateAction('PAUSE'),
+        };
+      case 2:
+        return {
+          text: content?.topBanner?.play,
+          icon: (
+            <PlayIcon className=" rounded-full fill-current  text-gray-100  w-10 h-10 p-2 " />
+          ),
+          onClick: () => onPlayingStateAction('PLAY'),
+        };
+      default:
+        return {
+          text: content.topBanner?.pause,
+          icon: (
+            <PauseIcon className=" rounded-full fill-current  text-gray-100  w-10 h-10 p-2 " />
+          ),
+          onClick: () => onPlayingStateAction('PAUSE'),
+        };
+    }
+  };
+
+  const playingBasedProps = getPlayingBasedButtonProps();
 
   return (
     <div className="dark:bg-black bg-gray-100">
@@ -41,7 +101,7 @@ const SinglePodcast: FC<singlePodcastType> = ({
               __html: singlePodcastState[slug][0].title.rendered,
             }}
           ></h1>
-          <div className="flex flex-row  gap-4 text-gray-600 dark:text-gray-400 mb-8 text-lg">
+          <div className="flex flex-row  gap-4 text-gray-600 dark:text-gray-400 mb-4 text-lg">
             <p>
               {content?.podcastPage?.headings?.recorded}
               <span className="block lg:inline lg:ml-2">
@@ -63,7 +123,26 @@ const SinglePodcast: FC<singlePodcastType> = ({
               </span>
             </p>
           </div>
-
+          <div className="w-full flex justify-start ">
+            {player.currentPlay.item &&
+            player.currentPlay.item.id === singlePodcastState[slug][0].id ? (
+              <button
+                className="py-2 px-8 outline-none focus:outline-none bg-gradient-to-r flex justify-between items-center hover:from-green-600 hover:to-green-500 from-green-500 dark:from-green-700 dark:hover:from-green-800 to-green-400 dark:to-green-600 dark:hover:to-green-700 text-white rounded-lg mb-8"
+                onClick={playingBasedProps.onClick}
+              >
+                {playingBasedProps.icon}
+                {playingBasedProps.text}
+              </button>
+            ) : (
+              <button
+                className="py-2 px-8 outline-none focus:outline-none bg-gradient-to-r flex justify-between items-center hover:from-green-600 hover:to-green-500 from-green-500 dark:from-green-700 dark:hover:from-green-800 to-green-400 dark:to-green-600 dark:hover:to-green-700 text-white rounded-lg mb-8"
+                onClick={onPlayBannerEpisode}
+              >
+                <PlayIcon className=" rounded-full fill-current   text-gray-100 w-10 h-10 p-2 " />
+                {content.topBanner.play}
+              </button>
+            )}
+          </div>
           <div
             className="w-full text-lg text-gray-600 dark:text-gray-200 fill-current "
             dangerouslySetInnerHTML={{
