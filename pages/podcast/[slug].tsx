@@ -50,7 +50,7 @@ const SinglePodcast: FC<singlePodcastType> = ({
         return {
           text: content?.topBanner?.pause,
           icon: (
-            <PauseIcon className=" rounded-full fill-current  dark:text-gray-100 text-gray-700 w-10 h-10 p-2 " />
+            <PauseIcon className=" rounded-full fill-current  text-gray-100 w-10 h-10 p-2 " />
           ),
         };
       case 1:
@@ -65,7 +65,7 @@ const SinglePodcast: FC<singlePodcastType> = ({
         return {
           text: content?.topBanner?.play,
           icon: (
-            <PlayIcon className=" rounded-full fill-current  text-gray-100  w-10 h-10 p-2 " />
+            <PlayIcon className=" rounded-full fill-current  text-yellow-300  w-10 h-10 p-2 " />
           ),
           onClick: () => onPlayingStateAction('PLAY'),
         };
@@ -138,7 +138,7 @@ const SinglePodcast: FC<singlePodcastType> = ({
                 className="py-2 px-8 outline-none focus:outline-none bg-gradient-to-r flex justify-between items-center hover:from-green-600 hover:to-green-500 from-green-500 dark:from-green-700 dark:hover:from-green-800 to-green-400 dark:to-green-600 dark:hover:to-green-700 text-white rounded-lg mb-8"
                 onClick={onPlayBannerEpisode}
               >
-                <PlayIcon className=" rounded-full fill-current   text-gray-100 w-10 h-10 p-2 " />
+                <PlayIcon className=" rounded-full fill-current text-gray-100 w-10 h-10 p-2 " />
                 {content.topBanner.play}
               </button>
             )}

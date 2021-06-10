@@ -120,7 +120,3 @@
     flex-direction: column;
   }
 }
-
-.wp-block-image.size-large figure img{
-  border-radius: 2rem;
-}
