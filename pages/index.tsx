@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import Head from 'next/head';
-import { NextSeo } from 'next-seo';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetStaticPropsContext } from 'next';
 import { END } from 'redux-saga';
@@ -15,7 +14,6 @@ import {
   fetchGuests,
   fetchHosts,
   toogleMobileMenu,
-  playCertainAudio,
 } from '../store/home/actions';
 import SideBar from '../components/Sidebar';
 import SmallDeviceSideBar from '../components/Sidebar/smallDevice.sidebar';
@@ -138,22 +136,6 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
           {content.appName} | {content.subtitle}
         </title>
         <meta content="initial-scale=1.0, width=device-width" name="viewport" />
-        <NextSeo
-          description={content.subtitle}
-          openGraph={{
-            title: content.appName,
-            description: content.subtitle,
-            images: [
-              {
-                url: '/assets/zemach-small.png',
-                width: 80,
-                height: 80,
-                alt: content.appName,
-              },
-            ],
-          }}
-          title={content.appName}
-        />
         <link href="/favicon.ico" rel="icon" />
       </Head>
       <div className="bg-gray-100 dark:bg-black flex flex-col absolute h-full w-full ">
