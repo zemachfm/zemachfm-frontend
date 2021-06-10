@@ -30,6 +30,7 @@
     "jsonfeed-to-rss": "^3.0.4",
     "next": "^10.0.6",
     "next-redux-wrapper": "^6.0.2",
+    "next-seo": "^4.24.0",
     "node-sass": "^5.0.0",
     "nprogress": "^0.2.0",
     "postcss": "^8.2.4",
