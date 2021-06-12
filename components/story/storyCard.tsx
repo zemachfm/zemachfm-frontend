@@ -8,7 +8,7 @@ const StoryCard: FC<storyProps> = ({ title, description, color }) => (
       color === 'bg-green-500'
         ? `${color} dark:bg-green-600`
         : `${color} dark:bg-gray-900`
-    } p-4 text-left transition-all duration-200 hover:shadow-sm text-black dark:text-white rounded-lg`}
+    } p-4 pb-6 text-left transition-all duration-200 hover:shadow-sm text-black dark:text-white rounded-lg`}
   >
     <div
       className={`text-3xl  pb-3 mb-4 text-left font-bold dark:text-gray-100 text-gray-900'
