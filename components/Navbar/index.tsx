@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useState } from 'react';
+import { ReactElement, ReactNode, useEffect, useState } from 'react';
 import { withStyles } from '@bit/mui-org.material-ui.styles';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -23,6 +23,7 @@ const LanguagePopover = withStyles({
 const NavBar = (props: INavBarProps): ReactElement => {
   const [referenceElement, setReferenceElement] = useState(null);
   const [langPopoverDisplay, setLangPopoverDisplay] = useState(false);
+  const [themeIcon, setThemeIcon] = useState<ReactNode>(null);
   const dispatch = useDispatch();
   const { theme }: IHomeReducer = useSelector(
     (root: TRootReducer) => root.home,
@@ -43,8 +44,10 @@ const NavBar = (props: INavBarProps): ReactElement => {
   useEffect(() => {
     if (theme === 'dark') {
       document.documentElement.classList.add('dark');
+      setThemeIcon(<Sun className="text-white" />);
     } else {
       document.documentElement.classList.remove('dark');
+      setThemeIcon(<Moon />);
     }
   }, [theme]);
 
@@ -140,7 +143,7 @@ const NavBar = (props: INavBarProps): ReactElement => {
               className="ml-5 outline-none focus:outline-none dark:hover:bg-gray-800 hover:bg-gray-300 p-2 rounded-full"
               onClick={() => onThemeChange(theme === 'dark' ? 'light' : 'dark')}
             >
-              {theme === 'light' ? <Moon /> : <Sun className="text-white" />}
+              {themeIcon}
             </button>
           </div>
         </div>
