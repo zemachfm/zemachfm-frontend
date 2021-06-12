@@ -132,9 +132,12 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
   return (
     <div>
       <Head>
+        <meta charSet="UTF-8" />
         <title>
           {content.appName} | {content.subtitle}
         </title>
+        <meta content={content.footer.subtitle} name="description"></meta>
+        <meta content="index, follow" name="robots"></meta>
         <meta content="initial-scale=1.0, width=device-width" name="viewport" />
         <link href="/favicon.ico" rel="icon" />
       </Head>
@@ -225,7 +228,7 @@ export const getStaticProps = wrapper.getStaticProps(
   }: GetStaticPropsContext & {
     store: any;
   }) => {
-    await MakeRSS();
+    // await MakeRSS();
     store.dispatch(fetchEpisodes());
     store.dispatch(fetchSettings(locale));
     store.dispatch(fetchGuests());

@@ -12,7 +12,7 @@ function* fetchSingleHostSaga({
   payload: string;
 }) {
   try {
-    const url = `${GET_HOST_URL}?name=${encodeURIComponent(payload)}`;
+    const url = `${GET_HOST_URL}?identifier=${encodeURIComponent(payload)}`;
     const response = yield call(axiosGet, url, {});
     const host: IHostRequest = response.data;
 

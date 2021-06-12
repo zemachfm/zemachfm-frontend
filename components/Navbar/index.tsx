@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useState } from 'react';
+import { ReactElement, ReactNode, useEffect, useState } from 'react';
 import { withStyles } from '@bit/mui-org.material-ui.styles';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -23,6 +23,7 @@ const LanguagePopover = withStyles({
 const NavBar = (props: INavBarProps): ReactElement => {
   const [referenceElement, setReferenceElement] = useState(null);
   const [langPopoverDisplay, setLangPopoverDisplay] = useState(false);
+  const [themeIcon, setThemeIcon] = useState<ReactNode>(null);
   const dispatch = useDispatch();
   const { theme }: IHomeReducer = useSelector(
     (root: TRootReducer) => root.home,
@@ -43,8 +44,10 @@ const NavBar = (props: INavBarProps): ReactElement => {
   useEffect(() => {
     if (theme === 'dark') {
       document.documentElement.classList.add('dark');
+      setThemeIcon(<Sun className="text-white" />);
     } else {
       document.documentElement.classList.remove('dark');
+      setThemeIcon(<Moon />);
     }
   }, [theme]);
 
@@ -60,7 +63,7 @@ const NavBar = (props: INavBarProps): ReactElement => {
 
   return (
     <nav>
-      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 dark:text-white">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 md:bg-transparent md:dark:bg-transparent bg-gray-50 dark:bg-gray-900 dark:text-white">
         <div className="relative flex justify-between items-center h-16">
           <div className="flex items-center">
             <div className="flex">
@@ -69,7 +72,7 @@ const NavBar = (props: INavBarProps): ReactElement => {
               </button>
               <Link href="/" passHref>
                 <a>
-                  <h1 className="text-2xl ml-3 font-bold text-green-500 lg:hidden block">
+                  <h1 className="text-2xl ml-5 lg:ml-3 font-bold text-green-500 lg:hidden block">
                     {props.appName}
                   </h1>
                 </a>
@@ -137,10 +140,10 @@ const NavBar = (props: INavBarProps): ReactElement => {
             </LanguagePopover>
 
             <button
-              className="ml-5 outline-none focus:outline-none dark:hover:bg-gray-800 hover:bg-gray-300 p-2 rounded-full"
+              className="ml-2 lg:ml-5 outline-none focus:outline-none dark:hover:bg-gray-800 hover:bg-gray-300 p-2 rounded-full"
               onClick={() => onThemeChange(theme === 'dark' ? 'light' : 'dark')}
             >
-              {theme === 'light' ? <Moon /> : <Sun className="text-white" />}
+              {themeIcon}
             </button>
           </div>
         </div>

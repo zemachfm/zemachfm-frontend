@@ -44,7 +44,7 @@ const Hosts: React.FC<HostsProps> = props => (
                 {props.loading ? (
                   <div className=" w-full h-4 bg-gradient-to-r dark:from-gray-600 from-gray-200 to-gray-300 dark:to-gray-500 bg-gray-200 animate-pulse " />
                 ) : (
-                  <Link href={`/host/${host?.post?.post_name}`} passHref>
+                  <Link href={`/host/${host?.identifier}`} passHref>
                     <a>
                       <h4 className="text-gray-800 pl-4 lg:text-2xl md:text-2xl text-xl  font-medium dark:text-gray-200 hover:text-black dark:hover:text-white">
                         {host.post?.post_title}

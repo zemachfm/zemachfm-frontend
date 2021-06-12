@@ -6,12 +6,12 @@ import { actionTypes } from './actions';
 import { IHomeReducer } from './types.d';
 
 let dark = null;
-if (typeof window !== "undefined") {
+if (typeof window !== 'undefined') {
   dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 }
 
 const initialState: IHomeReducer = {
-  theme: dark ? "dark" : "light",
+  theme: dark ? 'dark' : 'light',
   episodes: {
     loading: true,
     episodes: [],
