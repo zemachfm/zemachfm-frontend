@@ -1,4 +1,4 @@
-# Zemach FM (ዘማች ኤፍ ኤም) Podcast FrontEnd Web application.
+# Zemach FM (ዘማች ኤፍ ኤም) Podcast Front-end Web application.
 
 ## አሰተዋጽዖ ማድረግ ይበረታታል ። welcome to contribute.
 ---
@@ -21,3 +21,5 @@ yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+This project uses **GPL Licence**.
