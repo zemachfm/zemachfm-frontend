@@ -142,6 +142,7 @@ interface IHostRequest {
   img: string;
   socialMedia: ISocialMedias;
   subtitle: string;
+  identifier: string;
 }
 
 type Hosts = IHostRequest[];
