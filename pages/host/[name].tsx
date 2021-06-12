@@ -22,13 +22,13 @@ const SingleHost: FC<hostPageType> = ({ locale, content, name, Footer }) => {
   );
 
   return (
-    <div>
+    <div className="dark:bg-black bg-gray-100">
       <Head>
         <title> {hostPageState?.host?.post?.post_title} </title>
         <link href="/favicon.ico" rel="icon" />
       </Head>
 
-      <div className="xl:w-3/6 w-6/6 px-5 mx-auto  mt-20 ">
+      <div className="xl:w-3/6 w-6/6 px-5 mx-auto mt-20 ">
         <img
           alt={hostPageState?.host?.post?.post_title}
           className="h-22 w-22 md:w-48 md:h-auto mx-auto rounded-full m-6"

@@ -14,7 +14,6 @@ import {
   fetchGuests,
   fetchHosts,
   toogleMobileMenu,
-  playCertainAudio,
 } from '../store/home/actions';
 import SideBar from '../components/Sidebar';
 import SmallDeviceSideBar from '../components/Sidebar/smallDevice.sidebar';
@@ -136,6 +135,7 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
         <title>
           {content.appName} | {content.subtitle}
         </title>
+        <meta content="initial-scale=1.0, width=device-width" name="viewport" />
         <link href="/favicon.ico" rel="icon" />
       </Head>
       <div className="bg-gray-100 dark:bg-black flex flex-col absolute h-full w-full ">
