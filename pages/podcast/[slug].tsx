@@ -81,6 +81,7 @@ const SinglePodcast: FC<singlePodcastType> = ({
   };
 
   const playingBasedProps = getPlayingBasedButtonProps();
+  const baseUrl = process.env.host;
 
   return (
     <div className="dark:bg-black bg-gray-100">
@@ -91,12 +92,20 @@ const SinglePodcast: FC<singlePodcastType> = ({
             : 'loading'}{' '}
         </title>
         <meta
-          content={singlePodcastState[slug][0].excerpt.renderd}
+          content={
+            singlePodcastState[slug]
+              ? singlePodcastState[slug][0].excerpt.renderd
+              : ''
+          }
           name="description"
         />
         {locale === 'en' ? (
           <link
-            href={`${window.location.origin}/am/podcast/${singlePodcastState[slug][0].slug}`}
+            href={
+              singlePodcastState[slug]
+                ? `${baseUrl}/am/podcast/${singlePodcastState[slug][0].slug}`
+                : ''
+            }
             rel="canonical"
           />
         ) : null}
