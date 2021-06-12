@@ -119,7 +119,7 @@ const TopBanner = (props: IToBannerProps) => {
       <div
         className="w-full bg-blurry flex mt-4 rounded-xl bg-opacity-90 dark:bg-opacity-90 flex-col-reverse lg:flex-row py-14 p-7 justify-self-end bg-gray-200 dark:bg-gray-800 bg-transparent top-3"
         style={{
-          backdropFilter: 'blur(22px)',
+          backdropFilter: 'blur(23px)',
         }}
       >
         <div className="flex h-full">
