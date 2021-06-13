@@ -53,7 +53,10 @@
     "goodAfternoon": "Good Afternoon",
     "goodEvening": "Good Evening",
     "play": "Play Now",
-    "pause": "Pause"
+    "pause": "Pause",
+    "recent": "Recent Episode",
+    "nowPlaying": "Now Playing",
+    "gotoPlaylist": "Goto Playlist"
   },
   "notFoundPage": {
     "mainTitle": "404",

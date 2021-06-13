@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { useDispatch } from 'react-redux';
+import Link from 'next/link';
 import { episodeCardsContainerType } from './index.d';
 import EpisodeCard from './episodeCard';
 import {
@@ -21,6 +22,7 @@ const EpisodeCardsContainer: FC<episodeCardsContainerType> = ({
   settings,
   handleRouteChange,
   scrollSpyActive,
+  gotoText,
 }) => {
   // needs fix
   const Dispatch = useDispatch();
@@ -54,10 +56,17 @@ const EpisodeCardsContainer: FC<episodeCardsContainerType> = ({
   return (
     <div>
       <div className="flex flex-row justify-between">
-        <div className="flex flex-col">
-          <h1 className=" text-3xl lg:text-4xl 2xl:text-5xl  my-10 font-bold dark:text-gray-200 mb-2 ">
-            {title}
-          </h1>
+        <div className="flex flex-col w-full">
+          <div className="flex flex-row items-end justify-between w-full">
+            <h1 className=" text-3xl lg:text-4xl 2xl:text-5xl  my-10 font-bold dark:text-gray-200 mb-2 ">
+              {title}
+            </h1>
+            <div className="float-right text-md inline-block mt-10 dark:text-white px-6">
+              <Link href="/podcasts">
+                <span className="cursor-pointer">{gotoText || ''}</span>
+              </Link>
+            </div>
+          </div>
           <p className="text-gray-400 text-lg mb-7">{subTitle}</p>
         </div>
       </div>

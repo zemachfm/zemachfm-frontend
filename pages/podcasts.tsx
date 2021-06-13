@@ -12,27 +12,18 @@ import {
   fetchEpisodes,
   fetchSettings,
   fetchGuests,
-  fetchHosts,
   toogleMobileMenu,
 } from '../store/home/actions';
-import SideBar from '../components/Sidebar';
 import SmallDeviceSideBar from '../components/Sidebar/smallDevice.sidebar';
 import prop from '../types/index.d';
-import Hosts from '../components/Hosts';
-import Guests from '../components/guests';
 import GridIcon from '../icons/grid.svg';
 import RadioIcon from '../icons/radio.svg';
-
+import { ISideBarLink } from '../components/Sidebar/index.d';
 import UsersIcon from '../icons/users.svg';
 import MessageIcon from '../icons/message-circle.svg';
 import BookIcon from '../icons/book.svg';
 import routes from '../lib/constants/hashRoutes';
-import { ISideBarLink } from '../components/Sidebar/index.d';
-import OurStory from '../components/story/index';
-import ContactUs from '../components/contactUs';
-import RightSidebar from '../components/rightSide';
-import TopBanner from '../components/Topbanner';
-import MakeRSS from '../components/Rss/podcast';
+import PlaylistBox from '../components/PlaylistBox';
 
 const Home: FC<prop> = ({ content, locale, Footer }) => {
   const state: IHomeReducer = useSelector((root: TRootReducer) => root.home);
@@ -152,28 +143,21 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
         )}
 
         <div className="bg-gray-100 px-5 mt-5 dark:bg-black">
-          <main className=" grid grid-cols-12 lg:grid-cols-12 ">
-            <div className="h-full col-span-2 flex-col justify-center hidden lg:flex">
-              <SideBar
-                handleRouteChange={handleRouteChange}
-                links={links}
-                translatedStrings={content.sidebar}
-              />
-            </div>
-
-            <div className="col-span-12 lg:col-span-8 lg:px-1 ">
-              <TopBanner
+          <main className=" grid grid-cols-12 lg:grid-cols-12 justify-center ">
+            <div className="col-span-12 lg:col-span-8 lg:col-start-3 lg:px-1 ">
+              <PlaylistBox
                 currentPlay={currentPlay.item}
                 playerStatus={player.playerStatus}
-                recentEpisode={recentEpisode}
+                recentEpisode={
+                  currentPlay.item ? currentPlay.item : recentEpisode
+                }
                 topBannerContent={content.topBanner}
               />
 
-              <div className="grid grid-cols-12">
+              <div className="grid grid-cols-12 justify-center">
                 <div className="col-span-12 lg:col-span-12">
                   <EpisodeCardsContainer
                     currentPlay={currentPlay.item}
-                    gotoText={content?.topBanner?.gotoPlaylist}
                     handleRouteChange={handleRouteChange}
                     loading={loading}
                     more={content.more}
@@ -184,36 +168,10 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
                     subTitle={content.episodesDescription}
                     title={content.episodes}
                   />
-                  <div className="flex lg:hidden">
-                    <RightSidebar content={settings.rightSidebar} />
-                  </div>
                 </div>
               </div>
 
-              <div className="grid grid-cols-12">
-                <div className="col-span-12 lg:col-span-12">
-                  <Hosts
-                    content={content.hosts}
-                    hosts={state.hosts.data}
-                    loading={state.hosts.loading}
-                  />
-                  <Guests
-                    currentPlay={currentPlay.item}
-                    episodes={guests.episodes}
-                    loading={guests.loading}
-                    more={content.more}
-                    playerStatus={player.playerStatus}
-                    subTitle={content.guestDescription}
-                    title={content.guests}
-                  />
-                  <OurStory story={settings.story} />
-                  <ContactUs content={content.contactUs} />
-                  {Footer()}
-                </div>
-              </div>
-            </div>
-            <div className="col-span-12 hidden lg:flex lg:col-span-2 mt-2">
-              <RightSidebar content={settings.rightSidebar} />
+              {Footer()}
             </div>
           </main>
         </div>
@@ -229,11 +187,9 @@ export const getStaticProps = wrapper.getStaticProps(
   }: GetStaticPropsContext & {
     store: any;
   }) => {
-    await MakeRSS();
     store.dispatch(fetchEpisodes());
     store.dispatch(fetchSettings(locale));
     store.dispatch(fetchGuests());
-    store.dispatch(fetchHosts(locale));
     store.dispatch(END);
     await store.sagaTask.toPromise();
 

@@ -21,6 +21,7 @@ type episodeCardsContainerType = {
   currentPlay: episode;
   playerStatus: number;
   loading: boolean;
+  gotoText?: string;
   more: string;
   settings: siteSettings;
   handleRouteChange: (changeTo: string, isMobile?: boolean) => void;
