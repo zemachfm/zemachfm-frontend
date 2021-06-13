@@ -30,11 +30,18 @@ a {
 .wp-block-social-links {
   display: none;
 }
-.wp-block-image.size-large img{
+
+.playlist-content .wp-block-image.size-large img {
+  display: none;
+}
+
+.wp-block-image.size-large {
   border-radius: 1.2rem;
   margin-bottom: 1.5rem;
 }
-@supports ((-webkit-backdrop-filter: blur(2em)) or (backdrop-filter: blur(2em))) {
+@supports (
+  (-webkit-backdrop-filter: blur(2em)) or (backdrop-filter: blur(2em))
+) {
   .bg-blurry {
     border-radius: 8rem;
   }

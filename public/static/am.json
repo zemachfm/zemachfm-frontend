@@ -53,7 +53,10 @@
     "goodAfternoon": "እንደምን አረፈዱ",
     "goodEvening": "እንደምን አመሹ",
     "play": "አጫውት",
-    "pause": "አፍታ"
+    "pause": "አፍታ",
+    "recent": "በ ቅርብ የተለቀቀ",
+    "nowPlaying": "አሁን የሚጫወተው",
+    "gotoPlaylist": "ወደ ማጫዎቻው ይሂዱ"
   },
   "notFoundPage": {
     "mainTitle": "404",

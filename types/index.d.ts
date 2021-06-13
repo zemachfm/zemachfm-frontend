@@ -63,6 +63,9 @@ interface ITopBannerContent {
   goodEvening: string;
   play: string;
   pause: string;
+  recent: string;
+  nowPlaying: string;
+  gotoPlaylist: string;
 }
 
 interface translatedStrings {
