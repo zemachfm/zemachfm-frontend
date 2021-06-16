@@ -80,16 +80,20 @@ const PlaylistBox = (props: IToBannerProps) => {
           <div className="flex flex-col justify-between">
             <div className="flex flex-col items-center lg:items-start">
               <div className="grid grid-cols-4 justify-between">
-                <div className="col-span-3">
+                <div className="lg:col-span-3 col-span-4 ">
                   <div className="flex flex-col h-full justify-between">
                     <div>
-                      <h2 className="text-4xl mr-4 items-center  mb-4 block font-bold lg:text-left text-black dark:text-white w-4/4">
+                      <h2 className="text-2xl lg:text-4xl mr-4 items-center  mb-4 block font-bold lg:text-left text-black dark:text-white w-4/4">
                         {props.currentPlay?.id !== props.recentEpisode?.id
                           ? props?.topBannerContent?.recent
                           : props?.topBannerContent?.play}
                       </h2>
+                      <img
+                        className=" h-auto w-full mb-4 float-right z-10 rounded-2xl lg:block border-1 flex flex-row items-center border-gray-100"
+                        src={props.recentEpisode?.big_player}
+                      />
                       <h3
-                        className="text-2xl cursor-pointer mt-6 font-bold text-gray-900 dark:text-gray-100 w-4/4 self-start"
+                        className="text-lg lg:text-2xl cursor-pointer mt-6 font-bold text-gray-900 dark:text-gray-100 w-4/4 self-start"
                         onClick={() => setCollapse(!collapse)}
                       >
                         {props.recentEpisode?.title?.rendered}
@@ -99,6 +103,7 @@ const PlaylistBox = (props: IToBannerProps) => {
                           }`}
                         />
                       </h3>
+                      <div className="flex lg:hidden"></div>
                     </div>
                     {props.currentPlay?.id !== props.recentEpisode?.id ? (
                       <button
@@ -119,7 +124,7 @@ const PlaylistBox = (props: IToBannerProps) => {
                     )}
                   </div>
                 </div>
-                <div className="hidden lg:flex flex-row items-end col-span-1 w-full">
+                <div className="hidden lg:flex flex-row items-end lg:col-span-1 col-span-4 mt-6 lg:mt-0 w-full">
                   <img
                     className=" h-auto w-full float-right z-10 rounded-2xl lg:block border-1 flex flex-row items-center border-gray-100"
                     src={props.recentEpisode?.big_player}

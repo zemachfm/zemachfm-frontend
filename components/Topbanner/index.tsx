@@ -142,7 +142,7 @@ const TopBanner = (props: IToBannerProps) => {
               <div
                 className="text-gray-700 dark:text-gray-400 w-full line-clamp-3 lg:line-clamp-none lg:w-4/5 mt-3 text-justify self-start"
                 dangerouslySetInnerHTML={{
-                  __html: props.recentEpisode?.content?.rendered,
+                  __html: props.recentEpisode?.excerpt?.rendered,
                 }}
               />
             </div>
