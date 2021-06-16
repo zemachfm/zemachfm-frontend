@@ -134,7 +134,7 @@ const TopBanner = (props: IToBannerProps) => {
               </div>
               <img
                 className="w-72 h-72 rounded-2xl block lg:hidden mb-8 "
-                src={props.recentEpisode?.episode_player_image}
+                src={props.recentEpisode?.big_player}
               />
               <h3 className="text-3xl font-bold text-gray-900 dark:text-gray-100 w-4/4 self-start">
                 {props.recentEpisode?.title?.rendered}
