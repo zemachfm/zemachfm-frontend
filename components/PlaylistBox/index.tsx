@@ -89,7 +89,7 @@ const PlaylistBox = (props: IToBannerProps) => {
                           : props?.topBannerContent?.play}
                       </h2>
                       <img
-                        className=" h-auto w-full mb-4 float-right z-10 rounded-2xl lg:block border-1 flex flex-row items-center border-gray-100"
+                        className=" lg:hidden h-auto w-full mb-4 float-right z-10 rounded-2xl border-1 flex flex-row items-center border-gray-100"
                         src={props.recentEpisode?.big_player}
                       />
                       <h3
@@ -133,7 +133,7 @@ const PlaylistBox = (props: IToBannerProps) => {
               </div>
               {!collapse ? (
                 <div
-                  className="text-gray-700 playlist-content dark:text-gray-400 w-full line-clamp-3 lg:line-clamp-none lg:w-4/5 mt-3 text-justify self-start"
+                  className="text-gray-700 playlist-content dark:text-gray-400 w-full  lg:line-clamp-none lg:w-4/5 mt-3 text-justify self-start"
                   dangerouslySetInnerHTML={{
                     __html: props.recentEpisode?.content?.rendered,
                   }}
