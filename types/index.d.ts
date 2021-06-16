@@ -87,6 +87,7 @@ interface translatedStrings {
   notFoundPage: I404Content;
   podcasts: {
     pageTitle: string;
+    pageSubtitle: string;
   };
 }
 
