@@ -85,6 +85,10 @@ interface translatedStrings {
   };
   topBanner: ITopBannerContent;
   notFoundPage: I404Content;
+  podcasts: {
+    pageTitle: string;
+    pageSubtitle: string;
+  };
 }
 
 type indexPageType = {

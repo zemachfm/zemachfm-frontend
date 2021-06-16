@@ -1,4 +1,5 @@
 import { ReactNode, useEffect, useState } from 'react';
+import Link from 'next/link';
 import { useDispatch } from 'react-redux';
 import { IToBannerProps } from './types.d';
 import MorningIcon from '../../icons/morning.svg';
@@ -126,19 +127,21 @@ const TopBanner = (props: IToBannerProps) => {
           <div className="flex flex-col justify-between">
             <div className="flex flex-col items-center lg:items-start">
               <div className="flex flex-row items-end">
-                <h2 className="text-4xl mr-4 items-center  mb-4 block font-bold lg:text-left text-black dark:text-white w-4/4">
+                <h2 className="text-4xl mr-4 xl:items-center items-start  mb-4 block font-bold lg:text-left text-black dark:text-white w-4/4">
                   {greetingItems.greeting}
                   <br />
                 </h2>
                 {greetingItems.artWork}
               </div>
               <img
-                className="w-72 h-72 rounded-2xl block lg:hidden mb-8 "
-                src={props.recentEpisode?.episode_player_image}
+                className="w-full h-auto rounded-2xl block lg:hidden mb-8 "
+                src={props.recentEpisode?.big_player}
               />
-              <h3 className="text-3xl font-bold text-gray-900 dark:text-gray-100 w-4/4 self-start">
-                {props.recentEpisode?.title?.rendered}
-              </h3>
+              <Link href={`/podcast/${props.recentEpisode?.slug}`}>
+                <h3 className="lg:text-3xl text-xl font-bold text-gray-900 dark:text-gray-100 w-4/4 self-start">
+                  {props.recentEpisode?.title?.rendered}
+                </h3>
+              </Link>
               <div
                 className="text-gray-700 dark:text-gray-400 w-full line-clamp-3 lg:line-clamp-none lg:w-4/5 mt-3 text-justify self-start"
                 dangerouslySetInnerHTML={{

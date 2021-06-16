@@ -14,15 +14,7 @@ import {
   fetchGuests,
   toogleMobileMenu,
 } from '../store/home/actions';
-import SmallDeviceSideBar from '../components/Sidebar/smallDevice.sidebar';
 import prop from '../types/index.d';
-import GridIcon from '../icons/grid.svg';
-import RadioIcon from '../icons/radio.svg';
-import { ISideBarLink } from '../components/Sidebar/index.d';
-import UsersIcon from '../icons/users.svg';
-import MessageIcon from '../icons/message-circle.svg';
-import BookIcon from '../icons/book.svg';
-import routes from '../lib/constants/hashRoutes';
 import PlaylistBox from '../components/PlaylistBox';
 
 const Home: FC<prop> = ({ content, locale, Footer }) => {
@@ -42,106 +34,22 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
   const recentEpisode =
     Array.isArray(episodes) && episodes?.length > 0 ? episodes[0] : null;
 
-  const linksDefault: ISideBarLink[] = [
-    {
-      active: false,
-      label: content.sidebar.episodes,
-      route: routes.index,
-      icon: <GridIcon />,
-    },
-    {
-      active: false,
-      label: content.sidebar.hosts,
-      route: routes.hosts,
-      icon: <UsersIcon />,
-    },
-    {
-      active: false,
-      label: content.sidebar.guests,
-      route: routes.guests,
-      icon: <RadioIcon />,
-    },
-    {
-      active: false,
-      label: content.sidebar.story,
-      route: routes.story,
-      icon: <BookIcon />,
-    },
-    {
-      active: false,
-      label: content.sidebar.contact,
-      route: routes.contact,
-      icon: <MessageIcon />,
-    },
-  ];
-
-  const [links, setLinks] = React.useState(linksDefault);
-  const [scrollSpyActive, setScrollSpyActive] = React.useState(true);
-
-  const isActive = (link: string, changeTo: string) =>
-    link?.replace('#', '') === changeTo.replace('#', '');
-
-  const onMobileMenuToogle = () => {
-    dispatch(toogleMobileMenu());
-  };
-
-  const handleRouteChange = (changeTo: string, isMobile?: boolean) => {
-    setScrollSpyActive(false);
-
-    setLinks(oldLinks =>
-      oldLinks.map(link => ({
-        ...link,
-        active: isActive(link.route, changeTo),
-      })),
-    );
-
-    if (isMobile) {
-      onMobileMenuToogle();
-    }
-  };
-
-  React.useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const { hash } = window.location;
-      handleRouteChange(hash);
-    }
-  }, []);
-
-  React.useEffect(() => {
-    if (!scrollSpyActive) {
-      setScrollSpyActive(true);
-    }
-  }, [links]);
-
-  React.useEffect(() => {
-    const currentHash =
-      typeof window !== 'undefined' ? window.location.hash : '';
-    setLinks(linksDefault);
-    handleRouteChange(currentHash);
-  }, [locale]);
-
   return (
     <div>
       <Head>
         <meta charSet="UTF-8" />
         <title>
-          {content.appName} | {content.subtitle}
+          {content.appName} | {content?.podcasts?.pageTitle}
         </title>
-        <meta content={content.footer.subtitle} name="description"></meta>
+        <meta
+          content={content?.podcasts?.pageSubtitle}
+          name="description"
+        ></meta>
         <meta content="index, follow" name="robots"></meta>
         <meta content="initial-scale=1.0, width=device-width" name="viewport" />
         <link href="/favicon.ico" rel="icon" />
       </Head>
       <div className="bg-gray-100 dark:bg-black flex flex-col absolute h-full w-full ">
-        {mobileMenuVisible && (
-          <SmallDeviceSideBar
-            handleRouteChange={handleRouteChange}
-            links={links}
-            toogleMenu={onMobileMenuToogle}
-            translatedStrings={content.sidebar}
-          />
-        )}
-
         <div className="bg-gray-100 px-5 mt-5 dark:bg-black">
           <main className=" grid grid-cols-12 lg:grid-cols-12 justify-center ">
             <div className="col-span-12 lg:col-span-8 lg:col-start-3 lg:px-1 ">
@@ -158,11 +66,11 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
                 <div className="col-span-12 lg:col-span-12">
                   <EpisodeCardsContainer
                     currentPlay={currentPlay.item}
-                    handleRouteChange={handleRouteChange}
+                    handleRouteChange={null}
                     loading={loading}
                     more={content.more}
                     playerStatus={player.playerStatus}
-                    scrollSpyActive={scrollSpyActive}
+                    scrollSpyActive={null}
                     settings={settings}
                     starterEpisodes={episodes}
                     subTitle={content.episodesDescription}
