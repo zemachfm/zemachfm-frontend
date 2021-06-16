@@ -63,5 +63,8 @@
     "subtitle": "Page Not Found",
     "description": "Sorry we were not able to find that page, please use our main menu and our links to navigate through the site.",
     "goHome": "Go Home"
+  },
+  "podcasts": {
+    "pageTitle": "Podcasts Playlist for Zemach Fm Podcast So far"
   }
 }

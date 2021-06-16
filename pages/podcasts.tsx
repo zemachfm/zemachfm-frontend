@@ -39,9 +39,9 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
       <Head>
         <meta charSet="UTF-8" />
         <title>
-          {content.appName} | {content.subtitle}
+          {content.appName} | {content?.podcasts?.pageTitle}
         </title>
-        <meta content={content.footer.subtitle} name="description"></meta>
+        <meta content={content?.podcasts?.pageTitle} name="description"></meta>
         <meta content="index, follow" name="robots"></meta>
         <meta content="initial-scale=1.0, width=device-width" name="viewport" />
         <link href="/favicon.ico" rel="icon" />
