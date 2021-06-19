@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link';
 import { SideBarProps } from './index.d';
 
 const SideBar: React.FC<SideBarProps> = props => (
