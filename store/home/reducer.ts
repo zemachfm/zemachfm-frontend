@@ -1,5 +1,4 @@
 /* eslint-disable no-param-reassign */
-import { settings } from 'cluster';
 import { produce } from 'immer';
 import { HYDRATE } from 'next-redux-wrapper';
 import { actionTypes } from './actions';
@@ -58,10 +57,10 @@ const initialState: IHomeReducer = {
       youtube: '',
     },
     share: {
-      shareDescription: ' Checkout Zemach FM Podcast',
+      shareDescription: '',
       hashtag: ['zemachfm', 'techpodcastethiopia', 'techpodcast'],
-      shareTitle: 'Zemach fm Podcast',
-      quote: 'checkout This Podcast,Zeamch Fm',
+      shareTitle: '',
+      quote: '',
     },
     story: {
       storyLine: {
@@ -130,7 +129,12 @@ const homeReducer = produce((draft: IHomeReducer, action) => {
       if (payload.home.player.playlist.length > 0) {
         newState.player = {
           ...newState.player,
-          ...{ playlist: payload.home.player.playlist },
+          ...{
+            playlist:
+              payload.home.player.playlist.lenght > 0
+                ? payload.home.player.playlist.lenght
+                : newState.player.playlist,
+          },
         };
       }
 
