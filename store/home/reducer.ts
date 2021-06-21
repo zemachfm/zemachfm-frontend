@@ -131,8 +131,8 @@ const homeReducer = produce((draft: IHomeReducer, action) => {
           ...newState.player,
           ...{
             playlist:
-              payload.home.player.playlist.lenght > 0
-                ? payload.home.player.playlist.lenght
+              payload.home.player.playlist.length > 0
+                ? payload.home.player.playlist
                 : newState.player.playlist,
           },
         };
