@@ -132,7 +132,7 @@ const homeReducer = produce((draft: IHomeReducer, action) => {
           ...{
             playlist:
               payload.home.player.playlist.length > 0
-                ? payload.home.player.playlist.length
+                ? payload.home.player.playlist
                 : newState.player.playlist,
           },
         };
