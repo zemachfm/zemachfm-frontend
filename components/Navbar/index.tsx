@@ -70,12 +70,10 @@ const NavBar = (props: INavBarProps): ReactElement => {
               <button className="block lg:hidden" onClick={onDisplayMobileMenu}>
                 <MenuIcon />
               </button>
-              <Link href="/" passHref>
-                <a>
-                  <h1 className="text-2xl ml-5 lg:ml-3 font-bold text-green-500 lg:hidden block">
-                    {props.appName}
-                  </h1>
-                </a>
+              <Link href="/">
+                <h1 className="text-2xl ml-5 lg:ml-3 font-bold text-green-500 lg:hidden block cursor-pointer">
+                  {props.appName}
+                </h1>
               </Link>
             </div>
             <img
@@ -83,12 +81,10 @@ const NavBar = (props: INavBarProps): ReactElement => {
               className="p-0 h-12 w-auto  border-green-500 border-2 rounded-full lg:block hidden"
               src="/assets/zemach-small.png"
             />
-            <Link href="/" passHref>
-              <a>
-                <h1 className="text-2xl ml-3 font-bold text-green-500 lg:block hidden">
-                  {props.appName}
-                </h1>
-              </a>
+            <Link href="/">
+              <h1 className="text-2xl ml-3 font-bold text-green-500 lg:block hidden cursor-pointer">
+                {props.appName}
+              </h1>
             </Link>
           </div>
 
