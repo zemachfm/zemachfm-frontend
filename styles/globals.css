@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'ApplicationDefaultFont';
+  src: url('/fonts/Amh/Amh-Regular.ttf') format('truetype');
+  unicode-range: U+1200-137F;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'ApplicationDefaultFont';
+  src: url('/fonts/Amh/Amh-Bold.ttf') format('truetype');
+  unicode-range: U+1200-137F;
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'ApplicationDefaultFont';
+  src: local('BlinkMacSystemFont'), local('Segoe UI'), local('Roboto'),
+    local('Oxygen'), local('Ubuntu'), local('Cantarell'), local('Fira Sans'),
+    local('Droid Sans'), local('Helvetica Neue');
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -22,6 +43,7 @@ a {
 
 * {
   box-sizing: border-box;
+  font-family: -apple-system, 'ApplicationDefaultFont', sans-serif;
 }
 
 /**
@@ -45,7 +67,7 @@ a {
   .bg-blurry {
     border-radius: 8rem;
   }
-  .icon-shadow{
-    filter: drop-shadow( 2px 0px 1px rgba(0, 0, 0, .1));
+  .icon-shadow {
+    filter: drop-shadow(2px 0px 1px rgba(0, 0, 0, 0.1));
   }
 }
