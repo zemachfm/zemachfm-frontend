@@ -45,4 +45,7 @@ a {
   .bg-blurry {
     border-radius: 8rem;
   }
+  .icon-shadow{
+    filter: drop-shadow( 2px 0px 1px rgba(0, 0, 0, .1));
+  }
 }

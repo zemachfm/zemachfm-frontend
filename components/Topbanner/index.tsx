@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useDispatch } from 'react-redux';
 import { IToBannerProps } from './types.d';
 import MorningIcon from '../../icons/morning.svg';
+import Sunny from '../../icons/sunny.svg';
 import NightIcon from '../../icons/night.svg';
 import PlayIcon from '../../icons/play.svg';
 import PauseIcon from '../../icons/pause.svg';
@@ -13,17 +14,22 @@ const TopBanner = (props: IToBannerProps) => {
   const goodMorning = props.topBannerContent?.goodMorning || '';
   const goodAfternoon = props.topBannerContent?.goodAfternoon || '';
   const goodEvening = props.topBannerContent?.goodEvening || '';
-  const dayTimeArtwork = (
-    <MorningIcon className="h-14 w-14 mb-3 fill-current text-white hidden lg:block" />
+  const MorningArtwork = (
+    <Sunny className="lg:h-14 icon-shadow h-10 w-10 lg:w-14 mb-3 stroke-current fill-current text-white lg:block" />
   );
+
+  const DayTimeArtwork = (
+    <MorningIcon className="lg:h-14 icon-shadow w-14lg:h-14 h-10 w-10 lg:w-14 mb-3 fill-current text-white lg:block" />
+  );
+
   const nightTimeArtWork = (
-    <NightIcon className="h-14  w-14 mb-3 fill-current text-white hidden lg:block" />
+    <NightIcon className="lg:h-14 h-10 w-10 icon-shadow lg:w-14 mb-3 fill-current text-white lg:block" />
   );
 
   const [greetingItems, setGreetingItems] = useState<{
     greeting: string;
     artWork: ReactNode;
-  }>({ greeting: goodMorning, artWork: dayTimeArtwork });
+  }>({ greeting: goodMorning, artWork: DayTimeArtwork });
 
   const getAppropirateGreetinContent = (): {
     greeting: string;
@@ -37,10 +43,10 @@ const TopBanner = (props: IToBannerProps) => {
 
     if (currentHour < 12) {
       greeting = goodMorning;
-      artWork = dayTimeArtwork;
+      artWork = MorningArtwork ;
     } else if (currentHour < 18) {
       greeting = goodAfternoon;
-      artWork = dayTimeArtwork;
+      artWork = DayTimeArtwork;
     } else {
       greeting = goodEvening;
       artWork = nightTimeArtWork;
@@ -109,7 +115,7 @@ const TopBanner = (props: IToBannerProps) => {
 
   return props.recentEpisode ? (
     <div
-      className="rounded-2xl bg-blurry "
+      className="rounded-2xl px-0 mx-0 border-0 bg-blurry "
       style={{
         backgroundImage: `url(${props.recentEpisode.small_player})`,
         backgroundSize: 'cover',
@@ -118,7 +124,7 @@ const TopBanner = (props: IToBannerProps) => {
       }}
     >
       <div
-        className="w-full  flex mt-4 rounded-xl bg-opacity-90 dark:bg-opacity-90 flex-col-reverse lg:flex-row py-14 p-7 justify-self-end bg-gray-200 dark:bg-gray-800 bg-transparent top-3"
+        className="w-full overflow-hidden flex mt-4 rounded-xl bg-opacity-90 dark:bg-opacity-90 flex-col-reverse lg:flex-row py-14 p-7 justify-self-end bg-gray-200 dark:bg-gray-800 bg-transparent top-3"
         style={{
           backdropFilter: 'blur(23px)',
         }}
