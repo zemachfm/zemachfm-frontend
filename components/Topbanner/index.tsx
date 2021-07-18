@@ -14,10 +14,10 @@ const TopBanner = (props: IToBannerProps) => {
   const goodAfternoon = props.topBannerContent?.goodAfternoon || '';
   const goodEvening = props.topBannerContent?.goodEvening || '';
   const dayTimeArtwork = (
-    <MorningIcon className="h-14 w-14 mb-3 fill-current text-white hidden lg:block" />
+    <MorningIcon className="h-14 w-14 mb-3 fill-current text-white lg:block" />
   );
   const nightTimeArtWork = (
-    <NightIcon className="h-14  w-14 mb-3 fill-current text-white hidden lg:block" />
+    <NightIcon className="h-14  w-14 mb-3 fill-current text-white lg:block" />
   );
 
   const [greetingItems, setGreetingItems] = useState<{
