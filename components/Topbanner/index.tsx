@@ -15,15 +15,15 @@ const TopBanner = (props: IToBannerProps) => {
   const goodAfternoon = props.topBannerContent?.goodAfternoon || '';
   const goodEvening = props.topBannerContent?.goodEvening || '';
   const MorningArtwork = (
-    <Sunny className="lg:h-14 h-10 w-10 lg:w-14 mb-3 stroke-current fill-current text-white lg:block" />
+    <Sunny className="lg:h-14 icon-shadow h-10 w-10 lg:w-14 mb-3 stroke-current fill-current text-white lg:block" />
   );
 
   const DayTimeArtwork = (
-    <MorningIcon className="lg:h-14 w-14lg:h-14 h-10 w-10 lg:w-14 mb-3 fill-current text-white lg:block" />
+    <MorningIcon className="lg:h-14 icon-shadow w-14lg:h-14 h-10 w-10 lg:w-14 mb-3 fill-current text-white lg:block" />
   );
 
   const nightTimeArtWork = (
-    <NightIcon className="lg:h-14 h-10 w-10 lg:w-14 mb-3 fill-current text-white lg:block" />
+    <NightIcon className="lg:h-14 h-10 w-10 icon-shadow lg:w-14 mb-3 fill-current text-white lg:block" />
   );
 
   const [greetingItems, setGreetingItems] = useState<{
