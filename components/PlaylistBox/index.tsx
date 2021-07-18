@@ -86,7 +86,7 @@ const PlaylistBox = (props: IToBannerProps) => {
                       <h2 className="text-2xl lg:text-4xl mr-4 items-center  mb-4 block font-bold lg:text-left text-black dark:text-white w-4/4">
                         {props.currentPlay?.id !== props.recentEpisode?.id
                           ? props?.topBannerContent?.recent
-                          : props?.topBannerContent?.play}
+                          : props?.topBannerContent?.nowPlaying}
                       </h2>
                       <img
                         className=" lg:hidden h-auto w-full mb-4 float-right z-10 rounded-2xl border-1 flex flex-row items-center border-gray-100"
