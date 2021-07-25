@@ -1,5 +1,1 @@
 /feed/podcast /feed/podcast.xml
-/en/* /en/404.html 404
-/am/* /am/404.html 404
-/podcast/* /en/404.html 404
-/host/* /en/404.html 404

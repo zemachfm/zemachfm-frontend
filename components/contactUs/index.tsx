@@ -23,7 +23,7 @@ const ContactUs: FC<contactUsType> = ({ content }) => {
   });
   const [email, setEmail] = useState<typeVal>({
     value: '',
-    error: true,
+    error: false,
     touched: false,
     name: 'email',
   });
@@ -70,7 +70,7 @@ const ContactUs: FC<contactUsType> = ({ content }) => {
           ...email,
           value: stripTags(event.currentTarget.value),
           error: validateEmail(event.currentTarget.value),
-          touched: true,
+          touched: !!event.currentTarget.value,
         });
         break;
       case 'name':
