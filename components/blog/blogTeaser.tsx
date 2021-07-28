@@ -26,7 +26,7 @@ const BlogsTeaser: React.FC<props> = ({ posts, strings }) => {
         <div className="grid lg:grid-cols-3 grid-cols-1 gap-4">
           {posts.map(post => (
             <div
-              className={`rounded-xl bg-white dark:bg-black  py-4 px-4 border dark:border-gray-900 border-gray-200 overflow-hidden `}
+              className={`rounded-xl py-4 px-4  overflow-hidden `}
               key={post.slug}
             >
               <Thumbnail
@@ -35,7 +35,7 @@ const BlogsTeaser: React.FC<props> = ({ posts, strings }) => {
                 title={post.title}
               />
               <div className="content">
-                <h2 className="text-2xl font-bold mb-4 text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white">
+                <h2 className="text-2xl mt-3 font-bold mb-4 text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white">
                   <Link href={`/posts/${post.slug}`}>
                     <a>{post.title} &rarr;</a>
                   </Link>
