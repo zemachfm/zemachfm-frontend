@@ -1,9 +1,7 @@
 /* eslint-disable import/group-exports */
 // pages/posts/[slug].tsx
 import React, { useState, ReactElement } from 'react';
-import { GetStaticProps, GetStaticPaths, GetStaticPropsContext } from 'next';
-import dynamic from 'next/dynamic';
-import Head from 'next/head';
+import {  GetStaticPaths, GetStaticPropsContext } from 'next';
 import { serialize } from 'next-mdx-remote/serialize';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { END } from 'redux-saga';
@@ -83,7 +81,6 @@ export const getStaticProps = wrapper.getStaticProps(
     store: any;
   }) => {
     const { content, data } = getPost(params?.slug as string, false);
-    console.log('we have the content ', content, data);
 
     store.dispatch(fetchSettings(locale));
     store.dispatch(fetchGuests());
