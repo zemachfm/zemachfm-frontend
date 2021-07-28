@@ -1,4 +1,5 @@
 import { ReactElement } from 'react';
+import { IPost } from './blog';
 
 interface ISideBarContents {
   episodes: string;
@@ -83,6 +84,10 @@ interface translatedStrings {
   podcastPage: {
     headings: IPodcastPageHeadings;
   };
+  blog: {
+    title: string;
+    subtitle: string;
+  };
   topBanner: ITopBannerContent;
   notFoundPage: I404Content;
   podcasts: {
@@ -95,6 +100,9 @@ type indexPageType = {
   locale: 'am' | 'en';
   content: translatedStrings;
   Footer: () => ReactElement;
+  files: {
+    posts: IPost[]
+  }
 };
 
 type hostPageType = {

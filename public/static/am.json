@@ -48,6 +48,10 @@
       "size": "የድምጽቅጁ መጠን"
     }
   },
+  "blog": {
+    "title": "ጦማሮች",
+    "subtitle": "በዘማች የድምጽ ከማቅረብ በተጨማሪ በፅሁፍ የተጻፍ"
+  },
   "topBanner": {
     "goodMorning": "እንደምን አደሩ",
     "goodAfternoon": "እንደምን አረፈዱ",

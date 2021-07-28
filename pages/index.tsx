@@ -19,6 +19,7 @@ import SideBar from '../components/Sidebar';
 import SmallDeviceSideBar from '../components/Sidebar/smallDevice.sidebar';
 import prop from '../types/index.d';
 import Hosts from '../components/Hosts';
+import BlogTeaser from '../components/blog/blogTeaser';
 import Guests from '../components/guests';
 import GridIcon from '../icons/grid.svg';
 import RadioIcon from '../icons/radio.svg';
@@ -33,8 +34,10 @@ import ContactUs from '../components/contactUs';
 import RightSidebar from '../components/rightSide';
 import TopBanner from '../components/Topbanner';
 import MakeRSS from '../components/Rss/podcast';
+import { getAllPosts } from '../lib/utils/mdxUtils';
 
-const Home: FC<prop> = ({ content, locale, Footer }) => {
+const Home: FC<prop> = ({ content, locale, Footer, files }) => {
+  const { posts } = files;
   const state: IHomeReducer = useSelector((root: TRootReducer) => root.home);
   const dispatch = useDispatch();
 
@@ -206,6 +209,8 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
                     subTitle={content.guestDescription}
                     title={content.guests}
                   />
+                  <BlogTeaser posts={posts} strings={content.blog} />
+
                   <OurStory story={settings.story} />
                   <ContactUs content={content.contactUs} />
                   {Footer()}
@@ -229,7 +234,14 @@ export const getStaticProps = wrapper.getStaticProps(
   }: GetStaticPropsContext & {
     store: any;
   }) => {
-    await MakeRSS();
+    const files = getAllPosts([
+      'slug',
+      'date',
+      'thumbnail',
+      'title',
+      'description',
+    ]);
+    // await MakeRSS();
     store.dispatch(fetchEpisodes());
     store.dispatch(fetchSettings(locale));
     store.dispatch(fetchGuests());
@@ -240,6 +252,7 @@ export const getStaticProps = wrapper.getStaticProps(
     return {
       props: {
         locale,
+        files,
       },
     };
   },
