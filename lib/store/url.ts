@@ -1,5 +1,5 @@
 // zemach FM base URL
-
+const SITE_URL = 'https://zemachfm.com';
 const BASE_URL = 'https://api.zemachfm.com';
 
 const API_URL = `${BASE_URL}/wp-json/wp/v2`;
@@ -19,6 +19,7 @@ const SINGLE_PODCAST = (slug: string): string =>
 
 const CONTACT_US = `${CUSTOM_API_URL}/contact`;
 export {
+  SITE_URL,
   BASE_URL,
   API_URL,
   RSS_URL,

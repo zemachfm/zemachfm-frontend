@@ -63,7 +63,7 @@ class WrappedApp extends App<AppInitialProps> {
       <Footer content={pageProps.content} />
     );
     return (
-      <div className="bg-gray-100 dark:bg-black flex flex-col absolute h-full w-full ">
+      <div className="bg-gray-100 dark:bg-black flex flex-col  h-full w-full ">
         <NavBar
           appName={pageProps?.content?.appName}
           locale={pageProps?.locale}
