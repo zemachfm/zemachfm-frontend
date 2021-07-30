@@ -39,19 +39,7 @@ const PostPage: React.FC<Props> = ({
   Footer,
 }: Props) => {
   const [theme, setTheme] = useState<boolean>(false);
-  const changeTheme = () => {
-    if (!theme) {
-      localStorage.setItem('theme', 'dark');
 
-      document.documentElement.classList.add('dark');
-    } else {
-      localStorage.setItem('theme', 'light');
-
-      document.documentElement.classList.remove('dark');
-    }
-    setTheme(!theme);
-  };
-  const ogImage = SITE_URL + frontMatter.thumbnail;
   return (
     <div className="lg:max-w-screen-lg max-w-sm mx-auto pb-10">
       <article className="prose prose-blue">
