@@ -98,7 +98,6 @@ a {
   }
 }
 
-
 .blog h2 {
   @apply text-3xl;
   @apply mb-4;
@@ -137,4 +136,16 @@ a {
 .blog a {
   @apply text-blue-600;
   @apply dark:text-blue-700;
+}
+
+.blog img {
+  @apply my-5;
+}
+
+.blog ul {
+  @apply list-disc;
+}
+
+.blog li {
+  @apply my-3;
 }
