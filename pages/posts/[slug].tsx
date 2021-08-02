@@ -1,7 +1,7 @@
 /* eslint-disable import/group-exports */
 // pages/posts/[slug].tsx
 import React, { useState, ReactElement } from 'react';
-import {  GetStaticPaths, GetStaticPropsContext } from 'next';
+import { GetStaticPaths, GetStaticPropsContext } from 'next';
 import { serialize } from 'next-mdx-remote/serialize';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { END } from 'redux-saga';
