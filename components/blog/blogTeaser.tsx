@@ -26,7 +26,7 @@ const BlogsTeaser: React.FC<props> = ({ posts, strings }) => {
         <div className="grid lg:grid-cols-3 grid-cols-1 gap-4">
           {posts.map(post => (
             <div
-              className={`rounded-xl py-4 px-4  overflow-hidden `}
+              className={`rounded-xl py-4  overflow-hidden `}
               key={post.slug}
             >
               <Thumbnail

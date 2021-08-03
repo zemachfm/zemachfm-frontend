@@ -55,7 +55,7 @@ const Footer: FC<footerProps> = ({ content }) => {
       return null;
     });
   return (
-    <div className="my-4 flex flex-col border-t-2 border-gray-200 dark:border-gray-900 col-span-7 dark:bg-black">
+    <div className="my-4 flex flex-col ">
       <footer
         className={`py-5 mb-5  margin-auto ${
           playing ? 'mb-32' : ''

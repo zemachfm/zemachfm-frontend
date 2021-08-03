@@ -213,7 +213,9 @@ const Home: FC<prop> = ({ content, locale, Footer, files }) => {
 
                   <OurStory story={settings.story} />
                   <ContactUs content={content.contactUs} />
-                  {Footer()}
+                  <div className="border-t-2 border-gray-200 dark:border-gray-900 col-span-7 dark:bg-black">
+                    {Footer()}
+                  </div>
                 </div>
               </div>
             </div>

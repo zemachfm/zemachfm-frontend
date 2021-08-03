@@ -28,7 +28,7 @@ const SingleHost: FC<hostPageType> = ({ locale, content, name, Footer }) => {
         <link href="/favicon.ico" rel="icon" />
       </Head>
 
-      <div className="xl:w-3/6 w-6/6 px-5 mx-auto mt-20 ">
+      <div className="lg:max-w-screen-lg max-w-sm mx-auto mt-20 ">
         <img
           alt={hostPageState?.host?.post?.post_title}
           className="h-22 w-22 md:w-48 md:h-auto mx-auto rounded-full m-6"
@@ -80,7 +80,11 @@ const SingleHost: FC<hostPageType> = ({ locale, content, name, Footer }) => {
             </a>
           </div>
         </div>
-        {Footer()}
+      </div>
+      <div className="border-t-2 border-gray-200 mt-6 dark:border-gray-900 col-span-7 dark:bg-black">
+        <div className="lg:max-w-screen-lg max-w-sm mx-auto pb-10">
+          {Footer()}
+        </div>
       </div>
     </div>
   );

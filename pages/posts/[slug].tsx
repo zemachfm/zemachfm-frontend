@@ -41,21 +41,26 @@ const PostPage: React.FC<Props> = ({
   const [theme, setTheme] = useState<boolean>(false);
 
   return (
-    <div className="lg:max-w-screen-lg max-w-sm mx-auto pb-10">
-      <article className="prose prose-blue">
-        <div className="mb-4">
-          <Featured src={frontMatter.thumbnail} title={frontMatter.title} />
-        </div>
+    <div>
+      <div className="lg:max-w-screen-lg max-w-sm mx-auto pb-10">
+        <article className="prose prose-blue">
+          <div className="mb-4">
+            <Featured src={frontMatter.thumbnail} title={frontMatter.title} />
+          </div>
 
-        <h1 className="text-gray-700 text-4xl font-bold mb-6 dark:text-gray-200">
-          {frontMatter.title}
-        </h1>
-
-        <div className="text-lg blog ">
-          <MDXRemote {...source} />
+          <h1 className="text-gray-700 text-4xl font-bold mb-6 dark:text-gray-200">
+            {frontMatter.title}
+          </h1>
+          <div className="text-lg blog ">
+            <MDXRemote {...source} />
+          </div>
+        </article>
+      </div>
+      <div className="border-t-2 border-gray-200 dark:border-gray-900 col-span-7 dark:bg-black">
+        <div className="lg:max-w-screen-lg max-w-sm mx-auto pb-10">
+          {Footer()}
         </div>
-        {Footer()}
-      </article>
+      </div>
     </div>
   );
 };
