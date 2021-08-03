@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @font-face {
   font-family: 'ApplicationDefaultFont';
   src: url('/fonts/Amh/Amh-Regular.ttf') format('truetype');
@@ -145,6 +144,7 @@ a {
 
 .blog ul {
   @apply list-disc;
+  @apply dark:text-gray-400;
   padding-left: 40px !important;
 }
 
