@@ -4,15 +4,17 @@ import { IPost } from '../../types/blog.d';
 import Thumbnail from './thumbnail';
 
 type props = {
-  posts: IPost[];
-  strings: {
+  posts?: IPost[];
+  strings?: {
     title: string;
     subtitle: string;
   };
 };
 
 const BlogsTeaser: React.FC<props> = ({ posts, strings }) => {
-  const { title, subtitle } = strings;
+  const title = strings?.title || '';
+  const subtitle = strings?.subtitle || '';
+
   return (
     <div className=" mx-auto" id="blogs">
       <div className="2xl:max-w-screen-xl max-w-sm xl:max-w-screen-lg lg:max-w-screen-md mx-auto pt-6 pb-10">
