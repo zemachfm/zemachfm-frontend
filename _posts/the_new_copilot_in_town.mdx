@@ -1,0 +1,84 @@
+---
+date: '2021-08-02'
+thumbnail: /assets/copilot-blog.png
+title: The New Co-Pilot In Town - (Github Co-Pilot)
+description: A blog about the new GitHub Co-Pilot
+---
+
+Github announced their new tool Github Co-Pilot, on June 29, 2021. According to ther official annoncment Github Co-Pilot is a AI pair programmer that helps you write better code.
+GitHub Copilot draws context from the code you’re working on, suggesting whole lines or entire functions.
+
+On this blog we will try to discuss the things you need to knw about the new tool
+and how it works. If you prefer a podcast instead of a blog post you can listen to
+our Github Co-pilot episode [here](https://zemachfm.com/podcast/github-co-pilot-stealing-jobs-or-an-honest-pair-programmer/)
+. At the time of writing this blog Github Co-Pilot is still in the technical preiew stage, which means only those who are given permision are able to use it. You can sign up for the service using this [link](https://github.com/features/copilot/signup).
+
+## What Exactly Does Github Co-Pilot Do?
+
+In simple terms, Github Co-Pilot is a tool that suggests a piece of code for a certain function or action. It silently sits in you
+editor and suggest away snippets of code based on the context of your file. It is basically an A.I powered code bucket that throws out suggestions
+for any clue that it finds. Type out a descriptive function name and Co-Pilot will usually have a suggestion. It works on most programming languages as well as markup languages,
+in fact Co-Pilot finished some of the scentences on this markdown based blog post.
+
+![github co-pilot in action](/assets/copilot-in-action.png)
+
+The reason for this much suggestions is that Github is litrally the de facto code repository,
+billions if not trillions of lines of code are avialable there. If you build nice infrastructure and model around that it can be powerful. They also claim that they trained the
+model on public codes from their platform.
+
+## How Does Github Co-Pilot Work ?
+
+Once accepted in to the preview stage you can install the VSCode extension for Github Co-Pilot, the extension will require you to
+login with your Github account. Once you login and turn on the extension you will be able to see the suggestions that the Github Co-Pilot has for you.
+Github Co-Pilot sends the context of your code to the Github Co-Pilot services and the servce analyzes your code's context through the Codex model and sends back suggestions.
+
+![how github co pilot works](/assets/copilot-diagram.png)
+
+## How Did Github Co-Pilot Came Into Existence?
+
+Github Co-Pilot is mainly built by a team of engineers at Github and [Open AI](https://openai.com/). The A.I part of Github Co-Pilot is powered by the new language processing model from Open AI, Codex.
+Codex is much improved version of the previous GPT-3 (Generative Pre-trained Transformer) model. It is a model that is trained on a large corpus of code, which makes it much more powerful for code based operations than the previous model (GPT-3).
+
+## The Good And Bad Of Github Co-Pilot
+
+Like every other tool, Github Co-Pilot have it's own set of pros and cons. The main reason for some of the issues is that Github Co-Pilot is a tool that is still in the early stages of development. Eventhough Microsoft have been using the tool internally for a while, it haven't really had a chance to be tested in a real world setting.
+Let's take a look at some of the things that Github Co-Pilot is good at.
+
+### Good Parts Of Github Co-Pilot
+
+- It is fast. It is really fast. To give you comparision on my much slower device
+  Github Co-Pilot is able to suggest code before the native VSCode intellisense provides me a syntax suggestion. It even knows how fast it is.
+
+  ![co pilot suggestions](/assets/copilot-suggestions.png)
+
+- It is smart. It is able to suggest code based on the context of your code, without even being aware of your other files context.
+- Code suggestions are made according to your coding style, for example co-pilot will not suggest a snake case variable name while you are using camel case.
+- As a tool it is promising. Co-Pilot was tested on a set of Python repositories with good test coverages. The test involved removing blocks of the function and leaving the function name in place, it was able to successfully
+  43% of the code in a correct manner and 53% in a correct manner after the 10th trial.
+
+### Bad Parts Of Github Co-Pilot
+
+- The thing that makes Github Co-Pilot fast might also be hurting it in some manner. Like discussed above Github Co-Pilot does not consider your other files context when making suggesions,
+  which means it sometimes tries to use modules and libraries that are not in your project.
+
+- The code provided by Co-Pilot might not work sometimes, it doen't have the capability to test it's own code.
+
+- For some reason Gihub Co-Pilot sometimes get into a loop of suggestions, it even did the same thing while I was writing this blog post.
+
+  ![Co-pilot loop](/assets/copilot-loop.png)
+
+  ![Co-pilot loop suggestion](/assets/copilot-suggest-loop.jpeg)
+
+- GitHub Co-Pilot might be stochastic parrot, stochastic parrots are machine learning models that give their training data direclty as a response. Eventhough GitHub have said that there is 0.1% chance of GitHub Co-Pilot giving a direct code snippet from it's training model, people fear that the number might be higher.
+
+- There are fears that the future of Github Co-Pilot is only commercial use, GitHub not providing a direct answer for this question have raused an alarm with the developer community.
+
+- There were also occassions where Github Co-Pilpt suggested unclear things like Stackoverflow URLs that were probably left in people's code as a comment.
+
+  ![Co-pilot bad suggestion](/assets/copilot-bad-suggestion.jpeg)
+
+## Is GitHub Co-Pilot Going To Steal Programming Jobs ?
+
+Github Co-Pilot is a very promising tool, but it is still in the early stages of development. It still requires the heavy involvement of human beings
+to be able to use it effectively. Even if it reaches a perfect state, it is our opinion that it will require programmers to test and make sure that the code suggested is both secure and optimal.
+

@@ -13,8 +13,9 @@
     "story": "አጀማመራችን",
     "contact": "ያግኙን",
     "feed": "Podcast feed",
+    "blogs": "ጦማሮች",
     "emailUs": "ኢሜል ይፃፉልን",
-    "appVersion": "ዘማች version 1.0",
+    "appVersion": "ዘማች version 1.1",
     "group": "የመወያያ ቡድናችንን ይቀላቀሉ"
   },
   "contactUs": {
@@ -47,6 +48,10 @@
       "recorded": "የቅጂ ቀን",
       "size": "የድምጽቅጁ መጠን"
     }
+  },
+  "blog": {
+    "title": "ጦማሮች",
+    "subtitle": "በዘማች የድምጽ ከማቅረብ በተጨማሪ በፅሁፍ የተጻፍ"
   },
   "topBanner": {
     "goodMorning": "እንደምን አደሩ",

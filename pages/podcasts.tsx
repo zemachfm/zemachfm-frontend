@@ -51,37 +51,38 @@ const Home: FC<prop> = ({ content, locale, Footer }) => {
       </Head>
       <div className="bg-gray-100 dark:bg-black flex flex-col absolute h-full w-full ">
         <div className="bg-gray-100 px-5 mt-5 dark:bg-black">
-          <main className=" grid grid-cols-12 lg:grid-cols-12 justify-center ">
-            <div className="col-span-12 lg:col-span-8 lg:col-start-3 lg:px-1 ">
-              <PlaylistBox
-                currentPlay={currentPlay.item}
-                playerStatus={player.playerStatus}
-                recentEpisode={
-                  currentPlay.item ? currentPlay.item : recentEpisode
-                }
-                topBannerContent={content.topBanner}
-              />
+          <main className=" lg:max-w-screen-lg max-w-sm mx-auto pb-10 ">
+            <PlaylistBox
+              currentPlay={currentPlay.item}
+              playerStatus={player.playerStatus}
+              recentEpisode={
+                currentPlay.item ? currentPlay.item : recentEpisode
+              }
+              topBannerContent={content.topBanner}
+            />
 
-              <div className="grid grid-cols-12 justify-center">
-                <div className="col-span-12 lg:col-span-12">
-                  <EpisodeCardsContainer
-                    currentPlay={currentPlay.item}
-                    handleRouteChange={null}
-                    loading={loading}
-                    more={content.more}
-                    playerStatus={player.playerStatus}
-                    scrollSpyActive={null}
-                    settings={settings}
-                    starterEpisodes={episodes}
-                    subTitle={content.episodesDescription}
-                    title={content.episodes}
-                  />
-                </div>
+            <div className="grid grid-cols-12 justify-center">
+              <div className="col-span-12 lg:col-span-12">
+                <EpisodeCardsContainer
+                  currentPlay={currentPlay.item}
+                  handleRouteChange={null}
+                  loading={loading}
+                  more={content.more}
+                  playerStatus={player.playerStatus}
+                  scrollSpyActive={null}
+                  settings={settings}
+                  starterEpisodes={episodes}
+                  subTitle={content.episodesDescription}
+                  title={content.episodes}
+                />
               </div>
-
-              {Footer()}
             </div>
           </main>
+          <div className="border-t-2 border-gray-200 dark:border-gray-900 col-span-7 dark:bg-black">
+            <div className="lg:max-w-screen-lg max-w-sm mx-auto pb-10">
+              {Footer()}
+            </div>
+          </div>
         </div>
       </div>
     </div>
