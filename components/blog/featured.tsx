@@ -12,13 +12,7 @@ type Props = {
 const Featured: React.FC<Props> = ({ title, src, slug }: Props) => {
   const image = (
     <div className="w-full h-80 mx-auto bg-transparent relative ">
-      <Image
-        alt={`Cover Image for ${title}`}
-        className="rounded-xl"
-        layout="fill"
-        objectFit="contain"
-        src={src}
-      />
+      <img alt={`Cover Image for ${title}`} className="rounded-xl" src={src} />
     </div>
   );
   return (

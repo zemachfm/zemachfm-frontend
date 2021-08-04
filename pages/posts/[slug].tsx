@@ -44,8 +44,14 @@ const PostPage: React.FC<Props> = ({
     <div>
       <div className="lg:max-w-screen-lg max-w-sm mx-auto pb-10">
         <article className="prose prose-blue">
-          <div className="mb-4">
-            <Featured src={frontMatter.thumbnail} title={frontMatter.title} />
+          <div className="mb-4 relative">
+            <div className="w-5/6 flex flex-wrap  mx-auto bg-transparent relative ">
+              <img
+                alt={`Cover Image for ${frontMatter.title}`}
+                className="rounded-xl relative"
+                src={frontMatter.thumbnail}
+              />
+            </div>
           </div>
 
           <h1 className="text-gray-700 text-4xl font-bold mb-6 dark:text-gray-200">
