@@ -3,6 +3,7 @@ const routes = {
   hosts: '#hosts',
   story: '#our-story',
   guests: '#guests',
+  blogs: '#blogs',
   contact: '#contact',
 };
 

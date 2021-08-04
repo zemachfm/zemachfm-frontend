@@ -27,6 +27,7 @@ import RadioIcon from '../icons/radio.svg';
 import UsersIcon from '../icons/users.svg';
 import MessageIcon from '../icons/message-circle.svg';
 import BookIcon from '../icons/book.svg';
+import BookOpenIcon from '../icons/book-open.svg';
 import routes from '../lib/constants/hashRoutes';
 import { ISideBarLink } from '../components/Sidebar/index.d';
 import OurStory from '../components/story/index';
@@ -72,6 +73,12 @@ const Home: FC<prop> = ({ content, locale, Footer, files }) => {
       label: content.sidebar.guests,
       route: routes.guests,
       icon: <RadioIcon />,
+    },
+    {
+      active: false,
+      label: content.sidebar.blogs,
+      route: routes.blogs,
+      icon: <BookOpenIcon />,
     },
     {
       active: false,

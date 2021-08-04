@@ -14,7 +14,7 @@ type props = {
 const BlogsTeaser: React.FC<props> = ({ posts, strings }) => {
   const { title, subtitle } = strings;
   return (
-    <div className=" mx-auto" id="blogTeaser">
+    <div className=" mx-auto" id="blogs">
       <div className="2xl:max-w-screen-xl max-w-sm xl:max-w-screen-lg lg:max-w-screen-md mx-auto pt-6 pb-10">
         <div className="text-left mb-6 mt-6  ">
           <h1 className=" text-3xl lg:text-4xl 2xl:text-5xl  my-10 font-bold dark:text-gray-200 mb-2 ">
