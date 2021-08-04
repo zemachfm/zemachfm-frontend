@@ -5,6 +5,7 @@ interface ISideBarContents {
   episodes: string;
   hosts: string;
   guests: string;
+  blogs: string;
   story: string;
   contact: string;
   feed: string;
@@ -101,8 +102,8 @@ type indexPageType = {
   content: translatedStrings;
   Footer: () => ReactElement;
   files: {
-    posts: IPost[]
-  }
+    posts: IPost[];
+  };
 };
 
 type hostPageType = {
