@@ -2,6 +2,7 @@
 // pages/posts/[slug].tsx
 import React, { useState, ReactElement } from 'react';
 import { GetStaticPaths, GetStaticPropsContext } from 'next';
+import Head from 'next/head';
 import { serialize } from 'next-mdx-remote/serialize';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { END } from 'redux-saga';
@@ -42,6 +43,26 @@ const PostPage: React.FC<Props> = ({
 
   return (
     <div>
+      <Head>
+        <title>{`${frontMatter.title || ''} | ${content.appName || ''}`}</title>
+        <meta title={`${frontMatter.title || ''} | ${content.appName || ''}`} />
+        <meta content={frontMatter.description || ''} name="description" />
+        <meta content="article" property="og:type" />
+        <meta
+          content={`${frontMatter.title || ''} | ${content.appName || ''}`}
+          property="og:title"
+        />
+        <meta
+          content={frontMatter.description || ''}
+          property="og:description"
+        />
+        <meta content={`${SITE_URL}/${slug || ''}`} property="og:url" />
+        <meta
+          content={`${SITE_URL}/${frontMatter.thumbnail || ''}`}
+          property="og:image"
+        />
+        <meta content="summary_large_image" name="twitter:card" />
+      </Head>
       <div className="lg:max-w-screen-lg max-w-sm mx-auto pb-10">
         <article className="prose prose-blue">
           <div className="mb-4 relative">
