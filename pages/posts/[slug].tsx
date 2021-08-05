@@ -61,7 +61,7 @@ const PostPage: React.FC<Props> = ({
           content={`${SITE_URL}/${frontMatter.thumbnail || ''}`}
           property="og:image"
         />
-        <meta content={frontMatter.description || ''} name="twitter:card" />
+        <meta content="summary_large_image" name="twitter:card" />
       </Head>
       <div className="lg:max-w-screen-lg max-w-sm mx-auto pb-10">
         <article className="prose prose-blue">
