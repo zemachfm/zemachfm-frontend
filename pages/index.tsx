@@ -14,12 +14,12 @@ import {
   fetchGuests,
   fetchHosts,
   toogleMobileMenu,
+  fetchOurWorks,
 } from '../store/home/actions';
 import SideBar from '../components/Sidebar';
 import SmallDeviceSideBar from '../components/Sidebar/smallDevice.sidebar';
 import prop from '../types/index.d';
 import Hosts from '../components/Hosts';
-import BlogTeaser from '../components/blog/blogTeaser';
 import Guests from '../components/guests';
 import GridIcon from '../icons/grid.svg';
 import RadioIcon from '../icons/radio.svg';
@@ -36,6 +36,8 @@ import RightSidebar from '../components/rightSide';
 import TopBanner from '../components/Topbanner';
 import MakeRSS from '../components/Rss/podcast';
 import { getAllPosts } from '../lib/utils/mdxUtils';
+import OurWorks from '../components/OurWorks';
+import TeaserCard from '../components/shared/teaserCard';
 
 const Home: FC<prop> = ({ content, locale, Footer, files }) => {
   const { posts } = files;
@@ -216,9 +218,11 @@ const Home: FC<prop> = ({ content, locale, Footer, files }) => {
                     subTitle={content.guestDescription}
                     title={content.guests}
                   />
-                  <BlogTeaser posts={posts} strings={content.blog} />
+                  <TeaserCard posts={posts} strings={content.blog} />
 
                   <OurStory story={settings.story} />
+
+                  <OurWorks works={state.works?.data} />
                   <ContactUs content={content.contactUs} />
                   <div className="border-t-2 border-gray-200 dark:border-gray-900 col-span-7 dark:bg-black">
                     {Footer()}
@@ -250,11 +254,12 @@ export const getStaticProps = wrapper.getStaticProps(
       'title',
       'description',
     ]);
-    await MakeRSS();
+    // await MakeRSS();
     store.dispatch(fetchEpisodes());
     store.dispatch(fetchSettings(locale));
     store.dispatch(fetchGuests());
     store.dispatch(fetchHosts(locale));
+    store.dispatch(fetchOurWorks());
     store.dispatch(END);
     await store.sagaTask.toPromise();
 

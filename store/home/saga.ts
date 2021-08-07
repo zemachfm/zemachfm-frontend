@@ -11,6 +11,7 @@ import {
 import {
   GUESTS_URL,
   HOSTS_URL,
+  OUR_WORKS_URL,
   PODCASTS_URL,
   SETTINGS_URL,
 } from '../../lib/store/url';
@@ -33,6 +34,8 @@ import {
   fetchHostsFailed,
   fetchHostsSucceeded,
   proceedWithPlaying,
+  fetchOurWorksSucceeded,
+  fetchOurWorksFailed,
 } from './actions';
 import { episode } from './types.d';
 
@@ -289,6 +292,17 @@ function* fetchHostsGenerator({
   }
 }
 
+function* fetchOurWorksSaga({ type }: { type: string }) {
+  try {
+    const { data } = yield call(axiosGet, OUR_WORKS_URL, {});
+    if (Array.isArray(data)) {
+      yield put(fetchOurWorksSucceeded({ data }));
+    }
+  } catch (error) {
+    yield put(fetchOurWorksFailed(error.message || ''));
+  }
+}
+
 function* homeSaga() {
   yield takeLatest(actionTypes.FETCH_EPISODES, fetchEpisodesGenerator);
   yield takeEvery(actionTypes.PLAY_CERTAIN_AUDIO, playCertainAudioGenerator);
@@ -307,5 +321,6 @@ function* homeSaga() {
   yield takeLatest(actionTypes.FETCH_SETTINGS, fetchSettingsGenerator);
   yield takeLatest(actionTypes.FETCH_GUESTS, fetchGuestsGenerator);
   yield takeLatest(actionTypes.FETCH_HOSTS, fetchHostsGenerator);
+  yield takeLatest(actionTypes.FETCH_OUR_WORKS, fetchOurWorksSaga);
 }
 export default homeSaga;
