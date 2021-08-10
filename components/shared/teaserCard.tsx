@@ -59,19 +59,19 @@ const TeaserCard: React.FC<props> = ({ posts, strings, works }) => {
           {works &&
             works.map(work => (
               <div
-                className={`rounded-xl py-4  overflow-hidden `}
+                className={`rounded-xl py-4 bg-white dark:bg-gray-900 px-6  overflow-hidden `}
                 key={work.post?.ID}
               >
                 <Thumbnail src={work.img} title={work.post?.post_title} />
                 <div className="content">
-                  <h2 className="text-2xl mt-3 font-bold mb-4 text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white">
+                  <h2 className="text-xl mt-3 font-bold mb-4 text-gray-700 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white">
                     <a href={work.projecUrl} target="_blank">
-                      {work.post?.post_title} &rarr;
+                      {work.post?.post_title}
                     </a>
                   </h2>
 
                   <div
-                    className="text-gray-600 dark:text-gray-400 mb-3"
+                    className="text-gray-500 text-sm  dark:text-gray-400 mb-3"
                     dangerouslySetInnerHTML={{
                       __html: work?.post?.post_excerpt,
                     }}
