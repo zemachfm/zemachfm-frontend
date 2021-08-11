@@ -98,6 +98,7 @@ const initialState: IHomeReducer = {
     },
   },
   hosts: { data: [], loading: false },
+  works: { data: [], loading: false },
   mobileMenuVisible: false,
 };
 
@@ -124,6 +125,10 @@ const homeReducer = produce((draft: IHomeReducer, action) => {
 
       if (payload.home.hosts.data.length > 0) {
         newState.hosts = payload.home.hosts;
+      }
+
+      if (payload.home.works.data.length > 0) {
+        newState.works = payload.home.works;
       }
 
       if (payload.home.player.playlist.length > 0) {
@@ -219,6 +224,17 @@ const homeReducer = produce((draft: IHomeReducer, action) => {
       break;
     case actionTypes.FETCHING_HOSTS_FAILED:
       draft.hosts.loading = false;
+      break;
+
+    case actionTypes.FETCH_OUR_WORKS:
+      draft.works.loading = true;
+      break;
+    case actionTypes.FETCH_OUR_WORKS_SUCCEEDED:
+      draft.works.loading = false;
+      draft.works.data = payload.data;
+      break;
+    case actionTypes.FETCH_OUR_WORKS_FAILED:
+      draft.works.loading = false;
       break;
     case actionTypes.TOOGLE_MOBILE_MENU:
       draft.mobileMenuVisible = !draft.mobileMenuVisible;

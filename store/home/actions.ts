@@ -1,6 +1,6 @@
 import { Howl } from 'howler';
 import { makeAction } from '../../lib/store/makeActions';
-import { episode, ThemeTypes, siteSettings, Hosts } from './types.d';
+import { episode, ThemeTypes, siteSettings, Hosts, IOurWorks } from './types.d';
 import * as actionsTypes from './index.d';
 
 const actionTypes = {
@@ -61,6 +61,14 @@ const actionTypes = {
    * Mobile Menu
    */
   TOOGLE_MOBILE_MENU: 'TOOGLE_MOBILE_MENU',
+
+  /**
+   * Our Works
+   */
+
+  FETCH_OUR_WORKS: 'FETCH_OUR_WORKS',
+  FETCH_OUR_WORKS_SUCCEEDED: 'FETCH_OUR_WORKS_SUCCEEDED',
+  FETCH_OUR_WORKS_FAILED: 'FETCH_OUR_WORKS_FAILED',
 };
 
 const fetchEpisodes = (): { type: string; payload: null } =>
@@ -259,6 +267,24 @@ const toogleMobileMenu = (): { type: string } => ({
   type: actionTypes.TOOGLE_MOBILE_MENU,
 });
 
+const fetchOurWorks = (): { type: string } => ({
+  type: actionTypes.FETCH_OUR_WORKS,
+});
+
+const fetchOurWorksSucceeded = (payload: {
+  data: IOurWorks;
+}): { type: string; payload: { data: IOurWorks } } => ({
+  type: actionTypes.FETCH_OUR_WORKS_SUCCEEDED,
+  payload,
+});
+
+const fetchOurWorksFailed = (
+  payload: string,
+): { type: string; payload: string } => ({
+  type: actionTypes.FETCH_OUR_WORKS_FAILED,
+  payload,
+});
+
 export {
   actionTypes,
   /**
@@ -302,4 +328,10 @@ export {
   fetchHostsFailed,
   fetchHosts,
   toogleMobileMenu,
+  /**
+   * get our works
+   */
+  fetchOurWorks,
+  fetchOurWorksSucceeded,
+  fetchOurWorksFailed,
 };

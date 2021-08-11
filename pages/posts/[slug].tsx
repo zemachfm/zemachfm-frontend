@@ -63,10 +63,10 @@ const PostPage: React.FC<Props> = ({
         />
         <meta content="summary_large_image" name="twitter:card" />
       </Head>
-      <div className="lg:max-w-screen-lg max-w-sm mx-auto pb-10">
-        <article className="prose prose-blue">
-          <div className="mb-4 relative">
-            <div className="w-5/6 flex flex-wrap  mx-auto bg-transparent relative ">
+      <article className="prose prose-blue">
+        <div className="mb-4 relative">
+          <div className="w-6/6 py-10 px-2 lg:px-0 flex flex-wrap bg-gray-200 dark:bg-gray-900 mx-auto bg-transparent relative ">
+            <div className="xl:w-3/6 w-6/6 mx-auto">
               <img
                 alt={`Cover Image for ${frontMatter.title}`}
                 className="rounded-xl relative"
@@ -74,15 +74,17 @@ const PostPage: React.FC<Props> = ({
               />
             </div>
           </div>
+        </div>
 
-          <h1 className="text-gray-700 text-4xl font-bold mb-6 dark:text-gray-200">
+        <div className="lg:max-w-screen-lg max-w-sm mx-auto pb-10">
+          <h1 className="text-gray-700 lg:text-5xl text-3xl font-bold mb-6 dark:text-gray-200">
             {frontMatter.title}
           </h1>
           <div className="text-lg blog ">
             <MDXRemote {...source} />
           </div>
-        </article>
-      </div>
+        </div>
+      </article>
       <div className="border-t-2 border-gray-200 dark:border-gray-900 col-span-7 dark:bg-black">
         <div className="lg:max-w-screen-lg max-w-sm mx-auto pb-10">
           {Footer()}
