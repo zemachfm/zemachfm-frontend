@@ -46,6 +46,10 @@
     "title": "Hosts",
     "subtitle": "hosts and producers of this podcast."
   },
+  "works": {
+    "title": "Our Works",
+    "subtitle": "This are the current projects and works Zemach is conducting, other than our podcast."
+  },
   "podcastPage": {
     "headings": {
       "duration": "Duration",

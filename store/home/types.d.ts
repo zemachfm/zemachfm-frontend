@@ -147,6 +147,46 @@ interface IHostRequest {
 
 type Hosts = IHostRequest[];
 
+interface IRenderedContent {
+  rendered?: string;
+}
+
+interface IWPSingleMedia {
+  width: number;
+  height: number;
+  file: string;
+  source_url: string;
+  mime_type: string;
+}
+
+interface IWPMedia {
+  id: number;
+  title: string;
+  media_details: {
+    width: number;
+    height: number;
+    file: string;
+    sizes: {
+      medium: IWPSingleMedia;
+      large: IWPSingleMedia;
+      thumbnail: IWPSingleMedia;
+      medium_large: IWPSingleMedia;
+      '1536x1536': IWPSingleMedia;
+      player_thumb: IWPSingleMedia;
+      big_thumb: IWPSingleMedia;
+      full: IWPSingleMedia;
+    };
+  };
+  source_url: string;
+}
+interface IOurWorksRequest {
+  post: IPost;
+  img: string;
+  projecUrl: string;
+}
+
+type IOurWorks = IOurWorksRequest[];
+
 interface IHomeReducer {
   episodes: {
     paginaton: pagination;
@@ -169,6 +209,10 @@ interface IHomeReducer {
     data: Hosts;
     loading: boolean;
   };
+  works: {
+    data: IOurWorks;
+    loading: boolean;
+  };
   mobileMenuVisible: boolean;
 }
 
@@ -186,4 +230,5 @@ export type {
   platforms,
   guests,
   rightSidebar,
+  IOurWorks,
 };
