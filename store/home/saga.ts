@@ -292,9 +292,9 @@ function* fetchHostsGenerator({
   }
 }
 
-function* fetchOurWorksSaga({ type }: { type: string }) {
+function* fetchOurWorksSaga({ type, lang }: { type: string; lang: string }) {
   try {
-    const { data } = yield call(axiosGet, OUR_WORKS_URL, {});
+    const { data } = yield call(axiosGet, OUR_WORKS_URL, { lang });
     if (Array.isArray(data)) {
       yield put(fetchOurWorksSucceeded({ data }));
     }

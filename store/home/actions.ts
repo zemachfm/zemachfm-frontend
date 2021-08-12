@@ -267,8 +267,9 @@ const toogleMobileMenu = (): { type: string } => ({
   type: actionTypes.TOOGLE_MOBILE_MENU,
 });
 
-const fetchOurWorks = (): { type: string } => ({
+const fetchOurWorks = (lang: string): { type: string; lang: string } => ({
   type: actionTypes.FETCH_OUR_WORKS,
+  lang,
 });
 
 const fetchOurWorksSucceeded = (payload: {

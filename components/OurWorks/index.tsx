@@ -1,11 +1,12 @@
+import { FC } from 'react';
 import { IOurWorks } from '../../store/home/types.d';
 import TeaserCard from '../shared/teaserCard';
 
-interface IOurWorksProps {
+type IOurWorksProps = {
   works: IOurWorks;
-}
+};
 
-const OurWorks = (props: IOurWorksProps) => (
+const OurWorks: FC<IOurWorksProps> = ({ works }) => (
   <div>
     <TeaserCard
       strings={{
@@ -13,7 +14,7 @@ const OurWorks = (props: IOurWorksProps) => (
         subtitle:
           'This are the current projects and works Zemach is conducting, other than our podcast.',
       }}
-      works={props.works}
+      works={works}
     />
   </div>
 );

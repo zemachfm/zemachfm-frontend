@@ -259,7 +259,7 @@ export const getStaticProps = wrapper.getStaticProps(
     store.dispatch(fetchSettings(locale));
     store.dispatch(fetchGuests());
     store.dispatch(fetchHosts(locale));
-    store.dispatch(fetchOurWorks());
+    store.dispatch(fetchOurWorks(locale));
     store.dispatch(END);
     await store.sagaTask.toPromise();
 
