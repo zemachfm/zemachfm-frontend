@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { IPost } from './blog';
+import { IPost } from './blog.d';
 
 interface ISideBarContents {
   episodes: string;
@@ -82,6 +82,7 @@ interface translatedStrings {
   contactUs: contactUsStringType;
   footer: footer;
   hosts: hosts;
+  works: hosts;
   podcastPage: {
     headings: IPodcastPageHeadings;
   };

@@ -1,18 +1,19 @@
 import { FC } from 'react';
 import { IOurWorks } from '../../store/home/types.d';
+import { hosts } from '../../types/index.d';
 import TeaserCard from '../shared/teaserCard';
 
 type IOurWorksProps = {
   works: IOurWorks;
+  strings: hosts;
 };
 
-const OurWorks: FC<IOurWorksProps> = ({ works }) => (
+const OurWorks: FC<IOurWorksProps> = ({ works, strings }) => (
   <div>
     <TeaserCard
       strings={{
-        title: 'Our Works',
-        subtitle:
-          'This are the current projects and works Zemach is conducting, other than our podcast.',
+        title: strings?.title,
+        subtitle: strings?.subtitle,
       }}
       works={works}
     />
