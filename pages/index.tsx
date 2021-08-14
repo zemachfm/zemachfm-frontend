@@ -34,7 +34,6 @@ import OurStory from '../components/story/index';
 import ContactUs from '../components/contactUs';
 import RightSidebar from '../components/rightSide';
 import TopBanner from '../components/Topbanner';
-import MakeRSS from '../components/Rss/podcast';
 import { getAllPosts } from '../lib/utils/mdxUtils';
 import OurWorks from '../components/OurWorks';
 import TeaserCard from '../components/shared/teaserCard';
@@ -254,7 +253,6 @@ export const getStaticProps = wrapper.getStaticProps(
       'title',
       'description',
     ]);
-    await MakeRSS();
     store.dispatch(fetchEpisodes());
     store.dispatch(fetchSettings(locale));
     store.dispatch(fetchGuests());

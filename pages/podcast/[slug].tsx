@@ -215,7 +215,7 @@ const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
   const paths = [].concat.apply([], pathsIterate);
   return {
     paths,
-    fallback: 'blocking',
+    fallback: false,
   };
 };
 
