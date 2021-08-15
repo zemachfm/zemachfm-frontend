@@ -1,28 +1,28 @@
 /* eslint-disable */
 const webpacked = {
-  webpack(config, { isServer }) {
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: ['@svgr/webpack'],
-    });
+  // webpack(config, { isServer }) {
+  //   config.module.rules.push({
+  //     test: /\.svg$/,
+  //     use: ['@svgr/webpack'],
+  //   });
 
-    if (!isServer) {
-      config.node = {
-        fs: 'empty',
-      };
-    }
+  //   if (!isServer) {
+  //     config.node = {
+  //       fs: 'empty',
+  //     };
+  //   }
 
-    return config;
-  },
-  async redirects() {
-    return [
-      {
-        source: '/feed/podcast',
-        destination: '/feed/podcast.xml',
-        permanent: true,
-      },
-    ];
-  },
+  //   return config;
+  // },
+  // async redirects() {
+  //   return [
+  //     {
+  //       source: '/feed/podcast',
+  //       destination: '/feed/podcast.xml',
+  //       permanent: true,
+  //     },
+  //   ];
+  // },
 };
 
 webpacked['i18n'] = {
