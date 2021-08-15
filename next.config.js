@@ -6,28 +6,30 @@ const webpacked = {
       use: ['@svgr/webpack'],
     });
 
-    if (!isServer) {
-      config.node = {
-        fs: 'empty',
-      };
-    }
+    // if (!isServer) {
+    //   config.node = {
+    //     fs: 'empty',
+    //   };
+    // }
 
     return config;
   },
-  async redirects() {
-    return [
-      {
-        source: '/feed/podcast',
-        destination: '/feed/podcast.xml',
-        permanent: true,
-      },
-    ];
-  },
+  // async redirects() {
+  //   return [
+  //     {
+  //       source: '/feed/podcast',
+  //       destination: '/feed/podcast.xml',
+  //       permanent: true,
+  //     },
+  //   ];
+  // },
 };
 
 webpacked['i18n'] = {
   locales: ['en', 'am'],
   defaultLocale: 'en',
+  localeDetection: true,
+
 };
 webpacked.env = {
   host:

@@ -34,7 +34,6 @@ import OurStory from '../components/story/index';
 import ContactUs from '../components/contactUs';
 import RightSidebar from '../components/rightSide';
 import TopBanner from '../components/Topbanner';
-import MakeRSS from '../components/Rss/podcast';
 import { getAllPosts } from '../lib/utils/mdxUtils';
 import OurWorks from '../components/OurWorks';
 import TeaserCard from '../components/shared/teaserCard';
@@ -222,7 +221,10 @@ const Home: FC<prop> = ({ content, locale, Footer, files }) => {
 
                   <OurStory story={settings.story} />
 
-                  <OurWorks strings={content?.works} works={state.works?.data} />
+                  <OurWorks
+                    strings={content?.works}
+                    works={state.works?.data}
+                  />
                   <ContactUs content={content.contactUs} />
                   <div className="border-t-2 border-gray-200 dark:border-gray-900 col-span-7 dark:bg-black">
                     {Footer()}
@@ -254,7 +256,6 @@ export const getStaticProps = wrapper.getStaticProps(
       'title',
       'description',
     ]);
-    await MakeRSS();
     store.dispatch(fetchEpisodes());
     store.dispatch(fetchSettings(locale));
     store.dispatch(fetchGuests());
