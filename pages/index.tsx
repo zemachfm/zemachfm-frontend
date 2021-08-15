@@ -221,7 +221,10 @@ const Home: FC<prop> = ({ content, locale, Footer, files }) => {
 
                   <OurStory story={settings.story} />
 
-                  <OurWorks strings={content?.works} works={state.works?.data} />
+                  <OurWorks
+                    strings={content?.works}
+                    works={state.works?.data}
+                  />
                   <ContactUs content={content.contactUs} />
                   <div className="border-t-2 border-gray-200 dark:border-gray-900 col-span-7 dark:bg-black">
                     {Footer()}
@@ -242,7 +245,7 @@ const Home: FC<prop> = ({ content, locale, Footer, files }) => {
 export const getStaticProps = wrapper.getStaticProps(
   async ({
     store,
-    locale = 'en',
+    locale,
   }: GetStaticPropsContext & {
     store: any;
   }) => {
