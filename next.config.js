@@ -1,10 +1,10 @@
 /* eslint-disable */
 const webpacked = {
-  // webpack(config, { isServer }) {
-  //   config.module.rules.push({
-  //     test: /\.svg$/,
-  //     use: ['@svgr/webpack'],
-  //   });
+  webpack(config, { isServer }) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack'],
+    });
 
   //   if (!isServer) {
   //     config.node = {
