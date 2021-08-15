@@ -6,14 +6,14 @@ const webpacked = {
       use: ['@svgr/webpack'],
     });
 
-  //   if (!isServer) {
-  //     config.node = {
-  //       fs: 'empty',
-  //     };
-  //   }
+    // if (!isServer) {
+    //   config.node = {
+    //     fs: 'empty',
+    //   };
+    // }
 
-  //   return config;
-  // },
+    return config;
+  },
   // async redirects() {
   //   return [
   //     {
