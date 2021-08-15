@@ -242,7 +242,7 @@ const Home: FC<prop> = ({ content, locale, Footer, files }) => {
 export const getStaticProps = wrapper.getStaticProps(
   async ({
     store,
-    locale,
+    locale = 'en',
   }: GetStaticPropsContext & {
     store: any;
   }) => {
