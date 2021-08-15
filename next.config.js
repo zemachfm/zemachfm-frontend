@@ -28,6 +28,8 @@ const webpacked = {
 webpacked['i18n'] = {
   locales: ['en', 'am'],
   defaultLocale: 'en',
+  localeDetection: true,
+
 };
 webpacked.env = {
   host:
