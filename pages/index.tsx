@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetStaticPropsContext } from 'next';
 import { END } from 'redux-saga';
+import MakeRSS from '../components/Rss/podcast';
 
 import EpisodeCardsContainer from '../components/episodeCard';
 import { wrapper } from '../store/store';
@@ -249,6 +250,8 @@ export const getStaticProps = wrapper.getStaticProps(
   }: GetStaticPropsContext & {
     store: any;
   }) => {
+    await MakeRSS();
+
     const files = getAllPosts([
       'slug',
       'date',

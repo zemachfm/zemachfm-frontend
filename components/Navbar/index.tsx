@@ -70,7 +70,7 @@ const NavBar = (props: INavBarProps): ReactElement => {
               <button className="block lg:hidden" onClick={onDisplayMobileMenu}>
                 <MenuIcon />
               </button>
-              <Link href="/" passHref>
+              <Link href="/" locale={props.locale} prefetch>
                 <a>
                   <h1 className="text-2xl ml-5 lg:ml-3 font-bold text-green-500 lg:hidden block">
                     {props.appName}

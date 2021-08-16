@@ -1,3 +1,3 @@
 /feed/podcast /feed/podcast.xml
-/_next/data/4ANgLTycbsDECNb5fcalJ/en/.json /_next/data/4ANgLTycbsDECNb5fcalJ/en.json
-/_next/data/4ANgLTycbsDECNb5fcalJ/am/.json /_next/data/4ANgLTycbsDECNb5fcalJ/am.json
+/en/* /en/404.html 404
+/am/* /am/404.html 404
