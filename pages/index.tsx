@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import Head from 'next/head';
 import { useDispatch, useSelector } from 'react-redux';
-import { GetStaticPropsContext } from 'next';
+import { GetStaticPropsContext, GetStaticPaths } from 'next';
 import { END } from 'redux-saga';
 import MakeRSS from '../components/Rss/podcast';
 
@@ -243,7 +243,7 @@ const Home: FC<prop> = ({ content, locale, Footer, files }) => {
   );
 };
 
-export const getStaticProps = wrapper.getStaticProps(
+const getStaticProps = wrapper.getStaticProps(
   async ({
     store,
     locale,
@@ -275,5 +275,12 @@ export const getStaticProps = wrapper.getStaticProps(
     };
   },
 );
+
+const getStaticPaths: GetStaticPaths = async () => ({
+  paths: ['en', 'am'].map(lang => ({ params: { lang } })),
+  fallback: false,
+});
+
+export { getStaticProps, getStaticPaths };
 
 export default Home;
