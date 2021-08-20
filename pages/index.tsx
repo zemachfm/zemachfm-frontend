@@ -276,11 +276,6 @@ const getStaticProps = wrapper.getStaticProps(
   },
 );
 
-const getStaticPaths: GetStaticPaths = async () => ({
-  paths: ['en', 'am'].map(lang => ({ params: { lang } })),
-  fallback: false,
-});
-
-export { getStaticProps, getStaticPaths };
+export { getStaticProps };
 
 export default Home;
