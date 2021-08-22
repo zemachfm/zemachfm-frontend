@@ -40,7 +40,5 @@ webpacked.images = {
   domains: ['zemachfm.com', 'api.zemachfm.com'],
 };
 webpacked.target = 'serverless';
-webpacked.trailingSlash = true;
-webpacked.exportTrailingSlash = true;
 
 module.exports = webpacked;
