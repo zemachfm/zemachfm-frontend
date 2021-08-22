@@ -8,8 +8,6 @@ import customizedConfig from '../../tailwind.config';
 const customizedTailwindConfig = tailwindDefaultConfig(customizedConfig);
 
 const primaryColors = customizedTailwindConfig?.theme?.colors?.primary;
-const primaryLightColors =
-  customizedTailwindConfig?.theme?.colors?.primaryLight;
 const primaryColor = primaryColors ? primaryColors['500'] : '#44b54c';
 const primaryColorLight = primaryColors ? primaryColors['200'] : '#ddd';
 const primaryLighter = primaryColors ? primaryColors['100'] : 'acf9b1';
