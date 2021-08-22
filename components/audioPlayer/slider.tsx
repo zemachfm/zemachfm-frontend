@@ -12,10 +12,8 @@ const primaryLightColors =
   customizedTailwindConfig?.theme?.colors?.primaryLight;
 const primaryColor = primaryColors ? primaryColors['500'] : '#44b54c';
 const primaryColorLight = primaryColors ? primaryColors['200'] : '#ddd';
-const primaryLighter = primaryLightColors
-  ? primaryLightColors['300']
-  : 'acf9b1';
-const primaryLight = primaryLightColors ? primaryLightColors['400'] : '#9bc59e';
+const primaryLighter = primaryColors ? primaryColors['100'] : 'acf9b1';
+const primaryLight = primaryColors ? primaryColors['200'] : '#9bc59e';
 
 const BufferedSlider = withStyles({
   thumb: {
