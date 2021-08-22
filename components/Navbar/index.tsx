@@ -72,7 +72,7 @@ const NavBar = (props: INavBarProps): ReactElement => {
               </button>
               <Link href="/" locale={props.locale} prefetch>
                 <a>
-                  <h1 className="text-2xl ml-5 lg:ml-3 font-bold text-green-500 lg:hidden block">
+                  <h1 className="text-2xl ml-5 lg:ml-3 font-bold text-primary-500 lg:hidden block">
                     {props.appName}
                   </h1>
                 </a>
@@ -80,12 +80,12 @@ const NavBar = (props: INavBarProps): ReactElement => {
             </div>
             <img
               alt="zemach-logo"
-              className="p-0 h-12 w-auto  border-green-500 border-2 rounded-full lg:block hidden"
+              className="p-0 h-12 w-auto  border-primary-500 border-2 rounded-full lg:block hidden"
               src="/assets/zemach-small.png"
             />
             <Link href="/" passHref>
               <a>
-                <h1 className="text-2xl ml-3 font-bold text-green-500 lg:block hidden">
+                <h1 className="text-2xl ml-3 font-bold text-primary-500 lg:block hidden">
                   {props.appName}
                 </h1>
               </a>
@@ -114,7 +114,7 @@ const NavBar = (props: INavBarProps): ReactElement => {
                       <a
                         className={` ${
                           props.locale === 'am'
-                            ? 'border-yellow-400 border-2 text-yellow-400'
+                            ? 'border-secondary-400 border-2 text-secondary-400'
                             : ''
                         } px-10 py-2 min-w-full`}
                       >
@@ -127,7 +127,7 @@ const NavBar = (props: INavBarProps): ReactElement => {
                       <a
                         className={` ${
                           props.locale === 'en'
-                            ? 'border-yellow-400 border-2 text-yellow-400'
+                            ? 'border-secondary-400 border-2 text-secondary-400'
                             : ''
                         } px-10 py-2 min-w-full`}
                       >

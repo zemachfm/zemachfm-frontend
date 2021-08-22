@@ -1,7 +1,17 @@
 import { FC, useEffect, useState } from 'react';
 import Slider from '@bit/mui-org.material-ui.slider';
+import tailwindDefaultConfig from 'tailwindcss/resolveConfig';
 import { withStyles } from '@bit/mui-org.material-ui.styles';
 import { sliderProps } from './index.d';
+import customizedConfig from '../../tailwind.config';
+
+const customizedTailwindConfig = tailwindDefaultConfig(customizedConfig);
+
+const primaryColors = customizedTailwindConfig?.theme?.colors?.primary;
+const primaryColor = primaryColors ? primaryColors['500'] : '#44b54c';
+const primaryColorLight = primaryColors ? primaryColors['200'] : '#ddd';
+const primaryLighter = primaryColors ? primaryColors['100'] : 'acf9b1';
+const primaryLight = primaryColors ? primaryColors['200'] : '#9bc59e';
 
 const BufferedSlider = withStyles({
   thumb: {
@@ -11,14 +21,14 @@ const BufferedSlider = withStyles({
   },
   rail: {
     opacity: 0.1,
-    backgroundColor: '#ddd',
+    backgroundColor: primaryColorLight,
   },
 })(Slider);
 
 const MainSlider = withStyles({
   rail: {
     opacity: 0.1,
-    backgroundColor: '#ddd',
+    backgroundColor: primaryColorLight,
   },
 })(Slider);
 
@@ -65,19 +75,19 @@ const PlayerSlide: FC<sliderProps> = ({
         onChange={onSlide}
         onChangeCommitted={onChangeCommited}
         step={0.1}
-        style={{ color: '#44b54c' }}
+        style={{ color: primaryColor }}
         value={sliderValue}
         valueLabelDisplay="auto"
         valueLabelFormat={() => `${currentTimeCalc}`}
       />
       <BufferedSlider
-        className="absolute left-0 text-yellow-400"
+        className="absolute left-0 text-secondary-400"
         id="player"
         max={100}
         onChange={onSlide}
         style={{
           position: 'absolute',
-          color: theme === 'light' ? '#acf9b1' : '#9bc59e',
+          color: theme === 'light' ? primaryLighter : primaryLight,
         }}
         value={bufferedPercent}
         valueLabelDisplay="off"

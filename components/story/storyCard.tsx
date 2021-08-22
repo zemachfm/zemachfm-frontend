@@ -5,8 +5,8 @@ import Face from '../../icons/smiling-face-outline.svg';
 const StoryCard: FC<storyProps> = ({ title, description, color }) => (
   <div
     className={`${
-      color === 'bg-green-500'
-        ? `${color} dark:bg-green-600`
+      color === 'bg-primary-500'
+        ? `${color} dark:bg-primary-600`
         : `${color} dark:bg-gray-900`
     } p-4 pb-6 text-left transition-all duration-200 hover:shadow-sm text-black dark:text-white rounded-lg`}
   >

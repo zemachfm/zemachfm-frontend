@@ -97,7 +97,7 @@ const EpisodeCardsContainer: FC<episodeCardsContainerType> = ({
           : null}
       </div>
       <button
-        className="px-3 py-2 text-green-600 hover:underline rounded mt-4"
+        className="px-3 py-2 text-primary-600 hover:underline rounded mt-4"
         onClick={onLoadMore}
       >
         {more}

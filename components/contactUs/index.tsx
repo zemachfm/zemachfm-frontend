@@ -150,7 +150,7 @@ const ContactUs: FC<contactUsType> = ({ content }) => {
             <span className="block lg:inline dark:text-gray-100 ">
               {content.nameIntro}
               <input
-                className={`mx-2 w-full lg:w-auto bg-transparent inline border-b-2 focus:outline-none outline-none focus:border-green-500  mb-4 dark:text-gray-100 ${
+                className={`mx-2 w-full lg:w-auto bg-transparent inline border-b-2 focus:outline-none outline-none focus:border-primary-500  mb-4 dark:text-gray-100 ${
                   name.error && name.touched
                     ? 'border-red-400'
                     : 'border-gray-500'
@@ -167,7 +167,7 @@ const ContactUs: FC<contactUsType> = ({ content }) => {
             <span className="block lg:inline dark:text-gray-100 ">
               {content.emailIntro}
               <input
-                className={` mx-2 w-full lg:w-auto bg-transparent inline border-b-2 focus:outline-none outline-none focus:border-green-500  mb-4  ${
+                className={` mx-2 w-full lg:w-auto bg-transparent inline border-b-2 focus:outline-none outline-none focus:border-primary-500  mb-4  ${
                   email.error && email.touched
                     ? 'border-red-400'
                     : 'border-gray-500'
@@ -185,7 +185,7 @@ const ContactUs: FC<contactUsType> = ({ content }) => {
           <div className="mt-3 dark:text-gray-100">
             <span className="block"> {content.messageIntro} </span>
             <ResizingTextarea
-              className={`w-full lg:w-5/6  bg-transparent inline border-b-2  overflow-y-hidden focus:outline-none dark:text-gray-100 outline-none focus:border-green-500  mb-4 ${
+              className={`w-full lg:w-5/6  bg-transparent inline border-b-2  overflow-y-hidden focus:outline-none dark:text-gray-100 outline-none focus:border-primary-500  mb-4 ${
                 message.error && message.touched
                   ? 'border-red-400'
                   : 'border-gray-500'
@@ -199,7 +199,7 @@ const ContactUs: FC<contactUsType> = ({ content }) => {
             />
           </div>
           <button
-            className="my-4 px-6 uppercase flex flex-row mb-4 outline-none focus:outine-none items-center text-white py-3 font-bold bg-green-500 dark:bg-green-600 dark:text-gray-100 hover:bg-green-500 hover:shadow-lg rounded-lg"
+            className="my-4 px-6 uppercase flex flex-row mb-4 outline-none focus:outine-none items-center text-white py-3 font-bold bg-primary-500 dark:bg-primary-600 dark:text-gray-100 hover:bg-primary-500 hover:shadow-lg rounded-lg"
             type="submit"
           >
             <span> {content.sentButton} </span>

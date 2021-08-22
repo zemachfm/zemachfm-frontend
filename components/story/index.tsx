@@ -8,10 +8,10 @@ const OurStory: FC<storyIndex> = ({ story }) => {
   const { storyLine, cards, numberOfCards } = story;
   const { title, description } = storyLine;
   const colors = [
-    'bg-green-100 border-2 dark:bg-green-700 dark:border-green-800 border-green-200',
-    'bg-white border-2 border-white hover:border-green-200 hover:bg-green-100 dark:bg-gray-900 dark:border-gray-900',
-    'bg-white border-2 border-white hover:border-green-200 hover:bg-green-100 dark:bg-gray-900 dark:border-gray-900',
-    'bg-white border-2 border-white hover:border-green-200 hover:bg-green-100 dark:bg-gray-900 dark:border-gray-900',
+    'bg-primary-100 border-2 dark:bg-primary-700 dark:border-primary-800 border-primary-200',
+    'bg-white border-2 border-white hover:border-primary-200 hover:bg-primary-100 dark:bg-gray-900 dark:border-gray-900',
+    'bg-white border-2 border-white hover:border-primary-200 hover:bg-primary-100 dark:bg-gray-900 dark:border-gray-900',
+    'bg-white border-2 border-white hover:border-primary-200 hover:bg-primary-100 dark:bg-gray-900 dark:border-gray-900',
   ];
 
   return (

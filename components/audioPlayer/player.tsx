@@ -124,7 +124,7 @@ const PlayerComponent: React.FC<Props.audioPlayerComponent> = ({
             } ml-4 lg:flex felx-row items-center justify-around lg:col-span-3 col-span-12 order-1 lg:order-2 `}
           >
             <select
-              className="px-2 py-1 bg-opacity-50 cursor-pointer	 dark:bg-opacity-80 bg-transparent w-15 rounded-md outline-none text-gray-500 focus:border-green-600 focus:border-1 mr-2"
+              className="px-2 py-1 bg-opacity-50 cursor-pointer	 dark:bg-opacity-80 bg-transparent w-15 rounded-md outline-none text-gray-500 focus:border-primary-600 focus:border-1 mr-2"
               onChange={event => {
                 if (event.target.value) {
                   onSettingChange({

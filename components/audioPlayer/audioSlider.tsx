@@ -1,12 +1,19 @@
 import { ChangeEvent, FC, useEffect, useState } from 'react';
 import Slider from '@bit/mui-org.material-ui.slider';
+import tailwindDefaultConfig from 'tailwindcss/resolveConfig';
 import { withStyles } from '@bit/mui-org.material-ui.styles';
 import { volumeSliderProps } from './index.d';
+import customizedConfig from '../../tailwind.config';
+
+const customizedTailwindConfig = tailwindDefaultConfig(customizedConfig);
+const primaryColors = customizedTailwindConfig?.theme?.colors?.primary;
+const primaryColor = primaryColors ? primaryColors['500'] : '#44b54c';
+const primaryColorLight = primaryColors ? primaryColors['100'] : '#ddd';
 
 const VolumeSlider = withStyles({
   rail: {
-    opacity: 0.1,
-    backgroundColor: '#ddd',
+    opacity: 1,
+    backgroundColor: primaryColorLight,
   },
 })(Slider);
 
@@ -35,7 +42,7 @@ const PlayerSlide: FC<volumeSliderProps> = ({ volume, onVolumeChange }) => {
       min={0}
       onChange={onSlide}
       onChangeCommitted={onChangeCommited}
-      style={{ width: 60, color: '#44b54c', verticalAlign: 'bottom' }}
+      style={{ width: 60, color: primaryColor, verticalAlign: 'bottom' }}
       value={sliderValue}
       valueLabelDisplay="auto"
       valueLabelFormat={() => `${sliderValue}%`}

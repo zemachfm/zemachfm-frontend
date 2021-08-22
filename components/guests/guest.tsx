@@ -16,14 +16,14 @@ const GuestCard: FC<hostProps> = ({
     switch (type) {
       case 0:
         return (
-          <Ripples className="rounded-full animate-pulse hover:bg-green-600 mx-auto bg-green-500 p-2 dark:hover:bg-green-700 dark:bg-green-600 ">
-            <PauseIcon className="mt-0 h-6 w-6 fill-current dark:text-gray-300 text-green-500 " />
+          <Ripples className="rounded-full animate-pulse hover:bg-primary-600 mx-auto bg-primary-500 p-2 dark:hover:bg-primary-700 dark:bg-primary-600 ">
+            <PauseIcon className="mt-0 h-6 w-6 fill-current dark:text-gray-300 text-primary-500 " />
           </Ripples>
         );
       case 1:
         return (
           <Ripples
-            className="rounded-full cursor-pointer hover:bg-green-600 mx-auto bg-green-500 p-2 dark:hover:bg-green-700 dark:bg-green-600 "
+            className="rounded-full cursor-pointer hover:bg-primary-600 mx-auto bg-primary-500 p-2 dark:hover:bg-primary-700 dark:bg-primary-600 "
             onClick={() => onPause('PAUSE')}
           >
             <PauseIcon className="mt-0 h-6 w-6 fill-current dark:text-gray-300 text-white " />
@@ -32,7 +32,7 @@ const GuestCard: FC<hostProps> = ({
       case 2:
         return (
           <Ripples
-            className="rounded-full cursor-pointer hover:bg-green-600 bg-green-500 mx-auto p-2 dark:hover:bg-green-700 dark:bg-green-600 "
+            className="rounded-full cursor-pointer hover:bg-primary-600 bg-primary-500 mx-auto p-2 dark:hover:bg-primary-700 dark:bg-primary-600 "
             onClick={() => onPause('PLAY')}
           >
             <PlayIcon className="mt-0 h-6 w-6 fill-current dark:text-gray-300 text-white " />
@@ -44,7 +44,7 @@ const GuestCard: FC<hostProps> = ({
             className="rounded-full cursor-pointer hover:bg-gray-300 mx-auto p-2 dark:hover:bg-black dark:border-gray-900"
             onClick={() => onPause('PAUSE')}
           >
-            <PauseIcon className="mt-0 h-6 w-6 fill-current dark:text-gray-300 text-green-500 " />
+            <PauseIcon className="mt-0 h-6 w-6 fill-current dark:text-gray-300 text-primary-500 " />
           </Ripples>
         );
     }
