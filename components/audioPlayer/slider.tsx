@@ -8,8 +8,14 @@ import customizedConfig from '../../tailwind.config';
 const customizedTailwindConfig = tailwindDefaultConfig(customizedConfig);
 
 const primaryColors = customizedTailwindConfig?.theme?.colors?.primary;
+const primaryLightColors =
+  customizedTailwindConfig?.theme?.colors?.primaryLight;
 const primaryColor = primaryColors ? primaryColors['500'] : '#44b54c';
 const primaryColorLight = primaryColors ? primaryColors['200'] : '#ddd';
+const primaryLighter = primaryLightColors
+  ? primaryLightColors['300']
+  : 'acf9b1';
+const primaryLight = primaryLightColors ? primaryLightColors['400'] : '#9bc59e';
 
 const BufferedSlider = withStyles({
   thumb: {
@@ -18,14 +24,14 @@ const BufferedSlider = withStyles({
     width: 0,
   },
   rail: {
-    opacity: 1,
+    opacity: 0.1,
     backgroundColor: primaryColorLight,
   },
 })(Slider);
 
 const MainSlider = withStyles({
   rail: {
-    opacity: 1,
+    opacity: 0.1,
     backgroundColor: primaryColorLight,
   },
 })(Slider);
@@ -85,7 +91,7 @@ const PlayerSlide: FC<sliderProps> = ({
         onChange={onSlide}
         style={{
           position: 'absolute',
-          color: theme === 'light' ? '#acf9b1' : '#9bc59e',
+          color: theme === 'light' ? primaryLighter : primaryLight,
         }}
         value={bufferedPercent}
         valueLabelDisplay="off"

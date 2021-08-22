@@ -25,6 +25,7 @@ module.exports = {
       },
       colors: {
         primary: colors.emerald,
+        primaryLight: colors.lime,
         secondary: colors.yellow,
         accent: colors.white,
       },
