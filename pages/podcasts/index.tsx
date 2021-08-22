@@ -4,18 +4,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { GetStaticPropsContext } from 'next';
 import { END } from 'redux-saga';
 
-import EpisodeCardsContainer from '../components/episodeCard';
-import { wrapper } from '../store/store';
-import { IHomeReducer } from '../store/home/types.d';
-import { TRootReducer } from '../store/reducer';
+import EpisodeCardsContainer from '../../components/episodeCard';
+import { wrapper } from '../../store/store';
+import { IHomeReducer } from '../../store/home/types.d';
+import { TRootReducer } from '../../store/reducer';
 import {
   fetchEpisodes,
   fetchSettings,
   fetchGuests,
   toogleMobileMenu,
-} from '../store/home/actions';
-import prop from '../types/index.d';
-import PlaylistBox from '../components/PlaylistBox';
+} from '../../store/home/actions';
+import prop from '../../types/index.d';
+import PlaylistBox from '../../components/PlaylistBox';
 
 const Podcasts: FC<prop> = ({ content, locale, Footer }) => {
   const state: IHomeReducer = useSelector((root: TRootReducer) => root.home);
@@ -51,7 +51,7 @@ const Podcasts: FC<prop> = ({ content, locale, Footer }) => {
       </Head>
       <div className="bg-gray-100 dark:bg-black flex flex-col absolute h-full w-full ">
         <div className="bg-gray-100 px-5 mt-5 dark:bg-black">
-          <main className=" lg:max-w-screen-lg max-w-sm mx-auto pb-10 ">
+          <main className=" lg:max-w-screen-xl max-w-sm mx-auto pb-10 ">
             <PlaylistBox
               currentPlay={currentPlay.item}
               playerStatus={player.playerStatus}
@@ -79,7 +79,7 @@ const Podcasts: FC<prop> = ({ content, locale, Footer }) => {
             </div>
           </main>
           <div className="border-t-2 border-gray-200 dark:border-gray-900 col-span-7 dark:bg-black">
-            <div className="lg:max-w-screen-lg max-w-sm mx-auto pb-10">
+            <div className="lg:max-w-screen-xl max-w-sm mx-auto pb-10">
               {Footer()}
             </div>
           </div>
