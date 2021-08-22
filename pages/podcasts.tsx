@@ -17,7 +17,7 @@ import {
 import prop from '../types/index.d';
 import PlaylistBox from '../components/PlaylistBox';
 
-const Home: FC<prop> = ({ content, locale, Footer }) => {
+const Podcasts: FC<prop> = ({ content, locale, Footer }) => {
   const state: IHomeReducer = useSelector((root: TRootReducer) => root.home);
   const dispatch = useDispatch();
 
@@ -110,4 +110,4 @@ export const getStaticProps = wrapper.getStaticProps(
   },
 );
 
-export default Home;
+export default Podcasts;
