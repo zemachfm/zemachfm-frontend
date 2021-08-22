@@ -34,12 +34,6 @@ class WrappedApp extends App<AppInitialProps> {
         : {}),
     };
 
-    // 2. Stop the saga if on server
-    if (ctx.req) {
-      ctx.store.dispatch(END);
-      await ctx.store.sagaTask.toPromise();
-    }
-
     // const req = ctx?.req;
     const baseUrl = process.env.host;
     const filePath = `${baseUrl}/static/${router?.locale || 'en'}.json`;
@@ -51,6 +45,11 @@ class WrappedApp extends App<AppInitialProps> {
     pageProps.content = content;
     pageProps.locale = router?.locale || 'en';
 
+    // 2. Stop the saga if on server
+    if (ctx.req) {
+      ctx.store.dispatch(END);
+      await ctx.store.sagaTask.toPromise();
+    }
     // 3. Return props
     return {
       pageProps,

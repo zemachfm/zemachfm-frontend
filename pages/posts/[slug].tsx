@@ -3,6 +3,7 @@
 import React, { useState, ReactElement } from 'react';
 import { GetStaticPaths, GetStaticPropsContext } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
 import { serialize } from 'next-mdx-remote/serialize';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { END } from 'redux-saga';
@@ -14,6 +15,8 @@ import { SITE_URL } from '../../lib/store/url';
 import { wrapper } from '../../store/store';
 import { getPost, getAllPosts } from '../../lib/utils/mdxUtils';
 import { translatedStrings } from '../../types/index.d';
+
+const components = { Link };
 
 interface returnPath {
   params: {
@@ -81,7 +84,7 @@ const PostPage: React.FC<Props> = ({
             {frontMatter.title}
           </h1>
           <div className="text-lg blog ">
-            <MDXRemote {...source} />
+            <MDXRemote {...source} components={components} />
           </div>
         </div>
       </article>

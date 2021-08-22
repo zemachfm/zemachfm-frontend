@@ -18,6 +18,7 @@ import { axiosGet } from '../../lib/store/axiosReq';
 import { PODCASTS_URL } from '../../lib/store/url';
 import PlayIcon from '../../icons/play.svg';
 import PauseIcon from '../../icons/pause.svg';
+import { url } from 'inspector';
 
 const SinglePodcast: FC<singlePodcastType> = ({
   locale,
@@ -119,7 +120,7 @@ const SinglePodcast: FC<singlePodcastType> = ({
               __html: singlePodcastState[slug][0].title.rendered,
             }}
           ></h1>
-          <div className="flex flex-row  gap-4 text-gray-600 dark:text-gray-400 mb-4 text-lg">
+          <div className="flex flex-row  gap-4 text-gray-400 dark:text-gray-400 mb-4 lg:text-lg text-md">
             <p>
               {content?.podcastPage?.headings?.recorded}
               <span className="block lg:inline lg:ml-2">
@@ -141,7 +142,7 @@ const SinglePodcast: FC<singlePodcastType> = ({
               </span>
             </p>
           </div>
-          <div className="w-full flex justify-start ">
+          <div className="w-full flex justify-center lg:justify-start xl:mx-0 ">
             {player.currentPlay.item &&
             player.currentPlay.item.id === singlePodcastState[slug][0].id ? (
               <button

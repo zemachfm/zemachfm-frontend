@@ -17,7 +17,7 @@ const RightSidebar: FC<rightSideProps> = ({ content }) => (
         className="text-gray-500 dark:text-gray-400 mb-6"
         dangerouslySetInnerHTML={{ __html: content.content }}
       ></div>
-      <a className="dark:text-gray-100" href={content.link.url}>
+      <a className="dark:text-gray-100" target="_blank" href={content.link.url}>
         {content.link.title}
       </a>
     </div>
