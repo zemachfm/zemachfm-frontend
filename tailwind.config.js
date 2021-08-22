@@ -1,4 +1,7 @@
+/* eslint-disable global-require */
+/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable import/no-unused-modules */
+const colors = require('tailwindcss/colors');
 
 module.exports = {
   // Removes unused css in production
@@ -20,7 +23,13 @@ module.exports = {
           '100%': { transform: 'translateX(0%)' },
         },
       },
+      colors: {
+        primary: colors.emerald,
+        secondary: colors.yellow,
+        accent: colors.white,
+      },
     },
+
     screens: {
       sm: '640px',
       // => @media (min-width: 640px) { ... }

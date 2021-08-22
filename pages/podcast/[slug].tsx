@@ -18,7 +18,6 @@ import { axiosGet } from '../../lib/store/axiosReq';
 import { PODCASTS_URL } from '../../lib/store/url';
 import PlayIcon from '../../icons/play.svg';
 import PauseIcon from '../../icons/pause.svg';
-import { url } from 'inspector';
 
 const SinglePodcast: FC<singlePodcastType> = ({
   locale,
@@ -66,7 +65,7 @@ const SinglePodcast: FC<singlePodcastType> = ({
         return {
           text: content?.topBanner?.play,
           icon: (
-            <PlayIcon className=" rounded-full fill-current  text-yellow-300  w-10 h-10 p-2 " />
+            <PlayIcon className=" rounded-full fill-current  text-secondary-300  w-10 h-10 p-2 " />
           ),
           onClick: () => onPlayingStateAction('PLAY'),
         };
@@ -146,7 +145,7 @@ const SinglePodcast: FC<singlePodcastType> = ({
             {player.currentPlay.item &&
             player.currentPlay.item.id === singlePodcastState[slug][0].id ? (
               <button
-                className="py-2 px-8 outline-none focus:outline-none bg-gradient-to-r flex justify-between items-center hover:from-green-600 hover:to-green-500 from-green-500 dark:from-green-700 dark:hover:from-green-800 to-green-400 dark:to-green-600 dark:hover:to-green-700 text-white rounded-lg mb-8"
+                className="py-2 px-8 outline-none focus:outline-none bg-gradient-to-r flex justify-between items-center hover:from-primary-600 hover:to-primary-500 from-primary-500 dark:from-primary-700 dark:hover:from-primary-800 to-primary-400 dark:to-primary-600 dark:hover:to-primary-700 text-white rounded-lg mb-8"
                 onClick={playingBasedProps.onClick}
               >
                 {playingBasedProps.icon}
@@ -154,7 +153,7 @@ const SinglePodcast: FC<singlePodcastType> = ({
               </button>
             ) : (
               <button
-                className="py-2 px-8 outline-none focus:outline-none bg-gradient-to-r flex justify-between items-center hover:from-green-600 hover:to-green-500 from-green-500 dark:from-green-700 dark:hover:from-green-800 to-green-400 dark:to-green-600 dark:hover:to-green-700 text-white rounded-lg mb-8"
+                className="py-2 px-8 outline-none focus:outline-none bg-gradient-to-r flex justify-between items-center hover:from-primary-600 hover:to-primary-500 from-primary-500 dark:from-primary-700 dark:hover:from-primary-800 to-primary-400 dark:to-primary-600 dark:hover:to-primary-700 text-white rounded-lg mb-8"
                 onClick={onPlayBannerEpisode}
               >
                 <PlayIcon className=" rounded-full fill-current text-gray-100 w-10 h-10 p-2 " />

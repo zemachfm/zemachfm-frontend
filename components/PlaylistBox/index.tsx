@@ -28,14 +28,14 @@ const PlaylistBox = (props: IToBannerProps) => {
         return {
           text: props.topBannerContent?.pause,
           icon: (
-            <PauseIcon className=" rounded-full fill-current  dark:text-green-300 text-green-500 w-10 h-10 p-2 " />
+            <PauseIcon className=" rounded-full fill-current  dark:text-primary-300 text-primary-500 w-10 h-10 p-2 " />
           ),
         };
       case 1:
         return {
           text: props.topBannerContent?.pause,
           icon: (
-            <PauseIcon className=" rounded-full fill-current  dark:text-green-300 text-green-500 w-10 h-10 p-2 " />
+            <PauseIcon className=" rounded-full fill-current  dark:text-primary-300 text-primary-500 w-10 h-10 p-2 " />
           ),
           onClick: () => onPlayingStateAction('PAUSE'),
         };
@@ -43,7 +43,7 @@ const PlaylistBox = (props: IToBannerProps) => {
         return {
           text: props.topBannerContent?.play,
           icon: (
-            <PlayIcon className=" rounded-full fill-current  dark:text-green-300 text-green-500 w-10 h-10 p-2 " />
+            <PlayIcon className=" rounded-full fill-current  dark:text-primary-300 text-primary-500 w-10 h-10 p-2 " />
           ),
           onClick: () => onPlayingStateAction('PLAY'),
         };

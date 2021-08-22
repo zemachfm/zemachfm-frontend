@@ -11,7 +11,7 @@ import { SmallDeviceMenuProps } from './index.d';
 const SmallDeviceSideBar: React.FC<SmallDeviceMenuProps> = props => (
   <div className="lg:hidden block bg-white dark:bg-gray-800 dark:text-white top-0 fixed w-full h-screen z-30 font-bold overflow-y-scroll">
     <div className="mt-5 px-5 flex items-center justify-between">
-      <h3 className="text-3xl text-green-500">Menu</h3>
+      <h3 className="text-3xl text-primary-500">Menu</h3>
       <button onClick={props.toogleMenu}>
         <CloseIcon />
       </button>
@@ -25,7 +25,7 @@ const SmallDeviceSideBar: React.FC<SmallDeviceMenuProps> = props => (
         >
           <li
             className={`flex ${
-              link.active ? 'bg-green-500  text-gray-700 rounded-r-full ' : ''
+              link.active ? 'bg-primary-500  text-gray-700 rounded-r-full ' : ''
             } py-3 mt-10 px-1`}
           >
             {link.icon}

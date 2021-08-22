@@ -68,7 +68,7 @@ const EpisodeCard: React.FC<episodeCard> = ({
       case 0:
         return (
           <Ripples className="rounded-full animate-pulse hover:bg-gray-300 mx-auto p-2 dark:hover:bg-black dark:border-gray-900">
-            <PauseIcon className="mt-0 h-6 w-6 fill-current dark:text-gray-300 text-green-500 " />
+            <PauseIcon className="mt-0 h-6 w-6 fill-current dark:text-gray-300 text-primary-500 " />
           </Ripples>
         );
       case 1:
@@ -77,7 +77,7 @@ const EpisodeCard: React.FC<episodeCard> = ({
             className="rounded-full cursor-pointer hover:bg-gray-300 mx-auto p-2 dark:hover:bg-black dark:border-gray-900"
             onClick={() => onPause('PAUSE')}
           >
-            <PauseIcon className="mt-0 h-6 w-6 fill-current dark:text-gray-300 text-green-500 " />
+            <PauseIcon className="mt-0 h-6 w-6 fill-current dark:text-gray-300 text-primary-500 " />
           </Ripples>
         );
       case 2:
@@ -86,7 +86,7 @@ const EpisodeCard: React.FC<episodeCard> = ({
             className="rounded-full cursor-pointer hover:bg-gray-300 mx-auto p-2 dark:hover:bg-black dark:border-gray-900"
             onClick={() => onPause('PLAY')}
           >
-            <PlayIcon className="mt-0 h-6 w-6 fill-current dark:text-gray-300 text-green-500 " />
+            <PlayIcon className="mt-0 h-6 w-6 fill-current dark:text-gray-300 text-primary-500 " />
           </Ripples>
         );
       default:
@@ -95,7 +95,7 @@ const EpisodeCard: React.FC<episodeCard> = ({
             className="rounded-full cursor-pointer hover:bg-gray-300 mx-auto p-2 dark:hover:bg-black dark:border-gray-900"
             onClick={() => onPause('PAUSE')}
           >
-            <PauseIcon className="mt-0 h-6 w-6 fill-current dark:text-gray-300 text-green-500 " />
+            <PauseIcon className="mt-0 h-6 w-6 fill-current dark:text-gray-300 text-primary-500 " />
           </Ripples>
         );
     }
@@ -152,7 +152,7 @@ const EpisodeCard: React.FC<episodeCard> = ({
             >
               <PlayIcon
                 className={`mt-0 h-6 w-6 fill-current dark:text-gray-300 text-gray-500 ${
-                  playing ? 'text-green-500 dark:text-green-600' : ''
+                  playing ? 'text-primary-500 dark:text-primary-600' : ''
                 } `}
               />
             </Ripples>
