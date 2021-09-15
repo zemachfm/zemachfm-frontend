@@ -258,6 +258,7 @@ const getStaticProps = wrapper.getStaticProps(
       'thumbnail',
       'title',
       'description',
+      'readingMinutes',
     ]);
     store.dispatch(fetchEpisodes());
     store.dispatch(fetchSettings(locale));

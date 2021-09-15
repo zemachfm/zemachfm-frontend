@@ -4,6 +4,7 @@
 import fs from 'fs';
 import { join } from 'path';
 import matter from 'gray-matter';
+import readingTime from 'reading-time';
 
 type Items = {
   [key: string]: string;
@@ -32,8 +33,9 @@ export function getPost(slug: string, isWorks: boolean): Post {
   const fullPath = join(POSTS_PATH, `${slug}.mdx`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   const { data, content } = matter(fileContents);
+  const readingMinutes = readingTime(content).minutes?.toFixed(0);
 
-  return { data, content };
+  return { data: { ...data, readingMinutes }, content };
 }
 
 // eslint-disable-next-line import/group-exports

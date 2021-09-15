@@ -9,14 +9,14 @@ import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { END } from 'redux-saga';
 import { fetchGuests, fetchSettings } from '../../store/home/actions';
 
-import Featured from '../../components/blog/featured';
 import { IPost } from '../../types/blog.d';
 import { SITE_URL } from '../../lib/store/url';
 import { wrapper } from '../../store/store';
 import { getPost, getAllPosts } from '../../lib/utils/mdxUtils';
 import { translatedStrings } from '../../types/index.d';
+import CodeHighlighter from '../../components/blog/code.component';
 
-const components = { Link };
+const components = { Link, code: CodeHighlighter };
 
 interface returnPath {
   params: {

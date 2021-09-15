@@ -4,4 +4,5 @@ export interface IPost {
   thumbnail: string;
   title: string;
   description: string;
+  readingMinutes?: number;
 }

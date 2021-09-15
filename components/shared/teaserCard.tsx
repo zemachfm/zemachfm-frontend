@@ -10,6 +10,7 @@ type props = {
   strings?: {
     title: string;
     subtitle: string;
+    minRead?: string;
   };
 };
 
@@ -31,7 +32,7 @@ const TeaserCard: React.FC<props> = ({ posts, strings, works }) => {
           {posts &&
             posts.map(post => (
               <div
-                className={`rounded-xl py-4  overflow-hidden `}
+                className={`rounded-xl py-4 mr-1  overflow-hidden `}
                 key={post.slug}
               >
                 <Thumbnail
@@ -45,10 +46,18 @@ const TeaserCard: React.FC<props> = ({ posts, strings, works }) => {
                       <a>{post.title} &rarr;</a>
                     </Link>
                   </h2>
-                  <p className="dark:text-gray-300 text-gray-500 mb-4 text-md">
-                    {' '}
-                    {post.date}{' '}
-                  </p>
+                  <div className="flex justify-between flex-wrap">
+                    <p className="dark:text-gray-300 text-gray-500 mb-4 text-md text-sm">
+                      {' '}
+                      {post.date}
+                    </p>
+
+                    <p className="dark:text-gray-300 text-gray-500 mb-4 text-md text-sm">
+                      {' '}
+                      {post.readingMinutes} {strings?.minRead || ''}
+                    </p>
+                  </div>
+
                   <div className="text-gray-600 dark:text-gray-400 mb-3">
                     {post.description}
                   </div>

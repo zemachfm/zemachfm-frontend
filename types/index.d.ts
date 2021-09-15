@@ -89,6 +89,7 @@ interface translatedStrings {
   blog: {
     title: string;
     subtitle: string;
+    minRead?: string;
   };
   topBanner: ITopBannerContent;
   notFoundPage: I404Content;
