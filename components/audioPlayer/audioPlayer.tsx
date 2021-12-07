@@ -100,6 +100,18 @@ const AudioPlayerWrapper: React.FC<props.audioPlayerProps> = ({
     dispatch(changePlayerSetting(payload));
   };
 
+  React.useEffect(() => {
+    if ('mediaSession' in navigator) {
+      navigator.mediaSession.setActionHandler('play', () => {
+        dispatch(changePlayerStatus({ type: 'PLAY' }));
+      });
+
+      navigator.mediaSession.setActionHandler('pause', () => {
+        dispatch(changePlayerStatus({ type: 'PAUSE' }));
+      });
+    }
+  }, []);
+
   document.onkeydown = function playerStatusChange(event: KeyboardEvent): void {
     if (
       !(
