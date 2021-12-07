@@ -101,12 +101,12 @@ const AudioPlayerWrapper: React.FC<props.audioPlayerProps> = ({
   };
 
   React.useEffect(() => {
-    if ('mediaSession' in navigator) {
-      navigator.mediaSession.setActionHandler('play', () => {
+    if ('mediaSession' in navigator && navigator?.mediaSession) {
+      navigator?.mediaSession?.setActionHandler('play', () => {
         dispatch(changePlayerStatus({ type: 'PLAY' }));
       });
 
-      navigator.mediaSession.setActionHandler('pause', () => {
+      navigator?.mediaSession?.setActionHandler('pause', () => {
         dispatch(changePlayerStatus({ type: 'PAUSE' }));
       });
     }
