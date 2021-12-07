@@ -162,7 +162,7 @@ const SinglePodcast: FC<singlePodcastType> = ({
             )}
           </div>
           <div
-            className="w-full text-lg text-gray-600 dark:text-gray-200 fill-current "
+            className="w-full text-lg text-gray-600 dark:text-gray-200 fill-current blog"
             dangerouslySetInnerHTML={{
               __html: singlePodcastState[slug][0].content.rendered,
             }}
