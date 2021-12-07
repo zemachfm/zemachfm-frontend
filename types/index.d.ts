@@ -1,6 +1,13 @@
 import { ReactElement } from 'react';
 import { IPost } from './blog.d';
 
+declare global {
+  interface Navigator {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    mediaSession: any;
+  }
+}
+
 interface ISideBarContents {
   episodes: string;
   hosts: string;
