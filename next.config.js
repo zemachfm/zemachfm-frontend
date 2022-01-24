@@ -38,4 +38,8 @@ webpacked.images = {
   domains: ['zemachfm.com', 'api.zemachfm.com'],
 };
 
+webpacked.eslint = {
+  ignoreDuringBuilds: true,
+};
+
 module.exports = webpacked;
