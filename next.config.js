@@ -7,9 +7,7 @@ const webpacked = {
     });
 
     if (!isServer) {
-      config.node = {
-        fs: 'empty',
-      };
+      config.resolve.fallback.fs = false;
     }
 
     return config;
@@ -39,6 +37,5 @@ webpacked.env = {
 webpacked.images = {
   domains: ['zemachfm.com', 'api.zemachfm.com'],
 };
-webpacked.target = 'serverless';
 
 module.exports = webpacked;
