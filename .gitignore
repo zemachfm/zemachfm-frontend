@@ -37,3 +37,5 @@ yarn-error.log*
 
 out_functions
 out_publish
+
+.vscode
