@@ -1,8 +1,12 @@
 # Zemach FM (ዘማች ኤፍ ኤም) Podcast Front-end Web application.
 
-## አሰተዋጽዖ ማድረግ ይበረታታል ። welcome to contribute.
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/d67a782c-3de8-4a4f-adc7-ef719d9ba90f/deploy-status)](https://app.netlify.com/sites/zemachfm/deploys)
+
+## አሰተዋጽዖ ማድረግ ይበረታታል ። welcome to contribute.
 ---
+
+please read ```CONTRIBUTING.MD``` before starting a contribution and making a pull request, there are a couple of issues at hand we need help with, so if you want to help please refer to [issues](https://github.com/zemachfm/zemachfm-frontend/issues)
 
 ### ዘማች ኤፍ ኤም በ ኢትዮጵያ የቴክኖሎጂ ፖድካስት ነው ። ቴክኖሎጅውንም ለማሻሻል የራሱን አስተዋጽዖ የማድረግ ጽኑ ፍላጎት አለው ።
 
@@ -28,4 +32,3 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 This project uses **GPL Licence**.
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/d67a782c-3de8-4a4f-adc7-ef719d9ba90f/deploy-status)](https://app.netlify.com/sites/zemachfm/deploys)
