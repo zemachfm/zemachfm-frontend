@@ -200,8 +200,28 @@ const getStaticProps = wrapper.getStaticProps(
   },
 );
 const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
+  /**
+   * will hold episode data
+   */
+  let episodeData = [];
+  /**
+   * get our first total pages with data
+   */
   const episodes = await axiosGet(PODCASTS_URL, { per_page: 100 });
-  const pathsIterate = episodes.data.map(episode => [
+  episodeData = [...episodes.data];
+  const totalPages = episodes.headers['x-wp-totalpages'];
+
+  let currentPage = 2;
+  while (currentPage <= totalPages) {
+    // eslint-disable-next-line no-await-in-loop
+    const response = await axiosGet(PODCASTS_URL, {
+      per_page: 100,
+      page: currentPage,
+    });
+    episodeData = [...episodeData, ...response.data];
+    currentPage += 1;
+  }
+  const pathsIterate = episodeData.map(episode => [
     {
       params: { slug: episode.slug },
       locale: 'am',
