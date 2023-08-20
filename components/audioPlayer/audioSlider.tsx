@@ -10,7 +10,7 @@ const primaryColors = customizedTailwindConfig?.theme?.colors?.primary;
 const primaryColor = primaryColors ? primaryColors['500'] : '#44b54c';
 const primaryColorLight = primaryColors ? primaryColors['100'] : '#ddd';
 
-const VolumeSlider = withStyles({
+const VolumeSlider:any = withStyles({
   rail: {
     opacity: 1,
     backgroundColor: primaryColorLight,

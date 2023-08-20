@@ -14,7 +14,7 @@ import localStorageKeys from '../../lib/constants/localStorageKeys';
 import { changeThemeAction, toogleMobileMenu } from '../../store/home/actions';
 import { TRootReducer } from '../../store/reducer';
 
-const LanguagePopover = withStyles({
+const LanguagePopover:any = withStyles({
   paper: {
     background: 'transparent',
   },

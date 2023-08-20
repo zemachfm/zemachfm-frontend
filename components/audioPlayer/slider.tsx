@@ -13,7 +13,7 @@ const primaryColorLight = primaryColors ? primaryColors['200'] : '#ddd';
 const primaryLighter = primaryColors ? primaryColors['100'] : 'acf9b1';
 const primaryLight = primaryColors ? primaryColors['200'] : '#9bc59e';
 
-const BufferedSlider = withStyles({
+const BufferedSlider:any = withStyles({
   thumb: {
     padding: 0,
     height: 0,
@@ -25,7 +25,7 @@ const BufferedSlider = withStyles({
   },
 })(Slider);
 
-const MainSlider = withStyles({
+const MainSlider:any = withStyles({
   rail: {
     opacity: 0.1,
     backgroundColor: primaryColorLight,

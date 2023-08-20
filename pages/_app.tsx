@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactNode,ReactElement } from 'react';
 import path from 'path';
 import fs from 'fs';
 import App, { AppInitialProps, AppContext } from 'next/app';
@@ -57,7 +57,8 @@ class WrappedApp extends App<AppInitialProps> {
   };
 
   public render() {
-    const { Component, pageProps } = this.props;
+    const { pageProps } = this.props;
+    const Component = this.props.Component as unknown as any
     const FooterElement = (): ReactElement => (
       <Footer content={pageProps.content} />
     );
